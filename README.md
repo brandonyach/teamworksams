@@ -4,7 +4,7 @@ A Python wrapper for the Teamworks AMS (Athlete Management System) API.
 [![PyPI version](https://badge.fury.io/py/teamworksams.svg)](https://badge.fury.io/py/teamworksams)
 [![Tests](https://github.com/brandonyach/teamworksams/actions/workflows/ci.yml/badge.svg)](https://github.com/brandonyach/teamworksams/actions)
 
-`teamworksams` is a Python package that connects to the Teamworks AMS API, enabling users to upload files, attach them to events or user avatars, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS users, leveraging Python’s data processing capabilities.
+`teamworksams` is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS users, leveraging Python’s data processing capabilities.
 
 ## Installation
 ```bash
@@ -30,7 +30,7 @@ pip install git+https://github.com/brandonyach/teamworksams.git
 **Warning**: `teamworksams` is powerful but requires caution:
 - Read all documentation thoroughly.
 - Test extensively in a non-production environment.
-- Contact your Teamworks AMS consultant for support.
+- Contact Teamworks Support or your Teamworks AMS Product Success Manager for assistance.
 
 ## Usage
 Below are examples of the core functions:
@@ -82,7 +82,7 @@ print(df)
 ## Get Started
 To securely provide credentials, store them in a `.env` file:
 ```
-AMS_URL=https://example.teamworksams.com
+AMS_URL=https://example.smartabase.com/site
 AMS_USERNAME=user
 AMS_PASSWORD=pass
 ```

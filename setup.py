@@ -8,7 +8,7 @@ setup(
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
-        "pandas>=2.2.3",
+        "pandas>=2.0.0",
         "requests",
         "requests_toolbelt",
         "python-dotenv",
