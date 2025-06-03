@@ -1,5 +1,5 @@
 # teamworksams
-A Python wrapper for the Teamworks AMS (Athlete Management System) API.
+A Python wrapper for the Teamworks AMS (Athlete Management System) API. <img src="man/figures/logo.png" align="right" height="100" style="float:right; height:90px; width:90px">
 
 [![PyPI version](https://badge.fury.io/py/teamworksams.svg)](https://badge.fury.io/py/teamworksams)
 [![Tests](https://github.com/brandonyach/teamworksams/actions/workflows/ci.yml/badge.svg)](https://github.com/brandonyach/teamworksams/actions)

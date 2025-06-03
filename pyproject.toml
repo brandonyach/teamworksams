@@ -16,6 +16,7 @@ dependencies = [
     "requests_toolbelt",
     "python-dotenv",
     "tqdm",
+    "keyring"
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
