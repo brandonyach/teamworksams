@@ -2,6 +2,8 @@ from typing import Dict, List, Optional
 from pandas import DataFrame
 from .import_clean import _set_default_dates_and_times
 from .import_process import _categorize_fields, _get_existing_event_id, _extract_non_table_values, _build_pairs
+from .import_validate import _detect_duplicate_date_user_id
+from .utils import AMSError
 
 
 def _build_import_payload(
@@ -11,41 +13,36 @@ def _build_import_payload(
     entered_by_user_id: int,
     overwrite_existing: bool
 ) -> List[Dict]:
-    """Build the payload for an AMS API event import request.
-
-    Groups the DataFrame by user_id, start_date, and event_id (for updates), constructs
-    event metadata, and builds rows for table and non-table fields.
-
-    Args:
-        df: DataFrame containing the event data to import.
-        form: The name of the AMS Event Form.
-        table_fields: List of field names that are table fields, or None for non-table forms.
-        entered_by_user_id: The ID of the user performing the operation.
-        overwrite_existing: Boolean indicating if this is an update operation.
-
-    Returns:
-        List containing a single dictionary with an 'events' key mapping to a list of event payloads.
-    """
-    non_table_fields = _categorize_fields(df, table_fields)
-    
-    group_keys = ["user_id", "start_date"]
-    if overwrite_existing and "event_id" in df.columns:
-        group_keys.append("event_id")
-    grouped_df = df.groupby(group_keys)
-    
+    """Build payloads for an AMS API event import request, one per event record."""
     events = []
-    for _, group in grouped_df:
+    if table_fields:
+        group_keys = ["user_id", "start_date"]
+        if overwrite_existing and "event_id" in df.columns:
+            group_keys.append("event_id")
+        grouped_df = df.groupby(group_keys)
+        for _, group in grouped_df:
+            payload = _build_event_metadata(group, form, entered_by_user_id, overwrite_existing)
+            payload["rows"] = _build_table_rows(group, table_fields, _categorize_fields(df, table_fields))
+            events.append(payload)
+    else:
+        df = df.copy()
+        if "user_id" not in df.columns or "start_date" not in df.columns:
+            raise AMSError("Missing 'user_id' or 'start_date' columns in non-table form DataFrame", function="build_import_payload")
         
-        payload = _build_event_metadata(group, form, entered_by_user_id, overwrite_existing)
+        df["duplicate_row_id"] = df.groupby(["user_id", "start_date"]).cumcount()
         
-        payload["rows"] = _build_table_rows(group, table_fields, non_table_fields)
-        
-        events.append(payload)
+        for _, row in df.iterrows():
+            single_row_df = row.drop(labels="duplicate_row_id").to_frame().T
+            payload = _build_event_metadata(single_row_df, form, entered_by_user_id, overwrite_existing)
+            payload["rows"] = _build_table_rows(single_row_df, table_fields, _categorize_fields(single_row_df, table_fields))
+            events.append(payload)
     
-    # Wrap in events list for eventsimport
-    wrapped_payload = {"events": events}
-    # print(f"Debug: Event payload being sent: {wrapped_payload}")  # Debugging statement
-    return [wrapped_payload]
+    payloads = [{"events": [event]} for event in events]
+    
+    if not table_fields and _detect_duplicate_date_user_id(df, table_fields):
+        print("⚠️ Warning: Multiple rows with the same user_id and start_date detected. Each row imported as a separate event.")
+    
+    return payloads
 
 
 
@@ -81,8 +78,8 @@ def _build_profile_payload(
         
         profiles.append(payload)
     
-    # print(f"Debug: Profile payload being sent: {profiles}")  # Debugging statement
     return profiles
+
 
 
 def _build_event_metadata(
@@ -152,6 +149,7 @@ def _build_profile_metadata(
     return payload
 
 
+
 def _build_table_rows(
     group: DataFrame,
     table_fields: Optional[List[str]],
@@ -217,6 +215,7 @@ def _build_profile_rows(group: DataFrame, non_table_fields: List[str]) -> List[D
     pairs = []
     for field, value in non_table_values.items():
         pairs.append({"key": field, "value": value})
+        
     rows.append({"row": 0, "pairs": pairs})
 
     return rows if rows else [{"row": 0, "pairs": []}]

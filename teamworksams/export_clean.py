@@ -98,6 +98,11 @@ def _guess_column_types(
                     df[col] = pd.to_numeric(df[col], errors="coerce")
                     if df[col].notna().all() and (df[col] % 1 == 0).all():
                         df[col] = df[col].astype("int64")
+                        
+    df['event_id'] = df['event_id'].astype('str')
+    
+    df['entered_by_user_id'] = df['entered_by_user_id'].astype('str')
+    
     return df
 
 

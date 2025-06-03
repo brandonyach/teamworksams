@@ -127,3 +127,23 @@ def _validate_import_df(
     _validate_dates(df)
     
     _validate_times(df)
+    
+
+def _detect_duplicate_date_user_id(df: DataFrame, table_fields: Optional[List[str]]) -> bool:
+    """Detect if the DataFrame has multiple rows with the same user_id and start_date for non-table forms.
+
+    Args:
+        df: DataFrame containing event data.
+        table_fields: List of table field names, or None for non-table forms.
+
+    Returns:
+        bool: True if duplicates exist for non-table forms, False otherwise.
+    """
+    if table_fields is not None:
+        return False
+    if "user_id" not in df.columns or "start_date" not in df.columns:
+        return False
+    
+    duplicate_flag = df.groupby(["user_id", "start_date"]).size().gt(1).any()
+    
+    return duplicate_flag

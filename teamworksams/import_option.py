@@ -41,7 +41,7 @@ class InsertEventOption:
     
     def __init__(
             self, 
-            interactive_mode: bool = False, 
+            interactive_mode: bool = True, 
             cache: bool = True, 
             id_col: str = "user_id", 
             table_fields: Optional[List[str]] = None
@@ -56,7 +56,7 @@ class InsertEventOption:
         
         self.id_col = id_col
         
-        self.table_fields = table_fields if table_fields is not None else []
+        self.table_fields = table_fields if table_fields is not None else None
 
 
 
@@ -98,10 +98,11 @@ class UpdateEventOption:
     """
     def __init__(
             self, 
-            interactive_mode: bool = False, 
+            interactive_mode: bool = True, 
             cache: bool = True, 
             id_col: str = "user_id", 
-            table_fields: Optional[List[str]] = None
+            table_fields: Optional[List[str]] = None,
+            require_confirmation: bool = True
         ):
         
         self.interactive_mode = interactive_mode
@@ -113,7 +114,9 @@ class UpdateEventOption:
         
         self.id_col = id_col
         
-        self.table_fields = table_fields if table_fields is not None else []
+        self.table_fields = table_fields if table_fields is not None else None
+        
+        self.require_confirmation = require_confirmation
 
 
 
@@ -156,7 +159,8 @@ class UpsertEventOption:
     """
     def __init__(
             self, 
-            interactive_mode: bool = False, cache: bool = True, 
+            interactive_mode: bool = True, 
+            cache: bool = True, 
             id_col: str = "user_id", 
             table_fields: Optional[List[str]] = None
         ):
@@ -170,7 +174,7 @@ class UpsertEventOption:
         
         self.id_col = id_col
         
-        self.table_fields = table_fields if table_fields is not None else []
+        self.table_fields = table_fields if table_fields is not None else None
         
         
 
@@ -205,7 +209,7 @@ class UpsertProfileOption:
     """
     def __init__(
             self, 
-            interactive_mode: bool = False, 
+            interactive_mode: bool = True, 
             cache: bool = True, 
             id_col: str = "user_id"
         ):

@@ -67,38 +67,47 @@ def _process_events_to_rows(
         
         # Handle attachments
         attachments = event.get("attachmentUrl")
+        
         if download_attachment and attachments and client:
             if isinstance(attachments, list):
                 for attachment in attachments:
                     url = attachment.get("attachmentUrl")
                     name = attachment.get("name", "unnamed")
+                    
                     if url:
                         file_name = f"{event['formName']}_{event['id']}_{name}"
                         file_name = file_name.replace("/", "").replace(":", "").replace(" ", "")
+                        
                         try:
                             _download_attachment(client, url, file_name, 
                                                 output_dir=option.attachment_directory if option else None)
                             attachment_count += 1
+                            
                         except AMSError as e:
                             if option and option.interactive_mode:
                                 print(f"✖ Warning: Could not download attachment {name} for event {event['id']}: {e}")
+                                
             elif isinstance(attachments, str):
                 file_name = f"{event['formName']}_{event['id']}_{event['startDate']}_{event.get('startTime', 'notime')}"
                 file_name = file_name.replace("/", "").replace(":", "").replace(" ", "")
+                
                 try:
                     _download_attachment(client, attachments, file_name, 
                                         output_dir=option.attachment_directory if option else None)
                     attachment_count += 1
+                    
                 except AMSError as e:
                     if option and option.interactive_mode:
                         print(f"✖ Warning: Could not download attachment for event {event['id']}: {e}")
         
         # Filter by date and events_per_user
         event_date = datetime.strptime(event["startDate"], "%d/%m/%Y")
+        
         if start <= event_date <= end:
             if filter and filter.events_per_user:
                 user_id = event["userId"]
                 user_event_counts[user_id] = user_event_counts.get(user_id, 0) + 1
+                
                 if user_event_counts[user_id] <= filter.events_per_user:
                     rows.extend([r for r in rows if r["user_id"] == user_id][-len(event_rows):])
     
@@ -138,6 +147,7 @@ def _process_profile_rows(
             "entered_by_user_id": int(profile["enteredByUserId"])
         }
         profile_rows = profile.get("rows", [])
+        
         if not profile_rows:
             rows.append(base_row.copy())
         else:
@@ -146,6 +156,7 @@ def _process_profile_rows(
                 row = base_row.copy()
                 row.update(pairs)
                 rows.append(row)
+                
     return rows
 
 
@@ -169,8 +180,11 @@ def _append_user_data(
     if user_df is not None and not user_df.empty:
         user_df["about"] = user_df["firstName"] + " " + user_df["lastName"]
         user_df = user_df.rename(columns={"userId": "user_id"})
+        
         if include_missing_users:
             df = user_df[["user_id", "about"]].merge(df, on="user_id", how="left")
+            
         else:
             df = df.merge(user_df[["user_id", "about"]], on="user_id", how="left")
+            
     return df

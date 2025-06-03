@@ -7,7 +7,7 @@ from .import_clean import _clean_import_df, _clean_profile_df
 from .import_fetch import _fetch_import_payloads
 from .import_print import _print_import_status
 from .import_process import _map_id_col_to_user_id
-from .import_validate import _validate_import_df
+from .import_validate import _validate_import_df, _detect_duplicate_date_user_id
 
 
 def insert_event_data(
@@ -85,9 +85,7 @@ def insert_event_data(
         ℹ Records inserted: 2
         ℹ Records attempted: 2
     """
-    
     option = option or InsertEventOption()
-    
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
     
     df_clean = _clean_import_df(df)
@@ -106,7 +104,10 @@ def insert_event_data(
         overwrite_existing=False
     )
     
-    event_count = len(payloads[0]["events"])
+    # event_count = len(payloads[0]["events"])
+    # event_count = sum(len(p["events"]) for p in payloads)
+    event_count = len(payloads) 
+    
     if option.interactive_mode:
         print(f"ℹ Inserting {event_count} events for '{form}'")
     
@@ -116,6 +117,8 @@ def insert_event_data(
         print(f"✔ Processed {event_count} events for '{form}'")
     
     _print_import_status(results, form, "inserted", option.interactive_mode)
+    
+    return df_clean
 
 
 
@@ -217,12 +220,15 @@ def update_event_data(
         overwrite_existing=True
     )
     
-    event_count = len(payloads[0]["events"])
+    # event_count = sum(len(p["events"]) for p in payloads)
+    event_count = len(payloads) 
+    
     if option.interactive_mode:
         print(f"ℹ Updating {event_count} events for '{form}'")
-        confirm = input(f"Are you sure you want to update {event_count} existing events in '{form}'? (y/n): ").strip().lower()
-        if confirm not in ['y', 'yes']:
-            raise AMSError("Update operation cancelled by user.")
+        if option.require_confirmation:
+            confirm = input(f"Are you sure you want to update {event_count} existing events in '{form}'? (y/n): ").strip().lower()
+            if confirm not in ['y', 'yes']:
+                raise AMSError("Update operation cancelled by user.")
     
     results = _fetch_import_payloads(client, payloads, "update", option.interactive_mode, option.cache)
     
@@ -230,6 +236,8 @@ def update_event_data(
         print(f"✔ Processed {event_count} events for '{form}'")
     
     _print_import_status(results, form, "updated", option.interactive_mode)
+    
+    return df_clean
 
 
 
@@ -334,7 +342,6 @@ def upsert_event_data(
     
     all_results = []
     
-    # Process updates
     if not updates_df.empty:
         update_payloads = _build_import_payload(
             updates_df,
@@ -344,12 +351,16 @@ def upsert_event_data(
             overwrite_existing=True
         )
         
-        update_count = len(update_payloads[0]["events"])
+        # update_count = len(update_payloads[0]["events"])
+        # update_count = sum(len(p["events"]) for p in update_payloads)
+        update_count = len(update_payloads) 
+        
         if option.interactive_mode:
             print(f"ℹ Updating {update_count} existing events for '{form}'")
-            confirm = input(f"Are you sure you want to update {update_count} existing events in '{form}'? (y/n): ").strip().lower()
-            if confirm not in ['y', 'yes']:
-                raise AMSError("Update operation cancelled by user.")
+            if option.require_confirmation:
+                confirm = input(f"Are you sure you want to update {update_count} existing events in '{form}'? (y/n): ").strip().lower()
+                if confirm not in ['y', 'yes']:
+                    raise AMSError("Update operation cancelled by user.")
             
         update_results = _fetch_import_payloads(client, update_payloads, "update", option.interactive_mode, option.cache)
         
@@ -365,7 +376,10 @@ def upsert_event_data(
             overwrite_existing=False
         )
         
-        insert_count = len(insert_payloads[0]["events"])
+        # insert_count = len(insert_payloads[0]["events"])
+        # insert_count = sum(len(p["events"]) for p in insert_payloads)
+        insert_count = len(insert_payloads) 
+        
         if option.interactive_mode:
             print(f"ℹ Inserting {insert_count} new events for '{form}'")
             
@@ -378,6 +392,8 @@ def upsert_event_data(
         print(f"✔ Processed {total_events} events for '{form}'")
     
     _print_import_status(all_results, form, "upserted", option.interactive_mode)
+    
+    return df_clean
     
     
     
@@ -457,6 +473,7 @@ def upsert_profile_data(
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
     
     df_clean = _clean_profile_df(df)
+    
     df_clean = _map_id_col_to_user_id(df_clean, option.id_col, client)
     
     _validate_import_df(df_clean, form, overwrite_existing=False, table_fields=None)
@@ -470,11 +487,13 @@ def upsert_profile_data(
     )
     
     profile_count = len(payload)
+    
     if option.interactive_mode:
         print(f"ℹ Upserting {profile_count} profile records for '{form}'")
-        confirm = input(f"Are you sure you want to upsert {profile_count} profile records in '{form}'? (y/n): ").strip().lower()
-        if confirm not in ['y', 'yes']:
-            raise AMSError("Upsert operation cancelled by user.")
+        if option.require_confirmation:
+            confirm = input(f"Are you sure you want to upsert {profile_count} profile records in '{form}'? (y/n): ").strip().lower()
+            if confirm not in ['y', 'yes']:
+                raise AMSError("Upsert operation cancelled by user.")
     
     results = _fetch_import_payloads(client, payload, "upsert", option.interactive_mode, option.cache, is_profile=True)
     

@@ -160,6 +160,7 @@ def delete_multiple_events(
         confirm = input(f"Are you sure you want to delete {len(event_ids)} events with IDs {event_ids}? (y/n): ").strip().lower()
         if confirm not in ['y', 'yes']:
             raise AMSError("Delete operation cancelled by user.")
+        
         print(f"ℹ Deleting {len(event_ids)} events with IDs {event_ids}...")
         
     try:

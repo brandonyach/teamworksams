@@ -20,28 +20,44 @@ def _extract_non_table_values(group: DataFrame, non_table_fields: List[str]) -> 
     for field in non_table_fields:
         non_nan_values = group[field].dropna()
         if not non_nan_values.empty:
-            non_table_values[field] = str(non_nan_values.iloc[0])
+            value = non_nan_values.iloc[0]
+            if pd.api.types.is_numeric_dtype(non_nan_values):
+                try:
+                    non_table_values[field] = str(int(float(value)))
+                except (ValueError, TypeError):
+                    non_table_values[field] = str(value)
+            else:
+                non_table_values[field] = str(value)
     return non_table_values
 
 
-def _count_unique_events(events: List[Dict]) -> int:
-    """Count unique events based on user_id, start_date, and optionally existingEventId.
+def _count_unique_events(events: List[Dict], table_fields: Optional[List[str]] = None) -> int:
+    """Count events in the payload, returning 1 for single-event payloads.
+
+    For table forms, counts unique events based on user_id, start_date, and optionally
+    existingEventId. For non-table forms, returns the number of events.
 
     Args:
         events: List of event dictionaries from the payload.
+        table_fields: List of table field names, or None/empty for non-table forms.
 
     Returns:
-        Number of unique events based on grouping keys.
+        Number of events.
     """
+    if len(events) <= 1 or not table_fields:  # Single event or non-table form
+        return len(events)
+    
     group_keys = ["startDate"]
     if any("existingEventId" in event for event in events):
         group_keys.append("existingEventId")
-    return len(set(
+    unique_count = len(set(
         tuple(
             [event["userId"]["userId"]] + [event[key] for key in group_keys]
         )
         for event in events
     ))
+
+    return unique_count
 
 
 def _handle_import_response(response: Dict) -> Dict:
@@ -54,18 +70,17 @@ def _handle_import_response(response: Dict) -> Dict:
         Processed response dictionary with state, IDs, and message.
     """
     # Check if response has a 'result' key; otherwise, use the response directly
-    result = response.get("result", response)
-    state = result.get("state", response.get("state", "UNKNOWN"))
-    ids = result.get("ids", response.get("ids", []))
-    message = result.get("message", response.get("message", ""))
+    result = response.get("result", response.get("data", response))
+    state = result.get("state", result.get("status", "UNKNOWN")).upper()
+    ids = result.get("ids", result.get("data", {}).get("ids", []))
+    message = result.get("message", result.get("error", result.get("description", "")))
     
     processed_result = {
         "state": state,
-        "ids": ids,
-        "message": message
+        "ids": ids if isinstance(ids, list) else [ids] if ids else [],
+        "message": str(message)
     }
-    # print(f"Debug: API response received: {response}")
-    # print(f"Debug: Processed result: {processed_result}")
+    
     return processed_result
 
 
@@ -95,9 +110,10 @@ def _categorize_fields(df: DataFrame, table_fields: Optional[List[str]] = None) 
     excluded_fields = [
         "user_id", "about", "username", "email", "form", "entered_by_user_id",
         "full_name", "sex", "dob", "start_date", "start_time", "end_date",
-        "end_time", "event_id"
+        "end_time", "event_id", "duplicate_row_id"
     ]
     return [col for col in df.columns if col not in excluded_fields and (not table_fields or col not in table_fields)]
+
 
 
 def _get_existing_event_id(group: DataFrame, overwrite_existing: bool) -> Optional[int]:

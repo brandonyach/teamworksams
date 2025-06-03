@@ -18,13 +18,17 @@ def _build_user_payload(filter: Optional[UserFilter] = None) -> Dict:
         Dict: The payload dictionary for the API request.
     """
     payload = {"identification": []}
+    
     if filter and filter.user_key and filter.user_value:
         if filter.user_key == "group":
             return {"name": [filter.user_value] if isinstance(filter.user_value, str) else filter.user_value}
+        
         elif isinstance(filter.user_value, list):
             payload["identification"] = [{filter.user_key: value} for value in filter.user_value]
+            
         else:
             payload["identification"] = [{filter.user_key: filter.user_value}]
+            
     return payload
 
 
@@ -103,6 +107,7 @@ def _build_user_save_payload(row: pd.Series, is_create: bool = True) -> Dict:
     }
     if "sex" in row and row["sex"]:
         user_data["sex"] = row["sex"]
+        
     return user_data
 
 
@@ -123,7 +128,10 @@ def _build_user_edit_payload(row: pd.Series, user_df: DataFrame, column_mapping:
     user_id = row["user_id"]
     if pd.isna(user_id):
         raise AMSError(f"Invalid user_id for row: {row.to_dict()}")
+    
     user_data = user_df[user_df["id"] == user_id].to_dict("records")
+    
     if not user_data:
         raise AMSError(f"User ID {user_id} not found in user data")
+    
     return _map_user_updates(row, user_data[0], column_mapping)

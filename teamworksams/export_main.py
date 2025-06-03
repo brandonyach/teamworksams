@@ -104,6 +104,7 @@ def get_event_data(
         _validate_event_filter(filter.user_key, filter.user_value, filter.data_key, filter.data_value, filter.data_condition, filter.events_per_user)
     
     user_ids, user_df = _fetch_user_ids(client, filter, option.cache)
+    
     if not user_ids:
         if option.interactive_mode:
             print("⚠️ No users found to fetch events for - Function: get_event_data")
@@ -115,12 +116,14 @@ def get_event_data(
         print(f"ℹ Requesting event data for '{form}' between {start_date} and {end_date}")
     
     data = client._fetch(endpoint, method="POST", payload=payload, cache=option.cache, api_version="v1")
+    
     if not data or "events" not in data or not data["events"]:
         AMSError(f"No events found for form '{form}' in the date range {start_date} to {end_date}", 
                            function="get_event_data", endpoint=endpoint)
     
     if option.interactive_mode:
         print(f"ℹ Processing {len(data['events'])} events...")
+        
     rows = _process_events_to_rows(
         data["events"], 
         start, 
@@ -133,6 +136,7 @@ def get_event_data(
     if not rows:
         AMSError(f"No event data found for form '{form}' between {start_date} and {end_date}", 
                            function="get_event_data", endpoint=endpoint)
+        
     event_df = pd.DataFrame(rows)
     
     event_df = _transform_event_data(event_df, option.clean_names, option.guess_col_type, option.convert_dates)
@@ -245,8 +249,11 @@ def sync_event_data(
     data = client._fetch("synchronise", method="POST", payload=payload, cache=option.cache, api_version="v1")
     
     export_data = data.get("export", {}) if data else {}
+    
     events = export_data.get("events", [])
+    
     new_sync_time = data.get("lastSynchronisationTimeOnServer", last_synchronisation_time) if data else last_synchronisation_time
+    
     deleted_event_ids = data.get("idsOfDeletedEvents", []) if data else []
     
     rows = _process_events_to_rows(
@@ -272,8 +279,10 @@ def sync_event_data(
             event_df = event_df.merge(user_df[["user_id", "uuid"]], on="user_id", how="left")
         
         front_cols = ['about', 'user_id'] if option.include_user_data else ['user_id']
+        
         if option.include_uuid:
             front_cols.append('uuid')
+            
         event_df = _reorder_columns(front_cols, event_df, ['end_date', 'start_time', 'end_time', 'entered_by_user_id'])
         
         event_df = _sort_event_data(event_df)
@@ -370,6 +379,7 @@ def get_profile_data(
         return DataFrame(columns=["user_id", "profile_id", "form"])
     
     payload = _build_profile_payload(form, user_ids)
+    
     if option.interactive_mode:
         print(f"ℹ Requesting profile data for form '{form}'")
     
@@ -379,7 +389,9 @@ def get_profile_data(
     
     if option.interactive_mode:
         print(f"ℹ Processing {len(data['profiles'])} profiles...")
+        
     rows = _process_profile_rows(data["profiles"], filter, option)
+    
     if not rows:
        AMSError(f"No profile data found for form '{form}'", function="get_profile_data", endpoint="profilesearch")
     profile_df = pd.DataFrame(rows)

@@ -10,6 +10,7 @@ from .user_fetch import _fetch_user_ids
 from .utils import AMSError, AMSClient
 from .file_validate import _validate_output_directory
 
+
 def _format_file_reference(file_df: DataFrame, file_field_name: str) -> DataFrame:
     """Format the file reference in the format 'file_id|server_file_name'.
 
@@ -32,18 +33,7 @@ def _map_user_ids_to_file_df(
     interactive_mode: bool,
     cache: bool
 ) -> Tuple[DataFrame, DataFrame]:
-    """Map user IDs to a file DataFrame and return updated DataFrame and failed mappings.
-
-    Args:
-        file_df (DataFrame): DataFrame with user identifiers and file data.
-        user_key (str): The user identifier column in file_df ('username', 'email', 'about', 'uuid').
-        client (AMSClient): The authenticated AMSClient instance.
-        interactive_mode (bool): Whether to print status messages.
-        cache (bool): Whether to cache API responses.
-
-    Returns:
-        Tuple[DataFrame, DataFrame]: Updated file_df with user_id, and failed_df with unmapped users.
-    """
+    """Map user IDs to a file DataFrame and return updated DataFrame and failed mappings."""
     failed_df = DataFrame(columns=[user_key, "file_name", "reason"])
     
     user_values = file_df[user_key].unique().tolist()
@@ -78,13 +68,18 @@ def _map_user_ids_to_file_df(
         user_data = DataFrame()
     
     user_data = user_data.rename(columns={"userId": "user_id"})
-    user_data["user_id"] = user_data["user_id"].astype(str)  # Cast to string
+    user_data["user_id"] = user_data["user_id"].astype(str)
     if user_key == "about":
         user_data["about"] = (user_data["firstName"].str.strip() + " " + user_data["lastName"].str.strip())
         file_df = file_df.copy()
         file_df[user_key] = file_df[user_key].str.strip()
     
     merge_key = user_key if user_key != "email" else "emailAddress"
+    # Preserve string types in file_df
+    file_df = file_df.copy()
+    for col in file_df.columns:
+        if col not in ["user_id"]:
+            file_df[col] = file_df[col].astype(str)
     file_df = file_df.merge(
         user_data[["user_id", merge_key]],
         left_on=user_key,
@@ -105,7 +100,6 @@ def _map_user_ids_to_file_df(
         file_df = file_df[file_df["user_id"].notna()]
     
     return file_df, failed_df
-
 
 
 def _build_result_df(
@@ -167,7 +161,6 @@ def _build_result_df(
         "status": "object",
         "reason": "object"
     })
-
 
 
 def _download_attachment(
@@ -343,3 +336,42 @@ def _upload_single_file(file_path: Path, file_name: str, client: AMSClient, proc
         "file_id": file_id,
         "server_file_name": server_file_name
     }
+    
+    
+def _create_avatar_mapping_df(file_dir: str, user_key: str) -> DataFrame:
+    """Create a DataFrame from a folder of image files with columns for user_key and file_name.
+
+    Args:
+        file_dir (str): Path to the folder containing image files.
+        user_key (str): Column name for user identification (e.g., 'username', 'about').
+
+    Returns:
+        DataFrame: DataFrame with columns [user_key, 'file_name'].
+
+    Raises:
+        AMSError: If the folder does not exist, is not a directory, or contains no valid image files.
+    """
+    image_extensions = {'.png', '.jpg', '.jpeg', '.svg', '.gif', '.webp', '.tiff', '.heic', '."HEIC'}
+    data = []
+
+    folder = Path(file_dir)
+    if not folder.is_dir():
+        raise AMSError(f"The folder {file_dir} does not exist or is not a directory.", function="create_avatar_mapping_df")
+
+    for file_path in folder.iterdir():
+        if file_path.suffix.lower() in image_extensions:
+            person_name = file_path.stem
+            data.append({
+                user_key: person_name,
+                'file_name': file_path.name
+            })
+
+    if not data:
+        raise AMSError(f"No valid image files found in {file_dir}. Supported extensions: {', '.join(image_extensions)}", function="create_avatar_mapping_df")
+
+    df = pd.DataFrame(data)
+    if df['file_name'].duplicated().any():
+        duplicates = df[df['file_name'].duplicated(keep=False)]['file_name'].tolist()
+        raise AMSError(f"Duplicate file names found in {file_dir}: {duplicates}", function="create_avatar_mapping_df")
+
+    return df

@@ -187,7 +187,7 @@ def edit_user(
     Updates specified fields for existing users identified by a user key (e.g., username,
     email), using the AMS API’s `/api/v2/person/save` endpoint. The function retrieves
     complete user data to preserve unchanged fields, applies updates of only the fields provided
-    from the DataFrame, and returns a DataFrame of failed updates with reasons. Supports interactive
+    from the mapping_df DataFrame, and returns a DataFrame of failed updates with reasons. Supports interactive
     feedback, including status messages and confirmation prompts, and allows caching for
     performance.
 
@@ -232,7 +232,7 @@ def edit_user(
         ...     "first_name": ["John", "Jane"],
         ...     "email": ["john.doe@new.com", "jane.smith@new.com"]
         ... })
-        >>> failed_df = edit_user(
+        >>> results = edit_user(
         ...     mapping_df = mapping_df,
         ...     user_key = "username",
         ...     url = "https://example.smartabase.com/site",
@@ -240,12 +240,14 @@ def edit_user(
         ...     password = "pass",
         ...     option = UserOption(interactive_mode = True)
         ... )
-        ℹ Retrieving user data for 2 users using username...
+        ℹ Fetching all user data...
+        ℹ Retrieved 30 users.
+        ℹ Attempting to map 2 users using about from provided dataframe...
+        ℹ Successfully mapped 2 users.
         ℹ Updating 2 users...
+        Processing users: 100%|██████████| 2/2 [00:4<00:00, 3.46it/s]
         ✔ Successfully updated 2 users.
-        >>> print(failed_df)
-        Empty DataFrame
-        Columns: [user_id, user_key, reason]
+        ✔ No failed operations.
     """
     option = option or UserOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
@@ -253,15 +255,13 @@ def edit_user(
     _validate_user_data_for_edit(mapping_df, user_key)
 
     user_values = mapping_df[user_key].unique().tolist()
-    if option.interactive_mode:
-        print(f"ℹ Retrieving user data for {len(user_values)} users using {user_key}...")
 
     try:
         user_df = _fetch_all_user_data(
             url=url,
             username=username,
             password=password,
-            user_ids=None,  # Fetch all users
+            user_ids=None,  
             option=option,
             client=client
         )
@@ -271,6 +271,7 @@ def edit_user(
         return DataFrame({
             "user_id": [None] * len(mapping_df),
             "user_key": mapping_df[user_key],
+            "status": ["FAILED"] * len(mapping_df),
             "reason": f"Failed to retrieve user data: {str(e)}"
         })
 
@@ -280,8 +281,12 @@ def edit_user(
         return DataFrame({
             "user_id": [None] * len(mapping_df),
             "user_key": mapping_df[user_key],
+            "status": ["FAILED"] * len(mapping_df),
             "reason": "No users found"
         })
+
+    if option.interactive_mode:
+        print(f"ℹ Attempting to map {len(user_values)} users using {user_key} from provided dataframe...")
 
     mapping_df, failed_matches = _match_user_ids(
         mapping_df,
@@ -289,12 +294,19 @@ def edit_user(
         user_key,
         interactive_mode=option.interactive_mode
     )
-    failed_df = failed_matches.rename(columns={"user_key": "user_key"})
+
+    success_results = []
+    failed_results = []
+
+    if not failed_matches.empty:
+        failed_results.append(failed_matches.rename(columns={"user_key": "user_key"}).assign(status="FAILED"))
 
     if mapping_df.empty:
         if option.interactive_mode:
-            print(f"⚠️ No users matched for update")
-        return failed_df
+            print(f"ℹ Successfully mapped 0 users.")
+            print(f"⚠️ Failed to map {len(failed_matches)} users.")
+        results_df = pd.concat(failed_results, ignore_index=True)[["user_id", "user_key", "status", "reason"]]
+        return results_df
 
     df = _clean_user_data_for_save(mapping_df, preserve_columns=[user_key, "user_id"])
 
@@ -302,10 +314,20 @@ def edit_user(
 
     if not update_columns:
         if option.interactive_mode:
+            print(f"ℹ Successfully mapped {len(df)} users.")
             print(f"⚠️ No updatable columns provided in mapping_df")
-        return failed_df
+        failed_results.append(DataFrame({
+            "user_id": df["user_id"],
+            "user_key": df[user_key],
+            "status": ["FAILED"] * len(df),
+            "reason": ["No updatable columns provided"] * len(df)
+        }))
+        results_df = pd.concat(failed_results, ignore_index=True)[["user_id", "user_key", "status", "reason"]]
+        
+        return results_df
 
     if option.interactive_mode:
+        print(f"ℹ Successfully mapped {len(df)} users.")
         print(f"ℹ Updating {len(df)} users...")
 
     def payload_builder(row: pd.Series) -> Dict:
@@ -320,19 +342,62 @@ def edit_user(
         interactive_mode=option.interactive_mode
     )
 
-    failed_operations_with_user_key = []
-    for op in failed_operations:
-        user_key_val = op["user_key"]
-        user_id_row = mapping_df[mapping_df[user_key] == user_key_val]
-        user_id = user_id_row["user_id"].iloc[0] if not user_id_row.empty else None
-        failed_operations_with_user_key.append({
-            "user_id": user_id,
-            "user_key": user_key_val,
-            "reason": op["reason"]
-        })
+    # Track successful updates
+    for user_id in user_ids:
+        user_row = df[df["user_id"] == int(user_id)]
+        if not user_row.empty:
+            success_results.append(DataFrame({
+                "user_id": [user_id],
+                "user_key": [user_row[user_key].iloc[0]],
+                "status": ["SUCCESS"],
+                "reason": [None]
+            }))
 
-    failed_df = pd.concat([failed_df, DataFrame(failed_operations_with_user_key)], ignore_index=True)
-    return _report_user_results(len(df), failed_operations_with_user_key, user_ids, "updated", interactive_mode=option.interactive_mode)
+    # Track failed operations
+    if failed_operations:
+        failed_results.append(DataFrame([
+            {
+                "user_id": df[df[user_key] == op["user_key"]]["user_id"].iloc[0] if op["user_key"] in df[user_key].values else None,
+                "user_key": op["user_key"],
+                "status": "FAILED",
+                "reason": op["reason"]
+            }
+            for op in failed_operations
+        ]))
+
+    # Concatenate results
+    success_df = pd.concat(success_results, ignore_index=True) if success_results else DataFrame(
+        columns=["user_id", "user_key", "status", "reason"]
+    )
+    failed_df = pd.concat(failed_results, ignore_index=True) if failed_results else DataFrame(
+        columns=["user_id", "user_key", "status", "reason"]
+    )
+    results_df = pd.concat([success_df, failed_df], ignore_index=True)
+
+    if option.interactive_mode:
+        successes = results_df[results_df["status"] == "SUCCESS"]
+
+        failures = results_df[results_df["status"] == "FAILED"]
+        
+        unmapped = len(failed_df[failed_df["reason"].str.contains("User not found", na=False)])
+        
+        other_failures = len(failed_df[~failed_df["reason"].str.contains("User not found", na=False)])
+        
+        print(f"✔ Successfully updated {len(successes)} users with user id's {', '.join(map(str, successes['user_id'].dropna().astype(int).tolist()))}.")
+        
+        if not failures.empty:
+            failure_msg = f"⚠️ Failed to update {len(failures)} users: "
+            failure_details = []
+            if unmapped > 0:
+                failure_details.append(f"{unmapped} due to unmapped {user_key}")
+            if other_failures > 0:
+                failure_details.append(f"{other_failures} due to other errors")
+            print(failure_msg + "; ".join(failure_details) + ".")
+            
+        if len(failed_operations) == 0 and len(failed_matches) == 0:
+            print("No failed operations.")
+
+    return results_df[["user_id", "user_key", "status", "reason"]]
 
 
 

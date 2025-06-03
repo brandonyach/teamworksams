@@ -10,7 +10,7 @@ class FileUploadOption:
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as
-            the list of files being uploaded and their file IDs. Defaults to False.
+            the list of files being uploaded and their file IDs. Defaults to True.
         cache (bool): Whether to cache API responses to improve performance for repeated
             requests. Defaults to True.
         save_to_file (Optional[str]): The file path to save upload results as a CSV, including
@@ -32,7 +32,7 @@ class FileUploadOption:
     """
     def __init__(
         self,
-        interactive_mode: bool = False,
+        interactive_mode: bool = True,
         cache: bool = True,
         save_to_file: Optional[str] = None
     ):

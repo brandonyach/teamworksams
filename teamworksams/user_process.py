@@ -53,9 +53,11 @@ def _flatten_user_response(data: Dict) -> List[Dict]:
         List[Dict]: A list of dictionaries, each representing a user.
     """
     all_users = []
+    
     for result_group in data["results"]:
         if "results" in result_group and result_group["results"]:
             all_users.extend(result_group["results"])
+            
     return all_users
 
 
@@ -111,6 +113,7 @@ def _map_user_updates(source: Union[pd.Series, Dict], user_data: Dict, column_ma
                     updated_data[api_field] = str(source[df_col])
                 else:
                     updated_data[api_field] = ""
+                    
     elif isinstance(source, dict):
         for key, value in source.items():
             api_field = column_mapping.get(key, key) if column_mapping else key
@@ -118,6 +121,7 @@ def _map_user_updates(source: Union[pd.Series, Dict], user_data: Dict, column_ma
                 updated_data[api_field] = bool(value)
             else:
                 updated_data[api_field] = str(value) if value is not None else ""
+                
     else:
         raise TypeError("Source must be a pandas Series or a dictionary")
     

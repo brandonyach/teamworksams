@@ -19,9 +19,13 @@ def _clean_database_df(df: DataFrame, table_fields: Optional[List[str]] = None) 
         DataFrame: Cleaned DataFrame ready for import into AMS.
     """
     df = _remove_protected_columns(df)
+    
     exclude_cols = ["entry_id"] if "entry_id" in df.columns else []
+    
     if table_fields:
         exclude_cols.extend(table_fields)
+        
     df = _replace_na_with_empty_string(df)
     df = _convert_id_names_to_lower(df)
+    
     return df

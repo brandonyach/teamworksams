@@ -50,7 +50,9 @@ def _validate_event_filter(
     if data_key or data_value or data_condition:
         if not (data_key and data_value and data_condition):
             raise ValueError("data_key, data_value, and data_condition must all be provided if any are specified.")
+        
         valid_conditions = {">", ">=", "<", "<=", "=", "!=", "contains"}
+        
         if data_condition not in valid_conditions:
             raise ValueError(f"Invalid data_condition: '{data_condition}'. Must be one of {valid_conditions}")
     
@@ -82,8 +84,11 @@ def _validate_dates(
     try:
         start = datetime.strptime(start_date, date_format)
         end = datetime.strptime(end_date, date_format)
+        
     except ValueError:
         raise ValueError(f"start_date '{start_date}' and end_date '{end_date}' must be in DD/MM/YYYY format")
+    
     if start > end:
         raise ValueError(f"start_date '{start_date}' cannot be after end_date '{end_date}'.")
+    
     return start, end

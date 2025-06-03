@@ -42,9 +42,12 @@ def _fetch_user_data(
             payload = {"identification": []}
         else:
             payload = _build_user_payload(filter)
+            
         data = client._fetch(endpoint, method="POST", payload=payload, cache=cache, api_version="v1")
+        
         if not data or "results" not in data or not data["results"]:
             raise AMSError(f"No users returned from server - Function: get_user - Endpoint: {endpoint}")
+        
     return data
 
 
@@ -168,7 +171,7 @@ def _fetch_all_user_ids(
     user_ids = [str(user["userId"]) for user in users if "userId" in user]
     
     if not user_ids:
-        AMSError("No user IDs returned from server", function="_get_all_user_ids", endpoint="usersearch")
+        AMSError("No user IDs returned from server", function="_fetch_all_user_ids", endpoint="usersearch")
     
     return user_ids
 
@@ -224,7 +227,7 @@ def _fetch_all_user_data(
         raise AMSError(f"Failed to fetch user data: {str(e)} - Function: _get_all_user_data - Endpoint: person/get")
     
     if not data or "objects" not in data or not data["objects"]:
-        raise AMSError("No users returned from server - Function: _get_all_user_data - Endpoint: person/get")
+        raise AMSError("No users returned from server - Function: _fetch_all_user_data - Endpoint: person/get")
     
     user_df = pd.DataFrame(data["objects"])
     user_df["id"] = user_df["id"].astype(int)

@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from typing import Optional, Dict, List, Tuple
+from typing import Optional
 from pandas import DataFrame
 from datetime import datetime
 from tqdm import tqdm
@@ -10,7 +10,7 @@ from .import_main import update_event_data
 from .import_option import UpdateEventOption
 from .file_option import FileUploadOption
 from .file_validate import _validate_file_df, _validate_file_path
-from .file_process import _format_file_reference, _map_user_ids_to_file_df, _build_result_df, _validate_and_prepare_files, _upload_single_file
+from .file_process import _format_file_reference, _map_user_ids_to_file_df, _build_result_df, _validate_and_prepare_files, _upload_single_file, _create_avatar_mapping_df
 from .user_fetch import _fetch_all_user_data, _update_single_user
 from .user_process import _map_user_updates
 from .user_validate import _validate_user_key
@@ -30,7 +30,8 @@ def upload_and_attach_to_events(
     username: Optional[str] = None,
     password: Optional[str] = None,
     option: Optional[FileUploadOption] = None,
-    client: Optional[AMSClient] = None
+    client: Optional[AMSClient] = None,
+    mapping_col: str = "attachment_id"
 ) -> DataFrame:
     """Upload files and attach them to events in an AMS Event Form.
 
@@ -41,9 +42,10 @@ def upload_and_attach_to_events(
 
     Args:
         mapping_df (DataFrame): A DataFrame with columns:
-            - user_key (str): User identifier (e.g., 'username', 'email', 'about', 'uuid').
+            - user_key (str): User identifier (one of 'username', 'email', 'about', 'uuid').
             - file_name (str): Name of the file to upload, located in `file_dir`.
-            - attachment_id (str): Matches the 'attachment_id' field in the event form.
+            - mapping_col (str): Matches the mapping_col field in the event form.
+        mapping_col (str): Column name for matching events to files (default: 'attachment_id').
         file_dir (str): Directory path containing the files to upload.
         user_key (str): Column name in `mapping_df` for user identification ('username', 'email', 'about', 'uuid').
         form (str): Name of the AMS Event Form (e.g., 'Training Log').
@@ -97,9 +99,10 @@ def upload_and_attach_to_events(
         # Upload and attach files to events
         results = upload_and_attach_to_events(
             mapping_df = mapping_df,
-            file_dir = "/path/to/files",
+            mapping_col = "attachment_id",
             user_key = "about",
-            form = "Training Log",
+            file_dir = "/path/to/files",
+            form = "Document Store",
             file_field_name = "attachment",
             url = "https://example.smartabase.com/site",
             username = "user",
@@ -110,25 +113,36 @@ def upload_and_attach_to_events(
         # Expected output (example):
         # ℹ Fetching all user data from site to match provided files...
         # ℹ Retrieved 50 users.
-        # ℹ Fetching all event data from site to match provided files...
-        # ℹ Retrieved 10 events.
+        # ℹ Fetching all event data from 'Document Store' to match provided files...
+        # ℹ Retrieved 500 events.
+        # ℹ Merged 500 rows from mapping_df with 1500 events from 'Document Store', resulting in 1500 matched records.
+        # ℹ Found 450 valid files in directory matching 500 mapping_df records.
         # ℹ Finding a match for 2 events from mapping_df...
         # ℹ Identified and mapped 2 events from mapping_df.
-        # ℹ Uploading and updating events for 2 files...
-        # Uploading files: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
-        # ✔ Successfully attached 2 files to events.
-        # ℹ Saved results to 'results.csv'
+        # ℹ Uploading 450 files...
+        # Uploading files: 100%|██████████| 450/450 [00:02<00:00,  1.00s/it]
+        # ℹ Preparing to update 500 events corresponding to 450 uploaded files for 'Document Store'.
+        # ℹ Updating 500 events for 'Document Store'
+        # ✔ Processed 500 events for 'Document Store'                   
+        # ℹ Form: Document Store
+        # ℹ Result: Success
+        # ℹ Records updated: 500
+        # ℹ Records attempted: 500
+        # ✔ Successfully attached 450 files to 500 events.
+        # ℹ Saved results to 'results.csv'   
         #
         # Results DataFrame:
         #    username file_name event_id user_id file_id server_file_name status reason
         # 0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None
         # 1   user2   doc2.pdf  123457  78902   94197 doc2_1747654003484.pdf SUCCESS None
     """
+    
     option = option or FileUploadOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
 
     # Validate mapping_df
-    _validate_file_df(mapping_df, user_key, require_attachment_id=True)
+    initial_rows = len(mapping_df)
+    mapping_df = _validate_file_df(mapping_df, user_key, mapping_col=mapping_col, require_mapping_col=True)
     _validate_user_key(user_key)
 
     # Initialize result lists
@@ -140,7 +154,31 @@ def upload_and_attach_to_events(
     if not file_dir.is_dir():
         raise AMSError(f"'{file_dir}' is not a valid directory", function="upload_and_attach_to_events")
 
-    # Match mapping_df to users to get user_id
+    # Pre-validate file extensions
+    valid_extensions = {'.pdf', '.doc', '.docx', '.txt', '.csv', '.png', '.jpg', '.jpeg', '.gif', '.heic', '.HEIC', '.xls', '.xlsx'}
+    
+    invalid_files = []
+    for file_name in mapping_df["file_name"]:
+        ext = Path(file_name).suffix.lower()
+        if ext not in valid_extensions:
+            invalid_files.append((file_name, f"Invalid file type '{ext}'. Allowed: {', '.join(valid_extensions)}"))
+    if invalid_files and option.interactive_mode:
+        print(f"⚠️ Skipping {len(invalid_files)} invalid files:")
+        for file_name, reason in invalid_files:
+            print(f"  - '{file_name}': {reason}")
+    if invalid_files:
+        failed_results.append(_build_result_df({
+            user_key: [mapping_df[mapping_df["file_name"] == file_name][user_key].iloc[0] for file_name, _ in invalid_files],
+            "file_name": [file_name for file_name, _ in invalid_files],
+            "event_id": [None] * len(invalid_files),
+            "user_id": [None] * len(invalid_files),
+            "file_id": [None] * len(invalid_files),
+            "server_file_name": [None] * len(invalid_files),
+            "status": ["FAILED"] * len(invalid_files),
+            "reason": [reason for _, reason in invalid_files]
+        }, user_key, is_event=True))
+
+    # Match mapping_df to users
     if option.interactive_mode:
         print(f"ℹ Fetching all user data from site to match provided files...")
     try:
@@ -157,11 +195,11 @@ def upload_and_attach_to_events(
         raise AMSError(f"Failed to retrieve user data: {str(e)}", function="upload_and_attach_to_events")
 
     if user_df.empty:
-        raise AMSError("No users found.", function="upload_and_attach_to_avatars")
+        raise AMSError("No users found.", function="upload_and_attach_to_events")
 
     # Map users to get user_id
     mapping_df, failed_matches = _map_user_ids_to_file_df(
-        mapping_df, user_key, client, False, option.cache
+        mapping_df, user_key, client, option.interactive_mode, option.cache
     )
     if not failed_matches.empty:
         failed_results.append(_build_result_df({
@@ -174,6 +212,11 @@ def upload_and_attach_to_events(
             "status": ["FAILED"] * len(failed_matches),
             "reason": failed_matches["reason"].tolist()
         }, user_key, is_event=True))
+        if option.interactive_mode:
+            print(f"⚠️ {len(failed_matches)} files failed to match {user_key} values in user data.")
+
+    if option.interactive_mode and len(mapping_df) > initial_rows:
+        print(f"⚠️ Warning: mapping_df increased from {initial_rows} to {len(mapping_df)} rows due to duplicate {user_key} matches in user data.")
 
     if mapping_df.empty:
         results_df = pd.concat(failed_results, ignore_index=True)
@@ -184,12 +227,23 @@ def upload_and_attach_to_events(
             print(f"ℹ Saved results to '{option.save_to_file}'")
         return results_df
 
+    # Cast potential numeric string columns to strings
+    dtype_changes = {
+        col: 'string'
+        for col in [mapping_col] + [c for c in mapping_df.columns if c not in ["user_id", "event_id", "start_date", "end_date", "start_time", "end_time"]]
+        if col in mapping_df.columns and pd.api.types.is_numeric_dtype(mapping_df[col])
+    }
+    if dtype_changes:
+        mapping_df = mapping_df.astype(dtype_changes)
+
     # Match mapping_df to events
     if option.interactive_mode:
-        print(f"ℹ Fetching all event data from site to match provided files...")
+        print(f"ℹ Fetching event data from '{form}' to match provided files...")
+        
     user_values = mapping_df[user_key].unique().tolist()
     end_date = datetime.now().strftime("%d/%m/%Y")
     start_date = "01/01/1970"
+    
     try:
         event_df = get_event_data(
             form=form,
@@ -204,10 +258,16 @@ def upload_and_attach_to_events(
         )
         if option.interactive_mode:
             print(f"ℹ Retrieved {len(event_df)} events.")
-        # Cast event_id to string to prevent float conversion
-        event_df["event_id"] = event_df["event_id"].astype(str)
-        # Drop event_df's user_id to avoid merge conflict
-        event_df = event_df.drop(columns=["user_id"], errors="ignore")
+        dtype_changes = {
+            col: 'string'
+            for col in event_df.columns
+            if col not in ["user_id", "event_id", "start_date", "end_date", "start_time", "end_time"]
+            and pd.api.types.is_numeric_dtype(event_df[col])
+        }
+        dtype_changes["event_id"] = 'string'
+        if dtype_changes:
+            event_df = event_df.astype(dtype_changes)
+        event_df = event_df.drop(columns=["user_id", "about"], errors="ignore")
         
     except AMSError as e:
         failed_results.append(_build_result_df({
@@ -247,12 +307,7 @@ def upload_and_attach_to_events(
             print(f"ℹ Saved results to '{option.save_to_file}'")
         return results_df
 
-    if option.interactive_mode:
-        num_events = len(mapping_df[user_key].unique())
-        print(f"ℹ Finding a match for {num_events} events from mapping_df...")
-
-    # Merge with events using attachment_id, retaining all event fields
-    if "attachment_id" not in event_df.columns:
+    if mapping_col not in event_df.columns:
         failed_results.append(_build_result_df({
             user_key: mapping_df[user_key].tolist(),
             "file_name": mapping_df["file_name"].tolist(),
@@ -261,7 +316,7 @@ def upload_and_attach_to_events(
             "file_id": [None] * len(mapping_df),
             "server_file_name": [None] * len(mapping_df),
             "status": ["FAILED"] * len(mapping_df),
-            "reason": [f"Event form '{form}' does not have an 'attachment_id' field"] * len(mapping_df)
+            "reason": [f"Event form '{form}' does not have a '{mapping_col}' field"] * len(mapping_df)
         }, user_key, is_event=True))
         results_df = pd.concat(failed_results, ignore_index=True)
         if option.interactive_mode:
@@ -271,29 +326,19 @@ def upload_and_attach_to_events(
             print(f"ℹ Saved results to '{option.save_to_file}'")
         return results_df
 
-    mapping_df = mapping_df.merge(
-        event_df,
-        left_on="attachment_id",
-        right_on="attachment_id",
-        how="left"
-    )
-    failed_matches = mapping_df[mapping_df["event_id"].isna()]
-    mapping_df = mapping_df[mapping_df["event_id"].notna()]
-
-    if option.interactive_mode and not mapping_df.empty:
-        print(f"ℹ Identified and mapped {len(mapping_df)} events from mapping_df.")
-
-    if not failed_matches.empty:
+    unmatched_ids = mapping_df[~mapping_df[mapping_col].isin(event_df[mapping_col])]
+    if not unmatched_ids.empty:
         failed_results.append(_build_result_df({
-            user_key: failed_matches[user_key].tolist(),
-            "file_name": failed_matches["file_name"].tolist(),
-            "event_id": [None] * len(failed_matches),
-            "user_id": failed_matches["user_id"].tolist() if "user_id" in failed_matches else [None] * len(failed_matches),
-            "file_id": [None] * len(failed_matches),
-            "server_file_name": [None] * len(failed_matches),
-            "status": ["FAILED"] * len(failed_matches),
-            "reason": ["No matching event found for attachment_id"] * len(failed_matches)
+            user_key: unmatched_ids[user_key].tolist(),
+            "file_name": unmatched_ids["file_name"].tolist(),
+            "event_id": [None] * len(unmatched_ids),
+            "user_id": unmatched_ids["user_id"].tolist() if "user_id" in unmatched_ids else [None] * len(unmatched_ids),
+            "file_id": [None] * len(unmatched_ids),
+            "server_file_name": [None] * len(unmatched_ids),
+            "status": ["FAILED"] * len(unmatched_ids),
+            "reason": [f"No matching event found for {mapping_col}"] * len(unmatched_ids)
         }, user_key, is_event=True))
+        mapping_df = mapping_df[mapping_df[mapping_col].isin(event_df[mapping_col])]
 
     if mapping_df.empty:
         results_df = pd.concat(failed_results, ignore_index=True)
@@ -303,6 +348,18 @@ def upload_and_attach_to_events(
             results_df.to_csv(option.save_to_file, index=False)
             print(f"ℹ Saved results to '{option.save_to_file}'")
         return results_df
+
+    # Merge with events
+    pre_merge_rows = len(mapping_df)
+    mapping_df = mapping_df.merge(
+        event_df,
+        left_on=mapping_col,
+        right_on=mapping_col,
+        how="left"
+    )
+    mapping_df = mapping_df[mapping_df["event_id"].notna()]
+    if option.interactive_mode and not mapping_df.empty:
+        print(f"ℹ Merged {pre_merge_rows} rows from mapping_df with {len(event_df)} events from '{form}', resulting in {len(mapping_df)} matched observations.")
 
     # Validate and prepare files for upload
     failed_files = set()
@@ -314,9 +371,23 @@ def upload_and_attach_to_events(
 
     # Validate file types for existing files
     try:
-        files_to_upload = _validate_file_path(file_dir, files_to_upload, function="upload_and_attach_to_events", is_avatar=False)
+        files_to_upload, invalid_files = _validate_file_path(file_dir, files_to_upload, function="upload_and_attach_to_events", is_avatar=False, option=option)
+        if invalid_files:
+            failed_results.append(_build_result_df({
+                user_key: [mapping_df[mapping_df["file_name"] == file_name][user_key].iloc[0] if file_name in mapping_df["file_name"].values else Path(file_name).stem for file_name, _ in invalid_files],
+                "file_name": [file_name for file_name, _ in invalid_files],
+                "event_id": [None] * len(invalid_files),
+                "user_id": [None] * len(invalid_files),
+                "file_id": [None] * len(invalid_files),
+                "server_file_name": [None] * len(invalid_files),
+                "status": ["FAILED"] * len(invalid_files),
+                "reason": [reason for _, reason in invalid_files]
+            }, user_key, is_event=True))
         if option.interactive_mode:
-            print(f"ℹ Uploading and updating events for {len(files_to_upload)} files...")
+            matching_users = len(mapping_df[mapping_df["user_id"].notna()][user_key].unique())
+            print(f"ℹ Found {len(files_to_upload)} valid files in directory for matching events on the site.")
+            print(f"ℹ Uploading {len(files_to_upload)} files...")
+            
     except AMSError as e:
         failed_results.append(_build_result_df({
             user_key: mapping_df[user_key].tolist(),
@@ -344,8 +415,19 @@ def upload_and_attach_to_events(
         try:
             upload_result = _upload_single_file(file_path, file_name, client, "document-key")
             if upload_result.get("file_id"):
-                upload_result["file_id"] = str(upload_result["file_id"])  # Cast to string
+                upload_result["file_id"] = str(upload_result["file_id"])
                 upload_results.append(upload_result)
+                # Track successful upload
+                success_results.append(_build_result_df({
+                    user_key: mapping_df[mapping_df["file_name"] == file_name][user_key].iloc[0],
+                    "file_name": file_name,
+                    "event_id": mapping_df[mapping_df["file_name"] == file_name]["event_id"].iloc[0],
+                    "user_id": mapping_df[mapping_df["file_name"] == file_name]["user_id"].iloc[0] if "user_id" in mapping_df else None,
+                    "file_id": upload_result["file_id"],
+                    "server_file_name": upload_result["server_file_name"],
+                    "status": "SUCCESS",
+                    "reason": None
+                }, user_key, is_event=True))
             else:
                 failed_files.add(file_name)
                 failed_results.append(_build_result_df({
@@ -381,11 +463,9 @@ def upload_and_attach_to_events(
     mapping_df = mapping_df[mapping_df["file_id"].notna()]
 
     if mapping_df.empty:
-        results_df = pd.DataFrame(
-            columns=[user_key, "file_name", "event_id", "user_id", "file_id", "server_file_name", "status", "reason"]
-        ) if not failed_results else pd.concat(failed_results, ignore_index=True)
+        results_df = pd.concat(failed_results + success_results, ignore_index=True)
         if option.interactive_mode:
-            print(f"⚠️ Failed to attach {len(results_df)} files:")
+            print(f"⚠️ Failed to attach {len(results_df)} files.")
         if option.save_to_file:
             results_df.to_csv(option.save_to_file, index=False)
             print(f"ℹ Saved results to '{option.save_to_file}'")
@@ -393,29 +473,26 @@ def upload_and_attach_to_events(
 
     # Format file references and update events
     mapping_df = _format_file_reference(mapping_df, file_field_name)
-    # Include all event fields, drop merge artifacts
     event_update_df = mapping_df.drop(columns=["file_name"], errors="ignore")
     try:
+        if option.interactive_mode:
+            print(f"ℹ Preparing to update {len(event_update_df)} events corresponding to {len(files_to_upload)} uploaded files for '{form}'.")
         update_event_data(
             df=event_update_df,
             form=form,
             url=url,
             username=username,
             password=password,
-            option=UpdateEventOption(interactive_mode=option.interactive_mode, cache=option.cache),
+            option=UpdateEventOption(
+                interactive_mode=option.interactive_mode,
+                cache=option.cache,
+                require_confirmation=False
+            ),
             client=client
         )
-        success_results.append(_build_result_df({
-            user_key: mapping_df[user_key].tolist(),
-            "file_name": mapping_df["file_name"].tolist(),
-            "event_id": mapping_df["event_id"].tolist(),
-            "user_id": mapping_df["user_id"].tolist() if "user_id" in mapping_df else [None] * len(mapping_df),
-            "file_id": mapping_df["file_id"].tolist(),
-            "server_file_name": mapping_df["server_file_name"].tolist(),
-            "status": ["SUCCESS"] * len(mapping_df),
-            "reason": [None] * len(mapping_df)
-        }, user_key, is_event=True))
     except AMSError as e:
+        if option.interactive_mode:
+            print(f"✖ ERROR - Failed to update events: {str(e)}")
         failed_results.append(_build_result_df({
             user_key: mapping_df[user_key].tolist(),
             "file_name": mapping_df["file_name"].tolist(),
@@ -428,20 +505,53 @@ def upload_and_attach_to_events(
         }, user_key, is_event=True))
 
     # Concatenate results
+    
+    # Concatenate results
     success_df = pd.concat(success_results, ignore_index=True) if success_results else DataFrame(
-        columns=[user_key, "file_name", "event_id", "user_id", "file_id", "server_file_name", "status", "reason"]
+        columns=[user_key, "file_name", "user_id", "file_id", "server_file_name", "status", "reason"]
     )
     failed_df = pd.concat(failed_results, ignore_index=True) if failed_results else DataFrame(
-        columns=[user_key, "file_name", "event_id", "user_id", "file_id", "server_file_name", "status", "reason"]
+        columns=[user_key, "file_name", "user_id", "file_id", "server_file_name", "status", "reason"]
     )
     results_df = pd.concat([success_df, failed_df], ignore_index=True)
-
+    
+    # results_df = pd.concat(failed_results + success_results, ignore_index=True)
     if option.interactive_mode:
         successes = results_df[results_df["status"] == "SUCCESS"]
         failures = results_df[results_df["status"] == "FAILED"]
-        print(f"✔ Successfully attached {len(successes)} files to events.")
+        
+        missing_users = len(failed_df[failed_df["reason"].str.contains("User not found", na=False)]['file_name'].unique())
+        
+        unmatched_events = len(failed_df[failed_df["reason"].str.contains("No matching event", na=False)]['file_name'].unique())
+        
+        invalid_file_types = len(failed_df[failed_df["reason"].str.contains("Invalid file type", na=False)]['file_name'].unique())
+        
+        missing_files = len(failed_df[failed_df["reason"].str.contains("not found in", na=False)]['file_name'].unique())
+        
+        other_failures = len(failed_df[failed_df["reason"].str.contains("Upload failed|User ID.*not found in user data", na=False)]['file_name'].unique())
+        
+        print(f"✔ Successfully attached {len(successes['file_name'].unique())} files to {len(successes)} events.")
+        
         if not failures.empty:
-            print(f"⚠️ Failed to attach {len(failures)} files.")
+            failure_msg = f"⚠️ Failed to attach {len(failures['file_name'].unique())} files: "
+            failure_details = []
+            
+            if missing_users > 0:
+                failure_details.append(f"{missing_users} due to non-existent {user_key}")
+                
+            if unmatched_events > 0:
+                failure_details.append(f"{unmatched_events} due to unmatched {mapping_col}")
+                
+            if invalid_file_types > 0:
+                failure_details.append(f"{invalid_file_types} due to invalid file types")
+                
+            if missing_files > 0:
+                failure_details.append(f"{missing_files} due to missing files in directory")
+                
+            if other_failures > 0:
+                failure_details.append(f"{other_failures} due to upload or update failures")
+                
+            print(failure_msg + "; ".join(failure_details) + ".")
 
     if option.save_to_file:
         results_df.to_csv(option.save_to_file, index=False)
@@ -449,14 +559,17 @@ def upload_and_attach_to_events(
             print(f"ℹ Saved results to '{option.save_to_file}'")
 
     return results_df
+    
+    
+
 
 
 
 def upload_and_attach_to_avatars(
-    mapping_df: DataFrame,
-    file_dir: str,
-    user_key: str,
-    url: str,
+    mapping_df: Optional[DataFrame] = None,
+    file_dir: str = None,
+    user_key: str = None,
+    url: str = None,
     username: Optional[str] = None,
     password: Optional[str] = None,
     option: Optional[FileUploadOption] = None,
@@ -464,15 +577,17 @@ def upload_and_attach_to_avatars(
 ) -> DataFrame:
     """Upload files and attach them as avatars to user profiles in an AMS instance.
 
-    Matches the provided mapping DataFrame to users using `user_key`, uploads valid image files
-    from `file_dir`, and updates the `avatarId` field in user profiles. Preserves all other user
-    profile fields during updates. Returns a DataFrame with results for all files, including
-    successes and failures.
+    Matches the provided or generated mapping DataFrame to users using `user_key`, uploads valid image files
+    from `file_dir`, and updates the `avatarId` field in user profiles. If `mapping_df` is not provided,
+    generates it from image files in `file_dir`, using filenames (without extension) as `user_key` values.
+    Preserves all other user profile fields during updates. Returns a DataFrame with results for all files, 
+    including successes and failures.
 
     Args:
-        mapping_df (DataFrame): A DataFrame with columns:
+        mapping_df (Optional[DataFrame]): A DataFrame with columns:
             - user_key (str): User identifier (e.g., 'username', 'email', 'about', 'uuid').
             - file_name (str): Name of the image file to upload, located in `file_dir`.
+            If None, generates a mapping DataFrame from `file_dir`. Defaults to None.
         file_dir (str): Directory path containing the image files to upload.
         user_key (str): Column name in `mapping_df` for user identification ('username', 'email', 'about', 'uuid').
         url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site').
@@ -499,11 +614,12 @@ def upload_and_attach_to_avatars(
     Raises:
         AMSError: If any of the following occur:
             - `file_dir` is not a valid directory.
+            - `mapping_df` is None and no valid image files are found in `file_dir`.
             - User data retrieval fails (e.g., invalid credentials, API errors).
             - No users are found in the AMS instance.
             - File validation fails (e.g., unsupported image type, file not found).
             - File upload or user profile update fails (e.g., network issues, server errors).
-
+            
     Example:
         ```python
         from pandas import DataFrame
@@ -530,12 +646,12 @@ def upload_and_attach_to_avatars(
         # Expected output (example):
         # ℹ Fetching all user data from site to match provided files...
         # ℹ Retrieved 50 users.
-        # ℹ Finding a match for 2 users from mapping_df...
-        # ℹ Identified and mapped 2 users from mapping_df.
-        # ℹ Uploading and updating avatars for 2 users...
+        # ℹ Found 2 valid avatar files in directory for 2 matching users on the site.
+        # ℹ Uploading 2 avatar files...
         # Uploading files: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
-        # Updating avatars: 2it [00:00,  4.00it/s]
-        # ✔ Successfully updated avatars for 2 users.
+        # Preparing to update avatars for 2 users with 2 avatar files.
+        # Updating avatars: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
+        # ✔ Successfully updated 2 avatar files to 2 users.
         # ℹ Saved results to 'avatar_results.csv'
         #
         # Results DataFrame:
@@ -545,9 +661,23 @@ def upload_and_attach_to_avatars(
     """
     option = option or FileUploadOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
+    
+    # Generate mapping_df if not provided
+    if mapping_df is None:
+        if not file_dir:
+            raise AMSError("file_dir must be provided when mapping_df is None.", function="upload_and_attach_to_avatars")
+        if not user_key:
+            raise AMSError("user_key must be provided when mapping_df is None.", function="upload_and_attach_to_avatars")
+        try:
+            mapping_df = _create_avatar_mapping_df(file_dir, user_key)
+            if option.interactive_mode:
+                print(f"ℹ Generated mapping DataFrame from {len(mapping_df)} image files in directory.")
+        except AMSError as e:
+            raise AMSError(f"Failed to generate mapping DataFrame: {str(e)}", function="upload_and_attach_to_avatars")
 
     # Validate mapping_df
-    _validate_file_df(mapping_df, user_key, require_attachment_id=False)
+    initial_rows = len(mapping_df)
+    mapping_df = _validate_file_df(mapping_df, user_key, require_mapping_col=False)
     _validate_user_key(user_key)
 
     # Initialize result lists
@@ -578,13 +708,9 @@ def upload_and_attach_to_avatars(
     if user_df.empty:
         raise AMSError("No users found", function="upload_and_attach_to_avatars")
 
-    if option.interactive_mode:
-        num_users = len(mapping_df[user_key].unique())
-        print(f"ℹ Finding a match for {num_users} users from mapping_df...")
-
-    # Match users
+    # Map users
     mapping_df, failed_matches = _map_user_ids_to_file_df(
-        mapping_df, user_key, client, False, option.cache  
+        mapping_df, user_key, client, option.interactive_mode, option.cache
     )
     if not failed_matches.empty:
         failed_results.append(_build_result_df({
@@ -596,9 +722,11 @@ def upload_and_attach_to_avatars(
             "status": ["FAILED"] * len(failed_matches),
             "reason": failed_matches["reason"].tolist()
         }, user_key))
+        if option.interactive_mode:
+            print(f"⚠️ {len(failed_matches)} files failed to match {user_key} values in user data.")
 
-    if option.interactive_mode and not mapping_df.empty:
-        print(f"ℹ Identified and mapped {len(mapping_df)} users from mapping_df.")
+    if option.interactive_mode and len(mapping_df) > initial_rows:
+        print(f"⚠️ Warning: mapping_df increased from {initial_rows} to {len(mapping_df)} rows due to duplicate {user_key} matches in user data.")
 
     if mapping_df.empty:
         results_df = pd.concat(failed_results, ignore_index=True)
@@ -611,6 +739,7 @@ def upload_and_attach_to_avatars(
 
     # Validate and prepare files for upload
     failed_files = set()
+    
     files_to_upload, results_df = _validate_and_prepare_files(
         mapping_df, user_key, file_dir, failed_files, failed_results, option
     )
@@ -619,9 +748,22 @@ def upload_and_attach_to_avatars(
 
     # Validate file types for existing files
     try:
-        files_to_upload = _validate_file_path(file_dir, files_to_upload, function="upload_and_attach_to_avatars", is_avatar=True)
+        files_to_upload, invalid_files = _validate_file_path(file_dir, files_to_upload, function="upload_and_attach_to_avatars", is_avatar=True, option=option)
+        if invalid_files:
+            failed_results.append(_build_result_df({
+                user_key: [mapping_df[mapping_df["file_name"] == file_name][user_key].iloc[0] if file_name in mapping_df["file_name"].values else Path(file_name).stem for file_name, _ in invalid_files],
+                "file_name": [file_name for file_name, _ in invalid_files],
+                "user_id": [None] * len(invalid_files),
+                "file_id": [None] * len(invalid_files),
+                "server_file_name": [None] * len(invalid_files),
+                "status": ["FAILED"] * len(invalid_files),
+                "reason": [reason for _, reason in invalid_files]
+            }, user_key))
         if option.interactive_mode:
-            print(f"ℹ Uploading and updating avatars for {len(files_to_upload)} users...")
+            matching_users = len(mapping_df[mapping_df["user_id"].notna()][user_key].unique())
+            print(f"ℹ Found {len(files_to_upload)} valid avatar files in directory for {matching_users} matching users on the site.")
+            print(f"ℹ Uploading {len(files_to_upload)} avatars...")
+            
     except AMSError as e:
         failed_results.append(_build_result_df({
             user_key: mapping_df[user_key].tolist(),
@@ -648,7 +790,7 @@ def upload_and_attach_to_avatars(
         try:
             upload_result = _upload_single_file(file_path, file_name, client, "avatar-key")
             if upload_result.get("file_id"):
-                upload_result["file_id"] = str(upload_result["file_id"])  # Cast to string
+                upload_result["file_id"] = str(upload_result["file_id"])
                 upload_results.append(upload_result)
             else:
                 failed_files.add(file_name)
@@ -661,6 +803,7 @@ def upload_and_attach_to_avatars(
                     "status": "FAILED",
                     "reason": "Upload failed: No file ID returned"
                 }, user_key))
+                
         except AMSError as e:
             failed_files.add(file_name)
             failed_results.append(_build_result_df({
@@ -675,17 +818,16 @@ def upload_and_attach_to_avatars(
 
     # Merge upload results
     upload_results_df = DataFrame(upload_results)
+    
     mapping_df = mapping_df.merge(
         upload_results_df[["file_name", "file_id", "server_file_name"]],
         on="file_name",
         how="left"
     )
     mapping_df = mapping_df[mapping_df["file_id"].notna()]
-    
+
     if mapping_df.empty:
-        results_df = pd.DataFrame(
-            columns=[user_key, "file_name", "user_id", "file_id", "server_file_name", "status", "reason"]
-        ) if not failed_results else pd.concat(failed_results, ignore_index=True)
+        results_df = pd.concat(failed_results, ignore_index=True)
         if option.interactive_mode:
             print(f"⚠️ Failed to update avatars for {len(results_df)} users.")
         if option.save_to_file:
@@ -694,7 +836,10 @@ def upload_and_attach_to_avatars(
         return results_df
 
     # Update avatars
-    for _, row in tqdm(mapping_df.iterrows(), desc="Updating avatars", disable=not option.interactive_mode):
+    if option.interactive_mode:
+        print(f"ℹ Preparing to update avatars for {len(mapping_df)} users with {len(mapping_df['file_name'].unique())} avatar files.")
+        
+    for _, row in tqdm(mapping_df.iterrows(), desc="Updating avatars", total=len(mapping_df), disable=not option.interactive_mode, dynamic_ncols=True, leave=False, position=0):
         user_id = row["user_id"]
         file_id = row["file_id"]
         file_name = row["file_name"]
@@ -750,10 +895,35 @@ def upload_and_attach_to_avatars(
 
     if option.interactive_mode:
         successes = results_df[results_df["status"] == "SUCCESS"]
+        
         failures = results_df[results_df["status"] == "FAILED"]
-        print(f"✔ Successfully updated avatars for {len(successes)} users.")
+        
+        missing_users = len(failed_df[failed_df["reason"].str.contains("User not found", na=False)]['file_name'].unique())
+        
+        invalid_file_types = len(failed_df[failed_df["reason"].str.contains("Invalid file type", na=False)]['file_name'].unique())
+        
+        missing_files = len(failed_df[failed_df["reason"].str.contains("not found in", na=False)]['file_name'].unique())
+        
+        other_failures = len(failed_df[failed_df["reason"].str.contains("Upload failed|User ID.*not found in user data", na=False)]['file_name'].unique())
+        
+        print(f"✔ Successfully attached {len(successes['file_name'].unique())} avatar files to {len(successes)} users.")
+        
         if not failures.empty:
-            print(f"⚠️ Failed to update avatars for {len(failures)} users.")
+            failure_msg = f"⚠️ Failed to attach {len(failures['file_name'].unique())} avatar files: "
+            failure_details = []
+            if missing_users > 0:
+                failure_details.append(f"{missing_users} due to non-existent {user_key}")
+                
+            if invalid_file_types > 0:
+                failure_details.append(f"{invalid_file_types} due to invalid file type")
+                
+            if missing_files > 0:
+                failure_details.append(f"{missing_files} due to missing files in directory")
+                
+            if other_failures > 0:
+                failure_details.append(f"{other_failures} due to upload or update failures")
+                
+            print(failure_msg + "; ".join(failure_details) + ".")
 
     if option.save_to_file:
         results_df.to_csv(option.save_to_file, index=False)

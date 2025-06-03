@@ -121,6 +121,7 @@ def _build_entry_metadata(
         entry_id = group["entry_id"].iloc[0]
         if pd.notna(entry_id):
             payload["id"] = int(entry_id)
+            
     return payload
 
 
