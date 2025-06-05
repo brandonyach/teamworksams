@@ -24,7 +24,8 @@ jobs:
         echo "AMS_PASSWORD is set: ${AMS_PASSWORD:+true}"
     - name: Install Dependencies
       run: |
-        pip install --no-cache-dir .[test] keyrings.alt
+        pip install --no-cache-dir pytest pytest-cov responses python-dotenv pytest-vcr keyrings.alt
+        pip install --no-cache-dir .[test]
     - name: Run Tests
       run: pytest tests -v --cov=./ --cov-report=xml
       env:
