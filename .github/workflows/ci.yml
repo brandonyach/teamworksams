@@ -12,7 +12,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'  # Matches current CI environment
+        python-version: '3.12'  
     - name: Debug Environment
       run: |
         python --version
@@ -21,8 +21,9 @@ jobs:
         ls -la
     - name: Install Dependencies
       run: |
-        pip install --no-cache-dir pytest pytest-cov responses python-dotenv
-        pip install --no-cache-dir .
+        pip install --no-cache-dir pytest pytest-cov responses python-dotenv pytest-vcr
+        pip install .[test]
+        pip install --no-cache-dir .[test]
     - name: Run Tests
       run: pytest tests -v --cov=./ --cov-report=xml
       env:

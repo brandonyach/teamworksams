@@ -384,8 +384,16 @@ def get_profile_data(
         print(f"ℹ Requesting profile data for form '{form}'")
     
     data = client._fetch("profilesearch", method="POST", payload=payload, cache=option.cache, api_version="v1")
-    if not data or "profiles" not in data or not data["profiles"]:
-        AMSError(f"No profiles found for form '{form}'", function="get_profile_data", endpoint="profilesearch")
+    
+    if not isinstance(data, dict):
+        raise AMSError(f"Invalid API response: expected a dictionary, got {type(data)}", function="get_profile_data", endpoint="profilesearch")
+    if "profiles" not in data:
+        error_msg = data.get("error", "Unknown error")
+        raise AMSError(f"No profiles found for form '{form}': {error_msg}", function="get_profile_data", endpoint="profilesearch")
+    if not data["profiles"]:
+        if option.interactive_mode:
+            print(f"ℹ No profiles found for form '{form}'")
+        return DataFrame(columns=["user_id", "profile_id", "form"])
     
     if option.interactive_mode:
         print(f"ℹ Processing {len(data['profiles'])} profiles...")
