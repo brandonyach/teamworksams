@@ -8,13 +8,12 @@ import keyring
 def credentials():
     """Provide test credentials with keyring and env fallback."""
     load_dotenv()
-    username = keyring.get_password("smartabasepy", "username")
-    password = keyring.get_password("smartabasepy", "password")
-    if not username or not password:
-        username = os.getenv("AMS_USERNAME", "test_user")
-        password = os.getenv("AMS_PASSWORD", "test_password")
-    return {
-        "username": username,
-        "password": password,
-        "url": os.getenv("AMS_URL", "https://test.smartabase.com/site")
-    }
+    try:
+        import keyring
+        username = keyring.get_password("smartabasepy", "username") or os.getenv("AMS_USERNAME", "")
+        password = keyring.get_password("smartabasepy", "password") or os.getenv("AMS_PASSWORD", "")
+    except (ImportError, keyring.errors.NoKeyringError):
+        username = os.getenv("AMS_USERNAME", "")
+        password = os.getenv("AMS_PASSWORD", "")
+    url = os.getenv("AMS_URL", "")
+    return {"url": url, "username": username, "password": password}

@@ -19,11 +19,12 @@ jobs:
         pip --version
         pip list
         ls -la
+        echo "AMS_URL is set: ${AMS_URL:+true}"
+        echo "AMS_USERNAME is set: ${AMS_USERNAME:+true}"
+        echo "AMS_PASSWORD is set: ${AMS_PASSWORD:+true}"
     - name: Install Dependencies
       run: |
-        pip install --no-cache-dir pytest pytest-cov responses python-dotenv pytest-vcr
-        pip install .[test]
-        pip install --no-cache-dir .[test]
+        pip install --no-cache-dir .[test] keyrings.alt
     - name: Run Tests
       run: pytest tests -v --cov=./ --cov-report=xml
       env:
