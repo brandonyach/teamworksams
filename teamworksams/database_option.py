@@ -28,7 +28,7 @@ class GetDatabaseOption:
         interactive_mode: bool = True,
         cache: bool = True,
     ):
-        self.interactive_mode = interactive_mode,
+        self.interactive_mode = interactive_mode
         self.cache = cache
 
 
@@ -64,8 +64,8 @@ class InsertDatabaseOption:
         interactive_mode: bool = True,
         cache: bool = True,
     ):
-        self.table_fields = table_fields,
-        self.interactive_mode = interactive_mode,
+        self.table_fields = table_fields
+        self.interactive_mode = interactive_mode
         self.cache = cache
 
 
@@ -103,6 +103,6 @@ class UpdateDatabaseOption:
         interactive_mode: bool = True,
         cache: bool = True,
     ):
-        self.table_fields = table_fields,
-        self.interactive_mode = interactive_mode,
+        self.table_fields = table_fields
+        self.interactive_mode = interactive_mode
         self.cache = cache

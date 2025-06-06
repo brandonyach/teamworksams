@@ -433,6 +433,7 @@ def update_database_entry(
     )
     
     entry_count = len(payloads)
+    
     if option.interactive_mode:
         print(f"ℹ Updating {entry_count} database entries for form '{form}'")
         confirm = input(f"Are you sure you want to update {entry_count} existing database entries in '{form}'? (y/n): ").strip().lower()

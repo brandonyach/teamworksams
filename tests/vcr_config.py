@@ -3,9 +3,9 @@ import vcr
 
 def vcr_config():
     return {
-        "filter_headers": ["session-header", "Cookie", "Authorization"],
-        "filter_query_parameters": ["username", "password"],
-        "filter_post_data_parameters": ["username", "password"]
+        "record_mode": "new_episodes",
+        "match_on": ["method", "scheme", "host", "port", "path", "query"],
+        "filter_headers": ["authorization", "session-header", "cookie"],
     }
     
 vcr.default_vcr = vcr.VCR(**vcr_config())

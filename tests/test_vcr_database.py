@@ -2,6 +2,7 @@ import pytest
 import vcr
 from teamworksams.database_main import get_database, delete_database_entry, insert_database_entry, update_database_entry
 from teamworksams.database_option import GetDatabaseOption, InsertDatabaseOption, UpdateDatabaseOption
+from teamworksams.utils import get_client
 from pandas import DataFrame
 from tests.test_fixtures import credentials
 
@@ -47,19 +48,53 @@ def test_get_database_vcr(credentials):
 
 
 @vcr.use_cassette('tests/cassettes/delete_database.yaml')
-def test_delete_database_vcr(credentials):
+def test_delete_database_vcr(credentials, test_insert_df):
     """Test delete_database_entry with recorded API responses."""
-    entry_id = 386301 
+    # Create a fresh client to avoid session issues
+    client = get_client(
+        url=credentials["url"],
+        username=credentials["username"],
+        password=credentials["password"],
+        cache=False,
+        interactive_mode=False
+    )
+    # Insert a test entry
+    option = InsertDatabaseOption(interactive_mode=False)
+    insert_database_entry(
+        df=test_insert_df,
+        form="Allergies",
+        url=credentials["url"],
+        username=credentials["username"],
+        password=credentials["password"],
+        option=option,
+        client=client
+    )
+    # Fetch the inserted entry's ID
+    get_option = GetDatabaseOption(interactive_mode=False)
+    df = get_database(
+        form_name="Allergies",
+        url=credentials["url"],
+        username=credentials["username"],
+        password=credentials["password"],
+        limit=1,
+        offset=0,
+        option=get_option,
+        client=client
+    )
+    if df.empty:
+        pytest.fail("Failed to insert test entry for deletion")
+    entry_id = int(df["id"].iloc[0])
     try:
         success = delete_database_entry(
             database_entry_id=entry_id,
             url=credentials["url"],
             username=credentials["username"],
-            password=credentials["password"]
+            password=credentials["password"],
+            client=client
         )
         assert "Success" in success
     except Exception as e:
-        pytest.fail(f"delete_database_entry failed: {str(e)}")
+        pytest.fail(f"delete_database_entry failed: {str(e)}")       
 
 
 @vcr.use_cassette('tests/cassettes/insert_database.yaml')
@@ -82,7 +117,7 @@ def test_insert_database_vcr(credentials, test_insert_df):
 @vcr.use_cassette('tests/cassettes/update_database.yaml')
 def test_update_database_vcr(credentials, test_update_df):
     """Test update_database_entry with recorded API responses."""
-    option = UpdateDatabaseOption(interactive_mode=False)
+    update_option = UpdateDatabaseOption(interactive_mode=False)
     try:
         update_database_entry(
             df=test_update_df,
@@ -90,7 +125,7 @@ def test_update_database_vcr(credentials, test_update_df):
             url=credentials["url"],
             username=credentials["username"],
             password=credentials["password"],
-            option=option
+            option=update_option
         )
     except Exception as e:
         pytest.fail(f"update_database_entry failed: {str(e)}")
