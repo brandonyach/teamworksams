@@ -134,7 +134,7 @@ def _match_user_ids(
     user_df: DataFrame,
     user_key: str,
     interactive_mode: bool = False
-) -> tuple[DataFrame, DataFrame]:
+) -> Tuple[DataFrame, DataFrame]:
     """Match users from user_df to mapping_df based on user_key.
 
     Args:
