@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 from pandas import DataFrame
 import pandas as pd
 from .utils import AMSClient, AMSError
@@ -51,7 +51,7 @@ def _count_unique_events(events: List[Dict], table_fields: Optional[List[str]] =
     if any("existingEventId" in event for event in events):
         group_keys.append("existingEventId")
     unique_count = len(set(
-        tuple(
+        Tuple(
             [event["userId"]["userId"]] + [event[key] for key in group_keys]
         )
         for event in events

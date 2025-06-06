@@ -1,4 +1,4 @@
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
 from .utils import AMSClient, AMSError
 from .form_option import FormOption
 
@@ -10,7 +10,7 @@ def _fetch_form_id_and_type(
     password: Optional[str],
     option: FormOption,
     client: AMSClient
-) -> tuple[str, str]:
+) -> Tuple[str, str]:
     """Fetch the form ID and type for a given form name using get_forms.
 
     Args:
