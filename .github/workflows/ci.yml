@@ -6,19 +6,22 @@ on:
     branches: [ main ]
 jobs:
   test:
-    runs-on: ubuntu-22.04  # Use specific runner to avoid cache issues
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
     steps:
     - uses: actions/checkout@v4
     - name: Clear Cache
       run: |
-        echo "Clearing GitHub Actions cache to ensure fresh environment"
+        echo "Clearing GitHub Actions cache"
         gh cache delete --all || echo "Cache deletion failed, proceeding"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: ${{ matrix.python-version }}
         cache: 'pip'
     - name: Debug Environment
       run: |
@@ -33,15 +36,20 @@ jobs:
       run: |
         echo "Upgrading pip"
         python -m pip install --no-cache-dir --upgrade pip
-        echo "Installing explicit dependencies"
+        echo "Installing dependencies"
         python -m pip install --no-cache-dir pytest pytest-cov responses python-dotenv pytest-vcr keyrings.alt --verbose
         echo "Installing package with test extras"
         python -m pip install --no-cache-dir .[test] --verbose
-        echo "Verifying pytest-vcr installation"
+        echo "Verifying pytest-vcr"
         pip show pytest-vcr || echo "pytest-vcr not installed"
     - name: Run Tests
-      run: pytest tests -v -s --cov=./ --cov-report=xml
+      run: pytest tests -v --cov=./ --cov-report=xml
       env:
         AMS_URL: ${{ secrets.AMS_URL }}
         AMS_USERNAME: ${{ secrets.AMS_USERNAME }}
         AMS_PASSWORD: ${{ secrets.AMS_PASSWORD }}
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage.xml
