@@ -37,7 +37,7 @@ jobs:
         echo "Upgrading pip"
         python -m pip install --no-cache-dir --upgrade pip
         echo "Installing dependencies"
-        python -m pip install --no-cache-dir pytest pytest-cov responses python-dotenv pytest-vcr keyrings.alt --verbose
+        python -m pip install --no-cache-dir pytest pytest-cov responses python-dotenv pytest-vcr keyrings.alt pytest-mock --verbose
         echo "Installing package with test extras"
         python -m pip install --no-cache-dir .[test] --verbose
         echo "Verifying pytest-vcr"

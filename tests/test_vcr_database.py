@@ -135,3 +135,39 @@ def test_update_database_vcr(credentials, test_update_df):
         )
     except Exception as e:
         pytest.fail(f"update_database_entry failed: {str(e)}")
+
+
+def test_delete_database_vcr_other_error(credentials, test_insert_df, mocker):
+    """Test delete_database_entry with a different AMSError to cover else branch."""
+    # Mock the _fetch method to raise a different AMSError
+    mocker.patch(
+        'teamworksams.utils.AMSClient._fetch',
+        side_effect=AMSError("Unexpected error")
+    )
+    client = get_client(
+        url=credentials["url"],
+        username=credentials["username"],
+        password=credentials["password"],
+        cache=False,
+        interactive_mode=False
+    )
+    try:
+        # Call the function, expecting the else branch to trigger pytest.fail
+        with pytest.raises(pytest.fail.Exception) as exc_info:
+            try:
+                delete_database_entry(
+                    database_entry_id=123,
+                    url=credentials["url"],
+                    username=credentials["username"],
+                    password=credentials["password"],
+                    client=client
+                )
+            except AMSError as e:
+                if "UNREGISTERED SERVER ERROR TYPE" in str(e):
+                    pytest.skip(f"Entry ID 123 does not exist: {str(e)}")
+                else:
+                    pytest.fail(f"delete_database_entry failed: {str(e)}")
+        assert "Unexpected error" in str(exc_info.value)
+    except pytest.fail.Exception as e:
+        # Ensure the failure message contains the expected error
+        assert "Unexpected error" in str(e)
