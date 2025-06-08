@@ -41,3 +41,6 @@ test = [
 [project.urls]
 Homepage = "https://github.com/brandonyach/teamworksams"
 Documentation = "https://brandonyach.github.io/teamworksams"
+
+[tool.setuptools]
+packages = ["teamworksams"]

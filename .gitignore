@@ -9,7 +9,6 @@ dist/
 build/
 .pytest_cache/
 *.so
-build/
 scripts/
 .DS_Store
 *.DS_Store
@@ -32,3 +31,9 @@ coverage.*
 *.log              
 htmlcov/           
 coverage.xml      
+
+# Documentation
+docs/build/
+
+# Assets
+assets/
