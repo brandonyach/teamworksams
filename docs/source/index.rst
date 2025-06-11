@@ -18,6 +18,12 @@ Welcome to teamworksams's Documentation!
 
    vignettes/credentials
    vignettes/user_management
+   vignettes/exporting_data
+   vignettes/importing_data
+   vignettes/database_operations
+   vignettes/uploading_files
+   vignettes/managing_forms
+   vignettes/deleting_data
 
 .. toctree::
    :maxdepth: 2
@@ -25,11 +31,6 @@ Welcome to teamworksams's Documentation!
 
    reference/reference
 
-.. toctree::
-   :maxdepth: 2
-   :caption: API Reference
-
-   api_reference
 
 Indices and Tables
 ==================
