@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started with teamworksams &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/getting_started';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Managing Credentials, Authentication, and Caching" href="credentials.html" />
+    <link rel="prev" title="Welcome to teamworksams’s Documentation!" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Getting Started with teamworksams</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="getting-started-with-teamworksams">
+<span id="getting-started"></span><h1>Getting Started with teamworksams<a class="headerlink" href="#getting-started-with-teamworksams" title="Link to this heading">#</a></h1>
+<p><strong>teamworksams</strong> is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS users, leveraging Python’s data processing capabilities.</p>
+<p>This guide walks you through installing <cite>teamworksams</cite>, setting up credentials, and running your first API call. Explore advanced features in the <span class="xref std std-ref">vignettes</span> and <span class="xref std std-ref">api_reference</span> vignettes.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The Teamworks AMS (Athlete Management System) API enables programmatic access to data stored in your AMS instance, such as user accounts and event data. <cite>teamworksams</cite> abstracts the complexity of API authentication, request handling, and data processing, delivering results as pandas DataFrames for easy analysis. Key features include:</p>
+<ul class="simple">
+<li><p><strong>Authentication</strong>: Secure login with credentials via environment variables, direct arguments, or keyring.</p></li>
+<li><p><strong>Caching</strong>: Optimize performance with reusable API clients.</p></li>
+<li><p><strong>Data Management</strong>: Fetch, import, update, and delete event, profile, and database entries.</p></li>
+<li><p><strong>User Management</strong>: Fetch, create, and edit users.</p></li>
+<li><p><strong>File Operations</strong>: Upload avatars and event attachments.</p></li>
+<li><p><strong>Form Handling</strong>: Retrieve AMS form information and schemas.</p></li>
+</ul>
+<p>Use cases include automating athlete data exports, updating user permissions in bulk, or integrating AMS data with analytics pipelines. For example, a sports scientist might use <cite>teamworksams</cite> to fetch daily training logs for analysis in Jupyter notebooks, while a team administrator could update user information programmatically.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>Install <cite>teamworksams</cite> using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>teamworksams
+</pre></div>
+</div>
+<p>Verify the installation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">teamworksams</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">teamworksams</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>  <span class="c1"># Should print &#39;0.1.0&#39;</span>
+</pre></div>
+</div>
+<p><strong>Requirements</strong>:</p>
+<ul class="simple">
+<li><p>Python 3.8 or higher.</p></li>
+<li><p>Dependencies (installed automatically): <cite>pandas</cite>, <cite>requests</cite>, <cite>requests_toolbelt</cite>, <cite>python-dotenv</cite>, <cite>tqdm</cite>, <cite>keyring</cite>.</p></li>
+</ul>
+<p>If you plan to run tests or contribute, install test dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>teamworksams<span class="o">[</span>test<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>To use <cite>teamworksams</cite>, you need:</p>
+<ol class="arabic simple">
+<li><p><strong>Teamworks AMS Account</strong>: Obtain API access from your AMS administrator, including:
+- <strong>URL</strong>: Your AMS instance URL (e.g., <cite>https://example.smartabase.com/site</cite>).
+- <strong>Username</strong>: Your username (e.g., <cite>username</cite>).
+- <strong>Password</strong>: Your password (e.g., <cite>password</cite>).</p></li>
+<li><p><strong>Python Environment</strong>: A virtual environment (e.g., <cite>venv</cite>, <cite>conda</cite>) is recommended to isolate dependencies.</p></li>
+<li><p><strong>Optional Tools</strong>:
+- <cite>python-dotenv</cite> for loading <cite>.env</cite> files (included with <cite>teamworksams</cite>).
+- <cite>keyring</cite> for secure credential storage (included).
+- <cite>os</cite> to …</p></li>
+</ol>
+</section>
+<section id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading">#</a></h2>
+<p>Before using <strong>teamworksams</strong>, configure your environment to ensure smooth operation across platforms. This section covers setting up Python, installing dependencies, and preparing your workspace.</p>
+<p><strong>Step 1: Install Python</strong></p>
+<p>Ensure Python 3.8 or higher is installed. Verify with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version<span class="w">  </span><span class="c1"># Should output Python 3.8.x or higher</span>
+</pre></div>
+</div>
+<p>If not installed, download from <a class="reference external" href="https://www.python.org/downloads/">python.org</a> or use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># macOS (Homebrew)</span>
+brew<span class="w"> </span>install<span class="w"> </span>python@3.12
+
+<span class="c1"># Ubuntu</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3.12
+
+<span class="c1"># Windows</span>
+<span class="c1"># Download installer from python.org and follow prompts</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Create a Project Directory</strong></p>
+<p>Organize your scripts and configuration files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>teamworksams_project
+<span class="nb">cd</span><span class="w"> </span>teamworksams_project
+</pre></div>
+</div>
+<p><strong>Step 3: Install teamworksams</strong></p>
+<p>Activate your virtual environment and install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>teamworksams
+</pre></div>
+</div>
+<p><strong>Requirements</strong>:</p>
+<ul class="simple">
+<li><p>Python 3.8 or higher.</p></li>
+<li><p>Dependencies (installed automatically): <cite>pandas</cite>, <cite>requests</cite>, <cite>requests_toolbelt</cite>, <cite>python-dotenv</cite>, <cite>tqdm</cite>, <cite>keyring</cite>.</p></li>
+</ul>
+<p>If you plan to run tests or contribute, install test dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>teamworksams<span class="o">[</span>test<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Step 4: Verify Installation</strong></p>
+<p>Test the import:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">teamworksams</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">teamworksams</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>  <span class="c1"># Should print 0.1.0</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-up-credentials">
+<h2>Setting Up Credentials<a class="headerlink" href="#setting-up-credentials" title="Link to this heading">#</a></h2>
+<p><cite>teamworksams</cite> requires an AMS instance URL and credentials for authentication. You can provide these in three ways, ensuring flexibility and security. Below are detailed instructions for each method, with best practices to avoid common pitfalls.</p>
+<ol class="arabic">
+<li><p><strong>Using Environment Variables (Recommended)</strong></p>
+<p>Store credentials in a <cite>.env</cite> file for secure, reusable access. This method is ideal for scripts and CI pipelines, as it avoids hardcoding sensitive information.</p>
+<p>Create a <cite>.env</cite> file in your project root:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AMS_URL=https://example.smartabase.com/site
+AMS_USERNAME=username
+AMS_PASSWORD=password
+</pre></div>
+</div>
+<p>Load the <cite>.env</cite> file in your Python script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">LoginOption</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">login_result</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Session cookie: </span><span class="si">{</span><span class="n">login_result</span><span class="p">[</span><span class="s1">&#39;cookie&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: ℹ Logging username into https://example.smartabase.com/site...</span>
+<span class="c1">#         ✔ Successfully logged username into https://example.smartabase.com/site.</span>
+<span class="c1">#         Session cookie: JSESSIONID=abc123</span>
+</pre></div>
+</div>
+<p>Alternatively, you can load environment variables directly using Python’s <code class="docutils literal notranslate"><span class="pre">os</span></code> module, which <strong>teamworksams</strong> supports as a fallback. This method requires manually setting environment variables or sourcing a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in your shell.</p>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>Example (Manual Setup)</strong>:</p>
+</div></blockquote>
+<p>Set variables in your shell:</p>
+<blockquote>
+<div><p>Use in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>import os
+from teamworksams import get_user
+from teamworksams.user_option import UserOption</p>
+<p>url = os.getenv(“AMS_URL”)
+df = get_user(</p>
+<blockquote>
+<div><p>url=url,
+option=UserOption(interactive_mode=True)</p>
+</div></blockquote>
+<p>)
+print(df[[‘user_id’, ‘first_name’]].head())</p>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>ℹ Fetching user data…
+✔ Retrieved 5 users.</p>
+<blockquote>
+<div><p>user_id first_name</p>
+</div></blockquote>
+<p>0    12345       John
+…</p>
+</div></blockquote>
+<p><strong>Note</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">os.getenv</span></code> requires manual environment variable setup, which can be error-prone for end users. Prefer <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code> for simplicity, as it automatically loads <code class="docutils literal notranslate"><span class="pre">.env</span></code> files.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p><strong>Using Direct Arguments</strong></p>
+<p>Pass credentials directly to functions like <cite>get_event_data</cite>. This is useful for quick tests or when credentials are dynamically generated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span><span class="p">,</span> <span class="n">EventFilter</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
+  <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+  <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span>
+  <span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;31/01/2025&quot;</span><span class="p">,</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+  <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+  <span class="nb">filter</span> <span class="o">=</span> <span class="n">EventFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="s2">&quot;Example Group&quot;</span><span class="p">),</span>
+  <span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">clean_names</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="c1"># ✔ Successfully logged amsbuilder into https://example.smartabase.com/site.</span>
+<span class="c1"># ℹ Requesting event data for &#39;Training Log&#39; between 01/01/2025 and 31/01/2025</span>
+<span class="c1"># ℹ Processing 250 events...</span>
+<span class="c1"># ✔ Retrieved 250 event records for form &#39;Training Log&#39;.</span>
+<span class="c1"># about  user_id  event_id  form         start_date  duration  intensity</span>
+<span class="c1"># 0  John Doe    12345    67890  Training Log  01/01/2025        60       High</span>
+<span class="c1"># 1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium</span>
+
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">get_user</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
+    <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Authenticated: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">authenticated</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: ✔ Successfully logged username into https://example.smartabase.com/site.</span>
+<span class="c1">#         Authenticated: True</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Using Keyring (Secure Storage)</strong></p>
+<p>Store credentials securely using the <cite>keyring</cite> library, ideal for local development or when sharing scripts across machines.</p>
+<p>Set credentials:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">keyring</span>
+<span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s2">&quot;teamworksams&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span>
+<span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s2">&quot;teamworksams&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use in <cite>teamworksams</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># Fetches users using keyring credentials if environment variables are unset</span>
+</pre></div>
+</div>
+<p><strong>Notes</strong>:
+- Ensure <cite>keyring</cite> is installed (included with <cite>teamworksams</cite>).
+- Use a consistent service name (<cite>teamworksams</cite>) for keyring entries.
+- Test keyring setup locally, as some systems (e.g., CI) may lack a keyring backend.</p>
+</li>
+</ol>
+</section>
+<section id="troubleshooting-credentials">
+<h2>Troubleshooting Credentials<a class="headerlink" href="#troubleshooting-credentials" title="Link to this heading">#</a></h2>
+<p>If you encounter authentication errors (<cite>AMSError</cite>):</p>
+<ul class="simple">
+<li><p><strong>Invalid URL</strong>: Ensure the URL includes the site name (e.g., <cite>https://example.smartabase.com/site</cite>, not <cite>https://example.smartabase.com</cite>).</p></li>
+<li><p><strong>Invalid Credentials</strong>: Verify username and password with your AMS administrator.</p></li>
+<li><p><strong>Missing `.env`</strong>: Check that <cite>load_dotenv()</cite> is called before API functions.</p></li>
+<li><p><strong>Keyring Issues</strong>: Install <cite>keyrings.alt</cite> for CI compatibility (<cite>pip install keyrings.alt</cite>).</p></li>
+</ul>
+<p>Example error handling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">login</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://invalid.smartabase.com/site&quot;</span><span class="p">,</span>
+        <span class="n">username</span><span class="o">=</span><span class="s2">&quot;wrong&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;wrong&quot;</span>
+    <span class="p">)</span>
+<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  <span class="c1"># Invalid URL or login credentials...</span>
+</pre></div>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<p>Let’s authenticate and fetch user data to get started. This example logs in, retrieves a list of users, and displays their IDs and names.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">get_user</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="c1"># Load credentials from .env</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># Authenticate</span>
+<span class="n">login_result</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Session header: </span><span class="si">{</span><span class="n">login_result</span><span class="p">[</span><span class="s1">&#39;session_header&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: ℹ Logging username into https://example.smartabase.com/site...</span>
+<span class="c1">#         ✔ Successfully logged username into https://example.smartabase.com/site.</span>
+<span class="c1">#         Session header: abc123</span>
+
+<span class="c1"># Fetch users</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;groups&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># Output: ℹ Fetching user data...</span>
+<span class="c1">#         ✔ Retrieved 10 users.</span>
+<span class="c1">#            user_id first_name  groups</span>
+<span class="c1">#         0   12345   John Doe  Team A</span>
+<span class="c1">#         1   12346 Jane Smith  Team A</span>
+<span class="c1">#         ...</span>
+</pre></div>
+</div>
+<p><strong>What’s Happening</strong>:
+- <cite>login</cite> authenticates with the AMS API, returning session details.
+- <cite>get_user</cite> fetches user data as a pandas DataFrame, with interactive feedback enabled.
+- The output includes user IDs, names, and group affiliations, ready for analysis.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explore <span class="xref std std-ref">vignettes/credentials</span> for advanced credential management, caching, and authentication details.</p></li>
+<li><p>Learn about user management in <span class="xref std std-ref">vignettes/user_management</span>.</p></li>
+<li><p>Dive into the <span class="xref std std-ref">api_reference</span> for detailed function documentation.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to teamworksams’s Documentation!</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="credentials.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Managing Credentials, Authentication, and Caching</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-credentials">Setting Up Credentials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-credentials">Troubleshooting Credentials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/vignettes/getting_started.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

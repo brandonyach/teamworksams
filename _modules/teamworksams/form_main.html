@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>teamworksams.form_main &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/form_main';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">teamworksams.form_main</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for teamworksams.form_main</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.form_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">FormOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.form_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_form_id_and_type</span><span class="p">,</span> <span class="n">_fetch_form_schema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.form_print</span><span class="w"> </span><span class="kn">import</span> <span class="n">_print_forms_status</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.form_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_parse_forms_response</span><span class="p">,</span> <span class="n">_parse_form_schema</span><span class="p">,</span> <span class="n">_create_forms_df</span><span class="p">,</span> <span class="n">_format_form_summary</span>
+
+
+<div class="viewcode-block" id="get_forms">
+<a class="viewcode-back" href="../../reference/get_forms.html#teamworksams.form_main.get_forms">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_forms</span><span class="p">(</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FormOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch a list of forms accessible to the user from an AMS instance.</span>
+
+<span class="sd">    Retrieves metadata for all forms accessible to the authenticated user, returning a</span>
+<span class="sd">    :class:`pandas.DataFrame` with columns like &#39;form_id&#39;, &#39;form_name&#39;, and &#39;type&#39; (e.g.,</span>
+<span class="sd">    event, profile, database). Ideal for auditing or selecting forms for further operations.</span>
+<span class="sd">    Supports interactive feedback and caching. See :ref:`vignettes/managing_forms` for</span>
+<span class="sd">    form management workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+<span class="sd">            include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        option (:class:`FormOption`, optional): Configuration options, including</span>
+<span class="sd">            `interactive_mode` for status messages (e.g., &quot;Retrieved 5 forms&quot;), `cache`</span>
+<span class="sd">            to reuse API responses, `raw_output`, `field_details`, and</span>
+<span class="sd">            `include_instructions` (used in other form functions). Defaults to None</span>
+<span class="sd">            (uses default :class:`FormOption`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`: Form metadata with columns like &#39;form_id&#39;,</span>
+<span class="sd">            &#39;form_name&#39;, &#39;type&#39;, and other attributes (e.g., &#39;application_id&#39;). Returns</span>
+<span class="sd">            an empty DataFrame if no forms are accessible.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If authentication fails, the API request returns an invalid response,</span>
+<span class="sd">            or no accessible forms are found.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import get_forms, FormOption</span>
+<span class="sd">        &gt;&gt;&gt; df = get_forms(</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;pass&quot;,</span>
+<span class="sd">        ...     option = FormOption(interactive_mode = True)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Requesting list of accessible forms...</span>
+<span class="sd">        ✔ Retrieved 5 accessible forms.</span>
+<span class="sd">        &gt;&gt;&gt; print(df)</span>
+<span class="sd">           form_id    form_name     type</span>
+<span class="sd">        0     2937    Allergies  database</span>
+<span class="sd">        1     1234  Training Log    event</span>
+<span class="sd">        2     5678  Athlete Profile profile</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">FormOption</span><span class="p">()</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ℹ Requesting list of accessible forms...&quot;</span><span class="p">)</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;forms/summaries&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v3&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;event&quot;</span><span class="p">,</span> <span class="s2">&quot;linkedOnlyEvent&quot;</span><span class="p">,</span> <span class="s2">&quot;linkedOnlyProfile&quot;</span><span class="p">]):</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid forms data returned from server&quot;</span><span class="p">,</span> 
+                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_forms&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;forms/summaries&quot;</span><span class="p">)</span>
+    
+    <span class="n">forms</span> <span class="o">=</span> <span class="n">_parse_forms_response</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">forms</span><span class="p">:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No accessible forms found&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_forms&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;forms/summaries&quot;</span><span class="p">)</span>
+    
+    <span class="n">forms_df</span> <span class="o">=</span> <span class="n">_create_forms_df</span><span class="p">(</span><span class="n">forms</span><span class="p">)</span>
+    
+    <span class="n">_print_forms_status</span><span class="p">(</span><span class="n">forms_df</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">forms_df</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="get_form_schema">
+<a class="viewcode-back" href="../../reference/get_form_schema.html#teamworksams.form_main.get_form_schema">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_form_schema</span><span class="p">(</span>
+    <span class="n">form_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FormOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch and summarize the schema of a specific form from an AMS instance.</span>
+
+<span class="sd">    Retrieves the schema for a specified AMS form, detailing sections, required fields,</span>
+<span class="sd">    default-to-last-value fields, linked fields, and item types. Returns a formatted</span>
+<span class="sd">    string summary for console output (ideal for Jupyter notebooks) or the raw API</span>
+<span class="sd">    response as a dictionary if `option.raw_output` is True. Supports interactive</span>
+<span class="sd">    feedback and detailed output options. See :ref:`vignettes/managing_forms` for form</span>
+<span class="sd">    management workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        form_name (str): Name of the form (e.g., &#39;Allergies&#39;). Must be a non-empty</span>
+<span class="sd">            string and correspond to a valid form.</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+<span class="sd">            include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        option (:class:`FormOption`, optional): Configuration options, including</span>
+<span class="sd">            `interactive_mode` for status messages, `cache` to reuse API responses,</span>
+<span class="sd">            `raw_output` for raw API data, `field_details` for field options/scores,</span>
+<span class="sd">            and `include_instructions` for section/field instructions. Defaults to None</span>
+<span class="sd">            (uses default :class:`FormOption`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Union[str, Dict]: If `option.raw_output` is True, returns the raw API response as a</span>
+<span class="sd">            dictionary containing the form schema. Otherwise, returns a formatted text string</span>
+<span class="sd">            summarizing the form schema, including:</span>
+<span class="sd">            - Form details (name, ID, type).</span>
+<span class="sd">            - Sections (count, names).</span>
+<span class="sd">            - Required fields (count, names).</span>
+<span class="sd">            - Fields that default to the last known value (count, names).</span>
+<span class="sd">            - Linked fields (count, names).</span>
+<span class="sd">            - Form item types (count of unique types, count per type, field names per type).</span>
+<span class="sd">            - Optionally, field instructions and details (options, scores, date selection) if</span>
+<span class="sd">              enabled in `option`.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If the form_name is empty, the form is not found, authentication fails,</span>
+<span class="sd">            or the API request returns an invalid response.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import get_form_schema</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import FormOption</span>
+<span class="sd">        &gt;&gt;&gt; summary = get_form_schema(</span>
+<span class="sd">        ...     form_name = &quot;Allergies&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;pass&quot;,</span>
+<span class="sd">        ...     option = FormOption(interactive_mode = True, field_details = True)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Fetching summary for form &#39;Allergies&#39; (ID: 2937, Type: database)...</span>
+<span class="sd">        ✔ Retrieved summary for form &#39;Allergies&#39;.</span>
+<span class="sd">        Form Schema Summary</span>
+<span class="sd">        ==================</span>
+<span class="sd">        Form Name: Allergies</span>
+<span class="sd">        Form ID: 2937</span>
+<span class="sd">        Form Type: database</span>
+<span class="sd">        Sections: 2</span>
+<span class="sd">        - Section 1: General</span>
+<span class="sd">        - Section 2: Details</span>
+<span class="sd">        Required Fields: 1</span>
+<span class="sd">        - Allergy</span>
+<span class="sd">        ...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">FormOption</span><span class="p">()</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">form_name</span><span class="p">:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_form_summary&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Step 1: Fetch the form ID and type</span>
+    <span class="n">form_id</span><span class="p">,</span> <span class="n">form_type</span> <span class="o">=</span> <span class="n">_fetch_form_id_and_type</span><span class="p">(</span><span class="n">form_name</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+    
+    <span class="c1"># Step 2: Fetch the form schema</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Fetching summary for form &#39;</span><span class="si">{</span><span class="n">form_name</span><span class="si">}</span><span class="s2">&#39; (ID: </span><span class="si">{</span><span class="n">form_id</span><span class="si">}</span><span class="s2">, Type: </span><span class="si">{</span><span class="n">form_type</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
+    
+    <span class="n">schema_data</span> <span class="o">=</span> <span class="n">_fetch_form_schema</span><span class="p">(</span><span class="n">form_id</span><span class="p">,</span> <span class="n">form_type</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+    
+    <span class="c1"># Step 3: If raw_output is True, return the raw schema data</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">raw_output</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">schema_data</span>
+    
+    <span class="c1"># Step 4: Parse the schema</span>
+    <span class="n">schema_info</span> <span class="o">=</span> <span class="n">_parse_form_schema</span><span class="p">(</span><span class="n">schema_data</span><span class="p">)</span>
+    
+    <span class="c1"># Step 5: Format and print the summary</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Retrieved summary for form &#39;</span><span class="si">{</span><span class="n">form_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+    
+    <span class="n">formatted_output</span> <span class="o">=</span> <span class="n">_format_form_summary</span><span class="p">(</span>
+        <span class="n">schema_info</span><span class="p">,</span>
+        <span class="n">include_instructions</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">include_instructions</span><span class="p">,</span>
+        <span class="n">field_details</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">field_details</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">formatted_output</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">formatted_output</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

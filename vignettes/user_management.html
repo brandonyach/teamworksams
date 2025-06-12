@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>User and Group Management &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/user_management';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Exporting Data" href="exporting_data.html" />
+    <link rel="prev" title="Managing Credentials, Authentication, and Caching" href="credentials.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">User and Group Management</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="user-and-group-management">
+<h1>User and Group Management<a class="headerlink" href="#user-and-group-management" title="Link to this heading">#</a></h1>
+<p>This vignette provides a comprehensive guide to managing users and groups in a Teamworks AMS instance using <strong>teamworksams</strong>. This guide equips you to leverage <strong>teamworksams</strong>’s powerful user management functions effectively to fetching user and group data, update user accounts, and create new users with practical examples, best practices, and troubleshooting tips.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p><strong>teamworksams</strong> simplifies user and group management through the Teamworks AMS API, offering functions to:</p>
+<ul class="simple">
+<li><p><strong>Fetch Users</strong>: Retrieve user data (e.g., IDs, names, account info, groups) with flexible filtering.</p></li>
+<li><p><strong>Fetch Groups</strong>: List groups accessible to the user.</p></li>
+<li><p><strong>Update Users</strong>: Modify user fields (e.g., email, name) for existing accounts.</p></li>
+<li><p><strong>Create Users</strong>: Add new user accounts with required and optional attributes.</p></li>
+</ul>
+<p>The functions covered in this vignette are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_user</span></code>: Fetch user data, optionally filtered by attributes like group or email.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_group</span></code>: Retrieve a list of groups.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edit_user</span></code>: Update existing user accounts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_user</span></code>: Create new user accounts.</p></li>
+</ul>
+<p>All examples use the placeholder AMS instance URL <code class="docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code>, username <code class="docutils literal notranslate"><span class="pre">username</span></code>, and password <code class="docutils literal notranslate"><span class="pre">password</span></code>, with credentials managed via a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file for security and ease of use.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>Ensure <strong>teamworksams</strong> is installed and credentials are configured, as described in <span class="xref std std-ref">vignettes/getting_started</span>. The recommended setup is a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AMS_URL = https://example.smartabase.com/site
+AMS_USERNAME = username
+AMS_PASSWORD = password
+</pre></div>
+</div>
+</div>
+<p>Load credentials with <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Alternatively, use <code class="docutils literal notranslate"><span class="pre">os</span></code>, direct arguments, or <code class="docutils literal notranslate"><span class="pre">keyring</span></code> (see <span class="xref std std-ref">vignettes/credentials</span>).</p>
+</section>
+<section id="fetching-user-data-with-get-user">
+<h2>Fetching User Data with <code class="docutils literal notranslate"><span class="pre">get_user</span></code><a class="headerlink" href="#fetching-user-data-with-get-user" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_user</span></code> function retrieves user data as a pandas DataFrame, with optional filtering using a <code class="docutils literal notranslate"><span class="pre">UserFilter</span></code> object to narrow results by attributes like username, email, group, or about field. It’s ideal for auditing user accounts, generating reports, or identifying specific users.</p>
+<p><strong>Basic Usage</strong>:</p>
+<p>Fetch all accessible users:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">UserOption</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;groups&quot;</span><span class="p">],</span>
+        <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching user data...
+✔ Retrieved 5 users.
+   user_id first_name last_name                email      groups
+0    12345       John       Doe   john.doe@example.com     [TeamA]
+1    12346       Jane     Smith jane.smith@example.com     [TeamB]
+...
+</pre></div>
+</div>
+<p><strong>Filtering Users</strong>:</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">UserFilter</span></code> to retrieve users in a specific group:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserFilter</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="nb">filter</span> <span class="o">=</span> <span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="s2">&quot;TeamA&quot;</span><span class="p">),</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;groups&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching user data...
+✔ Retrieved 2 users.
+   user_id first_name  groups
+0    12345       John  [TeamA]
+1    12347        Bob  [TeamA]
+</pre></div>
+</div>
+<p><strong>Customizing Output</strong>:</p>
+<p>Select specific columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">],</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Best Practices</strong>:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">UserFilter</span></code> to reduce API load when targeting specific users.</p></li>
+<li><p>Limit columns with <code class="docutils literal notranslate"><span class="pre">option.columns</span></code> to optimize DataFrame size.</p></li>
+<li><p>Enable <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code> for real-time feedback during long operations.</p></li>
+</ul>
+</section>
+<section id="fetching-group-data-with-get-group">
+<h2>Fetching Group Data with <code class="docutils literal notranslate"><span class="pre">get_group</span></code><a class="headerlink" href="#fetching-group-data-with-get-group" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">get_group</span></code> function retrieves a list of groups (e.g., teams, departments) as a pandas DataFrame. It’s useful for auditing group structures or preparing data for user assignments.</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_group</span><span class="p">,</span> <span class="n">GroupOption</span>
+
+<span class="n">group_df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">GroupOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">group_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching group data...
+✔ Retrieved 3 groups.
+      name
+0  TeamA
+1  TeamB
+2  TeamC
+</pre></div>
+</div>
+<p><strong>Best Practices</strong>:</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">guess_col_type=True</span></code> in <code class="docutils literal notranslate"><span class="pre">GroupOption</span></code> to infer data types automatically.</p></li>
+<li><p>Combine with <code class="docutils literal notranslate"><span class="pre">get_user</span></code> to map users to groups:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">user_value</span><span class="o">=</span><span class="s2">&quot;TeamA&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">user_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="updating-user-profiles-with-edit-user">
+<h2>Updating User Profiles with <code class="docutils literal notranslate"><span class="pre">edit_user</span></code><a class="headerlink" href="#updating-user-profiles-with-edit-user" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">edit_user</span></code> function updates existing user fields (e.g., email, name) based on a mapping DataFrame, using a user key (e.g., username, email) to identify users. It returns a DataFrame of results, making it easy to track updates and issues.</p>
+<p><strong>Example</strong>:</p>
+<p>Update user emails:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">edit_user</span><span class="p">,</span> <span class="kn">import</span><span class="w"> </span><span class="nn">UserOption</span>
+
+<span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe@new.com&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith@new.com&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span>
+    <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching all user data...
+✔ Retrieved 30 users.
+ℹ Attempting to map 2 users using username from provided dataframe...
+ℹ Successfully mapped 2 users.
+ℹ Updating 2 users...
+Processing users: 100%|██████████| 2/2 [00:04&lt;00:00, 3.46it/s]
+✔ Successfully updated 2 users.
+✔ Successfully updated 2 users.
+✔ No failed operations.
+</pre></div>
+</div>
+<p><strong>Best Practices</strong>:</p>
+<ul class="simple">
+<li><p>Validate <cite>mapping_df</cite> columns against supported fields (e.g., <cite>first_name</cite>, <cite>email</cite>).</p></li>
+<li><p>Use <cite>interactive_mode</cite> for progress tracking.</p></li>
+<li><p>Check <cite>results_df</cite> for successful updates and errors</p></li>
+</ul>
+</section>
+<section id="creating-new-users-with-create-user">
+<h2>Creating New Users with <code class="docutils literal notranslate"><span class="pre">create_user</span></code><a class="headerlink" href="#creating-new-users-with-create-user" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">create_user</span></code> function adds new user accounts, requiring fields like <cite>first_name</cite>, <cite>username</cite>, and <cite>password</cite>. It returns a DataFrame of failed creations.</p>
+<p><strong>Example</strong>:</p>
+<p>Create a new user:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Yu&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;alice.yu&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;alice.yu@example.com&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;dob&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1990-01-01&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;secure789&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">failed_df</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">(</span>
+    <span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">failed_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Creating users...
+✔ Successfully created 1 users.
+Empty DataFrame
+Columns: [user_key, reason]
+</pre></div>
+</div>
+<p><strong>Best Practices</strong>:</p>
+<ul class="simple">
+<li><p>Ensure required fields are present in <cite>user_df</cite>.</p></li>
+<li><p>Use strong passwords compliant with AMS policies.</p></li>
+<li><p>Verify <cite>failed_df</cite> for creation issues.</p></li>
+</ul>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h2>
+<p><strong>teamworksams</strong> functions provide descriptive error messages via <code class="docutils literal notranslate"><span class="pre">AMSError</span></code>, with interactive feedback when <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code> is enabled. For simple scripts or interactive use (e.g., Jupyter notebooks), you can rely on these messages:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/invalid&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>✖ Failed to log username into https://example.smartabase.com/invalid: Invalid URL or login credentials...
+AMSError: Invalid URL or login credentials...
+</pre></div>
+</div>
+<p>For advanced workflows (e.g., automated scripts), use try-except blocks to handle errors gracefully, such as retrying or logging:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">AMSError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;503&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>  <span class="c1"># Service unavailable</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+</pre></div>
+</div>
+<p><strong>Output</strong> (if 503 error):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Attempt 1 failed: Failed to fetch data... (status 503)...
+Attempt 2 failed: Failed to fetch data... (status 503)...
+✔ Retrieved 5 users.
+   user_id first_name
+0    12345       John
+...
+</pre></div>
+</div>
+<p><strong>Logging Errors</strong>:</p>
+<p>Log errors to a file for auditing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;ams_errors.log&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span>
+        <span class="n">mapping_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;invalid&quot;</span><span class="p">]}),</span>
+        <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
+    <span class="p">)</span>
+<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edit user failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check ams_errors.log for details&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>Security</strong>: Store credentials in <code class="docutils literal notranslate"><span class="pre">.env</span></code> or <code class="docutils literal notranslate"><span class="pre">keyring</span></code> to prevent exposure. Keep <code class="docutils literal notranslate"><span class="pre">.env</span></code> files in secure, private directories.</p></li>
+<li><p><strong>Data Validation</strong>: Verify DataFrame inputs before calling <cite>edit_user</cite> or <cite>create_user</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Mapping DataFrame is empty&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Interactive Mode</strong>: Enable for user-friendly feedback during operations.</p></li>
+<li><p><strong>Caching</strong>: Use a cached client for multi-call efficiency:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>No Users Found</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AMSError: No users returned from server...
+</pre></div>
+</div>
+<p><strong>Solution</strong>: Check credentials and filter settings. Test without filters:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Invalid DataFrame</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ValueError: mapping_df is empty...
+</pre></div>
+</div>
+<p><strong>Solution</strong>: Ensure DataFrame is non-empty and includes required columns:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mapping_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>  <span class="c1"># Verify columns</span>
+<span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>API Errors</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AMSError: Failed to fetch data... (status 503)...
+</pre></div>
+</div>
+<p><strong>Solution</strong>: Check AMS server status. Retry with delay:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retry </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explore database management in <span class="xref std std-ref">vignettes/database_operations</span>.</p></li>
+<li><p>Consult <span class="xref std std-ref">api_reference</span> for function details.</p></li>
+<li><p>Visit <a class="reference external" href="https://github.com/yachb35/teamworksams">GitHub</a> for support.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="credentials.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Managing Credentials, Authentication, and Caching</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="exporting_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exporting Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-user-data-with-get-user">Fetching User Data with <code class="docutils literal notranslate"><span class="pre">get_user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-group-data-with-get-group">Fetching Group Data with <code class="docutils literal notranslate"><span class="pre">get_group</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-user-profiles-with-edit-user">Updating User Profiles with <code class="docutils literal notranslate"><span class="pre">edit_user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-users-with-create-user">Creating New Users with <code class="docutils literal notranslate"><span class="pre">create_user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/vignettes/user_management.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

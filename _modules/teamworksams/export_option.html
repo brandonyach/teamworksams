@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>teamworksams.export_option &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/export_option';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">teamworksams.export_option</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for teamworksams.export_option</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+
+<div class="viewcode-block" id="EventOption">
+<a class="viewcode-back" href="../../reference/event_option.html#teamworksams.export_option.EventOption">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EventOption</span><span class="p">:</span>  
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring event data export.</span>
+
+<span class="sd">    Defines customization options for the :func:`teamworksams.export_main.get_event_data` function, controlling aspects such as</span>
+<span class="sd">    downloading attachments, cleaning column names, caching API responses, and enabling</span>
+<span class="sd">    interactive feedback. These options allow users to tailor the event data retrieval process,</span>
+<span class="sd">    including data formatting, performance optimization, and user experience. See</span>
+<span class="sd">    :ref:`vignettes/exporting_data` for usage examples.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interactive_mode (bool): Whether to print status messages during execution, such as the</span>
+<span class="sd">            number of events retrieved. Defaults to True.</span>
+<span class="sd">        guess_col_type (bool): Whether to infer column data types (e.g., numeric, datetime) in</span>
+<span class="sd">            the resulting DataFrame. Defaults to True.</span>
+<span class="sd">        convert_dates (bool): Whether to convert date columns to pandas datetime objects.</span>
+<span class="sd">            Defaults to False.</span>
+<span class="sd">        clean_names (bool): Whether to clean column names by converting to lowercase and</span>
+<span class="sd">            replacing spaces with underscores. Defaults to False.</span>
+<span class="sd">        cache (bool): Whether to cache API responses to improve performance for repeated</span>
+<span class="sd">            requests. Defaults to True.</span>
+<span class="sd">        include_missing_users (bool): Whether to include events for users not found in user</span>
+<span class="sd">            data, ensuring all events are represented. Defaults to False.</span>
+<span class="sd">        download_attachment (bool): Whether to download attachments associated with events.</span>
+<span class="sd">            Defaults to False.</span>
+<span class="sd">        attachment_directory (Optional[str]): Directory path to save downloaded attachments.</span>
+<span class="sd">            If None, uses the current working directory. Can be either an absolute path or a </span>
+<span class="sd">            relative path. Ignored if download_attachment is False. Defaults to None.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        interactive_mode (bool): Indicates whether interactive mode is enabled.</span>
+<span class="sd">        guess_col_type (bool): Indicates whether column type inference is enabled.</span>
+<span class="sd">        convert_dates (bool): Indicates whether date conversion is enabled.</span>
+<span class="sd">        clean_names (bool): Indicates whether column name cleaning is enabled.</span>
+<span class="sd">        cache (bool): Indicates whether caching is enabled.</span>
+<span class="sd">        include_missing_users (bool): Indicates whether missing users are included.</span>
+<span class="sd">        download_attachment (bool): Indicates whether attachment downloading is enabled.</span>
+<span class="sd">        attachment_directory (Optional[str]): The directory for saving attachments.</span>
+<span class="sd">        attachment_count (int): The number of attachments downloaded (set during processing).</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import get_event_data, EventOption</span>
+<span class="sd">        &gt;&gt;&gt; option = EventOption(</span>
+<span class="sd">        ...     interactive_mode = True,</span>
+<span class="sd">        ...     clean_names = True,</span>
+<span class="sd">        ...     download_attachment = True,</span>
+<span class="sd">        ...     attachment_directory = &quot;/path/to/attachments&quot;</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; df = get_event_data(</span>
+<span class="sd">        ...     form = &quot;Training Log&quot;,</span>
+<span class="sd">        ...     start_date = &quot;01/01/2025&quot;,</span>
+<span class="sd">        ...     end_date = &quot;31/01/2025&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     option = option</span>
+<span class="sd">        ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">guess_col_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">convert_dates</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">clean_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_missing_users</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">download_attachment</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">attachment_directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guess_col_type</span> <span class="o">=</span> <span class="n">guess_col_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">convert_dates</span> <span class="o">=</span> <span class="n">convert_dates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_names</span> <span class="o">=</span> <span class="n">clean_names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">include_missing_users</span> <span class="o">=</span> <span class="n">include_missing_users</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_attachment</span> <span class="o">=</span> <span class="n">download_attachment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attachment_directory</span> <span class="o">=</span> <span class="n">attachment_directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attachment_count</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+        
+        
+        
+<div class="viewcode-block" id="SyncEventOption">
+<a class="viewcode-back" href="../../reference/sync_event_option.html#teamworksams.export_option.SyncEventOption">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SyncEventOption</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring sync event data export.</span>
+
+<span class="sd">    Customizes the behavior of :func:`teamworksams.export_main.sync_event_data`,</span>
+<span class="sd">    controlling output formatting, user metadata inclusion, caching, and interactive</span>
+<span class="sd">    feedback. Optimizes performance for synchronized event exports. See</span>
+<span class="sd">    :ref:`vignettes/exporting_data` for synchronization workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interactive_mode (bool): Whether to print status messages during execution, such as the</span>
+<span class="sd">            number of events retrieved. Defaults to True.</span>
+<span class="sd">        include_user_data (bool): Whether to include user metadata (e.g., &#39;about&#39;, &#39;first_name&#39;)</span>
+<span class="sd">            in the output DataFrame. Defaults to True.</span>
+<span class="sd">        cache (bool): Whether to cache API responses to improve performance for repeated</span>
+<span class="sd">            requests. Defaults to True.</span>
+<span class="sd">        include_missing_users (bool): Whether to include users from the filter without event</span>
+<span class="sd">            data, ensuring all specified users are represented. Defaults to False.</span>
+<span class="sd">        guess_col_type (bool): Whether to infer column data types (e.g., numeric, datetime) in</span>
+<span class="sd">            the resulting DataFrame. Defaults to True.</span>
+<span class="sd">        include_uuid (bool): Whether to include the user&#39;s UUID in the output DataFrame.</span>
+<span class="sd">            Defaults to False.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        interactive_mode (bool): Indicates whether interactive mode is enabled.</span>
+<span class="sd">        include_user_data (bool): Indicates whether user metadata is included.</span>
+<span class="sd">        cache (bool): Indicates whether caching is enabled.</span>
+<span class="sd">        include_missing_users (bool): Indicates whether missing users are included.</span>
+<span class="sd">        guess_col_type (bool): Indicates whether column type inference is enabled.</span>
+<span class="sd">        include_uuid (bool): Indicates whether UUID inclusion is enabled.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import sync_event_data, SyncEventOption</span>
+<span class="sd">        &gt;&gt;&gt; option = SyncEventOption(</span>
+<span class="sd">        ...     interactive_mode = True,</span>
+<span class="sd">        ...     include_user_data = True,</span>
+<span class="sd">        ...     include_uuid = True</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; df, new_sync_time = sync_event_data(</span>
+<span class="sd">        ...     form = &quot;Training Log&quot;,</span>
+<span class="sd">        ...     last_synchronisation_time = 1677654321000,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     option = option</span>
+<span class="sd">        ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_user_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_missing_users</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">guess_col_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_uuid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">include_user_data</span> <span class="o">=</span> <span class="n">include_user_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">include_missing_users</span> <span class="o">=</span> <span class="n">include_missing_users</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guess_col_type</span> <span class="o">=</span> <span class="n">guess_col_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">include_uuid</span> <span class="o">=</span> <span class="n">include_uuid</span></div>
+
+        
+        
+
+<div class="viewcode-block" id="ProfileOption">
+<a class="viewcode-back" href="../../reference/profile_option.html#teamworksams.export_option.ProfileOption">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProfileOption</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring profile data export.</span>
+
+<span class="sd">    Customizes the behavior of :func:`teamworksams.export_main.get_profile_data`,</span>
+<span class="sd">    controlling output formatting, caching, and interactive feedback. Optimizes</span>
+<span class="sd">    performance for profile data exports. </span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interactive_mode (bool): Whether to print status messages during execution (default: True).</span>
+<span class="sd">        guess_col_type (bool): Whether to infer column data types (default: True).</span>
+<span class="sd">        clean_names (bool): Whether to clean column names (e.g., lowercase, replace spaces) (default: False).</span>
+<span class="sd">        cache (bool): Whether to cache API responses (default: True).</span>
+<span class="sd">        include_missing_users (bool): Whether to include users from the filter without profile data (default: False).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        interactive_mode (bool): Whether interactive mode is enabled.</span>
+<span class="sd">        guess_col_type (bool): Whether to guess column types.</span>
+<span class="sd">        clean_names (bool): Whether to clean column names.</span>
+<span class="sd">        cache (bool): Whether caching is enabled.</span>
+<span class="sd">        include_missing_users (bool): Whether to include missing users.</span>
+<span class="sd">        </span>
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import get_profile_data, ProfileOption</span>
+<span class="sd">        &gt;&gt;&gt; option = ProfileOption(</span>
+<span class="sd">        ...     interactive_mode = True,</span>
+<span class="sd">        ...     guess_col_type = True,</span>
+<span class="sd">        ...     clean_names = True</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; df = get_profile_data(</span>
+<span class="sd">        ...     form = &quot;Athlete Profile&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     option = option</span>
+<span class="sd">        ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">guess_col_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">clean_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_missing_users</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guess_col_type</span> <span class="o">=</span> <span class="n">guess_col_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_names</span> <span class="o">=</span> <span class="n">clean_names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">include_missing_users</span> <span class="o">=</span> <span class="n">include_missing_users</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

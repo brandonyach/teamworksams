@@ -1,0 +1,780 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>upload_and_attach_to_events &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/upload_and_attach_to_events';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="upload_and_attach_to_avatars" href="upload_and_attach_to_avatars.html" />
+    <link rel="prev" title="UpdateDatabaseOption" href="update_database_option.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_client.html">get_client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">login</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ams_client.html">AMSClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ams_error.html">AMSError</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login_option.html">LoginOption</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_user.html">get_user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_group.html">get_group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edit_user.html">edit_user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_user.html">create_user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_option.html">UserOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_option.html">GroupOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_filter.html">UserFilter</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_event_data.html">get_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync_event_data.html">sync_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_profile_data.html">get_profile_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="event_filter.html">EventFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync_event_filter.html">SyncEventFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile_filter.html">ProfileFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="event_option.html">EventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync_event_option.html">SyncEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile_option.html">ProfileOption</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="insert_event_data.html">insert_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_event_data.html">update_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_event_data.html">upsert_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_profile_data.html">upsert_profile_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert_event_option.html">InsertEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_event_option.html">UpdateEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_event_option.html">UpsertEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_profile_option.html">UpsertProfileOption</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_database.html">get_database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete_database_entry.html">delete_database_entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert_database_entry.html">insert_database_entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_database_entry.html">update_database_entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_database_option.html">GetDatabaseOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert_database_option.html">InsertDatabaseOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_database_option.html">UpdateDatabaseOption</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">upload_and_attach_to_events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload_and_attach_to_avatars.html">upload_and_attach_to_avatars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_upload_option.html">FileUploadOption</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_forms.html">get_forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_form_schema.html">get_form_schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form_option.html">FormOption</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="delete_event_data.html">delete_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete_multiple_events.html">delete_multiple_events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete_event_option.html">DeleteEventOption</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="reference.html" class="nav-link">Function and Class Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">upload_and_attach_to_events</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="upload-and-attach-to-events">
+<h1>upload_and_attach_to_events<a class="headerlink" href="#upload-and-attach-to-events" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="teamworksams.file_main.upload_and_attach_to_events">
+<span class="sig-prename descclassname"><span class="pre">teamworksams.file_main.</span></span><span class="sig-name descname"><span class="pre">upload_and_attach_to_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="file_upload_option.html#teamworksams.file_option.FileUploadOption" title="teamworksams.file_option.FileUploadOption"><span class="pre">FileUploadOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'attachment_id'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../_modules/teamworksams/file_main.html#upload_and_attach_to_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.file_main.upload_and_attach_to_events" title="Link to this definition">#</a></dt>
+<dd><p>Upload files and attach them to events in an AMS Event Form.</p>
+<p>Matches the provided <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> to users and events using <cite>user_key</cite>
+and <cite>mapping_col</cite> (default ‘attachment_id’), uploads valid files from <cite>file_dir</cite>,
+and attaches them to the specified <cite>file_field_name</cite> in the AMS Event Form using
+file references (e.g., <cite>file_id|server_file_name</cite>). Preserves existing event fields
+during updates. Returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with upload and attachment
+results, including successes and failures. See <span class="xref std std-ref">vignettes/uploading_files</span> for
+detailed workflows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mapping_df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – <p>DataFrame with columns:
+- <cite>user_key</cite> (str): User identifier (e.g., ‘username’, ‘email’, ‘about’,</p>
+<blockquote>
+<div><p>’uuid’).</p>
+</div></blockquote>
+<ul>
+<li><p><cite>file_name</cite> (str): File name in <cite>file_dir</cite> (e.g., ‘doc1.pdf’).</p></li>
+<li><p><cite>mapping_col</cite> (str): Matches the event form’s field (e.g.,
+‘attachment_id’). Used for mapping files to events. Must not be empty.</p></li>
+</ul>
+</p></li>
+<li><p><strong>file_dir</strong> (<em>str</em>) – Directory path containing files to upload (e.g.,
+‘/path/to/files’). Must be a valid directory.</p></li>
+<li><p><strong>user_key</strong> (<em>str</em>) – Column name in <cite>mapping_df</cite> for user identification. Must be
+one of ‘username’, ‘email’, ‘about’, or ‘uuid’.</p></li>
+<li><p><strong>form</strong> (<em>str</em>) – Name of the AMS Event Form (e.g., ‘Document Store’). Must exist
+and contain <cite>file_field_name</cite>.</p></li>
+<li><p><strong>file_field_name</strong> (<em>str</em>) – File upload field in the form (e.g., ‘attachment’).
+Must be a valid file field.</p></li>
+<li><p><strong>mapping_col</strong> (<em>str</em>) – Column name in <cite>mapping_df</cite> and event form for matching
+events to files (e.g., ‘attachment_id’). Defaults to ‘attachment_id’.</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’).
+Must include a valid site name.</p></li>
+<li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Username for authentication. If None, uses
+<span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_USERNAME</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
+<li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses
+<span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
+<li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>, optional) – Configuration options for
+interactive feedback (e.g., progress bars), caching, and saving results
+to a CSV. Defaults to None (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code> with
+<cite>interactive_mode=True</cite>).</p></li>
+<li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Results with columns:</dt><dd><ul class="simple">
+<li><p>user_key (str): The user identifier from <cite>mapping_df</cite>.</p></li>
+<li><p>file_name (str): The file name from <cite>mapping_df</cite>.</p></li>
+<li><p>event_id (str): Matched event ID (None if failed).</p></li>
+<li><p>user_id (str): Matched user ID (None if failed).</p></li>
+<li><p>file_id (str): Uploaded file ID (None if failed).</p></li>
+<li><p>server_file_name (str): Server-assigned file name (None if failed).</p></li>
+<li><p>status (str): ‘SUCCESS’ or ‘FAILED’.</p></li>
+<li><p>reason (str): Failure reason (None if successful).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If:
+    - <cite>file_dir</cite> is not a valid directory.
+    - User data retrieval fails (e.g., invalid credentials, API errors).
+    - No users are found in the AMS instance.
+    - Event data retrieval fails (e.g., invalid form name, API errors).
+    - No events are found for the specified form and users.
+    - The event form lacks an ‘attachment_id’ field.
+    - File validation fails (e.g., unsupported file type).
+    - File upload or event update fails (e.g., network issues, server errors).</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">upload_and_attach_to_events</span><span class="p">,</span> <span class="n">FileUploadOption</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;user1&quot;</span><span class="p">,</span> <span class="s2">&quot;user2&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;doc1.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;doc2.pdf&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s2">&quot;attachment_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ATT123&quot;</span><span class="p">,</span> <span class="s2">&quot;ATT456&quot;</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">upload_and_attach_to_events</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">mapping_col</span> <span class="o">=</span> <span class="s2">&quot;attachment_id&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;about&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">file_dir</span> <span class="o">=</span> <span class="s2">&quot;/path/to/files&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">file_field_name</span> <span class="o">=</span> <span class="s2">&quot;attachment&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">option</span> <span class="o">=</span> <span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">save_to_file</span> <span class="o">=</span> <span class="s2">&quot;results.csv&quot;</span><span class="p">)</span>
+<span class="go">)</span>
+</pre></div>
+</div>
+<p>ℹ Fetching all user data from site to match provided files…
+ℹ Retrieved 50 users.
+ℹ Fetching all event data from ‘Document Store’ to match provided files…
+ℹ Retrieved 500 events.
+ℹ Merged 500 rows from mapping_df with 1500 events from ‘Document Store’, resulting in 1500 matched records.
+ℹ Found 450 valid files in directory matching 500 mapping_df records.
+ℹ Finding a match for 2 events from mapping_df…
+ℹ Identified and mapped 2 events from mapping_df.
+ℹ Uploading 450 files…
+Uploading files: 100%|██████████| 450/450 [00:02&lt;00:00,  1.00s/it]
+ℹ Preparing to update 500 events corresponding to 450 uploaded files for ‘Document Store’.
+ℹ Updating 500 events for ‘Document Store’
+✔ Processed 500 events for ‘Document Store’
+ℹ Form: Document Store
+ℹ Result: Success
+ℹ Records updated: 500
+ℹ Records attempted: 500
+✔ Successfully attached 450 files to 500 events.
+ℹ Saved results to ‘results.csv’</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="go">   username file_name event_id user_id file_id server_file_name status reason</span>
+<span class="go">0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None</span>
+<span class="go">1   user2   doc2.pdf  123457  78902   94197 doc2_1747654003484.pdf SUCCESS None</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<section id="additional-notes">
+<h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">mapping_df</span></code> must include <cite>user_key</cite>, <cite>file_name</cite>, and <cite>mapping_col</cite>
+(e.g., ‘attachment_id’); missing columns or invalid files raise
+<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
+<li><p>Valid file types include .pdf, .doc, .docx, .txt, .csv, .png, .jpg, .jpeg,
+.gif, .xls, .xlsx, and .heic; others are skipped with failure reasons.</p></li>
+<li><p>Ensure the AMS form has a file field (<cite>file_field_name</cite>) and <cite>mapping_col</cite>
+(e.g., ‘attachment_id’) to match events correctly.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">option.save_to_file</span></code> to save results for troubleshooting, as the
+function performs multiple steps (user mapping, event matching, upload,
+update).</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>: Configuration options for file uploads.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: For retrieving event data to prepare <cite>mapping_df</cite>.</p></li>
+<li><p><span class="xref std std-ref">vignettes/uploading_files</span>: Event file upload workflows.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="update_database_option.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">UpdateDatabaseOption</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="upload_and_attach_to_avatars.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">upload_and_attach_to_avatars</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teamworksams.file_main.upload_and_attach_to_events"><code class="docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-notes">Additional Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See Also</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/reference/upload_and_attach_to_events.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

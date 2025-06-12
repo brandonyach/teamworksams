@@ -1,0 +1,657 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>teamworksams.database_option &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/database_option';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">teamworksams.database_option</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for teamworksams.database_option</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+
+
+<div class="viewcode-block" id="GetDatabaseOption">
+<a class="viewcode-back" href="../../reference/get_database_option.html#teamworksams.database_option.GetDatabaseOption">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">GetDatabaseOption</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for retrieving database entries from an AMS database form.</span>
+
+<span class="sd">    Customizes the behavior of :func:`teamworksams.database_main.get_database`,</span>
+<span class="sd">    controlling caching and interactive feedback. These options optimize performance</span>
+<span class="sd">    and user experience for fetching database entries, such as allergies or equipment</span>
+<span class="sd">    lists, typically used in one-off operations. See</span>
+<span class="sd">    :ref:`vignettes/database_operations` for database workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        interactive_mode (bool): If True, prints status messages during execution,</span>
+<span class="sd">            such as &quot;Retrieved 100 entries&quot; or &quot;No entries found,&quot; useful for</span>
+<span class="sd">            interactive environments like Jupyter notebooks. Set to False for silent</span>
+<span class="sd">            execution. Defaults to True.</span>
+<span class="sd">        cache (bool): If True, reuses cached API responses via the :class:`AMSClient`,</span>
+<span class="sd">            reducing API calls for repeated queries (e.g., fetching multiple pages).</span>
+<span class="sd">            Set to False for fresh data. Defaults to True.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        interactive_mode (bool): Whether interactive mode is enabled.</span>
+<span class="sd">        cache (bool): Whether caching is enabled.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import GetDatabaseOption, get_database</span>
+<span class="sd">        &gt;&gt;&gt; option = GetDatabaseOption(interactive_mode = True, cache = False)</span>
+<span class="sd">        &gt;&gt;&gt; df = get_database(</span>
+<span class="sd">        ...     form_name = &quot;Allergies&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     option = option</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Fetching database entries for form &#39;Allergies&#39;...</span>
+<span class="sd">        ✔ Retrieved 100 database entries for form &#39;Allergies&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span></div>
+
+
+
+
+<div class="viewcode-block" id="InsertDatabaseOption">
+<a class="viewcode-back" href="../../reference/insert_database_option.html#teamworksams.database_option.InsertDatabaseOption">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">InsertDatabaseOption</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for inserting database entries into an AMS database form.</span>
+
+<span class="sd">    Customizes the behavior of :func:`teamworksams.database_main.insert_database_entry`,</span>
+<span class="sd">    controlling table fields, caching, and interactive feedback. These options tailor</span>
+<span class="sd">    the insertion process for one-off operations, ensuring data aligns with the AMS</span>
+<span class="sd">    form’s structure. See :ref:`vignettes/database_operations` for database workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table_fields (Optional[List[str]]): List of field names in the AMS form that</span>
+<span class="sd">            are table fields (e.g., [&#39;Table&#39;]). Must match :class:`pandas.DataFrame`</span>
+<span class="sd">            columns if specified. If None, no fields are treated as table fields.</span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        interactive_mode (bool): If True, prints status messages during execution,</span>
+<span class="sd">            such as &quot;Inserted 3 entries,&quot; ideal for interactive environments. Set to</span>
+<span class="sd">            False for silent execution. Defaults to True.</span>
+<span class="sd">        cache (bool): If True, reuses cached API responses via the :class:`AMSClient`,</span>
+<span class="sd">            reducing API calls for repeated operations. Set to False for independent</span>
+<span class="sd">            requests. Defaults to True.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        table_fields (Optional[List[str]]): List of table field names, or None if</span>
+<span class="sd">            unspecified.</span>
+<span class="sd">        interactive_mode (bool): Whether interactive mode is enabled.</span>
+<span class="sd">        cache (bool): Whether caching is enabled.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import InsertDatabaseOption, insert_database_entry</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; df = pd.DataFrame({&quot;Allergy&quot;: [&quot;Dairy&quot;]})</span>
+<span class="sd">        &gt;&gt;&gt; option = InsertDatabaseOption(interactive_mode = True)</span>
+<span class="sd">        &gt;&gt;&gt; insert_database_entry(</span>
+<span class="sd">        ...     df = df,</span>
+<span class="sd">        ...     form = &quot;Allergies&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     option = option</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Inserting 1 database entries for form &#39;Allergies&#39;</span>
+<span class="sd">        ✔ Processed 1 database entries for form &#39;Allergies&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">table_fields</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table_fields</span> <span class="o">=</span> <span class="n">table_fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span></div>
+
+
+
+
+<div class="viewcode-block" id="UpdateDatabaseOption">
+<a class="viewcode-back" href="../../reference/update_database_option.html#teamworksams.database_option.UpdateDatabaseOption">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UpdateDatabaseOption</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for updating database entries in an AMS database form.</span>
+
+<span class="sd">    Customizes the behavior of :func:`teamworksams.database_main.update_database_entry`,</span>
+<span class="sd">    controlling table fields, caching, and interactive feedback with confirmation</span>
+<span class="sd">    prompts. These options ensure safe and efficient updates for one-off operations.</span>
+<span class="sd">    See :ref:`vignettes/database_operations` for database workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table_fields (Optional[List[str]]): List of field names in the AMS form that</span>
+<span class="sd">            are table fields (e.g., [&#39;Table&#39;]). Must match :class:`pandas.DataFrame`</span>
+<span class="sd">            columns if specified. If None, no fields are treated as table fields.</span>
+<span class="sd">            Defaults to None.</span>
+<span class="sd">        interactive_mode (bool): If True, prints status messages (e.g., &quot;Updated 2</span>
+<span class="sd">            entries&quot;) and prompts for confirmation before updating, preventing</span>
+<span class="sd">            accidental changes. Set to False for silent execution. Defaults to True.</span>
+<span class="sd">        cache (bool): If True, reuses cached API responses via the :class:`AMSClient`,</span>
+<span class="sd">            reducing API calls for repeated operations. Set to False for independent</span>
+<span class="sd">            requests. Defaults to True.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        table_fields (Optional[List[str]]): List of table field names, or None if</span>
+<span class="sd">            unspecified.</span>
+<span class="sd">        interactive_mode (bool): Whether interactive mode is enabled.</span>
+<span class="sd">        cache (bool): Whether caching is enabled.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import UpdateDatabaseOption, update_database_entry</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; df = pd.DataFrame({&quot;entry_id&quot;: [386197], &quot;Allergy&quot;: [&quot;Dairy Updated&quot;]})</span>
+<span class="sd">        &gt;&gt;&gt; option = UpdateDatabaseOption(interactive_mode = True)</span>
+<span class="sd">        &gt;&gt;&gt; update_database_entry(</span>
+<span class="sd">        ...     df = df,</span>
+<span class="sd">        ...     form = &quot;Allergies&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     option = option</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Updating 1 database entries for form &#39;Allergies&#39;</span>
+<span class="sd">        Are you sure you want to update 1 existing database entries in &#39;Allergies&#39;? (y/n): y</span>
+<span class="sd">        ✔ Processed 1 database entries for form &#39;Allergies&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">table_fields</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table_fields</span> <span class="o">=</span> <span class="n">table_fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

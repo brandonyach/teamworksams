@@ -1,0 +1,1451 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>teamworksams.file_main &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/file_main';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">teamworksams.file_main</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for teamworksams.file_main</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.import_main</span><span class="w"> </span><span class="kn">import</span> <span class="n">update_event_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.import_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">UpdateEventOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.file_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileUploadOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.file_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_file_df</span><span class="p">,</span> <span class="n">_validate_file_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.file_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_format_file_reference</span><span class="p">,</span> <span class="n">_map_user_ids_to_file_df</span><span class="p">,</span> <span class="n">_build_result_df</span><span class="p">,</span> <span class="n">_validate_and_prepare_files</span><span class="p">,</span> <span class="n">_upload_single_file</span><span class="p">,</span> <span class="n">_create_avatar_mapping_df</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.user_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_all_user_data</span><span class="p">,</span> <span class="n">_update_single_user</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.user_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_map_user_updates</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.user_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_user_key</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.user_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_main</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_filter</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventFilter</span>
+
+
+<div class="viewcode-block" id="upload_and_attach_to_events">
+<a class="viewcode-back" href="../../reference/upload_and_attach_to_events.html#teamworksams.file_main.upload_and_attach_to_events">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">upload_and_attach_to_events</span><span class="p">(</span>
+    <span class="n">mapping_df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">file_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">user_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">file_field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FileUploadOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mapping_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;attachment_id&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload files and attach them to events in an AMS Event Form.</span>
+
+<span class="sd">    Matches the provided :class:`pandas.DataFrame` to users and events using `user_key`</span>
+<span class="sd">    and `mapping_col` (default &#39;attachment_id&#39;), uploads valid files from `file_dir`,</span>
+<span class="sd">    and attaches them to the specified `file_field_name` in the AMS Event Form using</span>
+<span class="sd">    file references (e.g., `file_id|server_file_name`). Preserves existing event fields</span>
+<span class="sd">    during updates. Returns a :class:`pandas.DataFrame` with upload and attachment</span>
+<span class="sd">    results, including successes and failures. See :ref:`vignettes/uploading_files` for</span>
+<span class="sd">    detailed workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mapping_df (:class:`pandas.DataFrame`): DataFrame with columns:</span>
+<span class="sd">            - `user_key` (str): User identifier (e.g., &#39;username&#39;, &#39;email&#39;, &#39;about&#39;,</span>
+<span class="sd">              &#39;uuid&#39;).</span>
+<span class="sd">            - `file_name` (str): File name in `file_dir` (e.g., &#39;doc1.pdf&#39;).</span>
+<span class="sd">            - `mapping_col` (str): Matches the event form’s field (e.g.,</span>
+<span class="sd">              &#39;attachment_id&#39;). Used for mapping files to events. Must not be empty.</span>
+<span class="sd">        file_dir (str): Directory path containing files to upload (e.g.,</span>
+<span class="sd">            &#39;/path/to/files&#39;). Must be a valid directory.</span>
+<span class="sd">        user_key (str): Column name in `mapping_df` for user identification. Must be</span>
+<span class="sd">            one of &#39;username&#39;, &#39;email&#39;, &#39;about&#39;, or &#39;uuid&#39;.</span>
+<span class="sd">        form (str): Name of the AMS Event Form (e.g., &#39;Document Store&#39;). Must exist</span>
+<span class="sd">            and contain `file_field_name`.</span>
+<span class="sd">        file_field_name (str): File upload field in the form (e.g., &#39;attachment&#39;).</span>
+<span class="sd">            Must be a valid file field.</span>
+<span class="sd">        mapping_col (str): Column name in `mapping_df` and event form for matching</span>
+<span class="sd">            events to files (e.g., &#39;attachment_id&#39;). Defaults to &#39;attachment_id&#39;.</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;).</span>
+<span class="sd">            Must include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        option (:class:`FileUploadOption`, optional): Configuration options for</span>
+<span class="sd">            interactive feedback (e.g., progress bars), caching, and saving results</span>
+<span class="sd">            to a CSV. Defaults to None (uses default :class:`FileUploadOption` with</span>
+<span class="sd">            `interactive_mode=True`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`: Results with columns:</span>
+<span class="sd">            - user_key (str): The user identifier from `mapping_df`.</span>
+<span class="sd">            - file_name (str): The file name from `mapping_df`.</span>
+<span class="sd">            - event_id (str): Matched event ID (None if failed).</span>
+<span class="sd">            - user_id (str): Matched user ID (None if failed).</span>
+<span class="sd">            - file_id (str): Uploaded file ID (None if failed).</span>
+<span class="sd">            - server_file_name (str): Server-assigned file name (None if failed).</span>
+<span class="sd">            - status (str): &#39;SUCCESS&#39; or &#39;FAILED&#39;.</span>
+<span class="sd">            - reason (str): Failure reason (None if successful).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If:</span>
+<span class="sd">            - `file_dir` is not a valid directory.</span>
+<span class="sd">            - User data retrieval fails (e.g., invalid credentials, API errors).</span>
+<span class="sd">            - No users are found in the AMS instance.</span>
+<span class="sd">            - Event data retrieval fails (e.g., invalid form name, API errors).</span>
+<span class="sd">            - No events are found for the specified form and users.</span>
+<span class="sd">            - The event form lacks an &#39;attachment_id&#39; field.</span>
+<span class="sd">            - File validation fails (e.g., unsupported file type).</span>
+<span class="sd">            - File upload or event update fails (e.g., network issues, server errors).</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import upload_and_attach_to_events, FileUploadOption</span>
+
+<span class="sd">        &gt;&gt;&gt; mapping_df = DataFrame({</span>
+<span class="sd">        ...     &quot;username&quot;: [&quot;user1&quot;, &quot;user2&quot;],</span>
+<span class="sd">        ...     &quot;file_name&quot;: [&quot;doc1.pdf&quot;, &quot;doc2.pdf&quot;],</span>
+<span class="sd">        ...     &quot;attachment_id&quot;: [&quot;ATT123&quot;, &quot;ATT456&quot;]</span>
+<span class="sd">        ... })</span>
+
+<span class="sd">        &gt;&gt;&gt; results = upload_and_attach_to_events(</span>
+<span class="sd">        ...     mapping_df = mapping_df,</span>
+<span class="sd">        ...     mapping_col = &quot;attachment_id&quot;,</span>
+<span class="sd">        ...     user_key = &quot;about&quot;,</span>
+<span class="sd">        ...     file_dir = &quot;/path/to/files&quot;,</span>
+<span class="sd">        ...     form = &quot;Document Store&quot;,</span>
+<span class="sd">        ...     file_field_name = &quot;attachment&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;password&quot;,</span>
+<span class="sd">        ...     option = FileUploadOption(interactive_mode = True, save_to_file = &quot;results.csv&quot;)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        ℹ Fetching all user data from site to match provided files...</span>
+<span class="sd">        ℹ Retrieved 50 users.</span>
+<span class="sd">        ℹ Fetching all event data from &#39;Document Store&#39; to match provided files...</span>
+<span class="sd">        ℹ Retrieved 500 events.</span>
+<span class="sd">        ℹ Merged 500 rows from mapping_df with 1500 events from &#39;Document Store&#39;, resulting in 1500 matched records.</span>
+<span class="sd">        ℹ Found 450 valid files in directory matching 500 mapping_df records.</span>
+<span class="sd">        ℹ Finding a match for 2 events from mapping_df...</span>
+<span class="sd">        ℹ Identified and mapped 2 events from mapping_df.</span>
+<span class="sd">        ℹ Uploading 450 files...</span>
+<span class="sd">        Uploading files: 100%|██████████| 450/450 [00:02&lt;00:00,  1.00s/it]</span>
+<span class="sd">        ℹ Preparing to update 500 events corresponding to 450 uploaded files for &#39;Document Store&#39;.</span>
+<span class="sd">        ℹ Updating 500 events for &#39;Document Store&#39;</span>
+<span class="sd">        ✔ Processed 500 events for &#39;Document Store&#39;                   </span>
+<span class="sd">        ℹ Form: Document Store</span>
+<span class="sd">        ℹ Result: Success</span>
+<span class="sd">        ℹ Records updated: 500</span>
+<span class="sd">        ℹ Records attempted: 500</span>
+<span class="sd">        ✔ Successfully attached 450 files to 500 events.</span>
+<span class="sd">        ℹ Saved results to &#39;results.csv&#39;   </span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; print(results.head())</span>
+<span class="sd">           username file_name event_id user_id file_id server_file_name status reason</span>
+<span class="sd">        0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None</span>
+<span class="sd">        1   user2   doc2.pdf  123457  78902   94197 doc2_1747654003484.pdf SUCCESS None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+
+    <span class="c1"># Validate mapping_df</span>
+    <span class="n">initial_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">_validate_file_df</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">mapping_col</span><span class="o">=</span><span class="n">mapping_col</span><span class="p">,</span> <span class="n">require_mapping_col</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">_validate_user_key</span><span class="p">(</span><span class="n">user_key</span><span class="p">)</span>
+
+    <span class="c1"># Initialize result lists</span>
+    <span class="n">success_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">failed_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Validate file directory</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_dir</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">file_dir</span><span class="si">}</span><span class="s2">&#39; is not a valid directory&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_events&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Pre-validate file extensions</span>
+    <span class="n">valid_extensions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;.doc&#39;</span><span class="p">,</span> <span class="s1">&#39;.docx&#39;</span><span class="p">,</span> <span class="s1">&#39;.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;.heic&#39;</span><span class="p">,</span> <span class="s1">&#39;.HEIC&#39;</span><span class="p">,</span> <span class="s1">&#39;.xls&#39;</span><span class="p">,</span> <span class="s1">&#39;.xlsx&#39;</span><span class="p">}</span>
+    
+    <span class="n">invalid_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]:</span>
+        <span class="n">ext</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_extensions</span><span class="p">:</span>
+            <span class="n">invalid_files</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">file_name</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Invalid file type &#39;</span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s2">&#39;. Allowed: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">valid_extensions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">invalid_files</span> <span class="ow">and</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Skipping </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> invalid files:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">reason</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - &#39;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">invalid_files</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">],</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">file_name</span> <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">],</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">reason</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">reason</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">]</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="c1"># Match mapping_df to users</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Fetching all user data from site to match provided files...&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_all_user_data</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">),</span>
+            <span class="n">client</span><span class="o">=</span><span class="n">client</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">user_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to retrieve user data: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_events&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No users found.&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_events&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Map users to get user_id</span>
+    <span class="n">mapping_df</span><span class="p">,</span> <span class="n">failed_matches</span> <span class="o">=</span> <span class="n">_map_user_ids_to_file_df</span><span class="p">(</span>
+        <span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">failed_matches</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">failed_matches</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">)</span><span class="si">}</span><span class="s2"> files failed to match </span><span class="si">{</span><span class="n">user_key</span><span class="si">}</span><span class="s2"> values in user data.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">initial_rows</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Warning: mapping_df increased from </span><span class="si">{</span><span class="n">initial_rows</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows due to duplicate </span><span class="si">{</span><span class="n">user_key</span><span class="si">}</span><span class="s2"> matches in user data.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Cast potential numeric string columns to strings</span>
+    <span class="n">dtype_changes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">col</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="n">mapping_col</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="s2">&quot;end_date&quot;</span><span class="p">,</span> <span class="s2">&quot;start_time&quot;</span><span class="p">,</span> <span class="s2">&quot;end_time&quot;</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">dtype_changes</span><span class="p">:</span>
+        <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype_changes</span><span class="p">)</span>
+
+    <span class="c1"># Match mapping_df to events</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Fetching event data from &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; to match provided files...&quot;</span><span class="p">)</span>
+        
+    <span class="n">user_values</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;01/01/1970&quot;</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">event_df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
+            <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span>
+            <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span>
+            <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+            <span class="nb">filter</span><span class="o">=</span><span class="n">EventFilter</span><span class="p">(</span><span class="n">user_key</span><span class="o">=</span><span class="n">user_key</span><span class="p">,</span> <span class="n">user_value</span><span class="o">=</span><span class="n">user_values</span><span class="p">),</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">EventOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">),</span>
+            <span class="n">client</span><span class="o">=</span><span class="n">client</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> events.&quot;</span><span class="p">)</span>
+        <span class="n">dtype_changes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">col</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">event_df</span><span class="o">.</span><span class="n">columns</span>
+            <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="s2">&quot;end_date&quot;</span><span class="p">,</span> <span class="s2">&quot;start_time&quot;</span><span class="p">,</span> <span class="s2">&quot;end_time&quot;</span><span class="p">]</span>
+            <span class="ow">and</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">event_df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+        <span class="p">}</span>
+        <span class="n">dtype_changes</span><span class="p">[</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;string&#39;</span>
+        <span class="k">if</span> <span class="n">dtype_changes</span><span class="p">:</span>
+            <span class="n">event_df</span> <span class="o">=</span> <span class="n">event_df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype_changes</span><span class="p">)</span>
+        <span class="n">event_df</span> <span class="o">=</span> <span class="n">event_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;about&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Failed to retrieve events: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="k">if</span> <span class="n">event_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;No events found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="k">if</span> <span class="n">mapping_col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">event_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Event form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; does not have a &#39;</span><span class="si">{</span><span class="n">mapping_col</span><span class="si">}</span><span class="s2">&#39; field&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="n">unmatched_ids</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">[</span><span class="o">~</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">event_df</span><span class="p">[</span><span class="n">mapping_col</span><span class="p">])]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unmatched_ids</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">unmatched_ids</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">unmatched_ids</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">unmatched_ids</span><span class="p">),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">unmatched_ids</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">unmatched_ids</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">unmatched_ids</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">unmatched_ids</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">unmatched_ids</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">unmatched_ids</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;No matching event found for </span><span class="si">{</span><span class="n">mapping_col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">unmatched_ids</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">event_df</span><span class="p">[</span><span class="n">mapping_col</span><span class="p">])]</span>
+
+    <span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Merge with events</span>
+    <span class="n">pre_merge_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">event_df</span><span class="p">,</span>
+        <span class="n">left_on</span><span class="o">=</span><span class="n">mapping_col</span><span class="p">,</span>
+        <span class="n">right_on</span><span class="o">=</span><span class="n">mapping_col</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+    <span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Merged </span><span class="si">{</span><span class="n">pre_merge_rows</span><span class="si">}</span><span class="s2"> rows from mapping_df with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> events from &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;, resulting in </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> matched observations.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Validate and prepare files for upload</span>
+    <span class="n">failed_files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">files_to_upload</span><span class="p">,</span> <span class="n">results_df</span> <span class="o">=</span> <span class="n">_validate_and_prepare_files</span><span class="p">(</span>
+        <span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">,</span> <span class="n">failed_files</span><span class="p">,</span> <span class="n">failed_results</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">files_to_upload</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Validate file types for existing files</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">files_to_upload</span><span class="p">,</span> <span class="n">invalid_files</span> <span class="o">=</span> <span class="n">_validate_file_path</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span> <span class="n">files_to_upload</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_events&quot;</span><span class="p">,</span> <span class="n">is_avatar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">invalid_files</span><span class="p">:</span>
+            <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">else</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span> <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">file_name</span> <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">],</span>
+                <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">reason</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">reason</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">]</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="n">matching_users</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid files in directory for matching events on the site.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Uploading </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">)</span><span class="si">}</span><span class="s2"> files...&quot;</span><span class="p">)</span>
+            
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Upload files</span>
+    <span class="n">upload_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Uploading files&quot;</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">failed_files</span> <span class="ow">or</span> <span class="n">file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">upload_result</span> <span class="o">=</span> <span class="n">_upload_single_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="s2">&quot;document-key&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">upload_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;file_id&quot;</span><span class="p">):</span>
+                <span class="n">upload_result</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">upload_result</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">])</span>
+                <span class="n">upload_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">upload_result</span><span class="p">)</span>
+                <span class="c1"># Track successful upload</span>
+                <span class="n">success_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                    <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                    <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">upload_result</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="n">upload_result</span><span class="p">[</span><span class="s2">&quot;server_file_name&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="kc">None</span>
+                <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">failed_files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+                <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                    <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                    <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Upload failed: No file ID returned&quot;</span>
+                <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">failed_files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+            <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Upload failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="c1"># Merge upload results</span>
+    <span class="n">upload_results_df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">upload_results</span><span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">upload_results_df</span><span class="p">[[</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;file_id&quot;</span><span class="p">,</span> <span class="s2">&quot;server_file_name&quot;</span><span class="p">]],</span>
+        <span class="n">on</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+    <span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span> <span class="o">+</span> <span class="n">success_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> files.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Format file references and update events</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">_format_file_reference</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">file_field_name</span><span class="p">)</span>
+    <span class="n">event_update_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Preparing to update </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event_update_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> events corresponding to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">)</span><span class="si">}</span><span class="s2"> uploaded files for &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">update_event_data</span><span class="p">(</span>
+            <span class="n">df</span><span class="o">=</span><span class="n">event_update_df</span><span class="p">,</span>
+            <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">UpdateEventOption</span><span class="p">(</span>
+                <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">,</span>
+                <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span>
+                <span class="n">require_confirmation</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">),</span>
+            <span class="n">client</span><span class="o">=</span><span class="n">client</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ ERROR - Failed to update events: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;event_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">if</span> <span class="s2">&quot;user_id&quot;</span> <span class="ow">in</span> <span class="n">mapping_df</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;server_file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Event update failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">is_event</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="c1"># Concatenate results</span>
+    
+    <span class="c1"># Concatenate results</span>
+    <span class="n">success_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">success_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">success_results</span> <span class="k">else</span> <span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">user_key</span><span class="p">,</span> <span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;file_id&quot;</span><span class="p">,</span> <span class="s2">&quot;server_file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">failed_results</span> <span class="k">else</span> <span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">user_key</span><span class="p">,</span> <span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;file_id&quot;</span><span class="p">,</span> <span class="s2">&quot;server_file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">success_df</span><span class="p">,</span> <span class="n">failed_df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># results_df = pd.concat(failed_results + success_results, ignore_index=True)</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="n">successes</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">]</span>
+        <span class="n">failures</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">]</span>
+        
+        <span class="n">missing_users</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;User not found&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">unmatched_events</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;No matching event&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">invalid_file_types</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Invalid file type&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">missing_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;not found in&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">other_failures</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Upload failed|User ID.*not found in user data&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Successfully attached </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">successes</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="si">}</span><span class="s2"> files to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">successes</span><span class="p">)</span><span class="si">}</span><span class="s2"> events.&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">failures</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">failure_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">failures</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="si">}</span><span class="s2"> files: &quot;</span>
+            <span class="n">failure_details</span> <span class="o">=</span> <span class="p">[]</span>
+            
+            <span class="k">if</span> <span class="n">missing_users</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">missing_users</span><span class="si">}</span><span class="s2"> due to non-existent </span><span class="si">{</span><span class="n">user_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">unmatched_events</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">unmatched_events</span><span class="si">}</span><span class="s2"> due to unmatched </span><span class="si">{</span><span class="n">mapping_col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">invalid_file_types</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">invalid_file_types</span><span class="si">}</span><span class="s2"> due to invalid file types&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">missing_files</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">missing_files</span><span class="si">}</span><span class="s2"> due to missing files in directory&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">other_failures</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">other_failures</span><span class="si">}</span><span class="s2"> due to upload or update failures&quot;</span><span class="p">)</span>
+                
+            <span class="nb">print</span><span class="p">(</span><span class="n">failure_msg</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">failure_details</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+        <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results_df</span></div>
+
+    
+    
+
+
+
+
+<div class="viewcode-block" id="upload_and_attach_to_avatars">
+<a class="viewcode-back" href="../../reference/upload_and_attach_to_avatars.html#teamworksams.file_main.upload_and_attach_to_avatars">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">upload_and_attach_to_avatars</span><span class="p">(</span>
+    <span class="n">mapping_df</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">file_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">user_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FileUploadOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload files and attach them as avatars to user profiles in an AMS instance.</span>
+
+<span class="sd">    Matches the provided or auto-generated :class:`pandas.DataFrame` to users using</span>
+<span class="sd">    `user_key`, uploads valid image files from `file_dir`, and updates the `avatarId`</span>
+<span class="sd">    field in user profiles. If `mapping_df` is None, generates it from image filenames</span>
+<span class="sd">    in `file_dir` (without extension) as `user_key` values. Preserves other profile</span>
+<span class="sd">    fields during updates. Returns a :class:`pandas.DataFrame` with results. See</span>
+<span class="sd">    :ref:`vignettes/uploading_files` for detailed workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mapping_df (Optional[:class:`pandas.DataFrame`]): DataFrame with columns:</span>
+<span class="sd">            - `user_key` (str): User identifier (e.g., &#39;username&#39;, &#39;email&#39;, &#39;about&#39;,</span>
+<span class="sd">              &#39;uuid&#39;).</span>
+<span class="sd">            - `file_name` (str): Image file name in `file_dir` (e.g., &#39;avatar1.png&#39;).</span>
+<span class="sd">            If None, generates from `file_dir` filenames. Defaults to None.</span>
+<span class="sd">        file_dir (str): Directory path containing image files (e.g.,</span>
+<span class="sd">            &#39;/path/to/avatars&#39;). Must be a valid directory.</span>
+<span class="sd">        user_key (str): Column name for user identification (&#39;username&#39;, &#39;email&#39;,</span>
+<span class="sd">            &#39;about&#39;, &#39;uuid&#39;). Required if `mapping_df` is None or provided.</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;).</span>
+<span class="sd">            Must include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        option (:class:`FileUploadOption`, optional): Configuration options for</span>
+<span class="sd">            interactive feedback, caching, and saving results to a CSV. Defaults to</span>
+<span class="sd">            None (uses default :class:`FileUploadOption` with</span>
+<span class="sd">            `interactive_mode=True`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`: Results with columns:</span>
+<span class="sd">            - user_key (str): The user identifier from `mapping_df`.</span>
+<span class="sd">            - file_name (str): The file name from `mapping_df`.</span>
+<span class="sd">            - user_id (str): Matched user ID (None if failed).</span>
+<span class="sd">            - file_id (str): Uploaded file ID (None if failed).</span>
+<span class="sd">            - server_file_name (str): Server-assigned file name (None if failed).</span>
+<span class="sd">            - status (str): &#39;SUCCESS&#39; or &#39;FAILED&#39;.</span>
+<span class="sd">            - reason (str): Failure reason (None if successful).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If:</span>
+<span class="sd">            - `file_dir` is invalid or empty.</span>
+<span class="sd">            - `mapping_df` is None and no valid images are found.</span>
+<span class="sd">            - User data retrieval fails.</span>
+<span class="sd">            - No users are found.</span>
+<span class="sd">            - File validation fails (e.g., non-image files).</span>
+<span class="sd">            - File upload or profile update fails.</span>
+<span class="sd">        :class:`ValueError`: If `user_key` is invalid or `mapping_df` is malformed.</span>
+<span class="sd">            </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import upload_and_attach_to_avatars, FileUploadOption</span>
+
+<span class="sd">        &gt;&gt;&gt; mapping_df = DataFrame({</span>
+<span class="sd">        ...     &quot;username&quot;: [&quot;user1&quot;, &quot;user2&quot;],</span>
+<span class="sd">        ...     &quot;file_name&quot;: [&quot;avatar1.png&quot;, &quot;avatar2.jpg&quot;]</span>
+<span class="sd">        ... })</span>
+
+<span class="sd">        &gt;&gt;&gt; results = upload_and_attach_to_avatars(</span>
+<span class="sd">        ...     mapping_df = mapping_df,</span>
+<span class="sd">        ...     file_dir = &quot;/path/to/avatars&quot;,</span>
+<span class="sd">        ...     user_key = &quot;username&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;password&quot;,</span>
+<span class="sd">        ...     option = FileUploadOption(</span>
+<span class="sd">        ...         interactive_mode = True, </span>
+<span class="sd">        ...         save_to_file = &quot;avatar_results.csv&quot;</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        ... )</span>
+
+<span class="sd">        ℹ Fetching all user data from site to match provided files...</span>
+<span class="sd">        ℹ Retrieved 50 users.</span>
+<span class="sd">        ℹ Found 2 valid avatar files in directory for 2 matching users on the site.</span>
+<span class="sd">        ℹ Uploading 2 avatar files...</span>
+<span class="sd">        Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00,  1.00s/it]</span>
+<span class="sd">        Preparing to update avatars for 2 users with 2 avatar files.</span>
+<span class="sd">        Updating avatars: 100%|██████████| 2/2 [00:02&lt;00:00,  1.00s/it]</span>
+<span class="sd">        ✔ Successfully updated 2 avatar files to 2 users.</span>
+<span class="sd">        ℹ Saved results to &#39;avatar_results.csv&#39;</span>
+<span class="sd">    </span>
+<span class="sd">        &gt;&gt;&gt; print(results)</span>
+<span class="sd">           username  file_name user_id file_id server_file_name status reason</span>
+<span class="sd">        0   user1  avatar1.png 78901   94196 avatar1_1747654002120.png SUCCESS None</span>
+<span class="sd">        1   user2  avatar2.jpg 78902   94197 avatar2_1747654003484.jpg SUCCESS None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+    
+    <span class="c1"># Generate mapping_df if not provided</span>
+    <span class="k">if</span> <span class="n">mapping_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">file_dir</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;file_dir must be provided when mapping_df is None.&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user_key</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;user_key must be provided when mapping_df is None.&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">_create_avatar_mapping_df</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span> <span class="n">user_key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Generated mapping DataFrame from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> image files in directory.&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to generate mapping DataFrame: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Validate mapping_df</span>
+    <span class="n">initial_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">_validate_file_df</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">require_mapping_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_validate_user_key</span><span class="p">(</span><span class="n">user_key</span><span class="p">)</span>
+
+    <span class="c1"># Initialize result lists</span>
+    <span class="n">success_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">failed_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Validate file directory</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_dir</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">file_dir</span><span class="si">}</span><span class="s2">&#39; is not a valid directory&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Match mapping_df to users</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Fetching all user data from site to match provided files...&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_all_user_data</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+            <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">),</span>
+            <span class="n">client</span><span class="o">=</span><span class="n">client</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">user_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to retrieve user data: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No users found&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Map users</span>
+    <span class="n">mapping_df</span><span class="p">,</span> <span class="n">failed_matches</span> <span class="o">=</span> <span class="n">_map_user_ids_to_file_df</span><span class="p">(</span>
+        <span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">failed_matches</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="n">failed_matches</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">failed_matches</span><span class="p">)</span><span class="si">}</span><span class="s2"> files failed to match </span><span class="si">{</span><span class="n">user_key</span><span class="si">}</span><span class="s2"> values in user data.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">initial_rows</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Warning: mapping_df increased from </span><span class="si">{</span><span class="n">initial_rows</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows due to duplicate </span><span class="si">{</span><span class="n">user_key</span><span class="si">}</span><span class="s2"> matches in user data.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to update avatars for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Validate and prepare files for upload</span>
+    <span class="n">failed_files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    
+    <span class="n">files_to_upload</span><span class="p">,</span> <span class="n">results_df</span> <span class="o">=</span> <span class="n">_validate_and_prepare_files</span><span class="p">(</span>
+        <span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="p">,</span> <span class="n">file_dir</span><span class="p">,</span> <span class="n">failed_files</span><span class="p">,</span> <span class="n">failed_results</span><span class="p">,</span> <span class="n">option</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">files_to_upload</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Validate file types for existing files</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">files_to_upload</span><span class="p">,</span> <span class="n">invalid_files</span> <span class="o">=</span> <span class="n">_validate_file_path</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span> <span class="n">files_to_upload</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;upload_and_attach_to_avatars&quot;</span><span class="p">,</span> <span class="n">is_avatar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">invalid_files</span><span class="p">:</span>
+            <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">else</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span> <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">file_name</span> <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">],</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_files</span><span class="p">),</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">reason</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">reason</span> <span class="ow">in</span> <span class="n">invalid_files</span><span class="p">]</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="n">matching_users</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid avatar files in directory for </span><span class="si">{</span><span class="n">matching_users</span><span class="si">}</span><span class="s2"> matching users on the site.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Uploading </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">)</span><span class="si">}</span><span class="s2"> avatars...&quot;</span><span class="p">)</span>
+            
+    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+            <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;FAILED&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span>
+        <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to update avatars for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Upload files</span>
+    <span class="n">upload_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">files_to_upload</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Uploading files&quot;</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">failed_files</span> <span class="ow">or</span> <span class="n">file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">upload_result</span> <span class="o">=</span> <span class="n">_upload_single_file</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="s2">&quot;avatar-key&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">upload_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;file_id&quot;</span><span class="p">):</span>
+                <span class="n">upload_result</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">upload_result</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">])</span>
+                <span class="n">upload_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">upload_result</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">failed_files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+                <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                    <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Upload failed: No file ID returned&quot;</span>
+                <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+                
+        <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">failed_files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+            <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="n">user_key</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">][</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Upload failed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+
+    <span class="c1"># Merge upload results</span>
+    <span class="n">upload_results_df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">upload_results</span><span class="p">)</span>
+    
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">upload_results_df</span><span class="p">[[</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;file_id&quot;</span><span class="p">,</span> <span class="s2">&quot;server_file_name&quot;</span><span class="p">]],</span>
+        <span class="n">on</span><span class="o">=</span><span class="s2">&quot;file_name&quot;</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+    <span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">[</span><span class="n">mapping_df</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Failed to update avatars for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+            <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="c1"># Update avatars</span>
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Preparing to update avatars for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="si">}</span><span class="s2"> avatar files.&quot;</span><span class="p">)</span>
+        
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">mapping_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Updating avatars&quot;</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">),</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">,</span> <span class="n">dynamic_ncols</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span>
+        <span class="n">file_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;file_id&quot;</span><span class="p">]</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;file_name&quot;</span><span class="p">]</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">[</span><span class="n">user_df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">user_id</span><span class="p">)]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user_data</span><span class="p">:</span>
+            <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">user_key</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">,</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;server_file_name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;User ID </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> not found in user data&quot;</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="n">_map_user_updates</span><span class="p">({</span><span class="s2">&quot;avatarId&quot;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">},</span> <span class="n">user_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">_update_single_user</span><span class="p">(</span>
+            <span class="n">user_data</span><span class="p">,</span>
+            <span class="n">client</span><span class="p">,</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">user_id</span><span class="p">),</span>
+            <span class="n">file_name</span><span class="p">,</span>
+            <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">error_msg</span><span class="p">:</span>
+            <span class="n">failed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">user_key</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">,</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;server_file_name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="n">error_msg</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">success_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_build_result_df</span><span class="p">({</span>
+                <span class="n">user_key</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">user_key</span><span class="p">],</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file_name</span><span class="p">,</span>
+                <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+                <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">,</span>
+                <span class="s2">&quot;server_file_name&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;server_file_name&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="kc">None</span>
+            <span class="p">},</span> <span class="n">user_key</span><span class="p">))</span>
+
+    <span class="c1"># Concatenate results</span>
+    <span class="n">success_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">success_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">success_results</span> <span class="k">else</span> <span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">user_key</span><span class="p">,</span> <span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;file_id&quot;</span><span class="p">,</span> <span class="s2">&quot;server_file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">failed_results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">failed_results</span> <span class="k">else</span> <span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">user_key</span><span class="p">,</span> <span class="s2">&quot;file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;file_id&quot;</span><span class="p">,</span> <span class="s2">&quot;server_file_name&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">success_df</span><span class="p">,</span> <span class="n">failed_df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="n">successes</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">]</span>
+        
+        <span class="n">failures</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FAILED&quot;</span><span class="p">]</span>
+        
+        <span class="n">missing_users</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;User not found&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">invalid_file_types</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Invalid file type&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">missing_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;not found in&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="n">other_failures</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">failed_df</span><span class="p">[</span><span class="n">failed_df</span><span class="p">[</span><span class="s2">&quot;reason&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Upload failed|User ID.*not found in user data&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Successfully attached </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">successes</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="si">}</span><span class="s2"> avatar files to </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">successes</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">failures</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">failure_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;⚠️ Failed to attach </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">failures</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="si">}</span><span class="s2"> avatar files: &quot;</span>
+            <span class="n">failure_details</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">missing_users</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">missing_users</span><span class="si">}</span><span class="s2"> due to non-existent </span><span class="si">{</span><span class="n">user_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">invalid_file_types</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">invalid_file_types</span><span class="si">}</span><span class="s2"> due to invalid file type&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">missing_files</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">missing_files</span><span class="si">}</span><span class="s2"> due to missing files in directory&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="n">other_failures</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">failure_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">other_failures</span><span class="si">}</span><span class="s2"> due to upload or update failures&quot;</span><span class="p">)</span>
+                
+            <span class="nb">print</span><span class="p">(</span><span class="n">failure_msg</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">failure_details</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">:</span>
+        <span class="n">results_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Saved results to &#39;</span><span class="si">{</span><span class="n">option</span><span class="o">.</span><span class="n">save_to_file</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results_df</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

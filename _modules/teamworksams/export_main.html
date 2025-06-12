@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>teamworksams.export_main &#8212; teamworksams 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/export_main';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/getting_started.html">
+    Getting Started with teamworksams
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/credentials.html">
+    Managing Credentials, Authentication, and Caching
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/user_management.html">
+    User and Group Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/exporting_data.html">
+    Exporting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/importing_data.html">
+    Importing Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/database_operations.html">
+    Database Management
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/uploading_files.html">
+    Uploading Files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/managing_forms.html">
+    Managing Forms
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../vignettes/deleting_data.html">
+    Deleting Data
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/reference.html">
+    Function and Class Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">teamworksams.export_main</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for teamworksams.export_main</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_filter</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventFilter</span><span class="p">,</span> <span class="n">SyncEventFilter</span><span class="p">,</span> <span class="n">ProfileFilter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventOption</span><span class="p">,</span> <span class="n">SyncEventOption</span><span class="p">,</span> <span class="n">ProfileOption</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_clean</span><span class="w"> </span><span class="kn">import</span> <span class="n">_reorder_columns</span><span class="p">,</span> <span class="n">_transform_event_data</span><span class="p">,</span> <span class="n">_transform_profile_data</span><span class="p">,</span> <span class="n">_sort_event_data</span><span class="p">,</span> <span class="n">_sort_profile_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_process_events_to_rows</span><span class="p">,</span> <span class="n">_process_profile_rows</span><span class="p">,</span> <span class="n">_append_user_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_event_filter</span><span class="p">,</span> <span class="n">_validate_dates</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_build</span><span class="w"> </span><span class="kn">import</span> <span class="n">_build_event_payload</span><span class="p">,</span> <span class="n">_build_sync_event_payload</span><span class="p">,</span> <span class="n">_build_profile_payload</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.export_print</span><span class="w"> </span><span class="kn">import</span> <span class="n">_print_event_status</span><span class="p">,</span> <span class="n">_print_profile_status</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.user_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_user_ids</span>
+
+
+<div class="viewcode-block" id="get_event_data">
+<a class="viewcode-back" href="../../reference/get_event_data.html#teamworksams.export_main.get_event_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_event_data</span><span class="p">(</span>
+    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">EventFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">EventOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve event data from an AMS Event Form within a date range.</span>
+
+<span class="sd">    Fetches event data from the specified AMS Event Form for a given date range, returning</span>
+<span class="sd">    a :class:`pandas.DataFrame` with columns like &#39;event_id&#39;, &#39;user_id&#39;, and form fields.</span>
+<span class="sd">    Supports optional filtering by user attributes (e.g., group) or data fields, and</span>
+<span class="sd">    downloading attachments if enabled. Provides interactive feedback when</span>
+<span class="sd">    ``option.interactive_mode=True``. See :ref:`vignettes/exporting_data` for data</span>
+<span class="sd">    export workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        form (str): Name of the AMS Event Form (e.g., &#39;Training Log&#39;). Must be a non-empty</span>
+<span class="sd">            string and correspond to a valid form.</span>
+<span class="sd">        start_date (str): Start date for the event range in &#39;DD/MM/YYYY&#39; format (e.g.,</span>
+<span class="sd">            &#39;01/01/2025&#39;). Must be a valid date.</span>
+<span class="sd">        end_date (str): End date for the event range in &#39;DD/MM/YYYY&#39; format (e.g.,</span>
+<span class="sd">            &#39;31/01/2025&#39;). Must be a valid date and not before `start_date`.</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+<span class="sd">            include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        filter (:class:`EventFilter`, optional): Filter object to narrow results by user</span>
+<span class="sd">            attributes (e.g., &#39;group&#39;) or data fields (e.g., &#39;intensity=High&#39;). If None,</span>
+<span class="sd">            includes all events. Defaults to None.</span>
+<span class="sd">        option (:class:`EventOption`, optional): Configuration options, including</span>
+<span class="sd">            `interactive_mode` for status messages, `download_attachment` to fetch</span>
+<span class="sd">            attachments, `clean_names` to standardize column names, `guess_col_type` to</span>
+<span class="sd">            infer data types, `convert_dates` to parse dates, `cache` to reuse a client,</span>
+<span class="sd">            and `attachment_directory` for saving attachments. Defaults to None (uses</span>
+<span class="sd">            default :class:`EventOption`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`: Event data with columns like &#39;event_id&#39;, &#39;user_id&#39;,</span>
+<span class="sd">            &#39;start_date&#39;, &#39;form&#39;, and form fields (e.g., &#39;duration&#39;). Empty with columns</span>
+<span class="sd">            [&#39;user_id&#39;, &#39;event_id&#39;, &#39;form&#39;, &#39;start_date&#39;] if no events are found.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If `form` is empty, no events/users are found, authentication</span>
+<span class="sd">            fails, or the API request fails.</span>
+<span class="sd">        :class:`ValueError`: If `start_date` or `end_date` is not in &#39;DD/MM/YYYY&#39; format,</span>
+<span class="sd">            or if `filter` parameters are invalid.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import get_event_data, EventFilter, EventOption</span>
+<span class="sd">        &gt;&gt;&gt; df = get_event_data(</span>
+<span class="sd">        ...     form = &quot;Training Log&quot;,</span>
+<span class="sd">        ...     start_date = &quot;01/01/2025&quot;,</span>
+<span class="sd">        ...     end_date = &quot;31/01/2025&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;pass&quot;,</span>
+<span class="sd">        ...     filter = EventFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
+<span class="sd">        ...     option = EventOption(interactive_mode = True, clean_names = True)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        </span>
+<span class="sd">        ℹ Requesting event data for &#39;Training Log&#39; between 01/01/2025 and 31/01/2025</span>
+<span class="sd">        ℹ Processing 10 events...</span>
+<span class="sd">        ✔ Retrieved 10 event records for form &#39;Training Log&#39;.</span>
+<span class="sd">        &gt;&gt;&gt; print(df.head())</span>
+<span class="sd">           about  user_id  event_id  form         start_date  duration  intensity</span>
+<span class="sd">        0  John Doe    12345    67890  Training Log  01/01/2025        60       High</span>
+<span class="sd">        1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">EventOption</span><span class="p">()</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">)</span>
+    
+    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">_validate_dates</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="n">start_date_api</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
+    <span class="n">end_date_api</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+        <span class="n">_validate_event_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">user_key</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">user_value</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_key</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_value</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_condition</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">events_per_user</span><span class="p">)</span>
+    
+    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch events for - Function: get_event_data&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">])</span>
+    
+    <span class="n">endpoint</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_event_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">start_date_api</span><span class="p">,</span> <span class="n">end_date_api</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">events_per_user</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting event data for &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span> <span class="ow">or</span> <span class="s2">&quot;events&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">]:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No events found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; in the date range </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Processing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> events...&quot;</span><span class="p">)</span>
+        
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_events_to_rows</span><span class="p">(</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">],</span> 
+        <span class="n">start</span><span class="p">,</span> 
+        <span class="n">end</span><span class="p">,</span> 
+        <span class="nb">filter</span><span class="p">,</span> 
+        <span class="n">download_attachment</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">download_attachment</span><span class="p">,</span> 
+        <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> 
+        <span class="n">option</span><span class="o">=</span><span class="n">option</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No event data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+        
+    <span class="n">event_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    
+    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_transform_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">clean_names</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">convert_dates</span><span class="p">)</span>
+    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
+    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">],</span> <span class="n">event_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
+    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_sort_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span>
+    
+    <span class="n">_print_event_status</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">event_df</span></div>
+
+    
+    
+
+<div class="viewcode-block" id="sync_event_data">
+<a class="viewcode-back" href="../../reference/sync_event_data.html#teamworksams.export_main.sync_event_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sync_event_data</span><span class="p">(</span>
+    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">last_synchronisation_time</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SyncEventFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SyncEventOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve event data from an AMS event form modified since the last synchronization time.</span>
+
+<span class="sd">    Fetches event data from an AMS Event Form using the &#39;synchronise&#39; endpoint, returning</span>
+<span class="sd">    only events inserted/updated since `last_synchronisation_time` (milliseconds since</span>
+<span class="sd">    1970-01-01). Returns a :class:`pandas.DataFrame` and a new synchronization time for</span>
+<span class="sd">    subsequent calls. Supports user filtering and options like user metadata inclusion.</span>
+<span class="sd">    Provides interactive feedback when ``option.interactive_mode=True``. See</span>
+<span class="sd">    :ref:`vignettes/exporting_data` for synchronization workflows.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        form (str): Name of the AMS Event Form (e.g., &#39;Training Log&#39;). Must be a non-empty</span>
+<span class="sd">            string and correspond to a valid form.</span>
+<span class="sd">        last_synchronisation_time (int): Last synchronization time in milliseconds since</span>
+<span class="sd">            1970-01-01 (e.g., 1677654321000 for 2023-03-01 12:25:21). Must be non-negative.</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+<span class="sd">            include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        filter (:class:`SyncEventFilter`, optional): Filter object to narrow results by</span>
+<span class="sd">            user attributes (e.g., &#39;group&#39;). If None, includes all events. Defaults to None.</span>
+<span class="sd">        option (:class:`SyncEventOption`, optional): Configuration options, including</span>
+<span class="sd">            `interactive_mode` for status messages, `include_user_data` to add user</span>
+<span class="sd">            metadata, `include_uuid` to add UUIDs, `guess_col_type` to infer data types,</span>
+<span class="sd">            `cache` to reuse a client, and `include_missing_users` to include users without</span>
+<span class="sd">            events. Defaults to None (uses default :class:`SyncEventOption`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple[:class:`pandas.DataFrame`, int]: A tuple containing:</span>
+<span class="sd">            - A DataFrame with event data (columns: &#39;event_id&#39;, &#39;user_id&#39;, &#39;start_date&#39;,</span>
+<span class="sd">              &#39;form&#39;, etc.). Empty with columns [&#39;user_id&#39;, &#39;event_id&#39;, &#39;form&#39;,</span>
+<span class="sd">              &#39;start_date&#39;] if no new events are found.</span>
+<span class="sd">            - An integer representing the new synchronization time (milliseconds) for</span>
+<span class="sd">              subsequent calls.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If `form` is empty, no users match the filter, authentication</span>
+<span class="sd">            fails, or the API request fails.</span>
+<span class="sd">        :class:`ValueError`: If `last_synchronisation_time` is negative or not an integer.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import sync_event_data, SyncEventFilter, SyncEventOption</span>
+<span class="sd">        &gt;&gt;&gt; df, new_sync_time = sync_event_data(</span>
+<span class="sd">        ...     form = &quot;Training Log&quot;,</span>
+<span class="sd">        ...     last_synchronisation_time = 1677654321000,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;pass&quot;,</span>
+<span class="sd">        ...     filter = SyncEventFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
+<span class="sd">        ...     option = SyncEventOption(interactive_mode = True, include_user_data = True)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Requesting event data for form &#39;Training Log&#39; since last synchronisation time 2023-03-01 12:25:21</span>
+<span class="sd">        ✔ Retrieved 5 event records for form &#39;Training Log&#39; since last synchronisation time 2023-03-01 12:25:21</span>
+<span class="sd">        &gt;&gt;&gt; print(df.head())</span>
+<span class="sd">           about  user_id  event_id  form         start_date  duration  intensity</span>
+<span class="sd">        0  John Doe    12345    67890  Training Log  01/03/2025        60       High</span>
+<span class="sd">        &gt;&gt;&gt; print(new_sync_time)</span>
+<span class="sd">        1677654400000</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">SyncEventOption</span><span class="p">()</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;sync_event&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">last_synchronisation_time</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">last_synchronisation_time</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;last_synchronisation_time must be a non-negative integer (milliseconds since 1970-01-01).&quot;</span><span class="p">)</span>
+    
+    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch events for - Function: symc_event_data&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">])</span>
+    
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_sync_event_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">last_synchronisation_time</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting event data for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronisation time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;synchronise&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+    
+    <span class="n">export_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;export&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">{}</span>
+    
+    <span class="n">events</span> <span class="o">=</span> <span class="n">export_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    
+    <span class="n">new_sync_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastSynchronisationTimeOnServer&quot;</span><span class="p">,</span> <span class="n">last_synchronisation_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="n">last_synchronisation_time</span>
+    
+    <span class="n">deleted_event_ids</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idsOfDeletedEvents&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
+    
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_events_to_rows</span><span class="p">(</span>
+        <span class="n">events</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  
+        <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>          
+        <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                 
+        <span class="n">download_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  
+        <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
+        <span class="n">option</span><span class="o">=</span><span class="n">option</span>
+    <span class="p">)</span>
+    
+    <span class="n">event_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="k">if</span> <span class="n">rows</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">event_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_transform_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">clean_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">guess_col_type</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">,</span> <span class="n">convert_dates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_user_data</span><span class="p">:</span>
+            <span class="n">event_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_uuid</span> <span class="ow">and</span> <span class="n">user_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;uuid&quot;</span><span class="p">})</span>
+            <span class="n">event_df</span> <span class="o">=</span> <span class="n">event_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">user_df</span><span class="p">[[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+        
+        <span class="n">front_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_user_data</span> <span class="k">else</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_uuid</span><span class="p">:</span>
+            <span class="n">front_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">)</span>
+            
+        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">(</span><span class="n">front_cols</span><span class="p">,</span> <span class="n">event_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
+        
+        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_sort_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span>
+    
+    <span class="n">event_df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;deleted_event_ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deleted_event_ids</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ No new data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronization time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> event records for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronisation time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">event_df</span><span class="p">,</span> <span class="n">new_sync_time</span></div>
+
+
+
+
+<div class="viewcode-block" id="get_profile_data">
+<a class="viewcode-back" href="../../reference/get_profile_data.html#teamworksams.export_main.get_profile_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_profile_data</span><span class="p">(</span>
+    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProfileFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProfileOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve profile data from an AMS Profile Form.</span>
+
+<span class="sd">    Fetches profile data from the specified AMS Profile Form, returning a</span>
+<span class="sd">    :class:`pandas.DataFrame` with columns like &#39;profile_id&#39;, &#39;user_id&#39;, and form fields.</span>
+<span class="sd">    Supports optional filtering by user attributes (e.g., group) and customization like</span>
+<span class="sd">    column name standardization. Provides interactive feedback when</span>
+<span class="sd">    ``option.interactive_mode=True``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        form (str): Name of the AMS Profile Form (e.g., &#39;Athlete Profile&#39;). Must be a</span>
+<span class="sd">            non-empty string and correspond to a valid form.</span>
+<span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+<span class="sd">            include a valid site name.</span>
+<span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+<span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+<span class="sd">        filter (:class:`ProfileFilter`, optional): Filter object to narrow results by user</span>
+<span class="sd">            attributes (e.g., &#39;group&#39;). If None, includes all profiles. Defaults to None.</span>
+<span class="sd">        option (:class:`ProfileOption`, optional): Configuration options, including</span>
+<span class="sd">            `interactive_mode` for status messages, `clean_names` to standardize column</span>
+<span class="sd">            names, `guess_col_type` to infer data types, `cache` to reuse a client, and</span>
+<span class="sd">            `include_missing_users` to include users without profiles. Defaults to None</span>
+<span class="sd">            (uses default :class:`ProfileOption`).</span>
+<span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+<span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`pandas.DataFrame`: Profile data with columns like &#39;profile_id&#39;, &#39;user_id&#39;,</span>
+<span class="sd">            &#39;form&#39;, and form fields (e.g., &#39;ID&#39;). Empty with columns [&#39;user_id&#39;,</span>
+<span class="sd">            &#39;profile_id&#39;, &#39;form&#39;] if no profiles are found.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        :class:`AMSError`: If `form` is empty, no profiles/users are found, authentication</span>
+<span class="sd">            fails, or the API request fails.</span>
+<span class="sd">        :class:`ValueError`: If `filter` parameters are invalid.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from teamworksams import get_profile_data, ProfileFilter, ProfileOption</span>
+<span class="sd">        &gt;&gt;&gt; df = get_profile_data(</span>
+<span class="sd">        ...     form = &quot;Athlete Profile&quot;,</span>
+<span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+<span class="sd">        ...     username = &quot;user&quot;,</span>
+<span class="sd">        ...     password = &quot;pass&quot;,</span>
+<span class="sd">        ...     filter = ProfileFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
+<span class="sd">        ...     option = ProfileOption(interactive_mode = True, clean_names = True)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        ℹ Requesting profile data for form &#39;Athlete Profile&#39;</span>
+<span class="sd">        ℹ Processing 5 profiles...</span>
+<span class="sd">        &gt;&gt;&gt; print(df.head())</span>
+<span class="sd">           about  user_id  profile_id  form              ID</span>
+<span class="sd">        0  John Doe    12345      54321  Athlete Profile    2435t4yrgfddeqwret12</span>
+<span class="sd">        1  Jane Smith  12346      54322  Athlete Profile    2435t4yrgfddeqwret6</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">ProfileOption</span><span class="p">()</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">)</span>
+    
+    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch profiles for - Function: get_profile_data&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;profile_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">])</span>
+    
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_profile_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting profile data for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid API response: expected a dictionary, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;profiles&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown error&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No profiles found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;profiles&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ No profiles found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;profile_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Processing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> profiles...&quot;</span><span class="p">)</span>
+        
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_profile_rows</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;profiles&quot;</span><span class="p">],</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+       <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No profile data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
+    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    
+    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_transform_profile_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">clean_names</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">)</span>
+    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
+    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">],</span> <span class="n">profile_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
+    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_sort_profile_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">)</span>
+    
+    <span class="n">_print_profile_status</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">profile_df</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Brandon Yach.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
