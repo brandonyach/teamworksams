@@ -7,7 +7,7 @@ from .import_clean import _clean_import_df, _clean_profile_df
 from .import_fetch import _fetch_import_payloads
 from .import_print import _print_import_status
 from .import_process import _map_id_col_to_user_id
-from .import_validate import _validate_import_df, _detect_duplicate_date_user_id
+from .import_validate import _validate_import_df
 
 
 def insert_event_data(
@@ -22,15 +22,15 @@ def insert_event_data(
     
     """Insert new event records into an AMS Event Form.
 
-    Processes a pandas DataFrame containing event data, maps user identifiers to user IDs,
+    Processes a :class:`pandas.DataFrame` containing event data, maps user identifiers to user IDs,
     validates the data, constructs an API payload, and sends it to the AMS API to insert
     new events into the specified Event Form. Supports table fields via the InsertEventOption,
     which allows configuration of user identifier mapping, caching, and interactive feedback.
     Provides status updates if interactive mode is enabled, reporting the number of events
-    inserted.
+    inserted. See :ref:`vignettes/importing_data` for import workflows.
 
     Args:
-        df (DataFrame): A pandas DataFrame containing the event data to insert. Columns
+        df (:class:`pandas.DataFrame`): A pandas DataFrame containing the event data to insert. Columns
             represent field names (including 'start_date', 'user_id' or another identifier
             specified by `option.id_col`), and rows contain values. Must not be empty.
         form (str): The name of the AMS Event Form to insert data into. Must be a non-empty
@@ -40,12 +40,12 @@ def insert_event_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[InsertEventOption]): Configuration options for the insertion,
+        option (:class:`InsertEventOption`, optional): Configuration options for the insertion,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages), cache (for API response caching), and
             table_fields (list of table field names). If None, uses default
             InsertEventOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
+        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -54,16 +54,15 @@ def insert_event_data(
             and prints status messages if interactive_mode is enabled.
 
     Raises:
-        AMSError: If the form is empty, not an event form, authentication fails, the DataFrame
+        :class:`AMSError`: If the form is empty, not an event form, authentication fails, the DataFrame
             is invalid (e.g., empty, missing required fields like 'start_date'), the payload
             cannot be built, or the API request fails.
-        ValueError: If `option.id_col` is invalid or `table_fields` contains field names not
+        :class:`ValueError`: If `option.id_col` is invalid or `table_fields` contains field names not
             present in the DataFrame.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import insert_event_data
-        >>> from teamworksams import InsertEventOption
+        >>> from teamworksams import insert_event_data, InsertEventOption
         >>> df = pd.DataFrame({
         ...     "username": ["john.doe", "jane.smith"],
         ...     "start_date": ["01/01/2025", "01/01/2025"],
@@ -134,15 +133,15 @@ def update_event_data(
     
     """Update existing event records in an AMS Event Form.
 
-    Processes a pandas DataFrame containing event data with an 'event_id' column, maps user
+    Processes a :class:`pandas.DataFrame` containing data with an 'event_id' column, maps user
     identifiers to user IDs, validates the data, constructs an API payload, and sends it to
     the AMS API to update existing events in the specified Event Form. Supports table fields
     via the UpdateEventOption, which allows configuration of user identifier mapping, caching,
     and interactive feedback. In interactive mode, prompts for confirmation before updating
-    and provides status updates.
+    and provides status updates. See :ref:`vignettes/importing_data` for update workflows.
 
     Args:
-        df (DataFrame): A pandas DataFrame containing the event data to update. Must include
+        df (:class:`pandas.DataFrame`): A pandas DataFrame containing the event data to update. Must include
             an 'event_id' column with valid integer IDs of existing events, and other columns
             for field names with values to update. Must not be empty.
         form (str): The name of the AMS Event Form to update data in. Must be a non-empty
@@ -152,12 +151,12 @@ def update_event_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[UpdateEventOption]): Configuration options for the update,
+        option (:class:`UpdateEventOption`, optional): Configuration options for the update,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages and confirmation), cache (for API response
             caching), and table_fields (list of table field names). If None, uses default
             UpdateEventOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
+        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -166,17 +165,16 @@ def update_event_data(
             and prints status messages if interactive_mode is enabled.
 
     Raises:
-        AMSError: If the form is empty, not an event form, authentication fails, the DataFrame
-            is invalid (e.g., empty, missing 'event_id', or invalid IDs), the payload cannot
-            be built, the API request fails, or the user cancels the operation in interactive
-            mode.
-        ValueError: If `option.id_col` is invalid or `table_fields` contains field names not
-            present in the DataFrame.
+        :class:`AMSError`: If the form is empty, not an event form, authentication fails, the 
+            DataFrame is invalid (e.g., empty, missing 'event_id', or invalid IDs), the payload 
+            cannot be built, the API request fails, or the user cancels the operation in 
+            interactive mode.
+        :class:`ValueError`: If `option.id_col` is invalid or `table_fields` contains field names 
+            not present in the DataFrame.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import update_event_data
-        >>> from teamworksams import UpdateEventOption
+        >>> from teamworksams import update_event_data, UpdateEventOption
         >>> df = pd.DataFrame({
         ...     "event_id": [67890, 67891],
         ...     "username": ["john.doe", "jane.smith"],
@@ -253,19 +251,20 @@ def upsert_event_data(
     
     """Insert and update event records in an AMS Event Form.
 
-    Performs an upsert operation on a pandas DataFrame, splitting it into records with an
-    'event_id' (for updates) and without (for inserts). Processes each group separately,
+    Performs an upsert operation on a :class:`pandas.DataFrame`, splitting it into records 
+    with an 'event_id' (for updates) and without (for inserts). Processes each group separately,
     mapping user identifiers to user IDs, validating the data, constructing API payloads,
     and sending them to the AMS API to update existing events or insert new ones in the
     specified Event Form. Supports table fields via the UpsertEventOption, which allows
     configuration of user identifier mapping, caching, and interactive feedback. In
     interactive mode, prompts for confirmation before updating and provides status updates.
+    See :ref:`vignettes/importing_data` for upsert workflows.
 
     Args:
-        df (DataFrame): A pandas DataFrame containing the event data to upsert. Records with
-            an 'event_id' column are updated; those without are inserted. Columns represent
-            field names (including 'start_date', 'user_id' or another identifier specified by
-            `option.id_col`), and rows contain values. Must not be empty.
+        df (:class:`pandas.DataFrame`): A pandas DataFrame containing the event data to upsert. 
+            Records with an 'event_id' column are updated; those without are inserted. Columns 
+            represent field names (including 'start_date', 'user_id' or another identifier 
+            specified by `option.id_col`), and rows contain values. Must not be empty.
         form (str): The name of the AMS Event Form to upsert data into. Must be a non-empty
             string and correspond to a valid event form.
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
@@ -273,12 +272,12 @@ def upsert_event_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[UpsertEventOption]): Configuration options for the upsert,
+        option (:class:`UpsertEventOption`, optional): Configuration options for the upsert,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages and confirmation), cache (for API response
             caching), and table_fields (list of table field names). If None, uses default
             UpsertEventOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
+        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -296,8 +295,7 @@ def upsert_event_data(
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import upsert_event_data
-        >>> from teamworksams import UpsertEventOption
+        >>> from teamworksams import upsert_event_data, UpsertEventOption
         >>> df = pd.DataFrame({
         ...     "event_id": [67890, None],
         ...     "username": ["john.doe", "jane.smith"],
@@ -408,15 +406,15 @@ def upsert_profile_data(
 ) -> None:
     """Upsert profile data in an AMS Profile Form.
 
-    Processes a pandas DataFrame containing profile data, maps user identifiers to user IDs,
+    Processes a :class:`pandas.DataFrame` containing profile data, maps user identifiers to user IDs,
     validates the data, constructs an API payload, and sends it to the AMS API to update
     existing profile records or insert new ones in the specified Profile Form. Profile forms
     allow only one record per user. In interactive mode, prompts for confirmation before upserting 
     and provides status updates.
 
     Args:
-        df (DataFrame): A pandas DataFrame containing the profile data to upsert. Columns
-            represent field names, and rows contain values. Must include a user identifier
+        df (:class:`pandas.DataFrame`): A pandas DataFrame containing the profile data to upsert. 
+            Columns represent field names, and rows contain values. Must include a user identifier
             column (specified by `option.id_col`, e.g., 'user_id', 'username'). Must not
             be empty.
         form (str): The name of the AMS Profile Form to upsert data into. Must be a non-empty
@@ -426,11 +424,11 @@ def upsert_profile_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[UpsertProfileOption]): Configuration options for the upsert,
+        option (:class:`UpsertEventOption`, optional): Configuration options for the upsert,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages and confirmation), and cache (for API
             response caching). If None, uses default UpsertProfileOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
+        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -439,15 +437,14 @@ def upsert_profile_data(
             in the AMS database and prints status messages if interactive_mode is enabled.
 
     Raises:
-        AMSError: If the form is empty, not a profile form, authentication fails, the DataFrame
+        :class:`AMSError`: If the form is empty, not a profile form, authentication fails, the DataFrame
             is invalid (e.g., empty, missing required fields), the payload cannot be built,
             the API request fails, or the user cancels the operation in interactive mode.
-        ValueError: If `option.id_col` is invalid.
+        :class:`ValueError`: If `option.id_col` is invalid.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import upsert_profile_data
-        >>> from teamworksams import UpsertProfileOption
+        >>> from teamworksams import upsert_profile_data, UpsertProfileOption
         >>> df = pd.DataFrame({
         ...     "username": ["john.doe", "jane.smith"],
         ...     "height_cm": [180, 165],

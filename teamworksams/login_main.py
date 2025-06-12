@@ -12,22 +12,16 @@ def login(
 ) -> Dict[str, Any]:
     """Authenticate with an AMS instance and return session details.
 
-    Logs into the AMS API using the provided credentials, establishing a session for
-    subsequent API calls. Returns a dictionary containing the login response, session
-    header, and cookie. Useful for verifying credentials, troubleshooting authentication,
-    or initializing a client for manual API interactions. Provides interactive feedback
-    if enabled, reporting login success or failure.
+    Establishes a session with the AMS API using provided credentials, returning a
+    dictionary with login data, session header, and cookie. Useful for verifying
+    credentials or initializing a :class:`AMSClient` for custom API calls. See
+    :ref:`vignettes/credentials` for authentication workflows.
 
     Args:
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-            Must include a valid site name.
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[LoginOption]): Configuration options for the login process,
-            including interactive_mode (for status messages). If None, uses default
-            LoginOption. Defaults to None.
+        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`LoginOption`, optional): Configuration options, including `interactive_mode` to enable status messages (e.g., "Successfully logged in"). Defaults to None (uses default :class:`LoginOption`).
 
     Returns:
         Dict[str, Any]: A dictionary containing:

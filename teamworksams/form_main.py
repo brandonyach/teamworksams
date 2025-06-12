@@ -16,38 +16,38 @@ def get_forms(
 ) -> DataFrame:
     """Fetch a list of forms accessible to the user from an AMS instance.
 
-    Retrieves metadata for all forms the authenticated user can access, including form IDs,
-    names, and types (e.g., event, profile, database). The function queries the AMS API,
-    processes the response into a pandas DataFrame, and provides interactive feedback on the
-    number of forms retrieved if enabled. Supports caching to optimize repeated requests.
+    Retrieves metadata for all forms accessible to the authenticated user, returning a
+    :class:`pandas.DataFrame` with columns like 'form_id', 'form_name', and 'type' (e.g.,
+    event, profile, database). Ideal for auditing or selecting forms for further operations.
+    Supports interactive feedback and caching. See :ref:`vignettes/managing_forms` for
+    form management workflows.
 
     Args:
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[FormOption]): Configuration options for the retrieval, including
-            interactive_mode (for status messages), cache (for API response caching),
-            raw_output (to return raw API data), field_details (to include field details),
-            and include_instructions (to include instructions). If None, uses default
-            FormOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`FormOption`, optional): Configuration options, including
+            `interactive_mode` for status messages (e.g., "Retrieved 5 forms"), `cache`
+            to reuse API responses, `raw_output`, `field_details`, and
+            `include_instructions` (used in other form functions). Defaults to None
+            (uses default :class:`FormOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: A pandas DataFrame containing metadata for accessible forms, with columns
-            such as 'form_id', 'form_name', 'type', and other form attributes. Returns an
-            empty DataFrame if no forms are accessible.
+        :class:`pandas.DataFrame`: Form metadata with columns like 'form_id',
+            'form_name', 'type', and other attributes (e.g., 'application_id'). Returns
+            an empty DataFrame if no forms are accessible.
 
     Raises:
-        AMSError: If authentication fails, the API request returns an invalid response,
+        :class:`AMSError`: If authentication fails, the API request returns an invalid response,
             or no accessible forms are found.
 
     Examples:
-        >>> from teamworksams import get_forms
-        >>> from teamworksams import FormOption
+        >>> from teamworksams import get_forms, FormOption
         >>> df = get_forms(
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
@@ -96,29 +96,29 @@ def get_form_schema(
 ) -> Union[str, Dict]:
     """Fetch and summarize the schema of a specific form from an AMS instance.
 
-    Retrieves the schema for a specified AMS form, including details about sections, required
-    fields, fields that default to the last known value, linked fields, and form item types.
-    The function queries the AMS API to obtain the form ID and type, fetches the schema, and
-    formats it as a human-readable text string for console output, suitable for Jupyter notebooks.
-    In interactive mode, provides status feedback. Supports returning raw API data or including
-    additional details like field instructions and options.
+    Retrieves the schema for a specified AMS form, detailing sections, required fields,
+    default-to-last-value fields, linked fields, and item types. Returns a formatted
+    string summary for console output (ideal for Jupyter notebooks) or the raw API
+    response as a dictionary if `option.raw_output` is True. Supports interactive
+    feedback and detailed output options. See :ref:`vignettes/managing_forms` for form
+    management workflows.
 
     Args:
-        form_name (str): The name of the form to retrieve the schema for. Must be a non-empty
+        form_name (str): Name of the form (e.g., 'Allergies'). Must be a non-empty
             string and correspond to a valid form.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[FormOption]): Configuration options for the retrieval, including
-            interactive_mode (for status messages), cache (for API response caching),
-            raw_output (to return raw API data), field_details (to include field options,
-            scores, date selection), and include_instructions (to include section and field
-            instructions). If None, uses default FormOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`FormOption`, optional): Configuration options, including
+            `interactive_mode` for status messages, `cache` to reuse API responses,
+            `raw_output` for raw API data, `field_details` for field options/scores,
+            and `include_instructions` for section/field instructions. Defaults to None
+            (uses default :class:`FormOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
         Union[str, Dict]: If `option.raw_output` is True, returns the raw API response as a
@@ -134,7 +134,7 @@ def get_form_schema(
               enabled in `option`.
 
     Raises:
-        AMSError: If the form_name is empty, the form is not found, authentication fails,
+        :class:`AMSError`: If the form_name is empty, the form is not found, authentication fails,
             or the API request returns an invalid response.
 
     Examples:

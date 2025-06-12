@@ -3,20 +3,26 @@ from typing import Optional, List
 class UserOption:
     """Options for configuring user-related operations.
 
-    Defines customization options for the `get_user`, `edit_user`, and `create_user`
-    functions, controlling aspects such as selecting output columns, caching API responses,
-    and enabling interactive feedback. These options allow users to tailor the user data
-    retrieval or modification process, optimizing performance and user experience.
+    Customizes the behavior of :func:`teamworksams.user_main.get_user`,
+    :func:`teamworksams.user_main.edit_user`, and
+    :func:`teamworksams.user_main.create_user`, controlling output columns, caching,
+    and interactive feedback. Optimizes performance and user experience for user data
+    operations. See :ref:`vignettes/user_management` for usage examples.
 
     Args:
-        columns (Optional[List[str]]): A list of column names to include in the output
-            DataFrame for `get_user` (e.g., ['user_id', 'first_name', 'email']). Ignored
-            by `edit_user` and `create_user`. If None, includes all available columns.
+        columns (Optional[List[str]]): List of column names to include in the output
+            :class:`pandas.DataFrame` for :func:`get_user` (e.g., ['user_id',
+            'first_name']). Ignored by :func:`edit_user` and :func:`create_user`. If
+            None, includes all available columns (e.g., 'user_id', 'email', 'groups').
             Defaults to None.
-        cache (bool): Whether to cache API responses to improve performance for repeated
-            requests. Defaults to True.
-        interactive_mode (bool): Whether to print status messages during execution, such as
-            the number of users retrieved or updated. Defaults to True.
+        cache (bool): If True, reuses an existing :class:`AMSClient` via
+            :func:`get_client`, reducing API calls for multi-function workflows (e.g.,
+            fetching then updating users). Set to False for independent sessions.
+            Defaults to True.
+        interactive_mode (bool): If True, prints status messages (e.g., "Retrieved 5
+            users") and :mod:`tqdm` progress bars for operations like
+            :func:`edit_user`. Set to False for silent execution in automated scripts.
+            Defaults to True.
 
     Attributes:
         columns (Optional[List[str]]): The list of columns to include in the output.
@@ -46,18 +52,21 @@ class UserOption:
 class GroupOption:
     """Options for configuring group data export.
 
-    Defines customization options for the `get_group` function, controlling aspects such as
-    inferring column data types, caching API responses, and enabling interactive feedback.
-    These options allow users to tailor the group data retrieval process, optimizing
-    performance and output formatting.
+    Customizes the behavior of :func:`teamworksams.user_main.get_group`, controlling
+    data type inference, caching, and interactive feedback. Optimizes the group data
+    retrieval process for performance and output formatting. See
+    :ref:`vignettes/user_management` for combining group and user data.
 
     Args:
-        guess_col_type (bool): Whether to infer column data types (e.g., string for group
-            names) in the resulting DataFrame. Defaults to True.
-        interactive_mode (bool): Whether to print status messages during execution, such as
-            the number of groups retrieved. Defaults to True.
-        cache (bool): Whether to cache API responses to improve performance for repeated
-            requests. Defaults to True.
+        guess_col_type (bool): If True, infers column data types in the output
+            :class:`pandas.DataFrame` (e.g., string for group names), ensuring
+            compatibility with operations like merging with :func:`get_user` results.
+            Set to False to use default pandas types. Defaults to True.
+        interactive_mode (bool): If True, prints status messages (e.g., "Retrieved 3
+            groups") during execution, useful for interactive environments. Set to False for silent execution. Defaults to True.
+        cache (bool): If True, reuses an existing :class:`AMSClient` via
+            :func:`get_client`, reducing API calls for multi-function workflows. Set to
+            False for independent sessions. Defaults to True.
 
     Attributes:
         guess_col_type (bool): Indicates whether column type inference is enabled.

@@ -24,39 +24,43 @@ def get_database(
 ) -> DataFrame:
     """Retrieve database entries from an AMS database form.
 
-    Fetches entries from a specified AMS database form using the provided credentials and
-    configuration options. The function queries the AMS API, processes the response into a
-    pandas DataFrame, and returns the data. Supports pagination through limit and offset
-    parameters, and allows customization via a GetDatabaseOption object (e.g., for caching
-    or interactive feedback).
+    Fetches entries from a specified AMS database form, returning a
+    :class:`pandas.DataFrame` with columns for entry IDs and field values. Supports
+    pagination via `limit` and `offset`, and customization through
+    :class:`GetDatabaseOption` for caching, interactive feedback, or raw output. Ideal
+    for retrieving structured data like allergies or equipment lists. See
+    :ref:`vignettes/database_operations` for database workflows.
 
     Args:
-        form_name (str): The name of the AMS database form to retrieve entries from.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        limit (int): The maximum number of entries to return per request. Must be positive.
+        form_name (str): Name of the AMS database form (e.g., 'Allergies'). Must be a
+            non-empty string and correspond to a valid database form.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring`. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        limit (int): Maximum number of entries to return per request. Must be positive
+            (e.g., 10000). Use smaller values for large datasets to manage memory.
             Defaults to 10000.
-        offset (int): The starting index for pagination. Must be non-negative. Defaults to 0.
-        option (Optional[GetDatabaseOption]): Configuration options such as caching,
-            interactive mode, or raw output. If None, uses default GetDatabaseOption.
-            Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        offset (int): Starting index for pagination. Must be non-negative. Use to skip
+            entries in large datasets (e.g., 10000 for the next batch). Defaults to 0.
+        option (:class:`GetDatabaseOption`, optional): Configuration options, including
+            `interactive_mode` for status messages (e.g., "Retrieved 100 entries"),
+            `cache` to reuse a client, and `raw_output` for unprocessed API responses.
+            Defaults to None (uses default :class:`GetDatabaseOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: A pandas DataFrame containing the database entries, with
-            columns for entry IDs and field values, or a dictionary with the raw API response
-            if raw_output is True in the option. If no entries are found, returns an empty
-            DataFrame.
+        :class:`pandas.DataFrame`: Database entries with columns like 'id' and
+            form-specific fields (e.g., 'Allergy'). Returns an empty DataFrame if no
+            entries are found
 
     Raises:
-        AMSError: If the form_name is empty, the form is not a database form, authentication
-            fails, or the API request returns an error.
-        ValueError: If limit is not positive or offset is negative.
+        :class:`AMSError`: If `form_name` is empty, not a database form,
+            authentication fails, or the API request fails.
+        :class:`ValueError`: If `limit` is not positive or `offset` is negative.
 
     Examples:
         >>> from teamworksams import get_database
@@ -126,27 +130,30 @@ def delete_database_entry(
 ) -> bool:
     """Delete a specific database entry from an AMS instance.
 
-    Sends a request to the AMS API to delete the database entry with the specified ID.
-    Requires valid authentication credentials and a valid entry ID. Returns True if the
-    deletion is successful, or raises an exception if the operation fails.
+    Sends a request to the AMS API to delete the database entry with the specified ID,
+    returning True if successful. Requires valid credentials and a valid entry ID,
+    typically obtained from :func:`get_database`. See
+    :ref:`vignettes/database_operations` for database workflows.
 
     Args:
-        database_entry_id (int): The ID of the database entry to delete. Must be a non-negative integer.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        database_entry_id (int): ID of the database entry to delete. Must be a
+            non-negative integer (e.g., 386197).
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        bool: True if the database entry is successfully deleted.
+        bool: True if the entry is successfully deleted.
 
     Raises:
-        AMSError: If authentication fails, the API request returns an error, or the deletion fails.
-        ValueError: If database_entry_id is negative or not an integer.
+        :class:`AMSError`: If authentication fails, the API request fails, or the
+            deletion fails.
+        :class:`ValueError`: If `database_entry_id` is negative or not an integer.
 
     Examples:
         >>> from teamworksams import delete_database_entry
@@ -195,45 +202,42 @@ def insert_database_entry(
 ) -> None:
     """Insert new database entries into an AMS database form.
 
-    Processes a pandas DataFrame containing database entry data, validates the data, constructs
-    an API payload, and sends it to the AMS API to insert new entries into the specified
-    database form. Supports table fields via the InsertDatabaseOption, which allows
-    configuration of table fields, caching, and interactive feedback. The function provides
-    status updates if interactive mode is enabled, reporting the number of entries processed.
+    Processes a :class:`pandas.DataFrame` containing database entry data, validates it,
+    and inserts new entries into the specified AMS database form via the API. Supports
+    table fields and customizable options for caching and interactive feedback. See
+    :ref:`vignettes/database_operations` for database workflows.
 
     Args:
-        df (DataFrame): A pandas DataFrame containing the database entry data. Columns
-            represent field names, and rows contain values to insert. Must not be empty.
-        form (str): The name of the AMS database form to insert data into. Must be a non-empty
-            string and correspond to a valid database form.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[InsertDatabaseOption]): Configuration options for the insertion,
-            including table_fields (list of table field names), interactive_mode (for status
-            messages), and cache (for API response caching). If None, uses default
-            InsertDatabaseOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        df (:class:`pandas.DataFrame`): DataFrame with database entry data. Columns
+            represent form fields (e.g., 'Allergy'), and rows contain values. Must not
+            be empty.
+        form (str): Name of the AMS database form (e.g., 'Allergies'). Must be a
+            non-empty string and correspond to a valid database form.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`InsertDatabaseOption`, optional): Configuration options,
+            including `table_fields` for table field names, `interactive_mode` for status
+            messages (e.g., "Inserted 3 entries"), and `cache` to reuse a client.
+            Defaults to None (uses default :class:`InsertDatabaseOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
         None: The function does not return a value but inserts entries into the AMS database
             and prints status messages if interactive_mode is enabled.
 
     Raises:
-        AMSError: If the form is empty, not a database form, authentication fails, the DataFrame
-            is invalid (e.g., empty or missing required fields), the payload cannot be built,
-            or the API request fails.
-        ValueError: If table_fields in the option contains invalid field names not present in
-            the DataFrame.
+        :class:`AMSError`: If `form` is empty, not a database form, authentication
+            fails, `df` is invalid (e.g., empty), or the API request fails.
+        :class:`ValueError`: If `table_fields` contains invalid field names not in `df`.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import insert_database_entry
-        >>> from teamworksams import InsertDatabaseOption
+        >>> from teamworksams import insert_database_entry, InsertDatabaseOption
         >>> df = pd.DataFrame({
         ...     "Allergy": ["Dairy", "Eggs", "Peanuts"]
         ... })
@@ -242,8 +246,7 @@ def insert_database_entry(
         ...     form = "Allergies",
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
-        ...     password = "pass",
-        ...     option = InsertDatabaseOption(table_fields = ["Table"])
+        ...     password = "pass"
         ... )
         ℹ Inserting 3 database entries for form 'Allergies'
         ✔ Processed 3 database entries for form 'Allergies'
@@ -326,47 +329,43 @@ def update_database_entry(
 ) -> None:
     """Update existing database entries in an AMS database form.
 
-    Processes a pandas DataFrame containing database entry data with an 'entry_id' column,
-    validates the data, constructs an API payload, and sends it to the AMS API to update
-    existing entries in the specified database form. Supports table fields via the
-    UpdateDatabaseOption, which allows configuration of table fields, caching, and interactive
-    feedback. In interactive mode, prompts for confirmation before updating and provides
-    status updates.
+    Processes a :class:`pandas.DataFrame` with an 'entry_id' column to update existing
+    entries in the specified AMS database form via the API. Validates data, supports
+    table fields, and offers interactive confirmation prompts. See
+    :ref:`vignettes/database_operations` for database workflows.
 
     Args:
-        df (DataFrame): A pandas DataFrame containing the database entry data. Must include
-            an 'entry_id' column with valid integer IDs of existing entries, and other columns
-            for field names with values to update. Must not be empty.
-        form (str): The name of the AMS database form to update data in. Must be a non-empty
-            string and correspond to a valid database form.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[UpdateDatabaseOption]): Configuration options for the update,
-            including table_fields (list of table field names), interactive_mode (for status
-            messages and confirmation), and cache (for API response caching). If None, uses
-            default UpdateDatabaseOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        df (:class:`pandas.DataFrame`): DataFrame with database entry data. Must include
+            'entry_id' (valid integer IDs) and columns for fields to update (e.g.,
+            'Allergy'). Must not be empty.
+        form (str): Name of the AMS database form (e.g., 'Allergies'). Must be a
+            non-empty string and correspond to a valid database form.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`UpdateDatabaseOption`, optional): Configuration options,
+            including `table_fields` for table field names, `interactive_mode` for
+            status messages and confirmation prompts, and `cache` to reuse a client.
+            Defaults to None (uses default :class:`UpdateDatabaseOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        None: The function does not return a value but updates entries in the AMS database
-            and prints status messages if interactive_mode is enabled.
+        None: Updates entries in the AMS database and prints status messages if
+            ``option.interactive_mode=True``.
 
     Raises:
-        AMSError: If the form is empty, not a database form, authentication fails, the DataFrame
-            is invalid (e.g., empty, missing 'entry_id', or invalid IDs), the payload cannot be
-            built, the API request fails, or the user cancels the operation in interactive mode.
-        ValueError: If table_fields in the option contains invalid field names not present in
-            the DataFrame.
+        :class:`AMSError`: If `form` is empty, not a database form, authentication
+            fails, `df` is invalid (e.g., empty, missing 'entry_id'), user cancels in
+            interactive mode, or the API request fails.
+        :class:`ValueError`: If `table_fields` contains invalid field names not in `df`.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import update_database_entry
-        >>> from teamworksams import UpdateDatabaseOption
+        >>> from teamworksams import update_database_entry, UpdateDatabaseOption
         >>> df = pd.DataFrame({
         ...     "entry_id": [386197, 386198, 386199],
         ...     "Allergy": ["Dairy Updated", "Eggs Updated", "Peanuts Updated"]
@@ -377,7 +376,7 @@ def update_database_entry(
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
         ...     password = "pass",
-        ...     option = UpdateDatabaseOption(table_fields = ["Table"])
+        ...     option = UpdateDatabaseOption(interactive_mode = True)
         ... )
         ℹ Updating 3 database entries for form 'Allergies'
         Are you sure you want to update 3 existing database entries in 'Allergies'? (y/n): y

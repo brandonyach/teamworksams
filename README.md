@@ -1,15 +1,12 @@
 # teamworksams
-A Python wrapper for the Teamworks AMS (Athlete Management System) API. <img src="docs/build/html/_static/logo.png" align="right" height="100" style="float:right; height:90px; width:90px">
+A Python wrapper for the Teamworks AMS (Athlete Management System) API. <img src="docs/source/_static/logo.png" align="right" height="100" style="float:right; height:90px; width:90px">
 
 [![PyPI version](https://badge.fury.io/py/teamworksams.svg)](https://badge.fury.io/py/teamworksams)
 [![Tests](https://github.com/brandonyach/teamworksams/actions/workflows/ci.yml/badge.svg)](https://github.com/brandonyach/teamworksams/actions)
 
-`teamworksams` is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS users, leveraging Python’s data processing capabilities.
+`teamworksams` is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS, leveraging Python’s data processing capabilities.
 
 ## Installation
-```bash
-pip install teamworksams
-```
 *Note*: Until available on PyPI, install from GitHub:
 ```bash
 pip install git+https://github.com/brandonyach/teamworksams.git
@@ -25,7 +22,7 @@ pip install git+https://github.com/brandonyach/teamworksams.git
 *Note*: Use your Teamworks AMS username, not email address, for authentication.
 
 ## Security
-`teamworksams` respects all permissions configured in your Teamworks AMS instance. For example, if you lack access to a form in the web or mobile app, you cannot access it via `teamworksams`. Similarly, delete permissions in AMS apply to `teamworksams` operations.
+`teamworksams` respects all permissions configured in your Teamworks AMS instance. For example, if you lack access to a form in the native platform, you cannot access it via the `teamworksams` package. Similarly, delete permissions in AMS apply to `teamworksams` operations.
 
 **Warning**: `teamworksams` is powerful but requires caution:
 - Read all documentation thoroughly.
@@ -37,8 +34,7 @@ Below are examples of the core functions:
 
 ### Import Event Form Data
 ```python
-from teamworksams import insert_event_data
-from teamworksams import InsertEventOption
+from teamworksams import insert_event_data, InsertEventOption
 from pandas import DataFrame
 
 df = pd.DataFrame({
@@ -47,6 +43,7 @@ df = pd.DataFrame({
         "duration": [60, 45],
         "intensity": ["High", "Medium"]
         })
+
 insert_event_data(
         df = df,
         form = "Training Log",
@@ -55,14 +52,18 @@ insert_event_data(
         password = "pass",
         option = InsertEventOption(id_col = "username", interactive_mode = True)
         )
-print(results)
+
+ℹ Inserting 2 events for 'Training Log'
+✔ Processed 2 events for 'Training Log'
+ℹ Form: TrainingLog
+ℹ Result: Success
+ℹ Records inserted: 2
+ℹ Records attempted: 2
 ```
 
 ### Retrieve Event Form Data
 ```python
-from teamworksams import get_event_data
-from teamworksams import EventFilter
-from teamworksams import EventOption
+from teamworksams import get_event_data, EventFilter, EventOption
 from pandas import DataFrame
 
 
@@ -76,7 +77,16 @@ df = get_event_data(
         filter = EventFilter(user_key = "group", user_value = "Example Group"),
         option = EventOption(interactive_mode = True, clean_names = True)
         )
+
+ℹ Requesting event data for 'Training Log' between 01/01/2025 and 31/01/2025
+ℹ Processing 10 events...
+✔ Retrieved 10 event records for form 'Training Log'.
+
 print(df)
+
+   about   user_id   event_id  form         start_date  duration  intensity
+0  John Doe    12345    67890  Training Log  01/01/2025        60       High
+1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium
 ```
 
 ## Get Started
@@ -86,13 +96,15 @@ AMS_URL=https://example.smartabase.com/site
 AMS_USERNAME=user
 AMS_PASSWORD=pass
 ```
-Read more in the [Credentials Vignette](https://brandonyach.github.io/teamworksams/credentials.html).
+Read more in the [Geting Started Vignette](https://brandonyach.github.io/teamworksams/getting_started.html).
 
 ## Further Reading
 Explore the documentation for detailed guides:
+- [Credentials](https://brandonyach.github.io/teamworksams/credentials.html): Managing credentials with Teamworks AMS.
+- [User Management](https://brandonyach.github.io/teamworksams/exporting_data.html): Retrieve, create, and edit users in Teamworks AMS.
+- [Exporting Data](https://brandonyach.github.io/teamworksams/exporting_data.html): Retrieve event and profile data from Teamworks AMS.
+- [Importing Data](https://brandonyach.github.io/teamworksams/importing_data.html): Insert, update, and upsert event data to Teamworks AMS.
 - [File Uploads](https://brandonyach.github.io/teamworksams/file-uploads.html): Uploading and attaching files to events and avatars.
-- [Form Management](https://brandonyach.github.io/teamworksams/form-management.html): Retrieving form metadata and schemas.
-- [API Reference](https://brandonyach.github.io/teamworksams/api-reference.html): Detailed function documentation.
 
 ## License
 MIT License (see [LICENSE](LICENSE))

@@ -4,21 +4,24 @@ from typing import Optional, List
 class InsertEventOption:
     """Options for configuring the insert_event_data function.
 
-    Defines customization options for inserting new events into an AMS Event Form, controlling
-    aspects such as user identifier mapping, caching API responses, enabling interactive
-    feedback, and specifying table fields. These options allow users to tailor the insertion
-    process, optimizing performance and user experience.
+    Customizes the behavior of :func:`teamworksams.import_main.insert_event_data`,
+    controlling user identifier mapping, caching, interactive feedback, and table fields.
+    Optimizes performance and user experience for inserting new events into an AMS Event
+    Form. See :ref:`vignettes/importing_data` for import workflows.
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as
-            the number of events being inserted and the result. Defaults to False.
-        cache (bool): Whether to cache API responses to improve performance for repeated
-            requests. Defaults to True.
-        id_col (str): The column name in the DataFrame used to map user identifiers to user
-            IDs. Must be one of 'user_id', 'about', 'username', or 'email'. Defaults to
-            'user_id'.
-        table_fields (Optional[List[str]]): A list of field names that are table fields in
-            the form. If None, the form is treated as non-table. Defaults to None.
+            the number of events being inserted and the result. Defaults to True.
+        cache (bool): If True, reuses an existing :class:`AMSClient` via
+            :func:`get_client`, reducing API calls for multi-function workflows (e.g.,
+            inserting multiple batches). Set to False for independent sessions. Defaults
+            to True.
+        id_col (str): Column name in the input :class:`pandas.DataFrame` for user
+            identifiers. Must be one of 'user_id', 'about', 'username', or 'email'.
+            Used to map identifiers to AMS user IDs. Defaults to 'user_id'.
+        table_fields (Optional[List[str]]): List of table field names in the AMS form
+            (e.g., ['session_details']). Must match DataFrame columns if specified. If
+            None, assumes no table fields. Defaults to None.
 
     Attributes:
         interactive_mode (bool): Indicates whether interactive mode is enabled.
@@ -27,15 +30,23 @@ class InsertEventOption:
         table_fields (List[str]): The list of table field names, or an empty list if None.
 
     Raises:
-        ValueError: If `id_col` is not one of 'user_id', 'about', 'username', or 'email'.
+        :class:`ValueError`: If `id_col` is not one of 'user_id', 'about', 'username', or
+        'email'.
 
     Examples:
-        >>> from teamworksams import InsertEventOption
-        >>> option = InsertEventOption(
-        ...     interactive_mode = True,
-        ...     cache = True,
-        ...     id_col = "username",
-        ...     table_fields = ["TableField"]
+        >>> from teamworksams import InsertEventOption, insert_event_data
+        >>> import pandas as pd
+        >>> df = pd.DataFrame({
+        ...     "username": ["john.doe"],
+        ...     "start_date": ["01/01/2025"],
+        ...     "duration": [60]
+        ... })
+        >>> option = InsertEventOption(id_col = "username", interactive_mode = True)
+        >>> insert_event_data(
+        ...     df = df,
+        ...     form = "Training Log",
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
     """
     
@@ -63,20 +74,28 @@ class InsertEventOption:
 class UpdateEventOption:
     """Options for configuring the update_event_data function.
 
-    Defines customization options for updating existing events in an AMS Event Form, controlling
-    aspects such as user identifier mapping, caching API responses, enabling interactive
-    feedback, and specifying table fields. These options allow users to tailor the update
-    process, including confirmation prompts and status messages.
+    Customizes the behavior of :func:`teamworksams.import_main.update_event_data`,
+    controlling user identifier mapping, confirmation prompts, caching, interactive
+    feedback, and table fields. Ensures safe and efficient updates of existing events in
+    an AMS Event Form. See :ref:`vignettes/importing_data` for update workflows.
 
     Args:
-        interactive_mode (bool): Whether to print status messages and prompt for confirmation
-            during execution, such as the number of events being updated. Defaults to False.
-        cache (bool): Whether to cache API responses to improve performance for repeated
-            requests. Defaults to True.
-        id_col (str): The column name in the DataFrame used to map user identifiers to user
-            IDs. Must be one of 'user_id', 'about', 'username', or 'email'. Defaults to
-            'user_id'.
-        table_fields (Optional[List[str]]
+        interactive_mode (bool): If True, prints status messages (e.g., "Updated 2
+            events") and :mod:`tqdm` progress bars, and prompts for confirmation if
+            `require_confirmation` is True. Set to False for silent execution. Defaults
+            to True.
+        cache (bool): If True, reuses an existing :class:`AMSClient` via
+            :func:`get_client`, reducing API calls for multi-function workflows. Set to
+            False for independent sessions. Defaults to True.
+        id_col (str): Column name in the input :class:`pandas.DataFrame` for user
+            identifiers. Must be one of 'user_id', 'about', 'username', or 'email'.
+            Used to map identifiers to AMS user IDs. Defaults to 'user_id'.
+        table_fields (Optional[List[str]]): List of table field names in the AMS form
+            (e.g., ['session_details']). Must match DataFrame columns if specified. If
+            None, assumes no table fields. Defaults to None.
+        require_confirmation (bool): If True, prompts for user confirmation before
+            updating events when `interactive_mode` is True, preventing accidental
+            changes. Set to False to skip prompts. Defaults to True.
 
     Attributes:
         interactive_mode: Boolean indicating if interactive feedback is enabled.
@@ -85,16 +104,26 @@ class UpdateEventOption:
         table_fields: List of table field names, or an empty list if None.
 
     Raises:
-        ValueError: If id_col is not one of the allowed values.
+        :class:`ValueError`: If id_col is not one of the allowed values.
         
     Examples:
-        >>> from teamworksams import UpdateEventOption
-        >>> option = UpdateEventOption(
-        ...     interactive_mode = True,
-        ...     cache = True,
-        ...     id_col = "username",
-        ...     table_fields = ["TableField"]
+        >>> from teamworksams import UpdateEventOption, update_event_data
+        >>> import pandas as pd
+        >>> df = pd.DataFrame({
+        ...     "event_id": [67890],
+        ...     "username": ["john.doe"],
+        ...     "duration": [65]
+        ... })
+        >>> option = UpdateEventOption(id_col = "username", interactive_mode = True)
+        >>> update_event_data(
+        ...     df = df,
+        ...     form = "Training Log",
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
+        ℹ Updating 1 events for 'Training Log'...
+        Are you sure you want to update 1 existing events in 'Training Log'? (y/n): y
+        ✔ Processed 1 events for 'Training Log'
     """
     def __init__(
             self, 
@@ -123,21 +152,25 @@ class UpdateEventOption:
 class UpsertEventOption:
     """Options for configuring the upsert_event_data function.
 
-    Defines customization options for upserting events (importing new events and updating 
-    existing events) in an AMS Event Form, controlling aspects such as user identifier mapping, 
-    caching API responses, enabling interactive feedback, and specifying table fields. These 
-    options allow users to tailor the upsert process, including confirmation prompts and status 
-    messages.
+    Customizes the behavior of :func:`teamworksams.import_main.upsert_event_data`,
+    controlling user identifier mapping, caching, interactive feedback, and table fields.
+    Optimizes performance for inserting new events and updating existing ones in an AMS
+    Event Form. See :ref:`vignettes/importing_data` for upsert workflows.
 
     Args:
-        interactive_mode (bool): Whether to print status messages and prompt for confirmation
-            during execution, such as the number of events being updated. Defaults to False.
-        cache (bool): Whether to cache API responses to improve performance for repeated
-            requests. Defaults to True.
-        id_col (str): The column name in the DataFrame used to map user identifiers to user
-            IDs. Must be one of 'user_id', 'about', 'username', or 'email'. Defaults to
-            'user_id'.
-        table_fields (Optional[List[str]]
+        interactive_mode (bool): If True, prints status messages (e.g., "Upserted 2
+            events") and :mod:`tqdm` progress bars during execution, ideal for interactive
+            environments like Jupyter notebooks. Set to False for silent execution.
+            Defaults to True.
+        cache (bool): If True, reuses an existing :class:`AMSClient` via
+            :func:`get_client`, reducing API calls for multi-function workflows. Set to
+            False for independent sessions. Defaults to True.
+        id_col (str): Column name in the input :class:`pandas.DataFrame` for user
+            identifiers. Must be one of 'user_id', 'about', 'username', or 'email'.
+            Used to map identifiers to AMS user IDs. Defaults to 'user_id'.
+        table_fields (Optional[List[str]]): List of table field names in the AMS form
+            (e.g., ['session_details']). Must match DataFrame columns if specified. If
+            None, assumes no table fields. Defaults to None.
 
     Attributes:
         interactive_mode: Boolean indicating if interactive feedback is enabled.
@@ -146,16 +179,27 @@ class UpsertEventOption:
         table_fields: List of table field names, or an empty list if None.
 
     Raises:
-        ValueError: If id_col is not one of the allowed values.
+        :class:`ValueError`: If id_col is not one of the allowed values.
         
     Examples:
-        >>> from teamworksams import UpsertEventOption
-        >>> option = UpsertEventOption(
-        ...     interactive_mode = True,
-        ...     cache = True,
-        ...     id_col = "username",
-        ...     table_fields = ["TableField"]
+        >>> from teamworksams import UpsertEventOption, upsert_event_data
+        >>> import pandas as pd
+        >>> df = pd.DataFrame({
+        ...     "event_id": [67890, None],
+        ...     "username": ["john.doe", "jane.smith"],
+        ...     "start_date": ["01/01/2025", "02/01/2025"],
+        ...     "duration": [65, 45]
+        ... })
+        >>> option = UpsertEventOption(id_col = "username", interactive_mode = True)
+        >>> upsert_event_data(
+        ...     df = df,
+        ...     form = "Training Log",
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
+        ℹ Updating 1 existing events for 'Training Log'
+        ℹ Inserting 1 new events for 'Training Log'
+        ✔ Processed 2 events for 'Training Log'
     """
     def __init__(
             self, 
@@ -181,15 +225,22 @@ class UpsertEventOption:
 class UpsertProfileOption:
     """Options for configuring the upsert_profile_data function.
 
-    This class defines configuration options for upserting profile data in an AMS Profile Form,
-    including whether to display interactive feedback, cache API responses, and specify the user
-    identifier column.
+    Customizes the behavior of :func:`teamworksams.import_main.upsert_profile_data`,
+    controlling user identifier mapping, caching, and interactive feedback. Ensures
+    efficient upserting of profile records in an AMS Profile Form, with one record per
+    user. 
 
     Args:
-        interactive_mode: If True, display progress bars and interactive prompts. Defaults to False.
-        cache: If True, cache API responses and reuse the client session. Defaults to True.
-        id_col: The column name to use for mapping user identifiers to user IDs.
-            Must be one of 'user_id', 'about', 'username', or 'email'. Defaults to 'user_id'.
+        interactive_mode (bool): If True, prints status messages (e.g., "Upserted 2
+            profiles") and :mod:`tqdm` progress bars during execution, ideal for
+            interactive environments like Jupyter notebooks. Set to False for silent
+            execution. Defaults to True.
+        cache (bool): If True, reuses an existing :class:`AMSClient` via
+            :func:`get_client`, reducing API calls for multi-function workflows. Set to
+            False for independent sessions. Defaults to True.
+        id_col (str): Column name in the input :class:`pandas.DataFrame` for user
+            identifiers. Must be one of 'user_id', 'about', 'username', or 'email'.
+            Used to map identifiers to AMS user IDs. Defaults to 'user_id'.
 
     Attributes:
         interactive_mode: Boolean indicating if interactive feedback is enabled.
@@ -197,15 +248,24 @@ class UpsertProfileOption:
         id_col: The column name used for mapping user identifiers.
 
     Raises:
-        ValueError: If id_col is not one of the allowed values.
+        :class:`ValueError`: If id_col is not one of the allowed values.
         
     Examples:
-        >>> from teamworksams import UpsertProfileOption
-        >>> option = UpsertProfileOption(
-        ...     interactive_mode = True,
-        ...     cache = True,
-        ...     id_col = "username"
+        >>> from teamworksams import UpsertProfileOption, upsert_profile_data
+        >>> import pandas as pd
+        >>> df = pd.DataFrame({
+        ...     "username": ["john.doe"],
+        ...     "athlete_id": [8194028]
+        ... })
+        >>> option = UpsertProfileOption(id_col="username", interactive_mode=True)
+        >>> upsert_profile_data(
+        ...     df = df,
+        ...     form = "Athlete Profile",
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
+        ℹ Upserting 1 profile records for 'Athlete Profile'
+        ✔ Processed 1 profile records for 'Athlete Profile'
     """
     def __init__(
             self, 

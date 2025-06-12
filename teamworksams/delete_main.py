@@ -14,41 +14,47 @@ def delete_event_data(
 ) -> str:
     """Delete a single event from an AMS instance.
 
-    Sends a request to the AMS API's deleteevent endpoint to remove the event with the specified
-    event ID. Requires valid authentication credentials and a positive integer event ID. In
-    interactive mode, prompts for confirmation before deletion and provides status feedback.
-    Returns a message indicating the success or failure of the operation.
+    Sends a request to the AMS API's deleteevent endpoint to remove the event with the
+    specified ID, returning a message indicating success or failure. Requires valid
+    authentication and a positive integer `event_id`, obtainable via
+    :func:`get_event_data`. In interactive mode, prompts for confirmation and provides
+    feedback. See :ref:`vignettes/deleting_data` for deletion workflows.
 
     Args:
-        event_id (int): The ID of the event to delete. Must be a positive integer.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[DeleteEventOption]): Configuration options for the deletion,
-            including interactive_mode (for confirmation and status messages). If None,
-            uses default DeleteEventOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        event_id (int): ID of the event to delete. Must be a positive integer (e.g.,
+            134273).
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to
+             None.
+        option (:class:`DeleteEventOption`, optional): Configuration options, including
+            `interactive_mode` for confirmation prompts and status messages (e.g.,
+            "SUCCESS: Deleted 134273"). Defaults to None (uses default
+            :class:`DeleteEventOption` with `interactive_mode=True`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to
+            None.
 
     Returns:
         str: A message indicating the result of the deletion, e.g., "SUCCESS: Deleted 134273"
             or "FAILURE: [error message]".
 
     Raises:
-        AMSError: If authentication fails, the API request returns an error, the response is
+        :class:`AMSError`: If authentication fails, the API request returns an error, the response is
             invalid, or the user cancels the operation in interactive mode.
-        ValueError: If event_id is not a positive integer.
+        :class:`ValueError`: If event_id is not a positive integer.
 
     Examples:
-        >>> from teamworksams import delete_event_data
+        >>> from teamworksams import delete_event_data, DeleteEventOption
         >>> result = delete_event_data(
         ...     event_id = 134273,
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
-        ...     password = "pass"
+        ...     password = "pass",
+        ...     option = DeleteEventOption(interactive_mode = True)
         ... )
         Are you sure you want to delete event '134273'? (y/n): y
         ℹ Deleting event with ID 134273...
@@ -103,34 +109,37 @@ def delete_multiple_events(
     """Delete multiple events from an AMS instance.
 
     Sends a request to the AMS API's event/deleteAll endpoint to remove a list of events
-    specified by their event IDs. Requires valid authentication credentials and a non-empty
-    list of positive integer event IDs. In interactive mode, prompts for confirmation before
-    deletion and provides status feedback. Returns a message indicating the success or failure
-    of the operation.
+    specified by their IDs, returning a message indicating success or failure. Requires
+    valid authentication and a non-empty list of positive integer `event_ids`, obtainable
+    via :func:`get_event_data`. In interactive mode, prompts for confirmation and provides
+    feedback. See :ref:`vignettes/deleting_data` for deletion workflows.
 
     Args:
-        event_ids (List[int]): A list of event IDs to delete. Must be a non-empty list of
-            positive integers.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[DeleteEventOption]): Configuration options for the deletion,
-            including interactive_mode (for confirmation and status messages). If None,
-            uses default DeleteEventOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        event_ids (List[int]): List of event IDs to delete. Must be a non-empty list of
+                    positive integers (e.g., [134273, 134274]).
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+                    include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+                    :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+                    :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to
+                    None.
+        option (:class:`DeleteEventOption`, optional): Configuration options, including
+                    `interactive_mode` for confirmation prompts and status messages (e.g.,
+                    "SUCCESS: Deleted 3 events"). Defaults to None (uses default
+                    :class:`DeleteEventOption` with `interactive_mode=True`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+                    :func:`get_client`. If None, a new client is created. Defaults to
+                    None.
 
     Returns:
         str: A message indicating the result of the deletion, e.g., "SUCCESS: Deleted 3 events"
             or "FAILURE: Could not delete events with IDs [134273, 134274]".
 
     Raises:
-        AMSError: If authentication fails, the API request returns an error, or the user
+        :class:`AMSError`: If authentication fails, the API request returns an error, or the user
             cancels the operation in interactive mode.
-        ValueError: If event_ids is empty or contains non-positive integers.
+        :class:`ValueError`: If event_ids is empty or contains non-positive integers.
 
     Examples:
         >>> from teamworksams import delete_multiple_events
@@ -138,7 +147,8 @@ def delete_multiple_events(
         ...     event_ids = [134273, 134274, 134275],
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
-        ...     password = "pass"
+        ...     password = "pass",
+        ...     option = DeleteEventOption(interactive_mode = True)
         ... )
         Are you sure you want to delete 3 events with IDs [134273, 134274, 134275]? (y/n): y
         ℹ Deleting 3 events with IDs [134273, 134274, 134275]...

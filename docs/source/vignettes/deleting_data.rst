@@ -3,13 +3,11 @@ Deleting Data
 
 This vignette provides a guide to deleting event data in Teamworks AMS using
 **teamworksams**, covering :func:`delete_event_data` and
-:func:`delete_multiple_events`. Designed for administrators and analysts, it outlines
+:func:`delete_multiple_events`. It outlines
 safe workflows for removing single or multiple events from AMS Event Forms, with
-Python/pandas examples. Inspired by the SmartabaseR equivalent
-(`<https://teamworksapp.github.io/smartabaseR/articles/deleting-data.html>`_), it
-emphasizes safety features like confirmation prompts and integration with
+Python/pandas examples. emphasizing safety features like confirmation prompts and integration with
 :func:`get_event_data` for event ID retrieval. See :ref:`reference` for detailed
-documentation and :ref:`vignettes/exporting_data` for related tasks.
+documentation and :ref:`vignettes/getting_started` if you haven't already.
 
 Overview
 --------

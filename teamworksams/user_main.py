@@ -30,21 +30,12 @@ def get_user(
     enabled. Supports caching and column selection for customized output.
 
     Args:
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        filter (Optional[UserFilter]): A UserFilter object to narrow results by user
-            attributes (e.g., 'username', 'email', 'group', 'about'). If None, retrieves
-            all accessible users. Defaults to None.
-        option (Optional[UserOption]): Configuration options for the retrieval, including
-            columns (to select specific output columns), interactive_mode (for status
-            messages), and cache (for API response caching). If None, uses default
-            UserOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        filter (:class:`UserFilter`, optional): Filter users by attributes like 'username', 'email', 'group', or 'about'. For example, `UserFilter(user_key = "group", user_value = "TeamA")` retrieves users in "TeamA". Defaults to None (all users).
+        option (:class:`UserOption`, optional): Configuration options, including `columns` (list of output columns, e.g., `["user_id", "email"]`) and `interactive_mode` (print status messages). Defaults to None (default :class:`UserOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
         DataFrame: A pandas DataFrame containing user data with columns such as 'user_id',
@@ -58,9 +49,7 @@ def get_user(
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import get_user
-        >>> from teamworksams import UserFilter
-        >>> from teamworksams import UserOption
+        >>> from teamworksams import get_user, UserFilter, UserOption
         >>> df = get_user(
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
@@ -111,18 +100,11 @@ def get_group(
     caching and data type inference for the output DataFrame.
 
     Args:
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[GroupOption]): Configuration options for the retrieval, including
-            guess_col_type (to infer column data types), interactive_mode (for status
-            messages), and cache (for API response caching). If None, uses default
-            GroupOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name (e.g., '/site').
+        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`GroupOption`, optional): Configuration options, including `guess_col_type` to infer column data types (e.g., string for group names) and `interactive_mode` to print status messages (e.g., "Retrieved 3 groups"). Defaults to None (uses default :class:`GroupOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
         DataFrame: A pandas DataFrame containing group data with a 'name' column listing
@@ -134,8 +116,7 @@ def get_group(
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import get_group
-        >>> from teamworksams import GroupOption
+        >>> from teamworksams import get_group, GroupOption
         >>> df = get_group(
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
@@ -192,41 +173,41 @@ def edit_user(
     performance.
 
     Args:
-        mapping_df (DataFrame): A pandas DataFrame containing:
-            - A column with user identifiers (named by `user_key`, e.g., 'username', 'email').
-            - Updatable columns (e.g., 'first_name', 'last_name', 'email', 'dob', 'sex', 
-              'username', 'known_as', 'active', 'uuid'). Empty values are uploaded as empty strings.
-        user_key (str): The name of the user identifier column in `mapping_df`, one of
-            'username', 'email', 'about', or 'uuid'.
+        mapping_df (:class:`pandas.DataFrame`): DataFrame containing a `user_key` column
+            (e.g., 'username') and updatable columns (e.g., 'first_name', 'email',
+            'dob', 'sex', 'username', 'known_as', 'active', 'uuid'). Empty values are
+            sent as empty strings. Must not be empty.
+        user_key (str): Name of the identifier column in `mapping_df`. Must be one of
+            'username', 'email', 'about', or 'uuid'. For example, 'username' matches
+            users by their AMS username.
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[UserOption]): Configuration options for the update, including
-            interactive_mode (for status messages and confirmation), cache (for API response
-            caching), and columns (ignored for this function). If None, uses default
-            UserOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+            Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`UserOption`, optional): Configuration options, including
+            `interactive_mode` for status messages and progress bars, and `cache` to
+            reuse a client. The `columns` option is ignored. Defaults to None (uses
+            default :class:`UserOption` with `interactive_mode=True`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: A pandas DataFrame containing failed updates with columns:
+        :class:`pandas.DataFrame`: A pandas DataFrame containing failed updates with columns:
             - 'user_id': The user ID (if matched) or None.
             - 'user_key': The user identifier value that failed to update.
             - 'reason': The reason for the failure (e.g., 'User not found', 'API request failed').
             Returns an empty DataFrame if all updates succeed.
 
     Raises:
-        AMSError: If `mapping_df` is invalid (e.g., missing `user_key` column), `user_key` is
-            invalid, no users are found, authentication fails, or the API request fails.
-        ValueError: If `mapping_df` is empty or contains invalid data.
+        :class:`AMSError`: If `mapping_df` is invalid, `user_key` is unsupported,
+            no users are found, authentication fails, or the API request fails.
+        :class:`ValueError`: If `mapping_df` is empty or lacks valid columns.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import edit_user
-        >>> from teamworksams import UserOption
+        >>> from teamworksams import edit_user, UserOption
         >>> mapping_df = pd.DataFrame({
         ...     "username": ["john.doe", "jane.smith"],
         ...     "first_name": ["John", "Jane"],
@@ -411,30 +392,19 @@ def create_user(
 ) -> DataFrame:
     """Create new users in an AMS instance.
 
-    Creates new user accounts using the AMS API’s `/api/v2/person/save` endpoint, setting
-    the user ID to '-1' to indicate new users. The function processes a DataFrame with
+    Creates new user accounts using the AMS API’s `/api/v2/person/save` endpoint. The function processes a DataFrame with
     required fields (e.g., 'first_name', 'last_name', 'username', 'email', 'dob',
     'password', 'active') and optional fields (e.g., 'uuid', 'sex'), validates the data,
     and applies the creations. Returns a DataFrame of failed creations with reasons.
     Supports interactive feedback and caching.
 
     Args:
-        user_df (DataFrame): A pandas DataFrame containing user data for creation. Required
-            columns: 'first_name', 'last_name', 'username', 'email', 'dob', 'password',
-            'active'. Optional columns: 'uuid', 'known_as', 'middle_names', 'language',
-            'sidebar_width', 'sex'. Must not be empty.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        option (Optional[UserOption]): Configuration options for the creation, including
-            interactive_mode (for status messages), cache (for API response caching), and
-            columns (ignored for this function). If None, uses default UserOption.
-            Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        user_df (:class:`pandas.DataFrame`): DataFrame with user data. Required columns: 'first_name', 'last_name', 'username', 'email', 'dob', 'password', 'active'. Optional columns: 'uuid', 'known_as', 'middle_names', 'language', 'sidebar_width', 'sex'. Must not be empty.
+        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`UserOption`, optional): Configuration options, including `interactive_mode` to print status messages (e.g., "Successfully created 1 users") and `cache` to reuse a client. Defaults to None (uses default :class:`UserOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
         DataFrame: A pandas DataFrame containing failed creations with columns:
@@ -449,8 +419,7 @@ def create_user(
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import create_user
-        >>> from teamworksams import UserOption
+        >>> from teamworksams import create_user, UserOption
         >>> user_df = pd.DataFrame({
         ...     "first_name": ["John", "Jane"],
         ...     "last_name": ["Doe", "Smith"],
@@ -471,9 +440,6 @@ def create_user(
         ... )
         ℹ Creating 2 users...
         ✔ Successfully created 2 users.
-        >>> print(failed_df)
-        Empty DataFrame
-        Columns: [user_key, reason]
     """
     option = option or UserOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)

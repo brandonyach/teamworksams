@@ -4,10 +4,11 @@ from typing import Optional
 class EventOption:  
     """Options for configuring event data export.
 
-    Defines customization options for the `get_event_data` function, controlling aspects such as
+    Defines customization options for the :func:`teamworksams.export_main.get_event_data` function, controlling aspects such as
     downloading attachments, cleaning column names, caching API responses, and enabling
     interactive feedback. These options allow users to tailor the event data retrieval process,
-    including data formatting, performance optimization, and user experience.
+    including data formatting, performance optimization, and user experience. See
+    :ref:`vignettes/exporting_data` for usage examples.
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as the
@@ -25,8 +26,8 @@ class EventOption:
         download_attachment (bool): Whether to download attachments associated with events.
             Defaults to False.
         attachment_directory (Optional[str]): Directory path to save downloaded attachments.
-            If None, uses the current working directory. Ignored if download_attachment is
-            False. Defaults to None.
+            If None, uses the current working directory. Can be either an absolute path or a 
+            relative path. Ignored if download_attachment is False. Defaults to None.
 
     Attributes:
         interactive_mode (bool): Indicates whether interactive mode is enabled.
@@ -40,12 +41,19 @@ class EventOption:
         attachment_count (int): The number of attachments downloaded (set during processing).
 
     Examples:
-        >>> from teamworksams import EventOption
+        >>> from teamworksams import get_event_data, EventOption
         >>> option = EventOption(
         ...     interactive_mode = True,
         ...     clean_names = True,
         ...     download_attachment = True,
         ...     attachment_directory = "/path/to/attachments"
+        ... )
+        >>> df = get_event_data(
+        ...     form = "Training Log",
+        ...     start_date = "01/01/2025",
+        ...     end_date = "31/01/2025",
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
     """
     def __init__(
@@ -74,10 +82,10 @@ class EventOption:
 class SyncEventOption:
     """Options for configuring sync event data export.
 
-    Defines customization options for the `sync_event_data` function, controlling aspects such as
-    including user metadata, caching API responses, and enabling interactive feedback. These
-    options allow users to tailor the synchronization process, including data formatting and
-    user experience.
+    Customizes the behavior of :func:`teamworksams.export_main.sync_event_data`,
+    controlling output formatting, user metadata inclusion, caching, and interactive
+    feedback. Optimizes performance for synchronized event exports. See
+    :ref:`vignettes/exporting_data` for synchronization workflows.
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as the
@@ -102,11 +110,17 @@ class SyncEventOption:
         include_uuid (bool): Indicates whether UUID inclusion is enabled.
 
     Examples:
-        >>> from teamworksams import SyncEventOption
+        >>> from teamworksams import sync_event_data, SyncEventOption
         >>> option = SyncEventOption(
         ...     interactive_mode = True,
         ...     include_user_data = True,
         ...     include_uuid = True
+        ... )
+        >>> df, new_sync_time = sync_event_data(
+        ...     form = "Training Log",
+        ...     last_synchronisation_time = 1677654321000,
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
     """
     def __init__(
@@ -130,8 +144,9 @@ class SyncEventOption:
 class ProfileOption:
     """Options for configuring profile data export.
 
-    Defines customization options for the `get_profile_data` function, such as cleaning column names,
-    caching API responses, and displaying interactive feedback.
+    Customizes the behavior of :func:`teamworksams.export_main.get_profile_data`,
+    controlling output formatting, caching, and interactive feedback. Optimizes
+    performance for profile data exports. 
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution (default: True).
@@ -148,11 +163,16 @@ class ProfileOption:
         include_missing_users (bool): Whether to include missing users.
         
         Examples:
-        >>> from teamworksams import ProfileOption
+        >>> from teamworksams import get_profile_data, ProfileOption
         >>> option = ProfileOption(
         ...     interactive_mode = True,
         ...     guess_col_type = True,
         ...     clean_names = True
+        ... )
+        >>> df = get_profile_data(
+        ...     form = "Athlete Profile",
+        ...     url = "https://example.smartabase.com/site",
+        ...     option = option
         ... )
     """
     def __init__(

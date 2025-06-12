@@ -35,34 +35,46 @@ def upload_and_attach_to_events(
 ) -> DataFrame:
     """Upload files and attach them to events in an AMS Event Form.
 
-    Matches the provided mapping DataFrame to users and events using `user_key` and `attachment_id`,
-    uploads valid files from `file_dir`, and updates the images into the specified `file_field_name` within the event form
-    with file references (format: `file_id|server_file_name`). Preserves all other event form fields
-    during updates. Returns a DataFrame with results for all files, including successes and failures.
+    Matches the provided :class:`pandas.DataFrame` to users and events using `user_key`
+    and `mapping_col` (default 'attachment_id'), uploads valid files from `file_dir`,
+    and attaches them to the specified `file_field_name` in the AMS Event Form using
+    file references (e.g., `file_id|server_file_name`). Preserves existing event fields
+    during updates. Returns a :class:`pandas.DataFrame` with upload and attachment
+    results, including successes and failures. See :ref:`vignettes/uploading_files` for
+    detailed workflows.
 
     Args:
-        mapping_df (DataFrame): A DataFrame with columns:
-            - user_key (str): User identifier (one of 'username', 'email', 'about', 'uuid').
-            - file_name (str): Name of the file to upload, located in `file_dir`.
-            - mapping_col (str): Matches the mapping_col field in the event form.
-        mapping_col (str): Column name for matching events to files (default: 'attachment_id').
-        file_dir (str): Directory path containing the files to upload.
-        user_key (str): Column name in `mapping_df` for user identification ('username', 'email', 'about', 'uuid').
-        form (str): Name of the AMS Event Form (e.g., 'Training Log').
+        mapping_df (:class:`pandas.DataFrame`): DataFrame with columns:
+            - `user_key` (str): User identifier (e.g., 'username', 'email', 'about',
+              'uuid').
+            - `file_name` (str): File name in `file_dir` (e.g., 'doc1.pdf').
+            - `mapping_col` (str): Matches the event form’s field (e.g.,
+              'attachment_id'). Used for mapping files to events. Must not be empty.
+        file_dir (str): Directory path containing files to upload (e.g.,
+            '/path/to/files'). Must be a valid directory.
+        user_key (str): Column name in `mapping_df` for user identification. Must be
+            one of 'username', 'email', 'about', or 'uuid'.
+        form (str): Name of the AMS Event Form (e.g., 'Document Store'). Must exist
+            and contain `file_field_name`.
         file_field_name (str): File upload field in the form (e.g., 'attachment').
+            Must be a valid file field.
+        mapping_col (str): Column name in `mapping_df` and event form for matching
+            events to files (e.g., 'attachment_id'). Defaults to 'attachment_id'.
         url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        option (Optional[FileUploadOption]): Configuration for interactive mode, caching, and result saving.
-            Defaults to FileUploadOption(interactive_mode=True).
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+            Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`FileUploadOption`, optional): Configuration options for
+            interactive feedback (e.g., progress bars), caching, and saving results
+            to a CSV. Defaults to None (uses default :class:`FileUploadOption` with
+            `interactive_mode=True`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: Results with columns:
+        :class:`pandas.DataFrame`: Results with columns:
             - user_key (str): The user identifier from `mapping_df`.
             - file_name (str): The file name from `mapping_df`.
             - event_id (str): Matched event ID (None if failed).
@@ -73,7 +85,7 @@ def upload_and_attach_to_events(
             - reason (str): Failure reason (None if successful).
 
     Raises:
-        AMSError: If any of the following occur:
+        :class:`AMSError`: If:
             - `file_dir` is not a valid directory.
             - User data retrieval fails (e.g., invalid credentials, API errors).
             - No users are found in the AMS instance.
@@ -84,57 +96,52 @@ def upload_and_attach_to_events(
             - File upload or event update fails (e.g., network issues, server errors).
 
     Example:
-        ```python
-        from pandas import DataFrame
-        from teamworksams import upload_and_attach_to_events
-        from teamworksams import FileUploadOption
+        >>> import pandas as pd
+        >>> from teamworksams import upload_and_attach_to_events, FileUploadOption
 
-        # Sample mapping DataFrame
-        mapping_df = DataFrame({
-            "username": ["user1", "user2"],
-            "file_name": ["doc1.pdf", "doc2.pdf"],
-            "attachment_id": ["ATT123", "ATT456"]
-        })
+        >>> mapping_df = DataFrame({
+        ...     "username": ["user1", "user2"],
+        ...     "file_name": ["doc1.pdf", "doc2.pdf"],
+        ...     "attachment_id": ["ATT123", "ATT456"]
+        ... })
 
-        # Upload and attach files to events
-        results = upload_and_attach_to_events(
-            mapping_df = mapping_df,
-            mapping_col = "attachment_id",
-            user_key = "about",
-            file_dir = "/path/to/files",
-            form = "Document Store",
-            file_field_name = "attachment",
-            url = "https://example.smartabase.com/site",
-            username = "user",
-            password = "password",
-            option = FileUploadOption(interactive_mode = True, save_to_file = "results.csv")
+        >>> results = upload_and_attach_to_events(
+        ...     mapping_df = mapping_df,
+        ...     mapping_col = "attachment_id",
+        ...     user_key = "about",
+        ...     file_dir = "/path/to/files",
+        ...     form = "Document Store",
+        ...     file_field_name = "attachment",
+        ...     url = "https://example.smartabase.com/site",
+        ...     username = "user",
+        ...     password = "password",
+        ...     option = FileUploadOption(interactive_mode = True, save_to_file = "results.csv")
         )
 
-        # Expected output (example):
-        # ℹ Fetching all user data from site to match provided files...
-        # ℹ Retrieved 50 users.
-        # ℹ Fetching all event data from 'Document Store' to match provided files...
-        # ℹ Retrieved 500 events.
-        # ℹ Merged 500 rows from mapping_df with 1500 events from 'Document Store', resulting in 1500 matched records.
-        # ℹ Found 450 valid files in directory matching 500 mapping_df records.
-        # ℹ Finding a match for 2 events from mapping_df...
-        # ℹ Identified and mapped 2 events from mapping_df.
-        # ℹ Uploading 450 files...
-        # Uploading files: 100%|██████████| 450/450 [00:02<00:00,  1.00s/it]
-        # ℹ Preparing to update 500 events corresponding to 450 uploaded files for 'Document Store'.
-        # ℹ Updating 500 events for 'Document Store'
-        # ✔ Processed 500 events for 'Document Store'                   
-        # ℹ Form: Document Store
-        # ℹ Result: Success
-        # ℹ Records updated: 500
-        # ℹ Records attempted: 500
-        # ✔ Successfully attached 450 files to 500 events.
-        # ℹ Saved results to 'results.csv'   
-        #
-        # Results DataFrame:
-        #    username file_name event_id user_id file_id server_file_name status reason
-        # 0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None
-        # 1   user2   doc2.pdf  123457  78902   94197 doc2_1747654003484.pdf SUCCESS None
+        ℹ Fetching all user data from site to match provided files...
+        ℹ Retrieved 50 users.
+        ℹ Fetching all event data from 'Document Store' to match provided files...
+        ℹ Retrieved 500 events.
+        ℹ Merged 500 rows from mapping_df with 1500 events from 'Document Store', resulting in 1500 matched records.
+        ℹ Found 450 valid files in directory matching 500 mapping_df records.
+        ℹ Finding a match for 2 events from mapping_df...
+        ℹ Identified and mapped 2 events from mapping_df.
+        ℹ Uploading 450 files...
+        Uploading files: 100%|██████████| 450/450 [00:02<00:00,  1.00s/it]
+        ℹ Preparing to update 500 events corresponding to 450 uploaded files for 'Document Store'.
+        ℹ Updating 500 events for 'Document Store'
+        ✔ Processed 500 events for 'Document Store'                   
+        ℹ Form: Document Store
+        ℹ Result: Success
+        ℹ Records updated: 500
+        ℹ Records attempted: 500
+        ✔ Successfully attached 450 files to 500 events.
+        ℹ Saved results to 'results.csv'   
+        
+        >>> print(results.head())
+           username file_name event_id user_id file_id server_file_name status reason
+        0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None
+        1   user2   doc2.pdf  123457  78902   94197 doc2_1747654003484.pdf SUCCESS None
     """
     
     option = option or FileUploadOption(interactive_mode=True)
@@ -577,32 +584,38 @@ def upload_and_attach_to_avatars(
 ) -> DataFrame:
     """Upload files and attach them as avatars to user profiles in an AMS instance.
 
-    Matches the provided or generated mapping DataFrame to users using `user_key`, uploads valid image files
-    from `file_dir`, and updates the `avatarId` field in user profiles. If `mapping_df` is not provided,
-    generates it from image files in `file_dir`, using filenames (without extension) as `user_key` values.
-    Preserves all other user profile fields during updates. Returns a DataFrame with results for all files, 
-    including successes and failures.
+    Matches the provided or auto-generated :class:`pandas.DataFrame` to users using
+    `user_key`, uploads valid image files from `file_dir`, and updates the `avatarId`
+    field in user profiles. If `mapping_df` is None, generates it from image filenames
+    in `file_dir` (without extension) as `user_key` values. Preserves other profile
+    fields during updates. Returns a :class:`pandas.DataFrame` with results. See
+    :ref:`vignettes/uploading_files` for detailed workflows.
 
     Args:
-        mapping_df (Optional[DataFrame]): A DataFrame with columns:
-            - user_key (str): User identifier (e.g., 'username', 'email', 'about', 'uuid').
-            - file_name (str): Name of the image file to upload, located in `file_dir`.
-            If None, generates a mapping DataFrame from `file_dir`. Defaults to None.
-        file_dir (str): Directory path containing the image files to upload.
-        user_key (str): Column name in `mapping_df` for user identification ('username', 'email', 'about', 'uuid').
+        mapping_df (Optional[:class:`pandas.DataFrame`]): DataFrame with columns:
+            - `user_key` (str): User identifier (e.g., 'username', 'email', 'about',
+              'uuid').
+            - `file_name` (str): Image file name in `file_dir` (e.g., 'avatar1.png').
+            If None, generates from `file_dir` filenames. Defaults to None.
+        file_dir (str): Directory path containing image files (e.g.,
+            '/path/to/avatars'). Must be a valid directory.
+        user_key (str): Column name for user identification ('username', 'email',
+            'about', 'uuid'). Required if `mapping_df` is None or provided.
         url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        option (Optional[FileUploadOption]): Configuration for interactive mode, caching, and result saving.
-            Defaults to FileUploadOption(interactive_mode=True).
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+            Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        option (:class:`FileUploadOption`, optional): Configuration options for
+            interactive feedback, caching, and saving results to a CSV. Defaults to
+            None (uses default :class:`FileUploadOption` with
+            `interactive_mode=True`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: Results with columns:
+        :class:`pandas.DataFrame`: Results with columns:
             - user_key (str): The user identifier from `mapping_df`.
             - file_name (str): The file name from `mapping_df`.
             - user_id (str): Matched user ID (None if failed).
@@ -612,52 +625,51 @@ def upload_and_attach_to_avatars(
             - reason (str): Failure reason (None if successful).
 
     Raises:
-        AMSError: If any of the following occur:
-            - `file_dir` is not a valid directory.
-            - `mapping_df` is None and no valid image files are found in `file_dir`.
-            - User data retrieval fails (e.g., invalid credentials, API errors).
-            - No users are found in the AMS instance.
-            - File validation fails (e.g., unsupported image type, file not found).
-            - File upload or user profile update fails (e.g., network issues, server errors).
+        :class:`AMSError`: If:
+            - `file_dir` is invalid or empty.
+            - `mapping_df` is None and no valid images are found.
+            - User data retrieval fails.
+            - No users are found.
+            - File validation fails (e.g., non-image files).
+            - File upload or profile update fails.
+        :class:`ValueError`: If `user_key` is invalid or `mapping_df` is malformed.
             
-    Example:
-        ```python
-        from pandas import DataFrame
-        from teamworksams import upload_and_attach_to_avatars
-        from teamworksams import FileUploadOption
+    Examples:
+        >>> import pandas as pd
+        >>> from teamworksams import upload_and_attach_to_avatars, FileUploadOption
 
-        # Sample mapping DataFrame
-        mapping_df = DataFrame({
-            "username": ["user1", "user2"],
-            "file_name": ["avatar1.png", "avatar2.jpg"]
-        })
+        >>> mapping_df = DataFrame({
+        ...     "username": ["user1", "user2"],
+        ...     "file_name": ["avatar1.png", "avatar2.jpg"]
+        ... })
 
-        # Upload and attach avatars
-        results = upload_and_attach_to_avatars(
-            mapping_df = mapping_df,
-            file_dir = "/path/to/avatars",
-            user_key = "username",
-            url = "https://example.smartabase.com/site",
-            username = "user",
-            password = "password",
-            option = FileUploadOption(interactive_mode = True, save_to_file = "avatar_results.csv")
-        )
+        >>> results = upload_and_attach_to_avatars(
+        ...     mapping_df = mapping_df,
+        ...     file_dir = "/path/to/avatars",
+        ...     user_key = "username",
+        ...     url = "https://example.smartabase.com/site",
+        ...     username = "user",
+        ...     password = "password",
+        ...     option = FileUploadOption(
+        ...         interactive_mode = True, 
+        ...         save_to_file = "avatar_results.csv"
+        ...     )
+        ... )
 
-        # Expected output (example):
-        # ℹ Fetching all user data from site to match provided files...
-        # ℹ Retrieved 50 users.
-        # ℹ Found 2 valid avatar files in directory for 2 matching users on the site.
-        # ℹ Uploading 2 avatar files...
-        # Uploading files: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
-        # Preparing to update avatars for 2 users with 2 avatar files.
-        # Updating avatars: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
-        # ✔ Successfully updated 2 avatar files to 2 users.
-        # ℹ Saved results to 'avatar_results.csv'
-        #
-        # Results DataFrame:
-        #    username  file_name user_id file_id server_file_name status reason
-        # 0   user1  avatar1.png 78901   94196 avatar1_1747654002120.png SUCCESS None
-        # 1   user2  avatar2.jpg 78902   94197 avatar2_1747654003484.jpg SUCCESS None
+        ℹ Fetching all user data from site to match provided files...
+        ℹ Retrieved 50 users.
+        ℹ Found 2 valid avatar files in directory for 2 matching users on the site.
+        ℹ Uploading 2 avatar files...
+        Uploading files: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
+        Preparing to update avatars for 2 users with 2 avatar files.
+        Updating avatars: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
+        ✔ Successfully updated 2 avatar files to 2 users.
+        ℹ Saved results to 'avatar_results.csv'
+    
+        >>> print(results)
+           username  file_name user_id file_id server_file_name status reason
+        0   user1  avatar1.png 78901   94196 avatar1_1747654002120.png SUCCESS None
+        1   user2  avatar2.jpg 78902   94197 avatar2_1747654003484.jpg SUCCESS None
     """
     option = option or FileUploadOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)

@@ -8,19 +8,16 @@ from typing import Optional, Dict, Tuple
 class AMSError(Exception):
     """Base exception for AMS operations and errors.
 
-    Raised for errors during interactions with the AMS API, such as authentication failures,
-    invalid API responses, or data validation issues. Provides detailed error information,
-    including the function, endpoint, and HTTP status code where the error occurred, to
-    assist in debugging and error handling.
+    Raised for errors during AMS API interactions, such as authentication failures or
+    invalid responses. Provides detailed error information, including function, endpoint,
+    and HTTP status code, to aid debugging. Used by functions like
+    :func:`get_client` and :func:`teamworksams.login_main.login`.
 
     Args:
         message (str): The primary error message describing the issue.
-        function (Optional[str]): The name of the function where the error occurred.
-            Defaults to None.
-        endpoint (Optional[str]): The API endpoint involved in the error, if applicable.
-            Defaults to None.
-        status_code (Optional[int]): The HTTP status code of the error, if applicable.
-            Defaults to None.
+        function (Optional[str]): Name of the function where the error occurred (e.g., 'login'). Defaults to None.
+        endpoint (Optional[str]): API endpoint involved (e.g., 'user/loginUser'). Defaults to None.
+        status_code (Optional[int]): HTTP status code of the error (e.g., 401 for unauthorized). Defaults to None.
 
     Attributes:
         message (str): The primary error message.
@@ -67,13 +64,15 @@ class AMSError(Exception):
 class AMSClient:
     """A client for interacting with the AMS API.
 
-    Handles authentication, API requests, and caching for AMS operations. This class is used
-    internally by export and import functions to communicate with the AMS API.
+    Handles authentication, API requests, and caching for AMS operations. Created by
+    :func:`get_client` and used internally by functions like
+    :func:`teamworksams.user_main.get_user`. Supports direct use for custom API calls
+    with methods like :meth:`_fetch`. See :ref:`vignettes/credentials` for setup.
 
     Args:
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses AMS_USERNAME env var.
-        password (Optional[str]): The password for authentication. If None, uses AMS_PASSWORD env var.
+        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
 
     Attributes:
         url (str): The validated AMS instance URL.
@@ -275,32 +274,26 @@ def get_client(
         cache: bool = True, 
         interactive_mode: bool = False
     ) -> AMSClient:
-    """Create or retrieve an authenticated AMSClient instance.
+    """Create or retrieve an authenticated :class:`AMSClient` instance.
 
-    Creates a new AMSClient instance with the provided credentials or reuses an existing
+    Creates a new :class:`AMSClient` instance with the provided credentials or reuses an existing
     authenticated client if caching is enabled. The client is used for all AMS API
     interactions, handling authentication and session management. Provides interactive
     feedback on login success if enabled. This function is typically called internally by
     other public-facing functions but can be used directly to initialize a client.
 
     Args:
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-            Must include a valid site name.
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        cache (bool): Whether to reuse an existing authenticated client instance if
-            available, improving performance for repeated operations. Defaults to True.
-        interactive_mode (bool): Whether to print status messages during client creation,
-            such as login success. Defaults to False.
+        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name (e.g., '/site').
+        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        cache (bool): Reuse an existing authenticated client if available. Set to False for independent sessions (e.g., parallel scripts). Defaults to True.
+        interactive_mode (bool): Print status messages (e.g., login success). Useful for interactive workflows. Defaults to False.
 
     Returns:
-        AMSClient: An authenticated AMSClient instance, ready for API interactions.
+        :class:`AMSClient`: An authenticated client ready for API interactions.
 
     Raises:
-        AMSError: If the URL is invalid, credentials are missing or invalid, or
-            authentication fails.
+        :class:`AMSError`: If the URL is invalid, credentials are missing, or authentication fails.
 
     Examples:
         >>> from teamworksams import get_client

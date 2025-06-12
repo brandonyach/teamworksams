@@ -26,53 +26,52 @@ def get_event_data(
 ) -> DataFrame:
     """Retrieve event data from an AMS Event Form within a date range.
 
-    Fetches event data from the specified AMS Event Form for a given date range, optionally
-    applying filters to narrow results by user attributes (e.g., username, group) or data fields
-    (e.g., specific field values). The function processes the API response into a pandas DataFrame
-    with columns such as event IDs, user IDs, and form fields. Supports downloading attachments
-    if enabled in the EventOption, and provides interactive feedback on the number of events
-    retrieved if interactive mode is active.
+    Fetches event data from the specified AMS Event Form for a given date range, returning
+    a :class:`pandas.DataFrame` with columns like 'event_id', 'user_id', and form fields.
+    Supports optional filtering by user attributes (e.g., group) or data fields, and
+    downloading attachments if enabled. Provides interactive feedback when
+    ``option.interactive_mode=True``. See :ref:`vignettes/exporting_data` for data
+    export workflows.
 
     Args:
-        form (str): The name of the AMS Event Form to retrieve data from. Must be a non-empty
-            string and correspond to a valid event form.
-        start_date (str): The start date for the event range in 'DD/MM/YYYY' format.
-        end_date (str): The end date for the event range in 'DD/MM/YYYY' format.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        filter (Optional[EventFilter]): An EventFilter object to narrow results by user
-            attributes (e.g., 'username', 'group') or data fields (e.g., specific field values).
-            If None, no filtering is applied. Defaults to None.
-        option (Optional[EventOption]): Configuration options for the retrieval, including
-            interactive_mode (for status messages), download_attachment (to fetch attachments),
-            clean_names (to standardize column names), guess_col_type (to infer data types),
-            convert_dates (to parse dates), cache (for API response caching), and
-            attachment_directory (for saving attachments). If None, uses default EventOption.
-            Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        form (str): Name of the AMS Event Form (e.g., 'Training Log'). Must be a non-empty
+            string and correspond to a valid form.
+        start_date (str): Start date for the event range in 'DD/MM/YYYY' format (e.g.,
+            '01/01/2025'). Must be a valid date.
+        end_date (str): End date for the event range in 'DD/MM/YYYY' format (e.g.,
+            '31/01/2025'). Must be a valid date and not before `start_date`.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        filter (:class:`EventFilter`, optional): Filter object to narrow results by user
+            attributes (e.g., 'group') or data fields (e.g., 'intensity=High'). If None,
+            includes all events. Defaults to None.
+        option (:class:`EventOption`, optional): Configuration options, including
+            `interactive_mode` for status messages, `download_attachment` to fetch
+            attachments, `clean_names` to standardize column names, `guess_col_type` to
+            infer data types, `convert_dates` to parse dates, `cache` to reuse a client,
+            and `attachment_directory` for saving attachments. Defaults to None (uses
+            default :class:`EventOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: A pandas DataFrame containing event data with columns such as 'event_id',
-            'user_id', 'start_date', 'form', and form-specific fields. Returns an empty DataFrame
-            with columns ['user_id', 'event_id', 'form', 'start_date'] if no events are found
-            or no users match the filter.
+        :class:`pandas.DataFrame`: Event data with columns like 'event_id', 'user_id',
+            'start_date', 'form', and form fields (e.g., 'duration'). Empty with columns
+            ['user_id', 'event_id', 'form', 'start_date'] if no events are found.
 
     Raises:
-        AMSError: If the form is empty, no events are found, no users match the filter,
-            authentication fails, or the API request returns an error.
-        ValueError: If start_date or end_date is not in 'DD/MM/YYYY' format, or if filter
-            parameters are invalid (e.g., invalid user_key or data_condition).
+        :class:`AMSError`: If `form` is empty, no events/users are found, authentication
+            fails, or the API request fails.
+        :class:`ValueError`: If `start_date` or `end_date` is not in 'DD/MM/YYYY' format,
+            or if `filter` parameters are invalid.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import get_event_data
-        >>> from teamworksams import EventFilter
-        >>> from teamworksams import EventOption
+        >>> from teamworksams import get_event_data, EventFilter, EventOption
         >>> df = get_event_data(
         ...     form = "Training Log",
         ...     start_date = "01/01/2025",
@@ -83,8 +82,10 @@ def get_event_data(
         ...     filter = EventFilter(user_key = "group", user_value = "Example Group"),
         ...     option = EventOption(interactive_mode = True, clean_names = True)
         ... )
+        
         ℹ Requesting event data for 'Training Log' between 01/01/2025 and 31/01/2025
         ℹ Processing 10 events...
+        ✔ Retrieved 10 event records for form 'Training Log'.
         >>> print(df.head())
            about  user_id  event_id  form         start_date  duration  intensity
         0  John Doe    12345    67890  Training Log  01/01/2025        60       High
@@ -162,53 +163,49 @@ def sync_event_data(
 ) -> Tuple[DataFrame, int]:
     """Retrieve event data from an AMS event form modified since the last synchronization time.
 
-    Fetches event data from the specified AMS Event Form using the `synchronise` API endpoint,
-    returning only events inserted or updated since the provided `last_synchronisation_time`
-    (in milliseconds since 1970-01-01). The function processes the API response into a pandas
-    DataFrame and returns a tuple containing the DataFrame and the new synchronization time
-    for subsequent calls. Supports filtering by user attributes and customization via
-    SyncEventOption, such as including user metadata or UUIDs. Provides interactive feedback
-    if enabled.
+    Fetches event data from an AMS Event Form using the 'synchronise' endpoint, returning
+    only events inserted/updated since `last_synchronisation_time` (milliseconds since
+    1970-01-01). Returns a :class:`pandas.DataFrame` and a new synchronization time for
+    subsequent calls. Supports user filtering and options like user metadata inclusion.
+    Provides interactive feedback when ``option.interactive_mode=True``. See
+    :ref:`vignettes/exporting_data` for synchronization workflows.
 
     Args:
-        form (str): The name of the AMS Event Form to retrieve data from. Must be a non-empty
-            string and correspond to a valid event form.
-        last_synchronisation_time (int): The last synchronization time in milliseconds since
-            1970-01-01. Must be non-negative.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        filter (Optional[SyncEventFilter]): A SyncEventFilter object to narrow results by
-            user attributes (e.g., 'username', 'group'). If None, no filtering is applied.
-            Defaults to None.
-        option (Optional[SyncEventOption]): Configuration options for the retrieval,
-            including interactive_mode (for status messages), include_user_data (to add user
-            metadata), include_uuid (to add UUIDs), guess_col_type (to infer data types),
-            cache (for API response caching), and include_missing_users (to include users
-            without events). If None, uses default SyncEventOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        form (str): Name of the AMS Event Form (e.g., 'Training Log'). Must be a non-empty
+            string and correspond to a valid form.
+        last_synchronisation_time (int): Last synchronization time in milliseconds since
+            1970-01-01 (e.g., 1677654321000 for 2023-03-01 12:25:21). Must be non-negative.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        filter (:class:`SyncEventFilter`, optional): Filter object to narrow results by
+            user attributes (e.g., 'group'). If None, includes all events. Defaults to None.
+        option (:class:`SyncEventOption`, optional): Configuration options, including
+            `interactive_mode` for status messages, `include_user_data` to add user
+            metadata, `include_uuid` to add UUIDs, `guess_col_type` to infer data types,
+            `cache` to reuse a client, and `include_missing_users` to include users without
+            events. Defaults to None (uses default :class:`SyncEventOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        Tuple[DataFrame, int]: A tuple containing:
-            - A pandas DataFrame with event data (columns: 'event_id', 'user_id', 'start_date',
-              'form', etc.). Returns an empty DataFrame with columns ['user_id', 'event_id',
-              'form', 'start_date'] if no new events are found or no users match the filter.
-            - An integer representing the new `lastSynchronisationTimeOnServer` in milliseconds,
-              for use in subsequent synchronization calls.
+        Tuple[:class:`pandas.DataFrame`, int]: A tuple containing:
+            - A DataFrame with event data (columns: 'event_id', 'user_id', 'start_date',
+              'form', etc.). Empty with columns ['user_id', 'event_id', 'form',
+              'start_date'] if no new events are found.
+            - An integer representing the new synchronization time (milliseconds) for
+              subsequent calls.
 
     Raises:
-        AMSError: If the form is empty, no users match the filter, authentication fails,
-            or the API request returns an error.
-        ValueError: If last_synchronisation_time is negative or not an integer.
+        :class:`AMSError`: If `form` is empty, no users match the filter, authentication
+            fails, or the API request fails.
+        :class:`ValueError`: If `last_synchronisation_time` is negative or not an integer.
 
     Examples:
-        >>> from teamworksams import sync_event_data
-        >>> from teamworksams import SyncEventFilter
-        >>> from teamworksams import SyncEventOption
+        >>> from teamworksams import sync_event_data, SyncEventFilter, SyncEventOption
         >>> df, new_sync_time = sync_event_data(
         ...     form = "Training Log",
         ...     last_synchronisation_time = 1677654321000,
@@ -310,47 +307,44 @@ def get_profile_data(
 ) -> DataFrame:
     """Retrieve profile data from an AMS Profile Form.
 
-    Fetches profile data from the specified AMS Profile Form, optionally applying filters to
-    narrow results by user attributes (e.g., username, group). The function processes the API
-    response into a pandas DataFrame with columns such as profile IDs, user IDs, and form-specific
-    fields. Provides interactive feedback on the number of profiles retrieved if interactive
-    mode is enabled.
+    Fetches profile data from the specified AMS Profile Form, returning a
+    :class:`pandas.DataFrame` with columns like 'profile_id', 'user_id', and form fields.
+    Supports optional filtering by user attributes (e.g., group) and customization like
+    column name standardization. Provides interactive feedback when
+    ``option.interactive_mode=True``.
 
     Args:
-        form (str): The name of the AMS Profile Form to retrieve data from. Must be a non-empty
-            string and correspond to a valid profile form.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-        username (Optional[str]): The username for authentication. If None, uses the
-            AMS_USERNAME environment variable. Defaults to None.
-        password (Optional[str]): The password for authentication. If None, uses the
-            AMS_PASSWORD environment variable. Defaults to None.
-        filter (Optional[ProfileFilter]): A ProfileFilter object to narrow results by user
-            attributes (e.g., 'username', 'group'). If None, no filtering is applied.
-            Defaults to None.
-        option (Optional[ProfileOption]): Configuration options for the retrieval,
-            including interactive_mode (for status messages), clean_names (to standardize
-            column names), guess_col_type (to infer data types), cache (for API response
-            caching), and include_missing_users (to include users without profiles). If None,
-            uses default ProfileOption. Defaults to None.
-        client (Optional[AMSClient]): A pre-authenticated AMSClient instance. If None,
-            a new client is created using the provided url, username, and password.
-            Defaults to None.
+        form (str): Name of the AMS Profile Form (e.g., 'Athlete Profile'). Must be a
+            non-empty string and correspond to a valid form.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
+            include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
+        filter (:class:`ProfileFilter`, optional): Filter object to narrow results by user
+            attributes (e.g., 'group'). If None, includes all profiles. Defaults to None.
+        option (:class:`ProfileOption`, optional): Configuration options, including
+            `interactive_mode` for status messages, `clean_names` to standardize column
+            names, `guess_col_type` to infer data types, `cache` to reuse a client, and
+            `include_missing_users` to include users without profiles. Defaults to None
+            (uses default :class:`ProfileOption`).
+        client (:class:`AMSClient`, optional): Pre-authenticated client from
+            :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: A pandas DataFrame containing profile data with columns such as 'profile_id',
-            'user_id', 'form', and form-specific fields. Returns an empty DataFrame with columns
-            ['user_id', 'profile_id', 'form'] if no profiles are found or no users match the filter.
+        :class:`pandas.DataFrame`: Profile data with columns like 'profile_id', 'user_id',
+            'form', and form fields (e.g., 'ID'). Empty with columns ['user_id',
+            'profile_id', 'form'] if no profiles are found.
 
     Raises:
-        AMSError: If the form is empty, no profiles are found, no users match the filter,
-            authentication fails, or the API request returns an error.
-        ValueError: If filter parameters are invalid (e.g., invalid user_key).
+        :class:`AMSError`: If `form` is empty, no profiles/users are found, authentication
+            fails, or the API request fails.
+        :class:`ValueError`: If `filter` parameters are invalid.
 
     Examples:
         >>> import pandas as pd
-        >>> from teamworksams import get_profile_data
-        >>> from teamworksams import ProfileFilter
-        >>> from teamworksams import ProfileOption
+        >>> from teamworksams import get_profile_data, ProfileFilter, ProfileOption
         >>> df = get_profile_data(
         ...     form = "Athlete Profile",
         ...     url = "https://example.smartabase.com/site",
