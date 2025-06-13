@@ -29,7 +29,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/database_main';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -424,23 +424,23 @@
                 <article class="bd-article">
                   
   <h1>Source code for teamworksams.database_main</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.database_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_database_data</span><span class="p">,</span> <span class="n">_fetch_database_save</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.database_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_process_database_entries</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.database_clean</span><span class="w"> </span><span class="kn">import</span> <span class="n">_clean_database_df</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.database_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_database_df</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.database_build</span><span class="w"> </span><span class="kn">import</span> <span class="n">_build_database_payload</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.database_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetDatabaseOption</span><span class="p">,</span> <span class="n">InsertDatabaseOption</span><span class="p">,</span> <span class="n">UpdateDatabaseOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.form_main</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_form_id_and_type</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.form_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">FormOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_print</span><span class="w"> </span><span class="kn">import</span> <span class="n">_print_import_status</span>
+<span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">.database_fetch</span> <span class="kn">import</span> <span class="n">_fetch_database_data</span><span class="p">,</span> <span class="n">_fetch_database_save</span>
+<span class="kn">from</span> <span class="nn">.database_process</span> <span class="kn">import</span> <span class="n">_process_database_entries</span>
+<span class="kn">from</span> <span class="nn">.database_clean</span> <span class="kn">import</span> <span class="n">_clean_database_df</span>
+<span class="kn">from</span> <span class="nn">.database_validate</span> <span class="kn">import</span> <span class="n">_validate_database_df</span>
+<span class="kn">from</span> <span class="nn">.database_build</span> <span class="kn">import</span> <span class="n">_build_database_payload</span>
+<span class="kn">from</span> <span class="nn">.database_option</span> <span class="kn">import</span> <span class="n">GetDatabaseOption</span><span class="p">,</span> <span class="n">InsertDatabaseOption</span><span class="p">,</span> <span class="n">UpdateDatabaseOption</span>
+<span class="kn">from</span> <span class="nn">.form_main</span> <span class="kn">import</span> <span class="n">_fetch_form_id_and_type</span>
+<span class="kn">from</span> <span class="nn">.form_option</span> <span class="kn">import</span> <span class="n">FormOption</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
+<span class="kn">from</span> <span class="nn">.import_print</span> <span class="kn">import</span> <span class="n">_print_import_status</span>
 
 
 <div class="viewcode-block" id="get_database">
 <a class="viewcode-back" href="../../reference/get_database.html#teamworksams.database_main.get_database">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_database</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">get_database</span><span class="p">(</span>
     <span class="n">form_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -552,7 +552,7 @@
 
 <div class="viewcode-block" id="delete_database_entry">
 <a class="viewcode-back" href="../../reference/delete_database_entry.html#teamworksams.database_main.delete_database_entry">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">delete_database_entry</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">delete_database_entry</span><span class="p">(</span>
     <span class="n">database_entry_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -625,7 +625,7 @@
 
 <div class="viewcode-block" id="insert_database_entry">
 <a class="viewcode-back" href="../../reference/insert_database_entry.html#teamworksams.database_main.insert_database_entry">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">insert_database_entry</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">insert_database_entry</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -755,7 +755,7 @@
 
 <div class="viewcode-block" id="update_database_entry">
 <a class="viewcode-back" href="../../reference/update_database_entry.html#teamworksams.database_main.update_database_entry">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">update_database_entry</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">update_database_entry</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -939,7 +939,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

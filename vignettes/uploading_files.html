@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Uploading Files &#8212; teamworksams 0.1.0 documentation</title>
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/uploading_files';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -438,18 +438,17 @@
 <h1>Uploading Files<a class="headerlink" href="#uploading-files" title="Link to this heading">#</a></h1>
 <p>This vignette provides a comprehensive guide to uploading files in Teamworks AMS using
 <strong>teamworksams</strong>, covering <code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code> and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>. Designed for analysts and administrators, it
-outlines detailed workflows for attaching files to event forms (e.g., ‘Document Store’)
-or setting user profile avatars. These complex, multi-step functions require careful
-setup, so this guide breaks down each step with Python/pandas examples. See
-<span class="xref std std-ref">reference</span> for detailed function documentation and
-<span class="xref std std-ref">vignettes/exporting_data</span> for related data tasks.</p>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>. It outlines detailed workflows for attaching
+files to event forms (e.g., ‘Document Store’) or setting user profile avatars. These
+complex, multi-step functions require careful setup, so this guide breaks down each
+step with Python/pandas examples. See <span class="xref std std-ref">reference</span> for detailed function
+documentation and <span class="xref std std-ref">vignettes/exporting_data</span> for related data tasks.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p><strong>teamworksams</strong> supports file uploads to AMS with two key functions:</p>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code>: Uploads files and attaches them to events in an
-Event Form, matching users and events via a mapping DataFrame.</p></li>
+Event Form, matching users and events via a  supplied mapping DataFrame.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>: Uploads images and sets them as user profile
 avatars, with optional auto-generated mapping.</p></li>
 </ul>
@@ -472,7 +471,7 @@ AMS_PASSWORD=password
 </div>
 </div>
 <p>Load credentials:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -485,17 +484,23 @@ and ensure the AMS form has appropriate fields (e.g., ‘attachment’ for event
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code> to upload files and attach them to an AMS Event
 Form, matching users and events via a mapping DataFrame.</p>
 <p><strong>Preparing the Mapping DataFrame</strong></p>
-<p>Create a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with <cite>user_key</cite>, <cite>file_name</cite>, and <cite>attachment_id</cite>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span>
+<p>Create a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with <cite>user_key</cite>, <cite>file_name</cite>, and <cite>attachment_id</cite>.
+The <cite>user_key</cite> must be a column named one of the following as a aser identifier:
+‘username’, ‘email’, ‘about’ or ‘uuid’. <cite>attachment_id</cite> can be any field in the event
+data that serves as a unique identifier. <cite>file_name</cite> must match file names provided in
+<cite>file_dir</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span>
+
 <span class="c1"># Fetch events to get attachment IDs</span>
 <span class="n">event_df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
-    <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span>
-    <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;31/12/2025&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">EventOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;31/12/2025&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
+
 <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;user1&quot;</span><span class="p">,</span> <span class="s2">&quot;user2&quot;</span><span class="p">],</span>
     <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;doc1.pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;doc2.png&quot;</span><span class="p">],</span>
@@ -505,31 +510,48 @@ Form, matching users and events via a mapping DataFrame.</p>
 </div>
 <p><strong>Uploading and Attaching Files</strong></p>
 <p>Upload files from a directory and attach to the ‘attachment’ field:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">upload_and_attach_to_events</span><span class="p">,</span> <span class="n">FileUploadOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">upload_and_attach_to_events</span><span class="p">,</span> <span class="n">FileUploadOption</span>
+
 <span class="n">results</span> <span class="o">=</span> <span class="n">upload_and_attach_to_events</span><span class="p">(</span>
-    <span class="n">mapping_df</span><span class="o">=</span><span class="n">mapping_df</span><span class="p">,</span>
-    <span class="n">file_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/files&quot;</span><span class="p">,</span>
-    <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
-    <span class="n">file_field_name</span><span class="o">=</span><span class="s2">&quot;attachment&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_to_file</span><span class="o">=</span><span class="s2">&quot;results.csv&quot;</span><span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="s2">&quot;/path/to/files&quot;</span><span class="p">,</span>
+    <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
+    <span class="n">file_field_name</span> <span class="o">=</span> <span class="s2">&quot;attachment&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">save_to_file</span> <span class="o">=</span> <span class="s2">&quot;results.csv&quot;</span><span class="p">)</span>
 <span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching all user data...
-✔ Retrieved 50 users.
-ℹ Fetching event data from &#39;Document Store&#39;...
-✔ Retrieved 100 events.
-ℹ Uploading 2 files...
-Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00, 1.00s/it]
-✔ Successfully attached 2 files to 2 events.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching all user data from site to match provided files...
+ℹ Retrieved 50 users.
+ℹ Fetching all event data from &#39;Document Store&#39; to match provided files...
+ℹ Retrieved 500 events.
+ℹ Merged 500 rows from mapping_df with 1500 events from &#39;Document Store&#39;, resulting
+in 1500 matched records.
+ℹ Found 450 valid files in directory matching 500 mapping_df records.
+ℹ Finding a match for 2 events from mapping_df...
+ℹ Identified and mapped 2 events from mapping_df.
+ℹ Uploading 450 files...
+Uploading files: 100%|██████████| 450/450 [00:02&lt;00:00,  1.00s/it]
+ℹ Preparing to update 500 events corresponding to 450 uploaded files for &#39;Document
+Store&#39;.
+ℹ Updating 500 events for &#39;Document Store&#39;
+✔ Processed 500 events for &#39;Document Store&#39;
+ℹ Form: Document Store
+ℹ Result: Success
+ℹ Records updated: 500
+ℹ Records attempted: 500
+✔ Successfully attached 450 files to 500 events.
 ℹ Saved results to &#39;results.csv&#39;
-   username file_name event_id user_id file_id server_file_name  status reason
+
+&gt;&gt;&gt; print(results.head())
+   username file_name event_id user_id file_id server_file_name status reason
 0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None
-1   user2   doc2.png  123457  78902   94197 doc2_1747654003484.png SUCCESS None
+1   user2   doc2.pdf  123457  78902   94197 doc2_1747654003484.pdf SUCCESS None
 </pre></div>
 </div>
 <p><strong>Steps Performed</strong>:
@@ -537,9 +559,10 @@ Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00, 1.00s
 2. Fetches user data to map <cite>user_key</cite> to <cite>user_id</cite>.
 3. Fetches event data from <cite>form</cite> to match <cite>attachment_id</cite>.
 4. Validates files in <cite>file_dir</cite> (e.g., .pdf, .png).
-5. Uploads files and generates file references.
-6. Updates events with file references in <cite>file_field_name</cite>.
-7. Returns results, optionally saving to CSV.</p>
+5. Uploads files to server and generates file references.
+6. Updates events with file references in <cite>file_field_name</cite>, using
+<code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>.
+7. Returns results, optionally, saving to CSV.</p>
 <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code> for details.</p>
 </section>
 <section id="uploading-avatars">
@@ -547,7 +570,9 @@ Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00, 1.00s
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code> to upload images and set them as user profile
 avatars, with optional automatic mapping.</p>
 <p><strong>Using a Mapping DataFrame</strong></p>
-<p>Create a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with <cite>user_key</cite> and <cite>file_name</cite>:</p>
+<p>Create a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with <cite>user_key</cite> and <cite>file_name</cite>. The <cite>user_key</cite> must be a column named one of the following as a aser identifier:
+‘username’, ‘email’, ‘about’ or ‘uuid’. <cite>file_name</cite> must match file names provided in
+<cite>file_dir</cite>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;user1&quot;</span><span class="p">,</span> <span class="s2">&quot;user2&quot;</span><span class="p">],</span>
     <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;avatar1.png&quot;</span><span class="p">,</span> <span class="s2">&quot;avatar2.jpg&quot;</span><span class="p">]</span>
@@ -555,45 +580,56 @@ avatars, with optional automatic mapping.</p>
 </pre></div>
 </div>
 <p>Upload and attach avatars:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">upload_and_attach_to_avatars</span><span class="p">,</span> <span class="n">FileUploadOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">upload_and_attach_to_avatars</span><span class="p">,</span> <span class="n">FileUploadOption</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">upload_and_attach_to_avatars</span><span class="p">(</span>
-    <span class="n">mapping_df</span><span class="o">=</span><span class="n">mapping_df</span><span class="p">,</span>
-    <span class="n">file_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/avatars&quot;</span><span class="p">,</span>
-    <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_to_file</span><span class="o">=</span><span class="s2">&quot;avatars.csv&quot;</span><span class="p">)</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="s2">&quot;/path/to/avatars&quot;</span><span class="p">,</span>
+    <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">save_to_file</span> <span class="o">=</span> <span class="s2">&quot;avatars.csv&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching all user data...
-✔ Retrieved 50 users.
-ℹ Uploading 2 avatars...
-Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00, 1.00s/it]
-✔ Successfully attached 2 avatar files to 2 users.
-ℹ Saved results to &#39;avatars.csv&#39;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching all user data from site to match provided files...
+ℹ Retrieved 50 users.
+ℹ Found 2 valid avatar files in directory for 2 matching users on the site.
+ℹ Uploading 2 avatar files...
+Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00,  1.00s/it]
+Preparing to update avatars for 2 users with 2 avatar files.
+Updating avatars: 100%|██████████| 2/2 [00:02&lt;00:00,  1.00s/it]
+✔ Successfully updated 2 avatar files to 2 users.
+ℹ Saved results to &#39;avatar_results.csv&#39;
    username file_name user_id file_id server_file_name  status reason
 0   user1   avatar1.png 78901 94196 avatar1_1747654002120.png SUCCESS None
 1   user2   avatar2.jpg 78902 94197 avatar2_1747654003484.jpg SUCCESS None
 </pre></div>
 </div>
 <p><strong>Automatic Mapping from Directory</strong></p>
-<p>Generate <cite>mapping_df</cite> from filenames (without extension) as <cite>user_key</cite>:</p>
+<p>Generate <cite>mapping_df</cite> from filenames (without extension) as <cite>user_key</cite> - which is
+very useful in scenarios where no <cite>mapping_df</cite> is available, or the file names already exactly match one of the available <cite>user_key</cite>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">upload_and_attach_to_avatars</span><span class="p">(</span>
-    <span class="n">file_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/avatars&quot;</span><span class="p">,</span>
-    <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="s2">&quot;/path/to/avatars&quot;</span><span class="p">,</span>
+    <span class="n">user_key</span><span class="o">=</span>  <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">FileUploadOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Generated mapping DataFrame from 2 image files in directory.
-ℹ Fetching all user data...
-✔ Retrieved 50 users.
-ℹ Uploading 2 avatars...
-✔ Successfully attached 2 avatar files to 2 users.
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching all user data from site to match provided files...
+ℹ Retrieved 50 users.
+ℹ Found 2 valid avatar files in directory for 2 matching users on the site.
+ℹ Uploading 2 avatar files...
+Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00,  1.00s/it]
+Preparing to update avatars for 2 users with 2 avatar files.
+Updating avatars: 100%|██████████| 2/2 [00:02&lt;00:00,  1.00s/it]
+✔ Successfully updated 2 avatar files to 2 users.
+ℹ Saved results to &#39;avatar_results.csv&#39;
+   username file_name user_id file_id server_file_name  status reason
+0   user1   avatar1.png 78901 94196 avatar1_1747654002120.png SUCCESS None
+1   user2   avatar2.jpg 78902 94197 avatar2_1747654003484.jpg SUCCESS None
 </pre></div>
 </div>
 <p><strong>Steps Performed</strong>:
@@ -609,12 +645,12 @@ Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00, 1.00s
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h2>
 <p>File functions raise <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code> with detailed messages:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">upload_and_attach_to_events</span><span class="p">(</span>
-    <span class="n">mapping_df</span><span class="o">=</span><span class="n">mapping_df</span><span class="p">,</span>
-    <span class="n">file_dir</span><span class="o">=</span><span class="s2">&quot;/invalid/path&quot;</span><span class="p">,</span>
-    <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
-    <span class="n">file_field_name</span><span class="o">=</span><span class="s2">&quot;attachment&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span>
+    <span class="n">file_dir</span> <span class="o">=</span> <span class="s2">&quot;/invalid/path&quot;</span><span class="p">,</span>
+    <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Document Store&quot;</span><span class="p">,</span>
+    <span class="n">file_field_name</span> <span class="o">=</span> <span class="s2">&quot;attachment&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -627,18 +663,6 @@ Uploading files: 100%|██████████| 2/2 [00:02&lt;00:00, 1.00s
 - Non-existent users or events.
 - Unsupported file types (e.g., .exe for events).
 - API failures during upload or update.</p>
-<p>For robust scripts, use try-except:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSError</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">upload_and_attach_to_avatars</span><span class="p">(</span>
-        <span class="n">file_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/avatars&quot;</span><span class="p">,</span>
-        <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
-    <span class="p">)</span>
-<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
 </section>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
@@ -664,7 +688,7 @@ fetching user or event data.</p></li>
 </div>
 <p><strong>Solution</strong>: Verify <cite>file_dir</cite> exists:</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s2">&quot;/path/to/files&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -700,7 +724,7 @@ fetching user or event data.</p></li>
 <ul class="simple">
 <li><p>Explore <span class="xref std std-ref">vignettes/exporting_data</span> for retrieving event data.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
-<li><p>Visit <a class="reference external" href="https://github.com/yachb35/teamworksams">GitHub</a> for support.</p></li>
+<li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>
 </section>
@@ -806,7 +830,7 @@ fetching user or event data.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

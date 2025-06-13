@@ -29,7 +29,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/utils';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -424,16 +424,16 @@
                 <article class="bd-article">
                   
   <h1>Source code for teamworksams.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
 
 
 <div class="viewcode-block" id="AMSError">
 <a class="viewcode-back" href="../../reference/ams_error.html#teamworksams.utils.AMSError">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">AMSError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AMSError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base exception for AMS operations and errors.</span>
 
 <span class="sd">    Raised for errors during AMS API interactions, such as authentication failures or</span>
@@ -465,7 +465,7 @@
 <span class="sd">        ...     print(str(e))</span>
 <span class="sd">        Invalid credentials - Function: login - Endpoint: user/loginUser - Status Code: 401. Please check inputs or contact your site administrator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -492,7 +492,7 @@
 
 <div class="viewcode-block" id="AMSClient">
 <a class="viewcode-back" href="../../reference/ams_client.html#teamworksams.utils.AMSClient">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">AMSClient</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">AMSClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A client for interacting with the AMS API.</span>
 
 <span class="sd">    Handles authentication, API requests, and caching for AMS operations. Created by</span>
@@ -516,7 +516,7 @@
 <span class="sd">        login_data (Dict): The response data from the login API call.</span>
 <span class="sd">        _cache (Dict[str, Dict]): Cache for API responses.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> 
             <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
             <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -547,7 +547,7 @@
 
 <div class="viewcode-block" id="AMSClient.login">
 <a class="viewcode-back" href="../../reference/ams_client.html#teamworksams.utils.AMSClient.login">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Authenticate with AMS and store login data.</span>
 
 <span class="sd">        Sends a login request to the AMS API using the provided username and password.</span>
@@ -587,7 +587,7 @@
 
     
     
-    <span class="k">def</span><span class="w"> </span><span class="nf">_AMS_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_AMS_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an AMS API URL for the given endpoint and API version.</span>
 
 <span class="sd">        Args:</span>
@@ -601,7 +601,7 @@
 
     
     
-    <span class="k">def</span><span class="w"> </span><span class="nf">_fetch</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_fetch</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> 
             <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
             <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> 
@@ -656,7 +656,7 @@
     
     
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_validate_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the AMS URL.</span>
 
 <span class="sd">        Args:</span>
@@ -674,7 +674,7 @@
         <span class="k">return</span> <span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
     
     
-    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_credentials</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span> 
+    <span class="k">def</span> <span class="nf">_validate_credentials</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span> 
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate username and password for AMSClient.</span>
 
 <span class="sd">        Args:</span>
@@ -704,7 +704,7 @@
 
 <div class="viewcode-block" id="get_client">
 <a class="viewcode-back" href="../../reference/get_client.html#teamworksams.utils.get_client">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_client</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">get_client</span><span class="p">(</span>
         <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
         <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
         <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -813,7 +813,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

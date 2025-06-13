@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Importing Data &#8212; teamworksams 0.1.0 documentation</title>
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/importing_data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -439,8 +439,7 @@
 <p>This vignette provides an in-depth guide to importing event and profile data into Teamworks
 AMS using <strong>teamworksams</strong>, covering <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>,
 <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_event_data()</span></code>, and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_profile_data()</span></code>. Designed for analysts, administrators, and data scientists,
-it offers practical workflows for inserting new events, updating existing ones, upserting
+<code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_profile_data()</span></code>. It offers practical workflows for inserting new events, updating existing ones, upserting
 mixed datasets, and managing profile records. With rich Python/pandas examples and
 performance tips, this guide equips you to efficiently import AMS data. See
 <span class="xref std std-ref">reference</span> for detailed function documentation and
@@ -479,7 +478,7 @@ AMS_PASSWORD=password
 </div>
 </div>
 <p>Load credentials:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -493,19 +492,20 @@ AMS_PASSWORD=password
 user identifiers with <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertEventOption</span></code>.</p>
 <p><strong>Basic Usage</strong></p>
 <p>Insert events into the ‘Training Log’ form:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">insert_event_data</span><span class="p">,</span> <span class="n">InsertEventOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">insert_event_data</span><span class="p">,</span> <span class="n">InsertEventOption</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith&quot;</span><span class="p">],</span>
     <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span> <span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
     <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
     <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium&quot;</span><span class="p">]</span>
 <span class="p">})</span>
+
 <span class="n">insert_event_data</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">InsertEventOption</span><span class="p">(</span><span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -525,14 +525,15 @@ user identifiers with <code class="xref py py-class docutils literal notranslate
     <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
     <span class="s2">&quot;session_details&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;activity&quot;</span><span class="p">:</span> <span class="s2">&quot;Run&quot;</span><span class="p">,</span> <span class="s2">&quot;distance_km&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}]</span>
 <span class="p">})</span>
+
 <span class="n">insert_event_data</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">InsertEventOption</span><span class="p">(</span>
-        <span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-        <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">table_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;session_details&quot;</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span>
+        <span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+        <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">table_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;session_details&quot;</span><span class="p">]</span>
     <span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
@@ -543,22 +544,36 @@ user identifiers with <code class="xref py py-class docutils literal notranslate
 <h2>Updating Event Data<a class="headerlink" href="#updating-event-data" title="Link to this heading">#</a></h2>
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code> to modify existing events, identified by ‘event_id’,
 with <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>.</p>
+<p>‘Updating’ data in Teamworks AMS means you are editing existing events in the
+Teamworks AMS event database. <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code> requires a valid event_id
+column in the supplied data frame. These are Teamworks AMS-generated unique IDs
+that ensure only the correct events are updated/overwritten.</p>
+<p><strong>Updating is the same as overwriting</strong>
+Important note: Every event in the data frame supplied to <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>
+completely overwrites the existing event in the Teamworks AMS event database.</p>
+<p>Practically this also means that most calls to <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code> should be
+preceded by a call to <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> / <code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>. The latter
+return a data frame that contain the entire Teamworks AMS form, including every
+column/field that contains data; as well as the necessary event_id column.</p>
 <p><strong>Basic Usage</strong></p>
-<p>Update events in ‘Training Log’ using event IDs from <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">update_event_data</span><span class="p">,</span> <span class="n">UpdateEventOption</span>
+<p>Update events in ‘Training Log’ using data retreved with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>,
+applying transformations, and then updating the events wth <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">update_event_data</span><span class="p">,</span> <span class="n">UpdateEventOption</span>
 <span class="n">event_df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
     <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
     <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span>
     <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;31/01/2025&quot;</span><span class="p">,</span>
     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
 <span class="p">)</span>
+
 <span class="n">update_df</span> <span class="o">=</span> <span class="n">event_df</span><span class="p">[[</span><span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;duration&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">update_df</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">update_df</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">5</span>  <span class="c1"># Increase duration</span>
+
 <span class="n">update_event_data</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">update_df</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">UpdateEventOption</span><span class="p">(</span><span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">update_df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">UpdateEventOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -577,9 +592,16 @@ Are you sure you want to update 10 existing events in &#39;Training Log&#39;? (y
 <section id="upserting-event-data">
 <h2>Upserting Event Data<a class="headerlink" href="#upserting-event-data" title="Link to this heading">#</a></h2>
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_event_data()</span></code> to insert new events and update existing ones based on
-‘event_id’ presence, with <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertEventOption</span></code>.</p>
+‘event_id’ presence, with <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertEventOption</span></code>. Rows with valid event IDs will
+update the matching rows in the Teamworks AMS event database, whereas rows with no
+‘event_id’ will be inserted as new rows in the Teamworks AMS event database.</p>
 <p><strong>Basic Usage</strong></p>
-<p>Upsert a mixed dataset:</p>
+<p>Upsert a mixed dataset - note that the second observation in this dataframe does not
+contain an ‘event_id’ - this might be commmon in situaitons where existing data was
+retrieved from Teamworks AMS using <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>, then merged with new data
+created based on transformations or new records obtained. Upserting the dataframe
+below will invoke two API calls: one to insert the rows where event_id = None and
+another to update the existing events:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;event_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">67890</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith&quot;</span><span class="p">],</span>
@@ -587,11 +609,12 @@ Are you sure you want to update 10 existing events in &#39;Training Log&#39;? (y
     <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
     <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;High Updated&quot;</span><span class="p">,</span> <span class="s2">&quot;Medium&quot;</span><span class="p">]</span>
 <span class="p">})</span>
+
 <span class="n">upsert_event_data</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">UpsertEventOption</span><span class="p">(</span><span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">UpsertEventOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -618,11 +641,12 @@ per user, using <code class="xref py py-class docutils literal notranslate"><spa
     <span class="s2">&quot;height_cm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">165</span><span class="p">],</span>
     <span class="s2">&quot;weight_kg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
 <span class="p">})</span>
+
 <span class="n">upsert_profile_data</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Athlete Profile&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">UpsertProfileOption</span><span class="p">(</span><span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Athlete Profile&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UpsertProfileOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -637,26 +661,203 @@ per user, using <code class="xref py py-class docutils literal notranslate"><spa
 </div>
 <p><strong>Combining with User Data</strong></p>
 <p>Ensure valid user identifiers by merging with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">upsert_profile_data</span><span class="p">,</span> <span class="n">UpsertProfileOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams.user_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">upsert_profile_data</span><span class="p">,</span> <span class="n">UpsertProfileOption</span>
+<span class="kn">from</span> <span class="nn">teamworksams.user_option</span> <span class="kn">import</span> <span class="n">UserOption</span>
+
 <span class="n">user_df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
     <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">])</span>
 <span class="p">)</span>
+
 <span class="n">profile_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span> <span class="s2">&quot;invalid.user&quot;</span><span class="p">],</span>
     <span class="s2">&quot;height_cm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">,</span> <span class="mi">170</span><span class="p">]</span>
 <span class="p">})</span>
+
 <span class="n">valid_df</span> <span class="o">=</span> <span class="n">profile_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">user_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
 <span class="n">upsert_profile_data</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">valid_df</span><span class="p">,</span>
-    <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Athlete Profile&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">UpsertProfileOption</span><span class="p">(</span><span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">valid_df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Athlete Profile&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UpsertProfileOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_profile_data()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertProfileOption</span></code> for details.</p>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">#</a></h2>
+<p>This section provides detailed guidance on using option classes
+(<code class="xref py py-class docutils literal notranslate"><span class="pre">InsertEventOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertEventOption</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertProfileOption</span></code>) to customize import operations, along with key usage
+notes for caching, table fields, date/time columns, and interactive mode.</p>
+<p><strong>Option Classes</strong></p>
+<p>Each import function requires a specific option class to configure its behavior. These
+classes must be instantiated with parameters like <cite>interactive_mode</cite>, <cite>cache</cite>,
+<cite>id_col</cite>, <cite>table_fields</cite>, and (for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>)
+<cite>require_confirmation</cite>. For example, to set <cite>id_col=”email”</cite> for
+<code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>, use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">insert_event_data</span><span class="p">,</span> <span class="n">InsertEventOption</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">insert_event_data</span><span class="p">(</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;email&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The option classes and their associated functions are:</p>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertEventOption</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_event_data()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertEventOption</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_profile_data()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertProfileOption</span></code></p></li>
+</ul>
+<p>Below are the available parameters for each option class:</p>
+<ul>
+<li><p><strong>interactive_mode (bool)</strong>: If True, displays status messages (e.g., “Processed 2
+events”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, ideal for interactive environments like
+Jupyter notebooks. For <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>, also prompts for confirmation
+if <cite>require_confirmation=True</cite>. Set to False for silent execution in automated
+scripts. Defaults to True. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UpdateEventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">update_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output, suitable for pipelines</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>cache (bool)</strong>: If True, reuses an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> via
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, reducing API calls for authentication or user mapping. Set to
+False to create a new client for each call, ensuring fresh data. Defaults to True.
+See “Caching” below for details.</p></li>
+<li><p><strong>id_col (str)</strong>: Specifies the DataFrame column for user identifiers. Must be one
+of ‘user_id’, ‘username’, ‘email’, or ‘about’. Defaults to ‘user_id’. See “id_col”
+below for usage. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">],</span> <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">]})</span>
+<span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">&quot;email&quot;</span><span class="p">)</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>table_fields (Optional[List[str]])</strong>: List of AMS form table field names (e.g.,
+[‘session_details’]). Must match DataFrame columns if specified. If None, assumes
+no table fields. Not available for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertProfileOption</span></code>. Defaults to None.
+See “Table Fields” below for details.</p></li>
+<li><p><strong>require_confirmation (bool)</strong>: Only for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>. If True and
+<cite>interactive_mode=True</cite>, prompts for confirmation before updating events,
+preventing accidental overwrites. Defaults to True. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UpdateEventOption</span><span class="p">(</span><span class="n">require_confirmation</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">update_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># Skips prompt, use cautiously</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Caching</strong></p>
+<p>When <cite>option.cache=True</cite> (default), the import functions reuse an existing
+<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> created by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. This client maintains an
+authenticated session, reducing API calls for login or user data retrieval (e.g.,
+mapping <cite>id_col</cite> to <cite>user_id</cite>). For example, in a workflow with multiple imports:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># Reuses client</span>
+</pre></div>
+</div>
+<p>This improves performance, especially for large datasets or repeated calls. Set
+<cite>cache=False</cite> for independent sessions, ensuring fresh authentication but increasing
+API overhead.</p>
+<p><strong>id_col</strong></p>
+<p>The AMS API requires a <cite>user_id</cite> column in the input DataFrame, representing
+AMS-generated user IDs. By default, <cite>id_col = “user_id”</cite>. If your DataFrame lacks
+<cite>user_id</cite> but includes an alternative identifier (‘username’, ‘email’, or ‘about’),
+set <cite>id_col</cite> to that column. The function maps these identifiers to <cite>user_id</cite> using
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code> internally. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;about&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John Doe&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">id_col</span><span class="o">=</span><span class="s2">&quot;about&quot;</span><span class="p">)</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Valid <cite>id_col</cite> values: ‘user_id’, ‘username’, ‘email’, ‘about’.</p>
+<p><strong>Table Fields</strong></p>
+<p>Table fields in AMS forms store multiple rows of data within a single event, such as
+exercise details in a strength training session. Specify <cite>table_fields</cite> as a list of
+column names matching the AMS form’s table fields. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">12345</span><span class="p">],</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span> <span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;session_rpe&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+    <span class="s2">&quot;exercise&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bench Press&quot;</span><span class="p">,</span> <span class="s2">&quot;Squat&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;load&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+    <span class="s2">&quot;reps&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">table_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;exercise&quot;</span><span class="p">,</span> <span class="s2">&quot;load&quot;</span><span class="p">,</span> <span class="s2">&quot;reps&quot;</span><span class="p">])</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Strength Testing&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, <cite>exercise</cite>, <cite>load</cite>, and <cite>reps</cite> are table fields, while <cite>session_rpe</cite>
+is a non-table field recorded once per event. The DataFrame must include <cite>user_id</cite>
+and <cite>start_date</cite> for each row, with non-table fields populating only the first row
+for each <cite>user_id</cite>/<cite>start_date</cite> pair.</p>
+<p>If <cite>table_fields=None</cite> (default) and duplicate <cite>user_id</cite>/<cite>start_date</cite> pairs are
+detected, the function splits the DataFrame into multiple API calls, each containing
+unique <cite>user_id</cite>/<cite>start_date</cite> pairs. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">12345</span><span class="p">],</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span> <span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">45</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>This splits into two API calls, each with one row, to avoid conflicts.</p>
+<p><strong>Date/Time Columns</strong></p>
+<p>The AMS API requires metadata for event timing. The import functions search for
+columns named <cite>start_date</cite>, <cite>end_date</cite>, <cite>start_time</cite>, and <cite>end_time</cite> in the
+DataFrame:</p>
+<ul class="simple">
+<li><p><cite>start_date</cite>, <cite>end_date</cite>: Must be formatted as <cite>dd/mm/YYYY</cite> (e.g., “01/01/2025”).
+If missing, both default to the current date. If <cite>start_time</cite> and <cite>end_time</cite> span
+midnight, <cite>end_date</cite> is set to the next day.</p></li>
+<li><p><cite>start_time</cite>, <cite>end_time</cite>: Must be formatted as <cite>h:mm AM</cite> or <cite>h:mm PM</cite> (e.g.,
+“9:00 AM”). If missing, <cite>start_time</cite> defaults to the current time, and <cite>end_time</cite>
+to one hour later.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12345</span><span class="p">],</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;start_time&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;9:00 AM&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If <cite>start_date</cite> is missing, add it explicitly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;start_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;01/01/2025&quot;</span>
+</pre></div>
+</div>
+<p><strong>Interactive Mode</strong></p>
+<p>When <cite>interactive_mode=True</cite> (default), import functions display progress messages
+(e.g., “ℹ Inserting 2 events”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, enhancing user feedback
+in interactive environments. For <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>, it also prompts for
+confirmation if <cite>require_confirmation=True</cite>. Set <cite>interactive_mode=False</cite> for
+silent execution in automated pipelines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UpsertEventOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">upsert_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>  <span class="c1"># No output, ideal for scripts</span>
+</pre></div>
+</div>
 </section>
 <section id="error-handling">
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h2>
@@ -673,18 +874,6 @@ interactive feedback. For simple scripts, rely on these:</p>
 <p><strong>Output</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>✖ Failed to insert events: DataFrame is invalid: missing &#39;start_date&#39;...
 AMSError: DataFrame is invalid...
-</pre></div>
-</div>
-<p>For automated workflows, use try-except:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSError</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">upsert_event_data</span><span class="p">(</span>
-        <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-        <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
-    <span class="p">)</span>
-<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -742,7 +931,7 @@ before importing profiles or events.</p></li>
 <ul class="simple">
 <li><p>Explore <span class="xref std std-ref">vignettes/exporting_data</span> for data export workflows.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
-<li><p>Visit <a class="reference external" href="https://github.com/yachb35/teamworksams">GitHub</a> for support.</p></li>
+<li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>
 </section>
@@ -800,6 +989,7 @@ before importing profiles or events.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-event-data">Updating Event Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upserting-event-data">Upserting Event Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upserting-profile-data">Upserting Profile Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#options">Options</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
@@ -850,7 +1040,7 @@ before importing profiles or events.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

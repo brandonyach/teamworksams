@@ -29,7 +29,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/import_main';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -424,21 +424,21 @@
                 <article class="bd-article">
                   
   <h1>Source code for teamworksams.import_main</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">AMSError</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">InsertEventOption</span><span class="p">,</span> <span class="n">UpdateEventOption</span><span class="p">,</span> <span class="n">UpsertEventOption</span><span class="p">,</span> <span class="n">UpsertProfileOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_build</span><span class="w"> </span><span class="kn">import</span> <span class="n">_build_import_payload</span><span class="p">,</span> <span class="n">_build_profile_payload</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_clean</span><span class="w"> </span><span class="kn">import</span> <span class="n">_clean_import_df</span><span class="p">,</span> <span class="n">_clean_profile_df</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_import_payloads</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_print</span><span class="w"> </span><span class="kn">import</span> <span class="n">_print_import_status</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_map_id_col_to_user_id</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_import_df</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">AMSError</span>
+<span class="kn">from</span> <span class="nn">.import_option</span> <span class="kn">import</span> <span class="n">InsertEventOption</span><span class="p">,</span> <span class="n">UpdateEventOption</span><span class="p">,</span> <span class="n">UpsertEventOption</span><span class="p">,</span> <span class="n">UpsertProfileOption</span>
+<span class="kn">from</span> <span class="nn">.import_build</span> <span class="kn">import</span> <span class="n">_build_import_payload</span><span class="p">,</span> <span class="n">_build_profile_payload</span>
+<span class="kn">from</span> <span class="nn">.import_clean</span> <span class="kn">import</span> <span class="n">_clean_import_df</span><span class="p">,</span> <span class="n">_clean_profile_df</span>
+<span class="kn">from</span> <span class="nn">.import_fetch</span> <span class="kn">import</span> <span class="n">_fetch_import_payloads</span>
+<span class="kn">from</span> <span class="nn">.import_print</span> <span class="kn">import</span> <span class="n">_print_import_status</span>
+<span class="kn">from</span> <span class="nn">.import_process</span> <span class="kn">import</span> <span class="n">_map_id_col_to_user_id</span>
+<span class="kn">from</span> <span class="nn">.import_validate</span> <span class="kn">import</span> <span class="n">_validate_import_df</span>
 
 
 <div class="viewcode-block" id="insert_event_data">
 <a class="viewcode-back" href="../../reference/insert_event_data.html#teamworksams.import_main.insert_event_data">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">insert_event_data</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">insert_event_data</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -552,7 +552,7 @@
 
 <div class="viewcode-block" id="update_event_data">
 <a class="viewcode-back" href="../../reference/update_event_data.html#teamworksams.import_main.update_event_data">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">update_event_data</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">update_event_data</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -673,7 +673,7 @@
 
 <div class="viewcode-block" id="upsert_event_data">
 <a class="viewcode-back" href="../../reference/upsert_event_data.html#teamworksams.import_main.upsert_event_data">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">upsert_event_data</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">upsert_event_data</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -832,7 +832,7 @@
     
 <div class="viewcode-block" id="upsert_profile_data">
 <a class="viewcode-back" href="../../reference/upsert_profile_data.html#teamworksams.import_main.upsert_profile_data">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">upsert_profile_data</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">upsert_profile_data</span><span class="p">(</span>
     <span class="n">df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -986,7 +986,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

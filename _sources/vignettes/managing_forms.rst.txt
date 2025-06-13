@@ -2,8 +2,7 @@ Managing Forms
 ==============
 
 This vignette provides a concise guide to managing AMS forms using **teamworksams**,
-covering :func:`get_forms` and :func:`get_form_schema`. Designed for administrators and
-analysts, it outlines workflows for listing accessible forms and summarizing form schemas
+covering :func:`get_forms` and :func:`get_form_schema`. It outlines workflows for listing accessible forms and summarizing form schemas
 to understand their structure (e.g., sections, fields, types). These functions support
 one-off tasks like auditing or preparing for data operations, with simple Python/pandas
 examples. See :ref:`reference` for detailed documentation and
@@ -48,7 +47,7 @@ Load credentials:
 Dependencies (installed with **teamworksams**): ``pandas``, ``requests``,
 ``python-dotenv``, ``tqdm``.
 
-Listing Forms
+Listing Accessible Forms
 -------------
 
 Use :func:`get_forms` to retrieve a list of accessible forms:
@@ -69,10 +68,10 @@ Use :func:`get_forms` to retrieve a list of accessible forms:
 
    ℹ Requesting list of accessible forms...
    ✔ Retrieved 5 accessible forms.
-      form_id       form_name     type
-   0     2937       Allergies  database
-   1     1234    Training Log    event
-   2     5678  Athlete Profile  profile
+      form_id       form_name       type    mainCategory    isReadOnly     groupEntryEnabled
+   0     2937       Allergies   database            None         False                 False       
+   1     1234    Training Log      event      Monitoring         False                  True
+   2     5678  Athlete Profile   profile    Demographics         False                 False
 
 Filter the DataFrame to find specific form types:
 
@@ -93,9 +92,9 @@ Use :func:`get_form_schema` to summarize a form’s schema:
 
    from teamworksams import get_form_schema, FormOption
    summary = get_form_schema(
-       form_name="Allergies",
-       url="https://example.smartabase.com/site",
-       option=FormOption(interactive_mode=True, field_details=True)
+       form ="Training Log",
+       url = "https://example.smartabase.com/site",
+       option = FormOption(interactive_mode = True, field_details = True)
    )
    print(summary)
 
@@ -103,19 +102,147 @@ Use :func:`get_form_schema` to summarize a form’s schema:
 
 .. code-block:: text
 
-   ℹ Fetching summary for form 'Allergies'...
-   ✔ Retrieved summary for form 'Allergies'.
-   Form Schema Summary
-   ==================
-   Form Name: Allergies
-   Form ID: 2937
-   Form Type: database
-   Sections: 2
-   - General
-   - Details
-   Required Fields: 1
-   - Allergy
-   ...
+   ℹ Fetching summary for form 'Training Log' (ID: 5285, Type: event)...
+   ✔ Retrieved summary for form 'Training Log'.
+   =====================================
+   Form Schema Summary: RPE Training Log
+   =====================================
+
+   Form Details
+   ------------
+   - Form Name: RPE Training Log
+   - Form ID: 5285
+
+   Sections
+   --------
+   - Total: 5
+   • Session Details
+   • Summary Calculations
+   • User Account Details
+   • Day of the Week
+   • Profile Details
+
+   Required Fields
+   ---------------
+   - Total: 0
+   - No required fields found.
+
+   Defaults to Last Known Value
+   ----------------------------
+   - Total: 0
+   - No fields default to the last known value.
+
+   Linked Fields
+   -------------
+   - Total: 7
+   • Sport
+   • Position
+   • Height
+   • Dominant Hand
+   • Dominant Foot
+   • Preferred Language
+   • Season
+
+   Form Item Types
+   ---------------
+   - Total Unique Types: 14
+   - Dropdown: 1 field(s)
+      • Session Type
+   - Number: 1 field(s)
+      • Duration
+   - Single Selection: 1 field(s)
+      • Rate your Perceived Exertion (RPE)
+   - Calculation: 5 field(s)
+      • RPE
+      • Session Load
+      • Index
+      • ACWR
+      • Total ACWR
+   - History Calculation: 10 field(s)
+      • Daily Average RPE
+      • Daily Total RPE
+      • Daily Average Duration
+      • Daily Total Duration
+      • Daily Average Load
+      • Daily Total Load
+      • Acute Load
+      • Chronic Load
+      • Total Acute Load
+      • Total Chronic Load
+   - History Text Calculation: 1 field(s)
+      • All Session Types Today
+   - Time Calculation: 1 field(s)
+      • Time Entered
+   - Text Calculation: 7 field(s)
+      • RPE Session Load Filter
+      • Day of the Week
+      • Week
+      • Month
+      • Month with Number
+      • Year
+      • Date Reverse
+   - Personal Details: 8 field(s)
+      • First Name
+      • Last Name
+      • Full Name
+      • Full Name Reverse
+      • Sex
+      • Date of Birth
+      • Email
+      • Phone Number
+   - Age Calculation: 1 field(s)
+      • Age
+   - Date Calculation: 1 field(s)
+      • Session Date
+   - Linked Option: 1 field(s)
+      • Sport
+   - Linked Text: 5 field(s)
+      • Position
+      • Dominant Hand
+      • Dominant Foot
+      • Preferred Language
+      • Season
+   - Linked Value: 1 field(s)
+      • Height
+      ...
+
+
+Set `field_details` within :class:`FormOption` to  include detailed field
+            information, such as options, scores, date ranges, etc. in the schema summary,
+            increasing verbosity:
+
+.. code-block:: python
+
+   detailed_schema = get_form_schema(
+       form_name="Allergies",
+       url="https://example.smartabase.com/site",
+       option=FormOption(
+         interactive_mode = True,
+         field_details = True
+      )
+   )
+   print(detailed_schema.keys())
+
+See :func:`get_form_schema` and :class:`FormOption` for output options.
+
+
+Set `include_instructions` within :class:`FormOption` to include section
+            and field instructions in the schema summary, useful for documentation:
+
+.. code-block:: python
+
+   instructions_schema = get_form_schema(
+       form_name="Allergies",
+       url="https://example.smartabase.com/site",
+       option=FormOption(
+         interactive_mode = True,
+         include_instructions = True
+      )
+   )
+   print(instructions_schema.keys())
+
+See :func:`get_form_schema` and :class:`FormOption` for output options.
+
 
 Retrieve raw schema for custom processing:
 
@@ -146,20 +273,11 @@ Form functions raise :class:`AMSError` with descriptive messages:
 
    AMSError: Form 'Invalid Form' not found...
 
-For robust scripts, use try-except:
-
-.. code-block:: python
-
-   from teamworksams import AMSError
-   try:
-       df = get_forms(url="https://example.smartabase.com/site")
-   except AMSError as e:
-       print(f"Error: {e}")
 
 Best Practices
 --------------
 
-- **Verify Form Names**: Use :func:`get_forms` to confirm `form_name` before
+- **Verify Form Names**: Use :func:`get_forms` to confirm `form` name before
   calling :func:`get_form_schema`.
 - **Use Caching**: Enable ``option.cache=True`` for efficiency in repeated
   form queries.
@@ -173,6 +291,6 @@ Best Practices
 Next Steps
 ----------
 
-- Explore :ref:`vignettes/uploading_files` for attaching files to forms.
+- Explore :ref:`vignettes/importing_data` for inserting and updating event data.
 - Consult :ref:`reference` for detailed function and class documentation.
-- Visit `GitHub <https://github.com/yachb35/teamworksams>`_ for support.
+- Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

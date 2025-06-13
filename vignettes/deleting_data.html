@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Deleting Data &#8212; teamworksams 0.1.0 documentation</title>
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/deleting_data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -438,13 +438,11 @@
 <h1>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading">#</a></h1>
 <p>This vignette provides a guide to deleting event data in Teamworks AMS using
 <strong>teamworksams</strong>, covering <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>. Designed for administrators and analysts, it outlines
+<code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>. It outlines
 safe workflows for removing single or multiple events from AMS Event Forms, with
-Python/pandas examples. Inspired by the SmartabaseR equivalent
-(<a class="reference external" href="https://teamworksapp.github.io/smartabaseR/articles/deleting-data.html">https://teamworksapp.github.io/smartabaseR/articles/deleting-data.html</a>), it
-emphasizes safety features like confirmation prompts and integration with
+Python/pandas examples. emphasizing safety features like confirmation prompts and integration with
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> for event ID retrieval. See <span class="xref std std-ref">reference</span> for detailed
-documentation and <span class="xref std std-ref">vignettes/exporting_data</span> for related tasks.</p>
+documentation and <span class="xref std std-ref">vignettes/getting_started</span> if you haven’t already.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p><strong>teamworksams</strong> supports event deletion with two key functions:</p>
@@ -470,7 +468,7 @@ AMS_PASSWORD=password
 </div>
 </div>
 <p>Load credentials:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -482,8 +480,8 @@ AMS_PASSWORD=password
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> to remove a single event by its ID:</p>
 <p><strong>Retrieving Event ID</strong></p>
 <p>Fetch event IDs from an Event Form:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span>
 <span class="n">event_df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
     <span class="n">form</span><span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
     <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;01/01/2025&quot;</span><span class="p">,</span>
@@ -496,7 +494,7 @@ AMS_PASSWORD=password
 </div>
 <p><strong>Deleting the Event</strong></p>
 <p>Delete the event with confirmation:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">delete_event_data</span><span class="p">,</span> <span class="n">DeleteEventOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">delete_event_data</span><span class="p">,</span> <span class="n">DeleteEventOption</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">delete_event_data</span><span class="p">(</span>
     <span class="n">event_id</span><span class="o">=</span><span class="n">event_id</span><span class="p">,</span>
     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
@@ -531,7 +529,7 @@ SUCCESS: Deleted 134273
 </div>
 <p><strong>Deleting the Events</strong></p>
 <p>Delete multiple events with confirmation:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">delete_multiple_events</span><span class="p">,</span> <span class="n">DeleteEventOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">delete_multiple_events</span><span class="p">,</span> <span class="n">DeleteEventOption</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">delete_multiple_events</span><span class="p">(</span>
     <span class="n">event_ids</span><span class="o">=</span><span class="n">event_ids</span><span class="p">,</span>
     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
@@ -561,18 +559,6 @@ SUCCESS: Deleted 3 events
 AMSError: Invalid event ID...
 </pre></div>
 </div>
-<p>For automated scripts, use try-except:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">DeleteEventOption</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">delete_multiple_events</span><span class="p">(</span>
-        <span class="n">event_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">134273</span><span class="p">],</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-        <span class="n">option</span><span class="o">=</span><span class="n">DeleteEventOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
 <p>Common errors include:
 - Invalid or non-existent <cite>event_id</cite>.
 - User cancellation in interactive mode.
@@ -597,7 +583,7 @@ deleting.</p></li>
 <ul class="simple">
 <li><p>Explore <span class="xref std std-ref">vignettes/exporting_data</span> for retrieving event data and IDs.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
-<li><p>Visit <a class="reference external" href="https://github.com/yachb35/teamworksams">GitHub</a> for support.</p></li>
+<li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>
 </section>
@@ -702,7 +688,7 @@ deleting.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>User and Group Management &#8212; teamworksams 0.1.0 documentation</title>
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/user_management';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -436,28 +436,39 @@
                   
   <section id="user-and-group-management">
 <h1>User and Group Management<a class="headerlink" href="#user-and-group-management" title="Link to this heading">#</a></h1>
-<p>This vignette provides a comprehensive guide to managing users and groups in a Teamworks AMS instance using <strong>teamworksams</strong>. This guide equips you to leverage <strong>teamworksams</strong>’s powerful user management functions effectively to fetching user and group data, update user accounts, and create new users with practical examples, best practices, and troubleshooting tips.</p>
+<p>This vignette provides a comprehensive guide to managing users and groups in a Teamworks
+AMS instance using <strong>teamworksams</strong>, covering <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, and <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>. It equips you to fetch user and group data,
+update user accounts, and create new users withpractical workflows, detailed examples,
+best practices, and troubleshooting tips. See <span class="xref std std-ref">reference</span> for detailed function
+documentation and <span class="xref std std-ref">vignettes/database_operations</span> for additional administrative tasks.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p><strong>teamworksams</strong> simplifies user and group management through the Teamworks AMS API, offering functions to:</p>
+<p><strong>teamworksams</strong> simplifies user and group management through the Teamworks AMS API,
+offering functions to:</p>
 <ul class="simple">
-<li><p><strong>Fetch Users</strong>: Retrieve user data (e.g., IDs, names, account info, groups) with flexible filtering.</p></li>
+<li><p><strong>Fetch Users</strong>: Retrieve user data (e.g., IDs, names, account info, groups) with
+flexible filtering.</p></li>
 <li><p><strong>Fetch Groups</strong>: List groups accessible to the user.</p></li>
 <li><p><strong>Update Users</strong>: Modify user fields (e.g., email, name) for existing accounts.</p></li>
 <li><p><strong>Create Users</strong>: Add new user accounts with required and optional attributes.</p></li>
 </ul>
 <p>The functions covered in this vignette are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">get_user</span></code>: Fetch user data, optionally filtered by attributes like group or email.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_group</span></code>: Retrieve a list of groups.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">edit_user</span></code>: Update existing user accounts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">create_user</span></code>: Create new user accounts.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>: Fetch user data, optionally filtered by attributes like group or
+email.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code>: Retrieve a list of groups.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>: Update existing user accounts.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: Create new user accounts.</p></li>
 </ul>
-<p>All examples use the placeholder AMS instance URL <code class="docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code>, username <code class="docutils literal notranslate"><span class="pre">username</span></code>, and password <code class="docutils literal notranslate"><span class="pre">password</span></code>, with credentials managed via a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file for security and ease of use.</p>
+<p>All examples use the placeholder AMS instance URL
+<code class="docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code>, username <code class="docutils literal notranslate"><span class="pre">username</span></code>, and password
+<code class="docutils literal notranslate"><span class="pre">password</span></code>, with credentials managed via a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file for security and ease of use.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
-<p>Ensure <strong>teamworksams</strong> is installed and credentials are configured, as described in <span class="xref std std-ref">vignettes/getting_started</span>. The recommended setup is a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<p>Ensure <strong>teamworksams</strong> is installed and credentials are configured, as described in
+<span class="xref std std-ref">vignettes/getting_started</span>. The recommended setup is a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AMS_URL = https://example.smartabase.com/site
@@ -467,21 +478,23 @@ AMS_PASSWORD = password
 </div>
 </div>
 <p>Load credentials with <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Alternatively, use <code class="docutils literal notranslate"><span class="pre">os</span></code>, direct arguments, or <code class="docutils literal notranslate"><span class="pre">keyring</span></code> (see <span class="xref std std-ref">vignettes/credentials</span>).</p>
+<p>Alternatively, use <code class="docutils literal notranslate"><span class="pre">os</span></code>, direct arguments, or <code class="docutils literal notranslate"><span class="pre">keyring</span></code> (see
+<span class="xref std std-ref">vignettes/credentials</span>). Required dependencies (installed with
+<strong>teamworksams</strong>): <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">requests</span></code>, <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>, <code class="docutils literal notranslate"><span class="pre">tqdm</span></code>.</p>
 </section>
 <section id="fetching-user-data-with-get-user">
-<h2>Fetching User Data with <code class="docutils literal notranslate"><span class="pre">get_user</span></code><a class="headerlink" href="#fetching-user-data-with-get-user" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_user</span></code> function retrieves user data as a pandas DataFrame, with optional filtering using a <code class="docutils literal notranslate"><span class="pre">UserFilter</span></code> object to narrow results by attributes like username, email, group, or about field. It’s ideal for auditing user accounts, generating reports, or identifying specific users.</p>
-<p><strong>Basic Usage</strong>:</p>
+<h2>Fetching User Data with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code><a class="headerlink" href="#fetching-user-data-with-get-user" title="Link to this heading">#</a></h2>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code> function retrieves user data as a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>, with
+optional filtering using a <code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code> object to narrow results by attributes
+like username, email, group, or about field. It’s ideal for auditing user accounts,
+generating reports, or identifying specific users.</p>
+<p><strong>Basic Usage</strong></p>
 <p>Fetch all accessible users:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">UserOption</span>
-
-<span class="n">load_dotenv</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">UserOption</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
@@ -503,9 +516,9 @@ AMS_PASSWORD = password
 ...
 </pre></div>
 </div>
-<p><strong>Filtering Users</strong>:</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">UserFilter</span></code> to retrieve users in a specific group:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserFilter</span>
+<p><strong>Filtering Users</strong></p>
+<p>Use <code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code> to retrieve users in a specific group:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">UserFilter</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
@@ -524,32 +537,42 @@ AMS_PASSWORD = password
 1    12347        Bob  [TeamA]
 </pre></div>
 </div>
-<p><strong>Customizing Output</strong>:</p>
+<p><strong>Customizing Output</strong></p>
 <p>Select specific columns:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">],</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">],</span> <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Best Practices</strong>:</p>
+<p>Fetch users by email:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="nb">filter</span> <span class="o">=</span> <span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">])</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><strong>Best Practices</strong></p>
 <ul class="simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">UserFilter</span></code> to reduce API load when targeting specific users.</p></li>
+<li><p>Use <code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code> to target specific users for efficiency.</p></li>
 <li><p>Limit columns with <code class="docutils literal notranslate"><span class="pre">option.columns</span></code> to optimize DataFrame size.</p></li>
 <li><p>Enable <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code> for real-time feedback during long operations.</p></li>
 </ul>
 </section>
 <section id="fetching-group-data-with-get-group">
-<h2>Fetching Group Data with <code class="docutils literal notranslate"><span class="pre">get_group</span></code><a class="headerlink" href="#fetching-group-data-with-get-group" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">get_group</span></code> function retrieves a list of groups (e.g., teams, departments) as a pandas DataFrame. It’s useful for auditing group structures or preparing data for user assignments.</p>
-<p><strong>Usage</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_group</span><span class="p">,</span> <span class="n">GroupOption</span>
+<h2>Fetching Group Data with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code><a class="headerlink" href="#fetching-group-data-with-get-group" title="Link to this heading">#</a></h2>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code> function retrieves a list of groups (e.g., teams, departments) as
+a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. It’s useful for auditing group structures or preparing data
+for user assignments.</p>
+<p><strong>Basic Usage</strong></p>
+<p>Fetch all accessible groups:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_group</span><span class="p">,</span> <span class="n">GroupOption</span>
 
 <span class="n">group_df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">GroupOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">GroupOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">group_df</span><span class="p">)</span>
@@ -564,29 +587,24 @@ AMS_PASSWORD = password
 2  TeamC
 </pre></div>
 </div>
-<p><strong>Best Practices</strong>:</p>
-<ul>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">guess_col_type=True</span></code> in <code class="docutils literal notranslate"><span class="pre">GroupOption</span></code> to infer data types automatically.</p></li>
-<li><p>Combine with <code class="docutils literal notranslate"><span class="pre">get_user</span></code> to map users to groups:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="nb">filter</span><span class="o">=</span><span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">user_value</span><span class="o">=</span><span class="s2">&quot;TeamA&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">user_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">group_df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</li>
+<p><strong>Best Practices</strong></p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">guess_col_type=True</span></code> in <code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code> to ensure consistent data types.</p></li>
+<li><p>Cache the client for efficiency when combining with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>.</p></li>
 </ul>
 </section>
 <section id="updating-user-profiles-with-edit-user">
-<h2>Updating User Profiles with <code class="docutils literal notranslate"><span class="pre">edit_user</span></code><a class="headerlink" href="#updating-user-profiles-with-edit-user" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">edit_user</span></code> function updates existing user fields (e.g., email, name) based on a mapping DataFrame, using a user key (e.g., username, email) to identify users. It returns a DataFrame of results, making it easy to track updates and issues.</p>
-<p><strong>Example</strong>:</p>
+<h2>Updating User Profiles with <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code><a class="headerlink" href="#updating-user-profiles-with-edit-user" title="Link to this heading">#</a></h2>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code> function updates existing user fields (e.g., email, name) based on
+a mapping DataFrame, using a user key (e.g., username, email) to identify users. It
+returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> of results, making it easy to track updates and
+issues. This is a powerful function as it will only update the fields based on columns
+provided in the <cite>mapping_df</cite> - meaning that it’s possible to just update things like
+username, email, e.g. alone.</p>
+<p><strong>Basic Usage</strong></p>
 <p>Update user emails:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">edit_user</span><span class="p">,</span> <span class="kn">import</span><span class="w"> </span><span class="nn">UserOption</span>
-
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">edit_user</span><span class="p">,</span> <span class="n">UserOption</span>
 <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith&quot;</span><span class="p">],</span>
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;john.doe@new.com&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith@new.com&quot;</span><span class="p">]</span>
@@ -610,21 +628,42 @@ AMS_PASSWORD = password
 ℹ Updating 2 users...
 Processing users: 100%|██████████| 2/2 [00:04&lt;00:00, 3.46it/s]
 ✔ Successfully updated 2 users.
-✔ Successfully updated 2 users.
-✔ No failed operations.
+Empty DataFrame
+Columns: [user_id, user_key, status, reason]
+Index: []
 </pre></div>
 </div>
-<p><strong>Best Practices</strong>:</p>
+<p><strong>Updating Multiple Fields</strong></p>
+<p>Update names and emails using <cite>about</cite> as the key:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;about&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane Smith&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Jonathan&quot;</span><span class="p">,</span> <span class="s2">&quot;Janet&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;jonathan.doe@new.com&quot;</span><span class="p">,</span> <span class="s2">&quot;janet.smith@new.com&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span>
+    <span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span>
+    <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;about&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Best Practices</strong></p>
 <ul class="simple">
-<li><p>Validate <cite>mapping_df</cite> columns against supported fields (e.g., <cite>first_name</cite>, <cite>email</cite>).</p></li>
-<li><p>Use <cite>interactive_mode</cite> for progress tracking.</p></li>
-<li><p>Check <cite>results_df</cite> for successful updates and errors</p></li>
+<li><p>Validate <code class="docutils literal notranslate"><span class="pre">mapping_df</span></code> columns against supported fields (e.g., <code class="docutils literal notranslate"><span class="pre">first_name</span></code>,
+<code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">dob</span></code>).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code> for progress tracking and confirmation prompts.</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">results_df</span></code> for successful updates and errors.</p></li>
 </ul>
 </section>
 <section id="creating-new-users-with-create-user">
-<h2>Creating New Users with <code class="docutils literal notranslate"><span class="pre">create_user</span></code><a class="headerlink" href="#creating-new-users-with-create-user" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">create_user</span></code> function adds new user accounts, requiring fields like <cite>first_name</cite>, <cite>username</cite>, and <cite>password</cite>. It returns a DataFrame of failed creations.</p>
-<p><strong>Example</strong>:</p>
+<h2>Creating New Users with <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code><a class="headerlink" href="#creating-new-users-with-create-user" title="Link to this heading">#</a></h2>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code> function adds new user accounts, requiring fields like
+<code class="docutils literal notranslate"><span class="pre">first_name</span></code>, <code class="docutils literal notranslate"><span class="pre">username</span></code>, and <code class="docutils literal notranslate"><span class="pre">password</span></code>. It returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>
+of failed creations.</p>
+<p><strong>Basic Usage</strong></p>
 <p>Create a new user:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">],</span>
@@ -646,25 +685,224 @@ Processing users: 100%|██████████| 2/2 [00:04&lt;00:00, 3.46
 </pre></div>
 </div>
 <p><strong>Output</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Creating users...
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Creating 1 users...
 ✔ Successfully created 1 users.
 Empty DataFrame
 Columns: [user_key, reason]
+Index: []
 </pre></div>
 </div>
-<p><strong>Best Practices</strong>:</p>
+<p><strong>Creating Multiple Users</strong></p>
+<p>Create users with optional fields:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Carol&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Lee&quot;</span><span class="p">,</span> <span class="s2">&quot;Wong&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bob.lee&quot;</span><span class="p">,</span> <span class="s2">&quot;carol.wong&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bob.lee@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;carol.wong@example.com&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;dob&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1985-06-15&quot;</span><span class="p">,</span> <span class="s2">&quot;1992-03-22&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pass123&quot;</span><span class="p">,</span> <span class="s2">&quot;pass456&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+    <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Male&quot;</span><span class="p">,</span> <span class="s2">&quot;Female&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;025380&quot;</span><span class="p">,</span> <span class="s2">&quot;024854&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">failed_df</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">(</span><span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">failed_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Best Practices</strong></p>
 <ul class="simple">
-<li><p>Ensure required fields are present in <cite>user_df</cite>.</p></li>
+<li><p>Ensure required fields (<code class="docutils literal notranslate"><span class="pre">first_name</span></code>, <code class="docutils literal notranslate"><span class="pre">last_name</span></code>, <code class="docutils literal notranslate"><span class="pre">username</span></code>, <code class="docutils literal notranslate"><span class="pre">email</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dob</span></code>, <code class="docutils literal notranslate"><span class="pre">password</span></code>, <code class="docutils literal notranslate"><span class="pre">active</span></code>) are present in <code class="docutils literal notranslate"><span class="pre">user_df</span></code>.</p></li>
 <li><p>Use strong passwords compliant with AMS policies.</p></li>
-<li><p>Verify <cite>failed_df</cite> for creation issues.</p></li>
+<li><p>Verify <code class="docutils literal notranslate"><span class="pre">failed_df</span></code> for creation issues.</p></li>
 </ul>
+</section>
+<section id="options-and-usage-notes">
+<h2>Options and Usage Notes<a class="headerlink" href="#options-and-usage-notes" title="Link to this heading">#</a></h2>
+<p>This section provides detailed guidance on using option classes (<code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code>) and the filter class (<code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code>) to customize user and
+group operations, along with key usage notes for caching, column selection, data
+validation, and interactive mode.</p>
+<p><strong>Option Classes</strong></p>
+<p>Each user and group function supports a specific option class to configure its behavior.
+These classes must be instantiated with parameters like <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cache</span></code>, and others. For example, to select specific columns in <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">UserOption</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The option classes and their associated functions are:</p>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code></p></li>
+</ul>
+<p>Available parameters for <code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code>:</p>
+<ul>
+<li><p><strong>columns (Optional[List[str]])</strong>: Only for <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>. List of column names
+to include in the output DataFrame (e.g., [‘user_id’, ‘first_name’, ‘email’]). If
+None, includes all available columns (e.g., ‘user_id’, ‘first_name’, ‘last_name’,
+‘email’, ‘groups’, ‘about’, ‘active’, ‘dob’, ‘sex’, ‘uuid’). Defaults to None.
+Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;groups&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>interactive_mode (bool)</strong>: If True, displays status messages (e.g., “Retrieved 5
+users” for <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>, “Successfully updated 2 users” for <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>)
+and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars for <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>. Set to
+False for silent execution in automated scripts. Defaults to True. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">failed_df</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>cache (bool)</strong>: If True, reuses an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> via
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, reducing API calls for authentication or data retrieval. Set to
+False for fresh data, increasing API overhead. Defaults to True. See “Caching” below.</p></li>
+</ul>
+<p>Available parameters for <code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code>:</p>
+<ul>
+<li><p><strong>guess_col_type (bool)</strong>: If True, infers column data types in the output DataFrame
+(e.g., string for ‘name’), ensuring compatibility with operations like merging with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code> results. Set to False to use default pandas types (e.g., object).
+Defaults to True. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">GroupOption</span><span class="p">(</span><span class="n">guess_col_type</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">group_df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">group_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>  <span class="c1"># name: object</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>interactive_mode (bool)</strong>: If True, displays status messages (e.g., “Retrieved 3
+groups”). Set to False for silent execution. Defaults to True.</p></li>
+<li><p><strong>cache (bool)</strong>: If True, reuses an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, reducing API calls.
+Defaults to True.</p></li>
+</ul>
+<p><strong>Filter Class</strong></p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code> class filters users in <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code> by attributes. For
+example, to filter by email:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">UserFilter</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="nb">filter</span> <span class="o">=</span> <span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="s2">&quot;john.doe@example.com&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Available parameters for <code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code>:</p>
+<ul>
+<li><p><strong>user_key (Optional[str])</strong>: Attribute to filter by. Must be one of ‘username’,
+‘email’, ‘group’, or ‘about’. For example, ‘group’ filters by group membership (e.g.,
+‘TeamA’). If None, no filtering is applied. Defaults to None.</p></li>
+<li><p><strong>user_value (Optional[Union[str, List[str]]])</strong>: Value(s) to match for <cite>user_key</cite>.
+For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for <cite>user_key=”group”</cite>. Case-sensitive.
+If None, no filtering is applied. Defaults to None. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span> <span class="o">=</span> <span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;john.doe&quot;</span><span class="p">,</span> <span class="s2">&quot;jane.smith&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Valid <cite>user_key</cite> values and their <cite>user_value</cite> requirements:</p>
+<ul class="simple">
+<li><p><strong>username</strong>: AMS usernames (e.g., [“john.doe”]).</p></li>
+<li><p><strong>email</strong>: User emails (e.g., [”<a class="reference external" href="mailto:john&#46;doe&#37;&#52;&#48;example&#46;com">john<span>&#46;</span>doe<span>&#64;</span>example<span>&#46;</span>com</a>”]).</p></li>
+<li><p><strong>about</strong>: Full names (e.g., [“John Doe”]).</p></li>
+<li><p><strong>group</strong>: Group name (e.g., “TeamA”). Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code> to list groups.</p></li>
+</ul>
+<p><strong>Caching</strong></p>
+<p>When <cite>option.cache=True</cite> (default), functions reuse an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>
+created by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, maintaining an authenticated session and reducing API
+calls for login or data retrieval. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">user_df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+<span class="n">group_df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">GroupOption</span><span class="p">(</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>  <span class="c1"># Reuses client</span>
+</pre></div>
+</div>
+<p>Set <cite>cache=False</cite> for independent sessions, ensuring fresh data but increasing API
+overhead.</p>
+<p><strong>Column Selection</strong></p>
+<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>, the <cite>columns</cite> parameter in <code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code> allows selecting
+specific columns from the API response. Supported columns include:</p>
+<ul class="simple">
+<li><p><cite>user_id</cite>: Unique AMS-generated user ID.</p></li>
+<li><p><cite>first_name</cite>, <cite>last_name</cite>: User’s name.</p></li>
+<li><p><cite>email</cite>: User’s email address.</p></li>
+<li><p><cite>groups</cite>: List of group memberships (e.g., [‘TeamA’]).</p></li>
+<li><p><cite>about</cite>: Full name (concatenation of first and last names).</p></li>
+<li><p><cite>active</cite>: Boolean indicating account status.</p></li>
+<li><p><cite>dob</cite>: Date of birth (format: YYYY-MM-DD).</p></li>
+<li><p><cite>sex</cite>: Gender (e.g., “Male”, “Female”).</p></li>
+<li><p><cite>uuid</cite>: Optional unique identifier.</p></li>
+<li><p>Others: Additional fields like <cite>known_as</cite>, <cite>language</cite>, <cite>sidebar_width</cite> (if available).</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;active&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>  <span class="c1"># user_id: int64, email: object, active: bool</span>
+</pre></div>
+</div>
+<p><strong>Data Validation</strong></p>
+<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, the <cite>mapping_df</cite> DataFrame must include a <cite>user_key</cite> column
+(one of ‘username’, ‘email’, ‘about’, ‘uuid’) and updatable columns from the supported
+list (e.g., <cite>first_name</cite>, <cite>email</cite>, <cite>dob</cite>, <cite>sex</cite>, <cite>active</cite>, <cite>uuid</cite>). Empty values are
+sent as empty strings. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;025380&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;new.email@example.com&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;uuid&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>, the <cite>user_df</cite> DataFrame must include required columns:
+<cite>first_name</cite>, <cite>last_name</cite>, <cite>username</cite>, <cite>email</cite>, <cite>dob</cite> (format: YYYY-MM-DD),
+<cite>password</cite>, <cite>active</cite> (boolean). Optional columns include <cite>uuid</cite>, <cite>known_as</cite>, <cite>sex</cite>,
+<cite>middle_names</cite>, <cite>language</cite>, <cite>sidebar_width</cite>. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">user_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Yu&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;alice.yu&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;alice.yu@example.com&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;dob&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1990-01-01&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;secure789&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">],</span>
+    <span class="s2">&quot;sex&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Female&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">failed_df</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">(</span><span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Validate data before submission to avoid <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">required</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;dob&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;active&quot;</span><span class="p">]</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">col</span> <span class="ow">in</span> <span class="n">user_df</span><span class="o">.</span><span class="n">columns</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">required</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing required columns:&quot;</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">required</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">user_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">(</span><span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Interactive Mode</strong></p>
+<p>When <cite>interactive_mode=True</cite> (default), functions display progress messages (e.g.,
+“ℹ Creating 1 users”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars for <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code> and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>, enhancing feedback in interactive environments. For
+<code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, it includes detailed success/failure summaries. Set
+<cite>interactive_mode=False</cite> for silent execution in automated pipelines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output</span>
+</pre></div>
+</div>
 </section>
 <section id="error-handling">
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h2>
-<p><strong>teamworksams</strong> functions provide descriptive error messages via <code class="docutils literal notranslate"><span class="pre">AMSError</span></code>, with interactive feedback when <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code> is enabled. For simple scripts or interactive use (e.g., Jupyter notebooks), you can rely on these messages:</p>
+<p><strong>teamworksams</strong> functions provide descriptive error messages via <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>,
+with interactive feedback when <code class="docutils literal notranslate"><span class="pre">interactive_mode</span></code> is enabled. For simple scripts or
+interactive use (e.g., Jupyter notebooks), rely on these messages:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/invalid&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/invalid&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -673,68 +911,25 @@ Columns: [user_key, reason]
 AMSError: Invalid URL or login credentials...
 </pre></div>
 </div>
-<p>For advanced workflows (e.g., automated scripts), use try-except blocks to handle errors gracefully, such as retrying or logging:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">AMSError</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
-
-<span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
-            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-            <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-        <span class="k">break</span>
-    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&quot;503&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>  <span class="c1"># Service unavailable</span>
-            <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">break</span>
-</pre></div>
-</div>
-<p><strong>Output</strong> (if 503 error):</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Attempt 1 failed: Failed to fetch data... (status 503)...
-Attempt 2 failed: Failed to fetch data... (status 503)...
-✔ Retrieved 5 users.
-   user_id first_name
-0    12345       John
-...
-</pre></div>
-</div>
-<p><strong>Logging Errors</strong>:</p>
-<p>Log errors to a file for auditing:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;ams_errors.log&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span>
-        <span class="n">mapping_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;invalid&quot;</span><span class="p">]}),</span>
-        <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span>
-    <span class="p">)</span>
-<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Edit user failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Check ams_errors.log for details&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
 </section>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
 <ul>
-<li><p><strong>Security</strong>: Store credentials in <code class="docutils literal notranslate"><span class="pre">.env</span></code> or <code class="docutils literal notranslate"><span class="pre">keyring</span></code> to prevent exposure. Keep <code class="docutils literal notranslate"><span class="pre">.env</span></code> files in secure, private directories.</p></li>
-<li><p><strong>Data Validation</strong>: Verify DataFrame inputs before calling <cite>edit_user</cite> or <cite>create_user</cite>:</p>
+<li><p><strong>Security</strong>: Store credentials in <code class="docutils literal notranslate"><span class="pre">.env</span></code> or <code class="docutils literal notranslate"><span class="pre">keyring</span></code> to prevent exposure. Keep
+<code class="docutils literal notranslate"><span class="pre">.env</span></code> files in secure, private directories.</p></li>
+<li><p><strong>Data Validation</strong>: Verify DataFrame inputs before calling <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code> or
+<code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">mapping_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Mapping DataFrame is empty&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+    <span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><strong>Interactive Mode</strong>: Enable for user-friendly feedback during operations.</p></li>
 <li><p><strong>Caching</strong>: Use a cached client for multi-call efficiency:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_client</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_client</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span> <span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -749,7 +944,7 @@ Attempt 2 failed: Failed to fetch data... (status 503)...
 </div>
 <p><strong>Solution</strong>: Check credentials and filter settings. Test without filters:</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -761,7 +956,7 @@ Attempt 2 failed: Failed to fetch data... (status 503)...
 <p><strong>Solution</strong>: Ensure DataFrame is non-empty and includes required columns:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mapping_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>  <span class="c1"># Verify columns</span>
-<span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+<span class="n">failed_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span> <span class="o">=</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -772,10 +967,10 @@ Attempt 2 failed: Failed to fetch data... (status 503)...
 </div>
 <p><strong>Solution</strong>: Check AMS server status. Retry with delay:</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
         <span class="k">break</span>
     <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retry </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -789,9 +984,9 @@ Attempt 2 failed: Failed to fetch data... (status 503)...
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Explore database management in <span class="xref std std-ref">vignettes/database_operations</span>.</p></li>
-<li><p>Consult <span class="xref std std-ref">api_reference</span> for function details.</p></li>
-<li><p>Visit <a class="reference external" href="https://github.com/yachb35/teamworksams">GitHub</a> for support.</p></li>
+<li><p>Explore exporting data in <span class="xref std std-ref">vignettes/exporting_data.rst</span>.</p></li>
+<li><p>Consult <span class="xref std std-ref">reference</span> for function details.</p></li>
+<li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>
 </section>
@@ -845,10 +1040,11 @@ Attempt 2 failed: Failed to fetch data... (status 503)...
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-user-data-with-get-user">Fetching User Data with <code class="docutils literal notranslate"><span class="pre">get_user</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-group-data-with-get-group">Fetching Group Data with <code class="docutils literal notranslate"><span class="pre">get_group</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-user-profiles-with-edit-user">Updating User Profiles with <code class="docutils literal notranslate"><span class="pre">edit_user</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-users-with-create-user">Creating New Users with <code class="docutils literal notranslate"><span class="pre">create_user</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-user-data-with-get-user">Fetching User Data with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fetching-group-data-with-get-group">Fetching Group Data with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-user-profiles-with-edit-user">Updating User Profiles with <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-new-users-with-create-user">Creating New Users with <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#options-and-usage-notes">Options and Usage Notes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
@@ -899,7 +1095,7 @@ Attempt 2 failed: Failed to fetch data... (status 503)...
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

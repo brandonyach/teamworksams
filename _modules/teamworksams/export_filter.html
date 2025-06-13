@@ -29,7 +29,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/export_filter';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -424,13 +424,13 @@
                 <article class="bd-article">
                   
   <h1>Source code for teamworksams.export_filter</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.export_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_user_filter_key</span><span class="p">,</span> <span class="n">_validate_event_filter</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">.export_validate</span> <span class="kn">import</span> <span class="n">_validate_user_filter_key</span><span class="p">,</span> <span class="n">_validate_event_filter</span>
 
 
 <div class="viewcode-block" id="EventFilter">
 <a class="viewcode-back" href="../../reference/event_filter.html#teamworksams.export_filter.EventFilter">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">EventFilter</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">EventFilter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter for selecting events in event data export.</span>
 
 <span class="sd">    Defines criteria for filtering events retrieved by</span>
@@ -486,7 +486,7 @@
 <span class="sd">        ...     filter = filter</span>
 <span class="sd">        ... )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">user_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -503,7 +503,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">events_per_user</span> <span class="o">=</span> <span class="n">events_per_user</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the event filter parameters.&quot;&quot;&quot;</span>
         <span class="n">_validate_event_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_condition</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">events_per_user</span><span class="p">)</span></div>
 
@@ -512,7 +512,7 @@
 
 <div class="viewcode-block" id="SyncEventFilter">
 <a class="viewcode-back" href="../../reference/sync_event_filter.html#teamworksams.export_filter.SyncEventFilter">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">SyncEventFilter</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">SyncEventFilter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter for selecting users in sync event data export.</span>
 
 <span class="sd">    Defines criteria for filtering events retrieved by</span>
@@ -546,7 +546,7 @@
 <span class="sd">        ...     filter = filter</span>
 <span class="sd">        ... )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> 
         <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
         <span class="n">user_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -555,7 +555,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">user_value</span> <span class="o">=</span> <span class="n">user_value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the sync event filter parameters.&quot;&quot;&quot;</span>
         <span class="n">valid_user_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;about&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;current_group&quot;</span><span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_key</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_user_keys</span><span class="p">:</span>
@@ -566,7 +566,7 @@
 
 <div class="viewcode-block" id="ProfileFilter">
 <a class="viewcode-back" href="../../reference/profile_filter.html#teamworksams.export_filter.ProfileFilter">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">ProfileFilter</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">ProfileFilter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter for selecting users in profile data export.</span>
 
 <span class="sd">    Defines criteria for filtering profiles retrieved by</span>
@@ -598,7 +598,7 @@
 <span class="sd">        ...     filter = filter</span>
 <span class="sd">        ... )</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> 
         <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
         <span class="n">user_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -607,7 +607,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">user_value</span> <span class="o">=</span> <span class="n">user_value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the profile filter parameters.&quot;&quot;&quot;</span>
         <span class="n">_validate_user_filter_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_key</span><span class="p">)</span></div>
 
@@ -661,7 +661,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

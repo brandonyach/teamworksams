@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Managing Forms &#8212; teamworksams 0.1.0 documentation</title>
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/managing_forms';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -437,8 +437,7 @@
   <section id="managing-forms">
 <h1>Managing Forms<a class="headerlink" href="#managing-forms" title="Link to this heading">#</a></h1>
 <p>This vignette provides a concise guide to managing AMS forms using <strong>teamworksams</strong>,
-covering <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>. Designed for administrators and
-analysts, it outlines workflows for listing accessible forms and summarizing form schemas
+covering <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>. It outlines workflows for listing accessible forms and summarizing form schemas
 to understand their structure (e.g., sections, fields, types). These functions support
 one-off tasks like auditing or preparing for data operations, with simple Python/pandas
 examples. See <span class="xref std std-ref">reference</span> for detailed documentation and
@@ -471,18 +470,18 @@ AMS_PASSWORD=password
 </div>
 </div>
 <p>Load credentials:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Dependencies (installed with <strong>teamworksams</strong>): <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">requests</span></code>,
 <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>, <code class="docutils literal notranslate"><span class="pre">tqdm</span></code>.</p>
 </section>
-<section id="listing-forms">
-<h2>Listing Forms<a class="headerlink" href="#listing-forms" title="Link to this heading">#</a></h2>
+<section id="listing-accessible-forms">
+<h2>Listing Accessible Forms<a class="headerlink" href="#listing-accessible-forms" title="Link to this heading">#</a></h2>
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> to retrieve a list of accessible forms:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_forms</span><span class="p">,</span> <span class="n">FormOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_forms</span><span class="p">,</span> <span class="n">FormOption</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_forms</span><span class="p">(</span>
     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
     <span class="n">option</span><span class="o">=</span><span class="n">FormOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -493,10 +492,10 @@ AMS_PASSWORD=password
 <p><strong>Output</strong>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Requesting list of accessible forms...
 ✔ Retrieved 5 accessible forms.
-   form_id       form_name     type
-0     2937       Allergies  database
-1     1234    Training Log    event
-2     5678  Athlete Profile  profile
+   form_id       form_name       type    mainCategory    isReadOnly     groupEntryEnabled
+0     2937       Allergies   database            None         False                 False
+1     1234    Training Log      event      Monitoring         False                  True
+2     5678  Athlete Profile   profile    Demographics         False                 False
 </pre></div>
 </div>
 <p>Filter the DataFrame to find specific form types:</p>
@@ -510,31 +509,154 @@ AMS_PASSWORD=password
 <section id="inspecting-schemas">
 <h2>Inspecting Schemas<a class="headerlink" href="#inspecting-schemas" title="Link to this heading">#</a></h2>
 <p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> to summarize a form’s schema:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_form_schema</span><span class="p">,</span> <span class="n">FormOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_form_schema</span><span class="p">,</span> <span class="n">FormOption</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
-    <span class="n">form_name</span><span class="o">=</span><span class="s2">&quot;Allergies&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
-    <span class="n">option</span><span class="o">=</span><span class="n">FormOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">field_details</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">form</span> <span class="o">=</span><span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span> <span class="o">=</span> <span class="n">FormOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">field_details</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Output</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching summary for form &#39;Allergies&#39;...
-✔ Retrieved summary for form &#39;Allergies&#39;.
-Form Schema Summary
-==================
-Form Name: Allergies
-Form ID: 2937
-Form Type: database
-Sections: 2
-- General
-- Details
-Required Fields: 1
-- Allergy
-...
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ℹ Fetching summary for form &#39;Training Log&#39; (ID: 5285, Type: event)...
+✔ Retrieved summary for form &#39;Training Log&#39;.
+=====================================
+Form Schema Summary: RPE Training Log
+=====================================
+
+Form Details
+------------
+- Form Name: RPE Training Log
+- Form ID: 5285
+
+Sections
+--------
+- Total: 5
+• Session Details
+• Summary Calculations
+• User Account Details
+• Day of the Week
+• Profile Details
+
+Required Fields
+---------------
+- Total: 0
+- No required fields found.
+
+Defaults to Last Known Value
+----------------------------
+- Total: 0
+- No fields default to the last known value.
+
+Linked Fields
+-------------
+- Total: 7
+• Sport
+• Position
+• Height
+• Dominant Hand
+• Dominant Foot
+• Preferred Language
+• Season
+
+Form Item Types
+---------------
+- Total Unique Types: 14
+- Dropdown: 1 field(s)
+   • Session Type
+- Number: 1 field(s)
+   • Duration
+- Single Selection: 1 field(s)
+   • Rate your Perceived Exertion (RPE)
+- Calculation: 5 field(s)
+   • RPE
+   • Session Load
+   • Index
+   • ACWR
+   • Total ACWR
+- History Calculation: 10 field(s)
+   • Daily Average RPE
+   • Daily Total RPE
+   • Daily Average Duration
+   • Daily Total Duration
+   • Daily Average Load
+   • Daily Total Load
+   • Acute Load
+   • Chronic Load
+   • Total Acute Load
+   • Total Chronic Load
+- History Text Calculation: 1 field(s)
+   • All Session Types Today
+- Time Calculation: 1 field(s)
+   • Time Entered
+- Text Calculation: 7 field(s)
+   • RPE Session Load Filter
+   • Day of the Week
+   • Week
+   • Month
+   • Month with Number
+   • Year
+   • Date Reverse
+- Personal Details: 8 field(s)
+   • First Name
+   • Last Name
+   • Full Name
+   • Full Name Reverse
+   • Sex
+   • Date of Birth
+   • Email
+   • Phone Number
+- Age Calculation: 1 field(s)
+   • Age
+- Date Calculation: 1 field(s)
+   • Session Date
+- Linked Option: 1 field(s)
+   • Sport
+- Linked Text: 5 field(s)
+   • Position
+   • Dominant Hand
+   • Dominant Foot
+   • Preferred Language
+   • Season
+- Linked Value: 1 field(s)
+   • Height
+   ...
 </pre></div>
 </div>
+<dl class="simple">
+<dt>Set <cite>field_details</cite> within <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> to  include detailed field</dt><dd><p>information, such as options, scores, date ranges, etc. in the schema summary,
+increasing verbosity:</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">detailed_schema</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
+    <span class="n">form_name</span><span class="o">=</span><span class="s2">&quot;Allergies&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">FormOption</span><span class="p">(</span>
+      <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+      <span class="n">field_details</span> <span class="o">=</span> <span class="kc">True</span>
+   <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">detailed_schema</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> for output options.</p>
+<dl class="simple">
+<dt>Set <cite>include_instructions</cite> within <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> to include section</dt><dd><p>and field instructions in the schema summary, useful for documentation:</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instructions_schema</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
+    <span class="n">form_name</span><span class="o">=</span><span class="s2">&quot;Allergies&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
+    <span class="n">option</span><span class="o">=</span><span class="n">FormOption</span><span class="p">(</span>
+      <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+      <span class="n">include_instructions</span> <span class="o">=</span> <span class="kc">True</span>
+   <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">instructions_schema</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> for output options.</p>
 <p>Retrieve raw schema for custom processing:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">raw_schema</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
     <span class="n">form_name</span><span class="o">=</span><span class="s2">&quot;Allergies&quot;</span><span class="p">,</span>
@@ -557,19 +679,11 @@ Required Fields: 1
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>AMSError: Form &#39;Invalid Form&#39; not found...
 </pre></div>
 </div>
-<p>For robust scripts, use try-except:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSError</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">get_forms</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
-<span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
 </section>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Verify Form Names</strong>: Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> to confirm <cite>form_name</cite> before
+<li><p><strong>Verify Form Names</strong>: Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> to confirm <cite>form</cite> name before
 calling <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>.</p></li>
 <li><p><strong>Use Caching</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.cache=True</span></code> for efficiency in repeated
 form queries.</p></li>
@@ -584,9 +698,9 @@ during administrative tasks.</p></li>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">vignettes/uploading_files</span> for attaching files to forms.</p></li>
+<li><p>Explore <span class="xref std std-ref">vignettes/importing_data</span> for inserting and updating event data.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
-<li><p>Visit <a class="reference external" href="https://github.com/yachb35/teamworksams">GitHub</a> for support.</p></li>
+<li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>
 </section>
@@ -640,7 +754,7 @@ during administrative tasks.</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listing-forms">Listing Forms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listing-accessible-forms">Listing Accessible Forms</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-schemas">Inspecting Schemas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error Handling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
@@ -691,7 +805,7 @@ during administrative tasks.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

@@ -365,4 +365,4 @@ Next Steps
 
 - Explore :ref:`vignettes/credentials` for advanced credential management, caching, and authentication details.
 - Learn about user management in :ref:`vignettes/user_management`.
-- Dive into the :ref:`api_reference` for detailed function documentation.
+- Dive into the :ref:`reference` for detailed function documentation.

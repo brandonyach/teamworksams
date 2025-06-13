@@ -29,7 +29,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/file_main';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -424,31 +424,31 @@
                 <article class="bd-article">
                   
   <h1>Source code for teamworksams.file_main</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_main</span><span class="w"> </span><span class="kn">import</span> <span class="n">update_event_data</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.import_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">UpdateEventOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.file_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileUploadOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.file_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_file_df</span><span class="p">,</span> <span class="n">_validate_file_path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.file_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_format_file_reference</span><span class="p">,</span> <span class="n">_map_user_ids_to_file_df</span><span class="p">,</span> <span class="n">_build_result_df</span><span class="p">,</span> <span class="n">_validate_and_prepare_files</span><span class="p">,</span> <span class="n">_upload_single_file</span><span class="p">,</span> <span class="n">_create_avatar_mapping_df</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_all_user_data</span><span class="p">,</span> <span class="n">_update_single_user</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_map_user_updates</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_user_key</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.export_main</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.export_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.export_filter</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventFilter</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
+<span class="kn">from</span> <span class="nn">.import_main</span> <span class="kn">import</span> <span class="n">update_event_data</span>
+<span class="kn">from</span> <span class="nn">.import_option</span> <span class="kn">import</span> <span class="n">UpdateEventOption</span>
+<span class="kn">from</span> <span class="nn">.file_option</span> <span class="kn">import</span> <span class="n">FileUploadOption</span>
+<span class="kn">from</span> <span class="nn">.file_validate</span> <span class="kn">import</span> <span class="n">_validate_file_df</span><span class="p">,</span> <span class="n">_validate_file_path</span>
+<span class="kn">from</span> <span class="nn">.file_process</span> <span class="kn">import</span> <span class="n">_format_file_reference</span><span class="p">,</span> <span class="n">_map_user_ids_to_file_df</span><span class="p">,</span> <span class="n">_build_result_df</span><span class="p">,</span> <span class="n">_validate_and_prepare_files</span><span class="p">,</span> <span class="n">_upload_single_file</span><span class="p">,</span> <span class="n">_create_avatar_mapping_df</span>
+<span class="kn">from</span> <span class="nn">.user_fetch</span> <span class="kn">import</span> <span class="n">_fetch_all_user_data</span><span class="p">,</span> <span class="n">_update_single_user</span>
+<span class="kn">from</span> <span class="nn">.user_process</span> <span class="kn">import</span> <span class="n">_map_user_updates</span>
+<span class="kn">from</span> <span class="nn">.user_validate</span> <span class="kn">import</span> <span class="n">_validate_user_key</span>
+<span class="kn">from</span> <span class="nn">.user_option</span> <span class="kn">import</span> <span class="n">UserOption</span>
+<span class="kn">from</span> <span class="nn">.export_main</span> <span class="kn">import</span> <span class="n">get_event_data</span>
+<span class="kn">from</span> <span class="nn">.export_option</span> <span class="kn">import</span> <span class="n">EventOption</span>
+<span class="kn">from</span> <span class="nn">.export_filter</span> <span class="kn">import</span> <span class="n">EventFilter</span>
 
 
 <div class="viewcode-block" id="upload_and_attach_to_events">
 <a class="viewcode-back" href="../../reference/upload_and_attach_to_events.html#teamworksams.file_main.upload_and_attach_to_events">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">upload_and_attach_to_events</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">upload_and_attach_to_events</span><span class="p">(</span>
     <span class="n">mapping_df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">file_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">user_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1003,7 +1003,7 @@
 
 <div class="viewcode-block" id="upload_and_attach_to_avatars">
 <a class="viewcode-back" href="../../reference/upload_and_attach_to_avatars.html#teamworksams.file_main.upload_and_attach_to_avatars">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">upload_and_attach_to_avatars</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">upload_and_attach_to_avatars</span><span class="p">(</span>
     <span class="n">mapping_df</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">file_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">user_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1425,7 +1425,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

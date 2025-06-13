@@ -29,7 +29,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/teamworksams/user_main';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -424,24 +424,24 @@
                 <article class="bd-article">
                   
   <h1>Source code for teamworksams.user_main</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_build</span><span class="w"> </span><span class="kn">import</span> <span class="n">_build_group_payload</span><span class="p">,</span> <span class="n">_build_user_save_payload</span><span class="p">,</span> <span class="n">_build_user_edit_payload</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_fetch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_fetch_user_data</span><span class="p">,</span> <span class="n">_fetch_user_save</span><span class="p">,</span> <span class="n">_fetch_all_user_data</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_clean</span><span class="w"> </span><span class="kn">import</span> <span class="n">_clean_user_data</span><span class="p">,</span> <span class="n">_transform_group_data</span><span class="p">,</span> <span class="n">_clean_user_data_for_save</span><span class="p">,</span> <span class="n">_get_update_columns</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">_filter_by_about</span><span class="p">,</span> <span class="n">_flatten_user_response</span><span class="p">,</span> <span class="n">_match_user_ids</span><span class="p">,</span> <span class="n">_map_user_updates</span><span class="p">,</span> <span class="n">_process_users</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_print</span><span class="w"> </span><span class="kn">import</span> <span class="n">_print_user_status</span><span class="p">,</span> <span class="n">_print_group_status</span><span class="p">,</span> <span class="n">_report_user_results</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_filter</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserFilter</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_option</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserOption</span><span class="p">,</span> <span class="n">GroupOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.user_validate</span><span class="w"> </span><span class="kn">import</span> <span class="n">_validate_user_data_for_edit</span><span class="p">,</span> <span class="n">_validate_user_data_for_save</span>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">AMSClient</span><span class="p">,</span> <span class="n">AMSError</span><span class="p">,</span> <span class="n">get_client</span>
+<span class="kn">from</span> <span class="nn">.user_build</span> <span class="kn">import</span> <span class="n">_build_group_payload</span><span class="p">,</span> <span class="n">_build_user_save_payload</span><span class="p">,</span> <span class="n">_build_user_edit_payload</span>
+<span class="kn">from</span> <span class="nn">.user_fetch</span> <span class="kn">import</span> <span class="n">_fetch_user_data</span><span class="p">,</span> <span class="n">_fetch_user_save</span><span class="p">,</span> <span class="n">_fetch_all_user_data</span>
+<span class="kn">from</span> <span class="nn">.user_clean</span> <span class="kn">import</span> <span class="n">_clean_user_data</span><span class="p">,</span> <span class="n">_transform_group_data</span><span class="p">,</span> <span class="n">_clean_user_data_for_save</span><span class="p">,</span> <span class="n">_get_update_columns</span>
+<span class="kn">from</span> <span class="nn">.user_process</span> <span class="kn">import</span> <span class="n">_filter_by_about</span><span class="p">,</span> <span class="n">_flatten_user_response</span><span class="p">,</span> <span class="n">_match_user_ids</span><span class="p">,</span> <span class="n">_map_user_updates</span><span class="p">,</span> <span class="n">_process_users</span>
+<span class="kn">from</span> <span class="nn">.user_print</span> <span class="kn">import</span> <span class="n">_print_user_status</span><span class="p">,</span> <span class="n">_print_group_status</span><span class="p">,</span> <span class="n">_report_user_results</span>
+<span class="kn">from</span> <span class="nn">.user_filter</span> <span class="kn">import</span> <span class="n">UserFilter</span>
+<span class="kn">from</span> <span class="nn">.user_option</span> <span class="kn">import</span> <span class="n">UserOption</span><span class="p">,</span> <span class="n">GroupOption</span>
+<span class="kn">from</span> <span class="nn">.user_validate</span> <span class="kn">import</span> <span class="n">_validate_user_data_for_edit</span><span class="p">,</span> <span class="n">_validate_user_data_for_save</span>
 
 
 <div class="viewcode-block" id="get_user">
 <a class="viewcode-back" href="../../reference/get_user.html#teamworksams.user_main.get_user">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -516,7 +516,7 @@
 
 <div class="viewcode-block" id="get_group">
 <a class="viewcode-back" href="../../reference/get_group.html#teamworksams.user_main.get_group">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_group</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">get_group</span><span class="p">(</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -588,7 +588,7 @@
 
 <div class="viewcode-block" id="edit_user">
 <a class="viewcode-back" href="../../reference/edit_user.html#teamworksams.user_main.edit_user">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">edit_user</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">edit_user</span><span class="p">(</span>
     <span class="n">mapping_df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">user_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -745,7 +745,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Successfully mapped </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users.&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Updating </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> users...&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">payload_builder</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">payload_builder</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_build_user_edit_payload</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">column_mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">update_columns</span><span class="p">})</span>
 
     <span class="n">failed_operations</span><span class="p">,</span> <span class="n">user_ids</span> <span class="o">=</span> <span class="n">_process_users</span><span class="p">(</span>
@@ -819,7 +819,7 @@
 
 <div class="viewcode-block" id="create_user">
 <a class="viewcode-back" href="../../reference/create_user.html#teamworksams.user_main.create_user">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span>
     <span class="n">user_df</span><span class="p">:</span> <span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -946,7 +946,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

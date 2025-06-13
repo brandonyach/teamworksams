@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Getting Started with teamworksams &#8212; teamworksams 0.1.0 documentation</title>
   
@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'vignettes/getting_started';</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -458,7 +458,7 @@
 </pre></div>
 </div>
 <p>Verify the installation:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">teamworksams</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">teamworksams</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">teamworksams</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>  <span class="c1"># Should print &#39;0.1.0&#39;</span>
 </pre></div>
 </div>
@@ -529,7 +529,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 </div>
 <p><strong>Step 4: Verify Installation</strong></p>
 <p>Test the import:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">teamworksams</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">teamworksams</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">teamworksams</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>  <span class="c1"># Should print 0.1.0</span>
 </pre></div>
 </div>
@@ -547,8 +547,8 @@ AMS_PASSWORD=password
 </pre></div>
 </div>
 <p>Load the <cite>.env</cite> file in your Python script:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">LoginOption</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">LoginOption</span>
 
 <span class="n">load_dotenv</span><span class="p">()</span>
 <span class="n">login_result</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span>
@@ -604,7 +604,7 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 <ol class="arabic" start="2">
 <li><p><strong>Using Direct Arguments</strong></p>
 <p>Pass credentials directly to functions like <cite>get_event_data</cite>. This is useful for quick tests or when credentials are dynamically generated.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span><span class="p">,</span> <span class="n">EventFilter</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span><span class="p">,</span> <span class="n">EventFilter</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
   <span class="n">form</span> <span class="o">=</span> <span class="s2">&quot;Training Log&quot;</span><span class="p">,</span>
@@ -627,7 +627,7 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 <span class="c1"># 1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium</span>
 
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">get_user</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">get_user</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span>
     <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">,</span>
@@ -644,13 +644,13 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 <li><p><strong>Using Keyring (Secure Storage)</strong></p>
 <p>Store credentials securely using the <cite>keyring</cite> library, ideal for local development or when sharing scripts across machines.</p>
 <p>Set credentials:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">keyring</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">keyring</span>
 <span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s2">&quot;teamworksams&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span>
 <span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s2">&quot;teamworksams&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Use in <cite>teamworksams</cite>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">get_user</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://example.smartabase.com/site&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -674,7 +674,7 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 <li><p><strong>Keyring Issues</strong>: Install <cite>keyrings.alt</cite> for CI compatibility (<cite>pip install keyrings.alt</cite>).</p></li>
 </ul>
 <p>Example error handling:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">login</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">login</span><span class="p">(</span>
         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://invalid.smartabase.com/site&quot;</span><span class="p">,</span>
@@ -689,9 +689,9 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
 <p>Let’s authenticate and fetch user data to get started. This example logs in, retrieves a list of users, and displays their IDs and names.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">get_user</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginOption</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">get_user</span>
+<span class="kn">from</span> <span class="nn">teamworksams</span> <span class="kn">import</span> <span class="n">LoginOption</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 
 <span class="c1"># Load credentials from .env</span>
 <span class="n">load_dotenv</span><span class="p">()</span>
@@ -730,7 +730,7 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 <ul class="simple">
 <li><p>Explore <span class="xref std std-ref">vignettes/credentials</span> for advanced credential management, caching, and authentication details.</p></li>
 <li><p>Learn about user management in <span class="xref std std-ref">vignettes/user_management</span>.</p></li>
-<li><p>Dive into the <span class="xref std std-ref">api_reference</span> for detailed function documentation.</p></li>
+<li><p>Dive into the <span class="xref std std-ref">reference</span> for detailed function documentation.</p></li>
 </ul>
 </section>
 </section>
@@ -836,7 +836,7 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>
