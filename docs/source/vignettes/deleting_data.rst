@@ -154,19 +154,6 @@ Deletion functions raise :class:`AMSError` with descriptive messages:
    ✖ Failed to delete event with ID 999999: Invalid event ID
    AMSError: Invalid event ID...
 
-For automated scripts, use try-except:
-
-.. code-block:: python
-
-   from teamworksams import AMSError, DeleteEventOption
-   try:
-       result = delete_multiple_events(
-           event_ids=[134273],
-           url="https://example.smartabase.com/site",
-           option=DeleteEventOption(interactive_mode=False)
-       )
-   except AMSError as e:
-       print(f"Error: {e}")
 
 Common errors include:
 - Invalid or non-existent `event_id`.
@@ -191,4 +178,4 @@ Next Steps
 
 - Explore :ref:`vignettes/exporting_data` for retrieving event data and IDs.
 - Consult :ref:`reference` for detailed function and class documentation.
-- Visit `GitHub <https://github.com/yachb35/teamworksams>`_ for support.
+- Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

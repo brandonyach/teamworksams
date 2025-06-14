@@ -82,68 +82,22 @@ See :func:`login` for more details.
 
 **teamworksams** supports direct access to environment variables using Python’s ``os`` module, an alternative for users comfortable with shell configuration or existing workflows that set variables manually. This method is less automated than ``python-dotenv`` but provides flexibility for advanced users.
 
-**Steps**:
+Set environment variables in your shell or via a .env file, then access variables with ``os.getenv``:
 
-1. Set environment variables in your shell:
+.. code-block:: python
 
+   import os
+   from teamworksams import get_user, UserOption
 
-   .. code-block:: bash
+   url = os.getenv("AMS_URL")
+   username = os.getenv("AMS_USERNAME")
+   password = os.getenv("AMS_PASSWORD") 
 
-      export AMS_URL = https://example.smartabase.com/site
-      export AMS_USERNAME = username
-      export AMS_PASSWORD = password
-
-   To make these persistent, add to your shell profile (e.g., ``~/.bashrc`` or ``~/.zshrc``):
-
-   .. code-block:: bash
-
-      echo 'export AMS_URL = https://example.smartabase.com/site' >> ~/.bashrc
-      echo 'export AMS_USERNAME = username' >> ~/.bashrc
-      echo 'export AMS_PASSWORD = password' >> ~/.bashrc
-      source ~/.bashrc
-
-
-   .. code-block:: bash
-
-      set AMS_URL=https://example.smartabase.com/site
-      set AMS_USERNAME=username
-      set AMS_PASSWORD=password
-
-   For persistence, set via System Environment Variables:
-
-   - Open Control Panel > System > Advanced system settings > Environment Variables.
-   - Add new variables under User variables.
-
-
-   .. code-block:: bash
-
-      $Env:AMS_URL = "https://example.smartabase.com/site"
-      $Env:AMS_USERNAME = "username"
-      $Env:AMS_PASSWORD = "password"
-
-   For persistence, add to your PowerShell profile:
-
-   .. code-block:: bash
-
-      echo '$Env:AMS_URL = "https://example.smartabase.com/site"' >> $PROFILE
-      echo '$Env:AMS_USERNAME = "username"' >> $PROFILE
-      echo '$Env:AMS_PASSWORD = "password"' >> $PROFILE
-
-
-2. Access variables with ``os.getenv``:
-
-   .. code-block:: python
-
-      import os
-      from teamworksams import get_user
-      from teamworksams.user_option import UserOption
-
-      url = os.getenv("AMS_URL")
-      df = get_user(
-          url=url,
-          option=UserOption(interactive_mode=True)
-      )
-      print(df[['user_id', 'first_name', 'groups']].head())
+   df = get_user(
+         url = url,
+         option = UserOption(interactive_mode = True)
+   )
+   print(df[['user_id', 'first_name', 'groups']].head())
 
 **Output**:
 
@@ -177,8 +131,7 @@ Passing credentials directly to functions is convenient for quick prototyping or
 
 .. code-block:: python
 
-   from teamworksams import get_client, get_user
-   from teamworksams.user_option import UserOption
+   from teamworksams import get_client, get_user, UserOption
 
    client = get_client(
        url = "https://example.smartabase.com/site",
@@ -220,24 +173,24 @@ The ``keyring`` library (included with **teamworksams**) stores credentials in y
 
 1. Store credentials:
 
-   .. code-block:: python
+.. code-block:: python
 
-      import keyring
-      keyring.set_password("teamworksams", "username", "username")
-      keyring.set_password("teamworksams", "password", "password")
+   import keyring
+   keyring.set_password("teamworksams", "username", "username")
+   keyring.set_password("teamworksams", "password", "password")
 
 2. Use **teamworksams** functions, which automatically fall back to ``keyring`` if environment variables are unset:
 
-   .. code-block:: python
+.. code-block:: python
 
-      from teamworksams import get_group, GroupOption
+   from teamworksams import get_group, GroupOption
 
-      group_df = get_group(
-          url = "https://example.smartabase.com/site",
-          option = GroupOption(interactive_mode = True)
-      )
+   group_df = get_group(
+         url = "https://example.smartabase.com/site",
+         option = GroupOption(interactive_mode = True)
+   )
 
-      print(group_df)
+   print(group_df)
 
 **Output**:
 
@@ -255,10 +208,10 @@ The ``keyring`` library (included with **teamworksams**) stores credentials in y
 - Use the service name ``teamworksams`` for consistency.
 - Test keyring access before deployment:
 
-  .. code-block:: python
+.. code-block:: python
 
-     import keyring
-     print(keyring.get_password("teamworksams", "username"))  # Should print: username
+   import keyring
+   print(keyring.get_password("teamworksams", "username"))  # Should print: username
 
 Authentication with ``login``
 ----------------------------
@@ -449,10 +402,10 @@ Best Practices
   - Use virtual environments to isolate dependencies.
   - Test credentials before production deployment:
 
-    .. code-block:: python
+.. code-block:: python
 
-       from teamworksams import login
-       login(url = "https://example.smartabase.com/site", username = "username", password = "password")
+   from teamworksams import login
+   login(url = "https://example.smartabase.com/site", username = "username", password = "password")
 
 Troubleshooting
 ---------------
@@ -518,4 +471,4 @@ Next Steps
 
 - Explore user management in :ref:`vignettes/user_management`.
 - Check the :ref:`api_reference` for detailed function documentation.
-- Visit `GitHub <https://github.com/yachb35/teamworksams>`_ for issues or contributions.
+- Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for issues or contributions.

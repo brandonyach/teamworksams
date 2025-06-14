@@ -1,0 +1,14 @@
+/* Prevent color inversion for logo in dark mode */
+[data-theme="dark"] img[src$="logo.png"] {
+    filter: none !important;
+    /* Ensure original colors are preserved */
+    -webkit-filter: none !important;
+    /* Optional: Adjust brightness or contrast if needed */
+    /* filter: brightness(1) !important; */
+}
+
+/* Ensure logo displays correctly in light mode (optional) */
+[data-theme="light"] img[src$="logo.png"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+}

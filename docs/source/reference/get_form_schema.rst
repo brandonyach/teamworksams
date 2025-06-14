@@ -9,7 +9,7 @@ Additional Notes
 - The formatted string output is ideal for console display in Jupyter
   notebooks; use ``option.raw_output=True`` for programmatic access to the
   raw schema dictionary.
-- Ensure ``form_name`` matches an existing AMS form exactly
+- Ensure ``form`` matches an existing AMS form exactly
   (case-sensitive); invalid names raise :class:`AMSError`.
 - Use ``option.field_details=True`` to include field options (e.g., dropdown
   values), crucial for understanding form requirements before data operations.

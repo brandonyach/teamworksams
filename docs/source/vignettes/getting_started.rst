@@ -3,7 +3,7 @@
 Getting Started with teamworksams
 ================================
 
-**teamworksams** is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS users, leveraging Python’s data processing capabilities.
+**teamworksams** is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS, leveraging Python’s data processing capabilities.
 
 
 This guide walks you through installing `teamworksams`, setting up credentials, and running your first API call. Explore advanced features in the :ref:`vignettes` and :ref:`api_reference` vignettes.
@@ -365,4 +365,4 @@ Next Steps
 
 - Explore :ref:`vignettes/credentials` for advanced credential management, caching, and authentication details.
 - Learn about user management in :ref:`vignettes/user_management`.
-- Dive into the :ref:`api_reference` for detailed function documentation.
+- Dive into the :ref:`reference` for detailed function documentation.
