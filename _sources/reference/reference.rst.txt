@@ -1,4 +1,4 @@
-Function and Class Reference
+Functions and Classes
 ===========================
 
 This section provides detailed documentation for all **teamworksams** functions and classes, organized by module. Each entry links to a dedicated page with full parameter details, usage examples, return values, and error conditions. Use this reference to explore specific functionality, complemented by the :ref:`vignettes` section for practical workflows.
