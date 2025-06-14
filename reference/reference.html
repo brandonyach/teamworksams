@@ -1,507 +1,168 @@
-
 <!DOCTYPE html>
 
-
-<html lang="en" data-content_root="../" >
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
-    <title>Function and Class Reference &#8212; teamworksams 0.1.0 documentation</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
-  </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
-  
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
-  
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
-
-    <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/reference';</script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="get_client" href="get_client.html" />
-    <link rel="prev" title="Deleting Data" href="../vignettes/deleting_data.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
-  
-  
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
-  
-  <dialog id="pst-search-dialog">
-    
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         placeholder="Search the docs ..."
-         aria-label="Search the docs ..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" data-content_root="../" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Function and Class Reference | teamworksams 0.1.0 documentation</title>
+<meta content="Function and Class Reference | teamworksams 0.1.0 documentation" property="og:title"/>
+<meta content="Function and Class Reference | teamworksams 0.1.0 documentation" name="twitter:title"/>
+<link href="../_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css"/>
+<link href="../_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css"/>
+<link href="../search.html" rel="search" title="Search"/>
+<link href="../genindex.html" rel="index" title="Index"/>
+<link href="get_client.html" rel="next" title="get_client"/>
+<link href="../vignettes/deleting_data.html" rel="prev" title="Deleting Data"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a><header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../index.html">
+<img alt="Logo" class="mr-2 dark:invert" height="24" src="../_static/logo.png" width="24"/><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">teamworksams 0.1.0 documentation</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.meta="$refs.search.focus()" action="../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+    K
+  </kbd>
 </form>
-  </dialog>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
-
-  
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-<div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
-    <span class="fa-solid fa-bars"></span>
-  </button>
-  
-  
-  <div class="col-lg-3 navbar-header-items__start">
-    
-      <div class="navbar-item">
-
-  
-    
-  
-
-<a class="navbar-brand logo" href="../index.html">
-  
-  
-  
-  
-  
-    
-    
-      
-    
-    
-    <img src="../_static/logo.png" class="logo__image only-light" alt="teamworksams 0.1.0 documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="teamworksams 0.1.0 documentation - Home"/>
-  
-  
-</a></div>
-    
-  </div>
-  
-  <div class="col-lg-9 navbar-header-items">
-    
-    <div class="me-auto navbar-header-items__center">
-      
-        <div class="navbar-item">
-<nav>
-  <ul class="bd-navbar-elements navbar-nav">
-    
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/getting_started.html">
-    Getting Started with teamworksams
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/credentials.html">
-    Managing Credentials, Authentication, and Caching
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/user_management.html">
-    User and Group Management
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/exporting_data.html">
-    Exporting Data
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/importing_data.html">
-    Importing Data
-  </a>
-</li>
-
-            <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button"
-                data-bs-toggle="dropdown" aria-expanded="false"
-                aria-controls="pst-nav-more-links">
-                    More
-                </button>
-                <ul id="pst-nav-more-links" class="dropdown-menu">
-                    
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../vignettes/database_operations.html">
-    Database Management
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../vignettes/uploading_files.html">
-    Uploading Files
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../vignettes/managing_forms.html">
-    Managing Forms
-  </a>
-</li>
-
-
-<li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../vignettes/deleting_data.html">
-    Deleting Data
-  </a>
-</li>
-
-
-<li class=" current active">
-  <a class="nav-link dropdown-item nav-internal" href="#">
-    Function and Class Reference
-  </a>
-</li>
-
-                </ul>
-            </li>
-            
-  </ul>
-</nav></div>
-      
-    </div>
-    
-    
-    <div class="navbar-header-items__end">
-      
-        <div class="navbar-item navbar-persistent--container">
-          
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+<nav class="flex items-center space-x-1">
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" aria-label="Color theme switcher" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
 </button>
-        </div>
-      
-      
-        <div class="navbar-item">
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
-      
-    </div>
-    
-  </div>
-  
-  
-    <div class="navbar-persistent--mobile">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
-    </div>
-  
-
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
-</div>
-
-    </header>
-  
-
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
-      
-      
-      
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-      <div class="sidebar-header-items__center">
-        
-          
-          
-            <div class="navbar-item">
-<nav>
-  <ul class="bd-navbar-elements navbar-nav">
-    
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/getting_started.html">
-    Getting Started with teamworksams
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/credentials.html">
-    Managing Credentials, Authentication, and Caching
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/user_management.html">
-    User and Group Management
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/exporting_data.html">
-    Exporting Data
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/importing_data.html">
-    Importing Data
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/database_operations.html">
-    Database Management
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/uploading_files.html">
-    Uploading Files
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/managing_forms.html">
-    Managing Forms
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../vignettes/deleting_data.html">
-    Deleting Data
-  </a>
-</li>
-
-
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    Function and Class Reference
-  </a>
-</li>
-
-  </ul>
-</nav></div>
-          
-        
-      </div>
-    
-    
-    
-      <div class="sidebar-header-items__end">
-        
-          <div class="navbar-item">
-
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
-        
-      </div>
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="get_client.html">get_client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="login.html">login</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ams_client.html">AMSClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ams_error.html">AMSError</a></li>
-<li class="toctree-l1"><a class="reference internal" href="login_option.html">LoginOption</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="get_user.html">get_user</a></li>
-<li class="toctree-l1"><a class="reference internal" href="get_group.html">get_group</a></li>
-<li class="toctree-l1"><a class="reference internal" href="edit_user.html">edit_user</a></li>
-<li class="toctree-l1"><a class="reference internal" href="create_user.html">create_user</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_option.html">UserOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_option.html">GroupOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user_filter.html">UserFilter</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="get_event_data.html">get_event_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sync_event_data.html">sync_event_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="get_profile_data.html">get_profile_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="event_filter.html">EventFilter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sync_event_filter.html">SyncEventFilter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="profile_filter.html">ProfileFilter</a></li>
-<li class="toctree-l1"><a class="reference internal" href="event_option.html">EventOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sync_event_option.html">SyncEventOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="profile_option.html">ProfileOption</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="insert_event_data.html">insert_event_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update_event_data.html">update_event_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="upsert_event_data.html">upsert_event_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="upsert_profile_data.html">upsert_profile_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insert_event_option.html">InsertEventOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update_event_option.html">UpdateEventOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="upsert_event_option.html">UpsertEventOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="upsert_profile_option.html">UpsertProfileOption</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="get_database.html">get_database</a></li>
-<li class="toctree-l1"><a class="reference internal" href="delete_database_entry.html">delete_database_entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insert_database_entry.html">insert_database_entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update_database_entry.html">update_database_entry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="get_database_option.html">GetDatabaseOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="insert_database_option.html">InsertDatabaseOption</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update_database_option.html">UpdateDatabaseOption</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="upload_and_attach_to_events.html">upload_and_attach_to_events</a></li>
-<li class="toctree-l1"><a class="reference internal" href="upload_and_attach_to_avatars.html">upload_and_attach_to_avatars</a></li>
-<li class="toctree-l1"><a class="reference internal" href="file_upload_option.html">FileUploadOption</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="get_forms.html">get_forms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="get_form_schema.html">get_form_schema</a></li>
-<li class="toctree-l1"><a class="reference internal" href="form_option.html">FormOption</a></li>
-</ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="delete_event_data.html">delete_event_data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="delete_multiple_events.html">delete_multiple_events</a></li>
-<li class="toctree-l1"><a class="reference internal" href="delete_event_option.html">DeleteEventOption</a></li>
-</ul>
-</div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
-  </div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main" role="main">
-        
-        
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article d-print-none">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item">
-
-<nav aria-label="Breadcrumb" class="d-print-none">
-  <ul class="bd-breadcrumbs">
-    
-    <li class="breadcrumb-item breadcrumb-home">
-      <a href="../index.html" class="nav-link" aria-label="Home">
-        <i class="fa-solid fa-home"></i>
-      </a>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Function and Class Reference</span></li>
-  </ul>
 </nav>
 </div>
-      
-    </div>
-  
-  
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../index.html">
+<img alt="Logo" class="mr-2 dark:invert" height="16" src="../_static/logo.png" width="16"/><span class="font-bold text-clip whitespace-nowrap">teamworksams 0.1.0 documentation</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/getting_started.html">Getting Started with teamworksams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vignettes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/credentials.html">Managing Credentials, Authentication, and Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/user_management.html">User and Group Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/importing_data.html">Importing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/database_operations.html">Database Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/uploading_files.html">Uploading Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/managing_forms.html">Managing Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/deleting_data.html">Deleting Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="current reference internal expandable" href="#">Function and Class Reference<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul x-show="expanded">
+<li class="toctree-l2"><a class="reference internal" href="get_client.html">get_client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ams_client.html">AMSClient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ams_error.html">AMSError</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login_option.html">LoginOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_user.html">get_user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_group.html">get_group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit_user.html">edit_user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_user.html">create_user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_option.html">UserOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group_option.html">GroupOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_filter.html">UserFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_event_data.html">get_event_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sync_event_data.html">sync_event_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_profile_data.html">get_profile_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event_filter.html">EventFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sync_event_filter.html">SyncEventFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile_filter.html">ProfileFilter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event_option.html">EventOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sync_event_option.html">SyncEventOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profile_option.html">ProfileOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="insert_event_data.html">insert_event_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_event_data.html">update_event_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upsert_event_data.html">upsert_event_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upsert_profile_data.html">upsert_profile_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="insert_event_option.html">InsertEventOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_event_option.html">UpdateEventOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upsert_event_option.html">UpsertEventOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upsert_profile_option.html">UpsertProfileOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_database.html">get_database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_database_entry.html">delete_database_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="insert_database_entry.html">insert_database_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_database_entry.html">update_database_entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_database_option.html">GetDatabaseOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="insert_database_option.html">InsertDatabaseOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_database_option.html">UpdateDatabaseOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upload_and_attach_to_events.html">upload_and_attach_to_events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upload_and_attach_to_avatars.html">upload_and_attach_to_avatars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_upload_option.html">FileUploadOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_forms.html">get_forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_form_schema.html">get_form_schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_option.html">FormOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_event_data.html">delete_event_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_multiple_events.html">delete_multiple_events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_event_option.html">DeleteEventOption</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 </div>
 </div>
-              
-              
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article">
-                  
-  <section id="function-and-class-reference">
-<h1>Function and Class Reference<a class="headerlink" href="#function-and-class-reference" title="Link to this heading">#</a></h1>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../index.html">
+<span class="hidden md:inline">teamworksams 0.1.0 documentation</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Function and Class Reference</span>
+</nav>
+<div id="content" role="main">
+<section id="function-and-class-reference">
+<h1>Function and Class Reference<a class="headerlink" href="#function-and-class-reference" title="Link to this heading"><span>#</span></a></h1>
 <p>This section provides detailed documentation for all <strong>teamworksams</strong> functions and classes, organized by module. Each entry links to a dedicated page with full parameter details, usage examples, return values, and error conditions. Use this reference to explore specific functionality, complemented by the <span class="xref std std-ref">vignettes</span> section for practical workflows.</p>
 <section id="credentials-and-authentication">
-<h2>Credentials and Authentication<a class="headerlink" href="#credentials-and-authentication" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>Credentials and Authentication<a class="headerlink" href="#credentials-and-authentication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#credentials-and-authentication'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>: Create or retrieve an authenticated client for API interactions.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">login()</span></code>: Authenticate with an AMS instance and return session details.</p></li>
@@ -511,9 +172,8 @@
 </ul>
 </section>
 <section id="user-management">
-<h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#user-management'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>: Retrieve user data as a pandas DataFrame, with optional filtering.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code>: Fetch group data as a pandas DataFrame.</p></li>
@@ -525,9 +185,8 @@
 </ul>
 </section>
 <section id="data-export">
-<h2>Data Export<a class="headerlink" href="#data-export" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>Data Export<a class="headerlink" href="#data-export" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#data-export'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: Retrieve event data from an AMS Event Form within a date range.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>: Fetch event data modified since the last synchronization time.</p></li>
@@ -541,9 +200,8 @@
 </ul>
 </section>
 <section id="data-import">
-<h2>Data Import<a class="headerlink" href="#data-import" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>Data Import<a class="headerlink" href="#data-import" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#data-import'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>: Insert new event records into an AMS Event Form.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>: Update existing event records in an AMS Event Form.</p></li>
@@ -556,9 +214,8 @@
 </ul>
 </section>
 <section id="database-operations">
-<h2>Database Operations<a class="headerlink" href="#database-operations" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>Database Operations<a class="headerlink" href="#database-operations" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#database-operations'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>: Retrieve database entries from an AMS database form.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code>: Delete a specific database entry by ID.</p></li>
@@ -570,9 +227,8 @@
 </ul>
 </section>
 <section id="file-management">
-<h2>File Management<a class="headerlink" href="#file-management" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>File Management<a class="headerlink" href="#file-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#file-management'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code>: Upload files and attach to events in an AMS Event Form.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>: Upload images and attach as user profile avatars.</p></li>
@@ -580,9 +236,8 @@
 </ul>
 </section>
 <section id="form-management">
-<h2>Form Management<a class="headerlink" href="#form-management" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>Form Management<a class="headerlink" href="#form-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#form-management'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code>: Fetch a list of forms accessible to the user.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>: Fetch and summarize a specific form’s schema.</p></li>
@@ -590,9 +245,8 @@
 </ul>
 </section>
 <section id="deleting-data">
-<h2>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-</div>
+<h2>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#deleting-data'"><span>#</span></a></h2>
+
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code>: Delete a single event from an AMS instance.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>: Delete multiple events from an AMS instance.</p></li>
@@ -600,129 +254,33 @@
 </ul>
 </section>
 </section>
-
-
-                </article>
-              
-              
-              
-              
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../vignettes/deleting_data.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Deleting Data</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="get_client.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">get_client</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials-and-authentication">Credentials and Authentication</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-management">User Management</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-export">Data Export</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-import">Data Import</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#database-operations">Database Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-management">File Management</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#form-management">Form Management</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-data">Deleting Data</a></li>
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#credentials-and-authentication'" class="reference internal" href="#credentials-and-authentication">Credentials and Authentication</a></li>
+<li><a :data-current="activeSection === '#user-management'" class="reference internal" href="#user-management">User Management</a></li>
+<li><a :data-current="activeSection === '#data-export'" class="reference internal" href="#data-export">Data Export</a></li>
+<li><a :data-current="activeSection === '#data-import'" class="reference internal" href="#data-import">Data Import</a></li>
+<li><a :data-current="activeSection === '#database-operations'" class="reference internal" href="#database-operations">Database Operations</a></li>
+<li><a :data-current="activeSection === '#file-management'" class="reference internal" href="#file-management">File Management</a></li>
+<li><a :data-current="activeSection === '#form-management'" class="reference internal" href="#form-management">Form Management</a></li>
+<li><a :data-current="activeSection === '#deleting-data'" class="reference internal" href="#deleting-data">Deleting Data</a></li>
 </ul>
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/reference/reference.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-          </footer>
-        
-      </main>
-    </div>
-  </div>
-  
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
-
-  <footer class="bd-footer">
-<div class="bd-footer__inner bd-page-width">
-  
-    <div class="footer-items__start">
-      
-        <div class="footer-item">
-
-  <p class="copyright">
-    
-      © Copyright 2025, Brandon Yach.
-      <br/>
-    
-  </p>
 </div>
-      
-        <div class="footer-item">
-
-  <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
-    <br/>
-  </p>
+</aside>
+</main>
 </div>
-      
-    </div>
-  
-  
-  
-    <div class="footer-items__end">
-      
-        <div class="footer-item">
-<p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
-</p></div>
-      
-    </div>
-  
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2025, Brandon Yach Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 8.2.3</a></p>
 </div>
-
-  </footer>
-  </body>
+</div>
+</footer>
+</div>
+<script src="../_static/documentation_options.js?v=01f34227"></script>
+<script src="../_static/doctools.js?v=9bcbadda"></script>
+<script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script defer="defer" src="../_static/theme.js?v=073f68d9"></script>
+</body>
 </html>
