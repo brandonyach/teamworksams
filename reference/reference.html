@@ -12,6 +12,7 @@
 <meta content="Function and Class Reference | teamworksams 0.1.0 documentation" name="twitter:title"/>
 <link href="../_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css"/>
 <link href="../_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css"/>
+<link href="../_static/custom.css" rel="stylesheet" type="text/css"/>
 <link href="../search.html" rel="search" title="Search"/>
 <link href="../genindex.html" rel="index" title="Index"/>
 <link href="get_client.html" rel="next" title="get_client"/>
@@ -164,10 +165,10 @@
 <h2>Credentials and Authentication<a class="headerlink" href="#credentials-and-authentication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#credentials-and-authentication'"><span>#</span></a></h2>
 
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>: Create or retrieve an authenticated client for API interactions.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">login()</span></code>: Authenticate with an AMS instance and return session details.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>: Client class for handling AMS API requests and authentication.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>: Custom exception for AMS API errors with descriptive messages.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>: Create or retrieve an authenticated client for API interactions.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">login()</span></code>: Authenticate with an AMS instance and return session details.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginOption</span></code>: Configuration options for the login process.</p></li>
 </ul>
 </section>
@@ -175,13 +176,13 @@
 <h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#user-management'"><span>#</span></a></h2>
 
 <ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: Create new user accounts.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>: Update user fields for existing accounts.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>: Retrieve user data as a pandas DataFrame, with optional filtering.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code>: Fetch group data as a pandas DataFrame.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>: Update user fields for existing accounts.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: Create new user accounts.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code>: Filter object for narrowing user data queries.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code>: Configuration options for user-related functions.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code>: Configuration options for group-related functions.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code>: Filter object for narrowing user data queries.</p></li>
 </ul>
 </section>
 <section id="data-export">
@@ -192,10 +193,10 @@
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>: Fetch event data modified since the last synchronization time.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_profile_data()</span></code>: Retrieve profile data from an AMS Profile Form.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EventFilter</span></code>: Filter object for event data queries.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventFilter</span></code>: Filter object for synchronized event queries.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileFilter</span></code>: Filter object for profile data queries.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EventOption</span></code>: Configuration options for event data retrieval.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventFilter</span></code>: Filter object for synchronized event queries.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventOption</span></code>: Configuration options for synchronized event retrieval.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileFilter</span></code>: Filter object for profile data queries.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileOption</span></code>: Configuration options for profile data retrieval.</p></li>
 </ul>
 </section>

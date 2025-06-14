@@ -7,11 +7,12 @@
 <meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
 <meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Welcome to teamworksams’s Documentation! | teamworksams 0.1.0 documentation</title>
-<meta content="Welcome to teamworksams’s Documentation! | teamworksams 0.1.0 documentation" property="og:title"/>
-<meta content="Welcome to teamworksams’s Documentation! | teamworksams 0.1.0 documentation" name="twitter:title"/>
+<title>teamworksams | teamworksams 0.1.0 documentation</title>
+<meta content="teamworksams | teamworksams 0.1.0 documentation" property="og:title"/>
+<meta content="teamworksams | teamworksams 0.1.0 documentation" name="twitter:title"/>
 <link href="_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css"/>
 <link href="_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css"/>
+<link href="_static/custom.css" rel="stylesheet" type="text/css"/>
 <link href="search.html" rel="search" title="Search"/>
 <link href="genindex.html" rel="index" title="Index"/>
 <link href="vignettes/getting_started.html" rel="next" title="Getting Started with teamworksams"/>
@@ -147,9 +148,128 @@
 <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
 <div class="w-full min-w-0 mx-auto">
 <div id="content" role="main">
-<section id="welcome-to-teamworksams-s-documentation">
-<h1>Welcome to teamworksams’s Documentation!<a class="headerlink" href="#welcome-to-teamworksams-s-documentation" title="Link to this heading"><span>#</span></a></h1>
-<p><strong>teamworksams</strong> is a Python library for interacting with the Teamworks AMS API, enabling data fetching, user management, file uploads, and more. This documentation provides setup instructions, tutorials, and a complete API reference to help you integrate AMS functionality into your workflows.</p>
+<section id="teamworksams">
+<h1>teamworksams<a class="headerlink" href="#teamworksams" title="Link to this heading"><span>#</span></a></h1>
+<p>A Python wrapper for the Teamworks AMS (Athlete Management System) API.</p>
+<a class="reference internal image-reference" href="_images/logo.png"><img alt="_images/logo.png" class="align-right" src="_images/logo.png" style="width: 90px; height: 90px;"/>
+</a>
+<p><a class="reference external" href="https://badge.fury.io/py/teamworksams"><img alt="PyPI version" src="https://badge.fury.io/py/teamworksams.svg"/></a> <a class="reference external" href="https://github.com/brandonyach/teamworksams/actions"><img alt="Tests" src="https://github.com/brandonyach/teamworksams/actions/workflows/ci.yml/badge.svg"/></a></p>
+<p><strong>teamworksams</strong> is a Python package that connects to the Teamworks AMS API, enabling
+users to return a flat export of Teamworks AMS data, import data from Python to
+Teamworks AMS, create and edit users, upload and attach files to events, update user
+avatars, work with database forms and entries, and retrieve form metadata and schemas.
+It streamlines automation and data management for Teamworks AMS, leveraging Python’s
+data processing capabilities.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#installation'"><span>#</span></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Until available on PyPI, install from GitHub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/brandonyach/teamworksams.git
+</span></code></pre></div>
+</div>
+</div>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#requirements'"><span>#</span></a></h2>
+<ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code></p></li>
+<li><p>Valid Teamworks AMS API credentials (<code class="docutils literal notranslate"><span class="pre">AMS_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">AMS_USERNAME</span></code>, <code class="docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code>)</p></li>
+<li><p>Teamworks AMS version 6.14 or greater (or 6.13 with superadmin/site owner privileges)</p></li>
+<li><p>Calendar versioning (e.g., 2023.1, 2023.2) is supported</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use your Teamworks AMS username, not email address, for authentication.</p>
+</div>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#security'"><span>#</span></a></h2>
+<p><strong>teamworksams</strong> respects all permissions configured in your Teamworks AMS instance.
+For example, if you lack access to a form in the native platform, you cannot access it
+via the <strong>teamworksams</strong> package. Similarly, delete permissions in AMS apply to
+<strong>teamworksams</strong> operations.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>teamworksams</strong> is powerful but requires caution:</p>
+<ul class="simple">
+<li><p>Read all documentation thoroughly.</p></li>
+<li><p>Test extensively in a non-production environment.</p></li>
+<li><p>Contact Teamworks Support or your Teamworks AMS Product Success Manager for
+assistance.</p></li>
+</ul>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#usage'"><span>#</span></a></h2>
+<p>Below are examples of core functions:</p>
+<p><strong>Import Event Form Data</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">insert_event_data</span><span class="p">,</span> <span class="n">InsertEventOption</span>
+</span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
+</span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span>
+</span><span id="line-4">    <span class="s2">"username"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"john.doe"</span><span class="p">,</span> <span class="s2">"jane.smith"</span><span class="p">],</span>
+</span><span id="line-5">    <span class="s2">"start_date"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"01/01/2025"</span><span class="p">,</span> <span class="s2">"01/01/2025"</span><span class="p">],</span>
+</span><span id="line-6">    <span class="s2">"duration"</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+</span><span id="line-7">    <span class="s2">"intensity"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"High"</span><span class="p">,</span> <span class="s2">"Medium"</span><span class="p">]</span>
+</span><span id="line-8"><span class="p">})</span>
+</span><span id="line-9"><span class="n">insert_event_data</span><span class="p">(</span>
+</span><span id="line-10">    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+</span><span id="line-11">    <span class="n">form</span> <span class="o">=</span> <span class="s2">"Training Log"</span><span class="p">,</span>
+</span><span id="line-12">    <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
+</span><span id="line-13">    <span class="n">username</span> <span class="o">=</span> <span class="s2">"user"</span><span class="p">,</span>
+</span><span id="line-14">    <span class="n">password</span> <span class="o">=</span> <span class="s2">"pass"</span><span class="p">,</span>
+</span><span id="line-15">    <span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">id_col</span> <span class="o">=</span> <span class="s2">"username"</span><span class="p">,</span> <span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</span><span id="line-16"><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">ℹ Inserting 2 events for 'Training Log'
+</span><span id="line-2">✔ Processed 2 events for 'Training Log'
+</span><span id="line-3">ℹ Form: Training Log
+</span><span id="line-4">ℹ Result: Success
+</span><span id="line-5">ℹ Records inserted: 2
+</span><span id="line-6">ℹ Records attempted: 2
+</span></code></pre></div>
+</div>
+<p><strong>Retrieve Event Form Data</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventFilter</span><span class="p">,</span> <span class="n">EventOption</span>
+</span><span id="line-2"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
+</span><span id="line-3">    <span class="n">form</span> <span class="o">=</span> <span class="s2">"Training Log"</span><span class="p">,</span>
+</span><span id="line-4">    <span class="n">start_date</span> <span class="o">=</span> <span class="s2">"01/01/2025"</span><span class="p">,</span>
+</span><span id="line-5">    <span class="n">end_date</span> <span class="o">=</span> <span class="s2">"31/01/2025"</span><span class="p">,</span>
+</span><span id="line-6">    <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
+</span><span id="line-7">    <span class="n">username</span> <span class="o">=</span> <span class="s2">"user"</span><span class="p">,</span>
+</span><span id="line-8">    <span class="n">password</span> <span class="o">=</span> <span class="s2">"pass"</span><span class="p">,</span>
+</span><span id="line-9">    <span class="nb">filter</span> <span class="o">=</span> <span class="n">EventFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">"group"</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="s2">"Example Group"</span><span class="p">),</span>
+</span><span id="line-10">    <span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">clean_names</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</span><span id="line-11"><span class="p">)</span>
+</span><span id="line-12"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">ℹ Requesting event data for 'Training Log' between 01/01/2025 and 31/01/2025
+</span><span id="line-2">✔ Retrieved 10 event records for form 'Training Log'.
+</span><span id="line-3">   about      user_id  event_id       form     start_date  duration intensity
+</span><span id="line-4">0  John Doe    12345   67890    Training Log  01/01/2025      60      High
+</span><span id="line-5">1  Jane Smith  12346   67891    Training Log  02/01/2025      45      Medium
+</span><span id="line-6">...
+</span></code></pre></div>
+</div>
+</section>
+<section id="get-started">
+<h2>Get Started<a class="headerlink" href="#get-started" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#get-started'"><span>#</span></a></h2>
+<p>To securely provide credentials, store them in a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">AMS_URL=https://example.smartabase.com/site
+</span><span id="line-2">AMS_USERNAME=user
+</span><span id="line-3">AMS_PASSWORD=pass
+</span></code></pre></div>
+</div>
+<p>Read more in the <span class="xref std std-ref">vignettes/getting_started</span> vignette.</p>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#further-reading'"><span>#</span></a></h2>
+<p>Explore the documentation for detailed guides:</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
@@ -282,21 +402,25 @@
 </ul>
 </div>
 </section>
-<section id="indices-and-tables">
-<h1>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"><span>#</span></a></h1>
+<section id="indices">
+<h2>Indices<a class="headerlink" href="#indices" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#indices'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
-<li><ul>
+<li><a :data-current="activeSection === '#installation'" class="reference internal" href="#installation">Installation</a></li>
+<li><a :data-current="activeSection === '#requirements'" class="reference internal" href="#requirements">Requirements</a></li>
+<li><a :data-current="activeSection === '#security'" class="reference internal" href="#security">Security</a></li>
+<li><a :data-current="activeSection === '#usage'" class="reference internal" href="#usage">Usage</a></li>
+<li><a :data-current="activeSection === '#get-started'" class="reference internal" href="#get-started">Get Started</a></li>
+<li><a :data-current="activeSection === '#further-reading'" class="reference internal" href="#further-reading">Further Reading</a><ul>
 </ul>
 </li>
-<li><a :data-current="activeSection === '#indices-and-tables'" class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+<li><a :data-current="activeSection === '#indices'" class="reference internal" href="#indices">Indices</a></li>
 </ul>
 </div>
 </aside>

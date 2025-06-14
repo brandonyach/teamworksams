@@ -16,10 +16,10 @@ Credentials and Authentication
    ams_error
    login_option
 
-- :func:`get_client`: Create or retrieve an authenticated client for API interactions.
-- :func:`login`: Authenticate with an AMS instance and return session details.
 - :class:`AMSClient`: Client class for handling AMS API requests and authentication.
 - :class:`AMSError`: Custom exception for AMS API errors with descriptive messages.
+- :func:`get_client`: Create or retrieve an authenticated client for API interactions.
+- :func:`login`: Authenticate with an AMS instance and return session details.
 - :class:`LoginOption`: Configuration options for the login process.
 
 User Management
@@ -37,13 +37,14 @@ User Management
    group_option
    user_filter
 
+- :func:`create_user`: Create new user accounts.
+- :func:`edit_user`: Update user fields for existing accounts.
 - :func:`get_user`: Retrieve user data as a pandas DataFrame, with optional filtering.
 - :func:`get_group`: Fetch group data as a pandas DataFrame.
-- :func:`edit_user`: Update user fields for existing accounts.
-- :func:`create_user`: Create new user accounts.
+- :class:`UserFilter`: Filter object for narrowing user data queries.
 - :class:`UserOption`: Configuration options for user-related functions.
 - :class:`GroupOption`: Configuration options for group-related functions.
-- :class:`UserFilter`: Filter object for narrowing user data queries.
+
 
 Data Export
 -----------
@@ -66,10 +67,10 @@ Data Export
 - :func:`sync_event_data`: Fetch event data modified since the last synchronization time.
 - :func:`get_profile_data`: Retrieve profile data from an AMS Profile Form.
 - :class:`EventFilter`: Filter object for event data queries.
-- :class:`SyncEventFilter`: Filter object for synchronized event queries.
-- :class:`ProfileFilter`: Filter object for profile data queries.
 - :class:`EventOption`: Configuration options for event data retrieval.
+- :class:`SyncEventFilter`: Filter object for synchronized event queries.
 - :class:`SyncEventOption`: Configuration options for synchronized event retrieval.
+- :class:`ProfileFilter`: Filter object for profile data queries.
 - :class:`ProfileOption`: Configuration options for profile data retrieval.
 
 Data Import
