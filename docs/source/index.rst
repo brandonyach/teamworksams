@@ -6,21 +6,7 @@
 teamworksams
 ============
 A Python wrapper for the Teamworks AMS (Athlete Management System) API.
-
-.. image:: _static/logo.png
-   :align: right
-   :height: 90px
-   :width: 90px
-
-.. |pypi_badge| image:: https://badge.fury.io/py/teamworksams.svg
-   :target: https://badge.fury.io/py/teamworksams
-   :alt: PyPI version
-
-.. |tests_badge| image:: https://github.com/brandonyach/teamworksams/actions/workflows/ci.yml/badge.svg
-   :target: https://github.com/brandonyach/teamworksams/actions
-   :alt: Tests
-
-|pypi_badge| |tests_badge|
+------------
 
 **teamworksams** is a Python package that connects to the Teamworks AMS API, enabling
 users to return a flat export of Teamworks AMS data, import data from Python to

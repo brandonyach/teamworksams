@@ -32,7 +32,7 @@ def test_get_forms_success():
 def test_get_form_schema_success():
     """Test successful retrieval of form schema with formatted output."""
     results = get_form_schema(
-        form_name="Training Log",
+        form="Training Log",
         url=os.getenv("AMS_URL"),
         username=os.getenv("AMS_USERNAME"),
         password=os.getenv("AMS_PASSWORD"),
@@ -48,7 +48,7 @@ def test_get_form_schema_success():
 def test_get_form_schema_raw_success():
     """Test successful retrieval of form schema with raw output."""
     results = get_form_schema(
-        form_name="Training Log",
+        form="Training Log",
         url=os.getenv("AMS_URL"),
         username=os.getenv("AMS_USERNAME"),
         password=os.getenv("AMS_PASSWORD"),
@@ -64,7 +64,7 @@ def test_get_form_schema_invalid_name():
     """Test form schema retrieval with an invalid form name."""
     with pytest.raises(AMSError, match="Form 'Invalid Form' not found"):
         get_form_schema(
-            form_name="Invalid Form",
+            form="Invalid Form",
             url=os.getenv("AMS_URL"),
             username=os.getenv("AMS_USERNAME"),
             password=os.getenv("AMS_PASSWORD"),

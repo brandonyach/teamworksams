@@ -24,7 +24,7 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 html_theme = 'sphinxawesome_theme'
 html_static_path = ['_static']
-html_logo = '_static/logo.png'
+html_logo = '_static/ams_logo.png'
 html_theme_options = {
     'collapse_navigation': False,
     'sticky_navigation': True,
@@ -36,6 +36,13 @@ html_permalinks_icon = '<span>#</span>'
 autodoc_member_order = 'bysource'
 napoleon_google_docstring = True
 napoleon_use_param = True
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True,
+}
+
+primary_domain = 'py'
 
 # -- Custom CSS --------------------------------------------------------------
 html_css_files = ['custom.css']
