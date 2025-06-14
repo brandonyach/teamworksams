@@ -116,21 +116,21 @@ def delete_multiple_events(
 
     Args:
         event_ids (List[int]): List of event IDs to delete. Must be a non-empty list of
-                    positive integers (e.g., [134273, 134274]).
+            positive integers (e.g., [134273, 134274]).
         url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
-                    include a valid site name.
+            include a valid site name.
         username (Optional[str]): Username for authentication. If None, uses
-                    :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
+            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
-                    :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to
-                    None.
+            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to
+            None.
         option (:class:`DeleteEventOption`, optional): Configuration options, including
-                    `interactive_mode` for confirmation prompts and status messages (e.g.,
-                    "SUCCESS: Deleted 3 events"). Defaults to None (uses default
-                    :class:`DeleteEventOption` with `interactive_mode=True`).
+            `interactive_mode` for confirmation prompts and status messages (e.g.,
+            "SUCCESS: Deleted 3 events"). Defaults to None (uses default
+            :class:`DeleteEventOption` with `interactive_mode=True`).
         client (:class:`AMSClient`, optional): Pre-authenticated client from
-                    :func:`get_client`. If None, a new client is created. Defaults to
-                    None.
+            :func:`get_client`. If None, a new client is created. Defaults to
+            None.
 
     Returns:
         str: A message indicating the result of the deletion, e.g., "SUCCESS: Deleted 3 events"

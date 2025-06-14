@@ -629,6 +629,6 @@ Troubleshooting
 Next Steps
 ----------
 
-- Explore exporting data in :ref:`vignettes/exporting_data.rst`.
+- Explore exporting data in :ref:`exporting_data.rst`.
 - Consult :ref:`reference` for function details.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

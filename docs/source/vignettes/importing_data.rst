@@ -573,6 +573,6 @@ Troubleshooting
 Next Steps
 ----------
 
-- Explore :ref:`vignettes/exporting_data` for data export workflows.
+- Explore :ref:`exporting_data` for data export workflows.
 - Consult :ref:`reference` for detailed function and class documentation.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

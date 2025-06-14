@@ -11,9 +11,9 @@ class DeleteEventOption:
 
     Args:
         interactive_mode (bool): If True, prompts for user confirmation before deletion
-                    and prints status messages (e.g., "Deleted event with SUCCESS"),
-                    ideal for interactive environments like Jupyter notebooks. Set to
-                    False for silent execution in automated scripts. Defaults to True.
+            and prints status messages (e.g., "Deleted event with SUCCESS"),
+            ideal for interactive environments like Jupyter notebooks. Set to
+            False for silent execution in automated scripts. Defaults to True.
 
     Attributes:
         interactive_mode (bool): Indicates whether interactive mode is enabled.

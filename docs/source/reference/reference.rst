@@ -1,5 +1,5 @@
 Functions and Classes
-===========================
+=====================
 
 This section provides detailed documentation for all **teamworksams** functions and classes, organized by module. Each entry links to a dedicated page with full parameter details, usage examples, return values, and error conditions. Use this reference to explore specific functionality, complemented by the :ref:`vignettes` section for practical workflows.
 
@@ -8,7 +8,6 @@ Credentials and Authentication
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    get_client
    login
@@ -27,7 +26,6 @@ User Management
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    get_user
    get_group
@@ -46,12 +44,11 @@ User Management
 - :class:`GroupOption`: Configuration options for group-related functions.
 
 
-Data Export
+Exporting Data
 -----------
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    get_event_data
    sync_event_data
@@ -73,12 +70,11 @@ Data Export
 - :class:`ProfileFilter`: Filter object for profile data queries.
 - :class:`ProfileOption`: Configuration options for profile data retrieval.
 
-Data Import
+Importing Data
 -----------
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    insert_event_data
    update_event_data
@@ -103,7 +99,6 @@ Database Operations
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    get_database
    delete_database_entry
@@ -121,12 +116,11 @@ Database Operations
 - :class:`InsertDatabaseOption`: Configuration options for database insertion.
 - :class:`UpdateDatabaseOption`: Configuration options for database updates.
 
-File Management
+Uploading Files
 ---------------
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    upload_and_attach_to_events
    upload_and_attach_to_avatars
@@ -136,12 +130,11 @@ File Management
 - :func:`upload_and_attach_to_avatars`: Upload images and attach as user profile avatars.
 - :class:`FileUploadOption`: Configuration options for file upload operations.
 
-Form Management
+Managing Forms
 ---------------
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    get_forms
    get_form_schema
@@ -156,7 +149,6 @@ Deleting Data
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    delete_event_data
    delete_multiple_events

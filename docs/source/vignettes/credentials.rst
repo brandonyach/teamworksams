@@ -469,6 +469,6 @@ Troubleshooting
 Next Steps
 ----------
 
-- Explore user management in :ref:`vignettes/user_management`.
-- Check the :ref:`api_reference` for detailed function documentation.
+- Explore user management in :ref:`user_management`.
+- Check the :ref:`reference` for detailed function documentation.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for issues or contributions.

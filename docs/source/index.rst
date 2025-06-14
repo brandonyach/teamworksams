@@ -6,7 +6,7 @@
 teamworksams
 ============
 A Python wrapper for the Teamworks AMS (Athlete Management System) API.
-------------
+-----------------------------------------------------------------------
 
 **teamworksams** is a Python package that connects to the Teamworks AMS API, enabling
 users to return a flat export of Teamworks AMS data, import data from Python to
@@ -132,7 +132,7 @@ To securely provide credentials, store them in a ``.env`` file:
    AMS_USERNAME=user
    AMS_PASSWORD=pass
 
-Read more in the :ref:`vignettes/getting_started` vignette.
+Read more in the :ref:`getting_started` vignette.
 
 Further Reading
 ---------------
