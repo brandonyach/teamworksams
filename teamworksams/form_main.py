@@ -87,7 +87,7 @@ def get_forms(
 
 
 def get_form_schema(
-    form_name: str,
+    form: str,
     url: str,
     username: Optional[str] = None,
     password: Optional[str] = None,
@@ -104,7 +104,7 @@ def get_form_schema(
     management workflows.
 
     Args:
-        form_name (str): Name of the form (e.g., 'Allergies'). Must be a non-empty
+        form (str): Name of the form (e.g., 'Allergies'). Must be a non-empty
             string and correspond to a valid form.
         url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must
             include a valid site name.
@@ -138,41 +138,84 @@ def get_form_schema(
             or the API request returns an invalid response.
 
     Examples:
-        >>> from teamworksams import get_form_schema
-        >>> from teamworksams import FormOption
+        >>> from teamworksams import get_form_schema, FormOption
         >>> summary = get_form_schema(
-        ...     form_name = "Allergies",
+        ...     form = "Allergies",
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",
         ...     password = "pass",
         ...     option = FormOption(interactive_mode = True, field_details = True)
         ... )
-        ℹ Fetching summary for form 'Allergies' (ID: 2937, Type: database)...
-        ✔ Retrieved summary for form 'Allergies'.
-        Form Schema Summary
-        ==================
-        Form Name: Allergies
-        Form ID: 2937
-        Form Type: database
-        Sections: 2
-        - Section 1: General
-        - Section 2: Details
-        Required Fields: 1
-        - Allergy
-        ...
+        ℹ Fetching summary for form 'Training Log' (ID: 5285, Type: event)...
+    ✔ Retrieved summary for form 'Training Log'.
+    =====================================
+    Form Schema Summary: RPE Training Log
+    =====================================
+
+    Form Details
+    ------------
+    - Form Name: RPE Training Log
+    - Form ID: 5285
+
+    Sections
+    --------
+    - Total: 5
+    • Session Details
+    • Summary Calculations
+    • User Account Details
+    • Day of the Week
+    • Profile Details
+
+    Required Fields
+    ---------------
+    - Total: 0
+    - No required fields found.
+
+    Defaults to Last Known Value
+    ----------------------------
+    - Total: 0
+    - No fields default to the last known value.
+
+    Linked Fields
+    -------------
+    - Total: 7
+    • Sport
+    • Position
+    • Height
+    • Dominant Hand
+    • Dominant Foot
+    • Preferred Language
+    • Season
+
+    Form Item Types
+    ---------------
+    - Total Unique Types: 14
+    - Dropdown: 1 field(s)
+        • Session Type
+    - Number: 1 field(s)
+        • Duration
+    - Single Selection: 1 field(s)
+        • Rate your Perceived Exertion (RPE)
+    - Calculation: 5 field(s)
+        • RPE
+        • Session Load
+        • Index
+        • ACWR
+        • Total ACWR
+    ...
     """
     option = option or FormOption()
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
     
-    if not form_name:
+    if not form:
         AMSError("Form name is required", function="get_form_summary")
     
     # Step 1: Fetch the form ID and type
-    form_id, form_type = _fetch_form_id_and_type(form_name, url, username, password, option, client)
+    form_id, form_type = _fetch_form_id_and_type(form, url, username, password, option, client)
     
     # Step 2: Fetch the form schema
     if option.interactive_mode:
-        print(f"ℹ Fetching summary for form '{form_name}' (ID: {form_id}, Type: {form_type})...")
+        print(f"ℹ Fetching summary for form '{form}' (ID: {form_id}, Type: {form_type})...")
     
     schema_data = _fetch_form_schema(form_id, form_type, client, option)
     
@@ -185,7 +228,7 @@ def get_form_schema(
     
     # Step 5: Format and print the summary
     if option.interactive_mode:
-        print(f"✔ Retrieved summary for form '{form_name}'.")
+        print(f"✔ Retrieved summary for form '{form}'.")
     
     formatted_output = _format_form_summary(
         schema_info,

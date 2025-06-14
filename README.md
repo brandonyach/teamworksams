@@ -96,15 +96,17 @@ AMS_URL=https://example.smartabase.com/site
 AMS_USERNAME=user
 AMS_PASSWORD=pass
 ```
-Read more in the [Geting Started Vignette](https://brandonyach.github.io/teamworksams/getting_started.html).
+Read more in the [Geting Started Vignette](https://brandonyach.github.io/teamworksams/vignettes/getting_started.html).
 
 ## Further Reading
 Explore the documentation for detailed guides:
-- [Credentials](https://brandonyach.github.io/teamworksams/credentials.html): Managing credentials with Teamworks AMS.
-- [User Management](https://brandonyach.github.io/teamworksams/exporting_data.html): Retrieve, create, and edit users in Teamworks AMS.
-- [Exporting Data](https://brandonyach.github.io/teamworksams/exporting_data.html): Retrieve event and profile data from Teamworks AMS.
-- [Importing Data](https://brandonyach.github.io/teamworksams/importing_data.html): Insert, update, and upsert event data to Teamworks AMS.
-- [File Uploads](https://brandonyach.github.io/teamworksams/file-uploads.html): Uploading and attaching files to events and avatars.
+- [Credentials](https://brandonyach.github.io/teamworksams/vignettes/credentials.html): Manage credentials and authentication.
+- [User Management](https://brandonyach.github.io/teamworksams/vignettes/exporting_data.html): Retreive user and group data, update user accounts, and create new users
+- [Exporting Data](https://brandonyach.github.io/teamworksams/vignettes/exporting_data.html): Retrieve event and profile data from Teamworks AMS.
+- [Importing Data](https://brandonyach.github.io/teamworksams/vignettes/importing_data.html): Insert, update, and upsert event data to Teamworks AMS.
+- [Uploading Files](https://brandonyach.github.io/teamworksams/vignettes/file-uploads.html): Upload and attach files to events and profile avatars.
+- [Managing Databases](https://brandonyach.github.io/teamworksams/vignettes/database_operations.html): Retrieve, create, update, and delete database entries.
+- [Managing Forms](https://brandonyach.github.io/teamworksams/vignettes/managing_forms.html): List accessible forms and summarize form schemas.
 
 ## License
 MIT License (see [LICENSE](LICENSE))

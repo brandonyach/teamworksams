@@ -55,7 +55,7 @@ class FormOption:
     """
     def __init__(
             self, 
-            interactive_mode: bool = False, 
+            interactive_mode: bool = True, 
             cache: bool = True,
             raw_output: bool = False,
             field_details: bool = False,
