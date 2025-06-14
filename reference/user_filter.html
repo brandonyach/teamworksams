@@ -177,8 +177,8 @@ Validates the filter key to ensure it is supported. See
 ‘email’, ‘group’, or ‘about’. For example, ‘group’ filters by group
 membership. If None, no filtering is applied. Defaults to None.</p></li>
 <li><p><strong>user_value</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em>) – Value(s) to match for
-<cite>user_key</cite>. For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for
-<cite>user_key=”group”</cite> matches users in those groups. Case-sensitive. If None,
+<a class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key" title="teamworksams.user_filter.UserFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>. For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for
+<code class="xref any docutils literal notranslate"><span class="pre">user_key="group"</span></code> matches users in those groups. Case-sensitive. If None,
 no filtering is applied. Defaults to None.</p></li>
 </ul>
 </dd>
@@ -205,7 +205,7 @@ no filtering is applied. Defaults to None.</p></li>
 </dd></dl>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If <cite>user_key</cite> is not ‘username’, ‘email’, ‘group’, or
+<dd class="field-odd"><p><strong>ValueError</strong> – If <a class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key" title="teamworksams.user_filter.UserFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> is not ‘username’, ‘email’, ‘group’, or
     ‘about’.</p>
 </dd>
 </dl>
@@ -224,6 +224,10 @@ no filtering is applied. Defaults to None.</p></li>
 </span><span id="line-12"><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="teamworksams.user_filter.UserFilter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/user_filter.html#UserFilter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.user_filter.UserFilter.__init__" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.user_filter.UserFilter.__init__'"><span>#</span></a></dt>
+<dd></dd></dl>
 </dd></dl>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
@@ -238,6 +242,7 @@ no filtering is applied. Defaults to None.</p></li>
 <li><a :data-current="activeSection === '#teamworksams.user_filter.UserFilter'" class="reference internal" href="#teamworksams.user_filter.UserFilter"><code class="docutils literal notranslate"><span class="pre">UserFilter</span></code></a><ul>
 <li><a :data-current="activeSection === '#teamworksams.user_filter.UserFilter.user_key'" class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key"><code class="docutils literal notranslate"><span class="pre">UserFilter.user_key</span></code></a></li>
 <li><a :data-current="activeSection === '#teamworksams.user_filter.UserFilter.user_value'" class="reference internal" href="#teamworksams.user_filter.UserFilter.user_value"><code class="docutils literal notranslate"><span class="pre">UserFilter.user_value</span></code></a></li>
+<li><a :data-current="activeSection === '#teamworksams.user_filter.UserFilter.__init__'" class="reference internal" href="#teamworksams.user_filter.UserFilter.__init__"><code class="docutils literal notranslate"><span class="pre">UserFilter.__init__()</span></code></a></li>
 </ul>
 </li>
 <li><a :data-current="activeSection === '#see-also'" class="reference internal" href="#see-also">See Also</a></li>

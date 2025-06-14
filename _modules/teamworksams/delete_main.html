@@ -332,21 +332,21 @@
 </span><span id="line-116">
 </span><span id="line-117"><span class="sd">    Args:</span>
 </span><span id="line-118"><span class="sd">        event_ids (List[int]): List of event IDs to delete. Must be a non-empty list of</span>
-</span><span id="line-119"><span class="sd">                    positive integers (e.g., [134273, 134274]).</span>
+</span><span id="line-119"><span class="sd">            positive integers (e.g., [134273, 134274]).</span>
 </span><span id="line-120"><span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
-</span><span id="line-121"><span class="sd">                    include a valid site name.</span>
+</span><span id="line-121"><span class="sd">            include a valid site name.</span>
 </span><span id="line-122"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
-</span><span id="line-123"><span class="sd">                    :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-123"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-124"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
-</span><span id="line-125"><span class="sd">                    :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to</span>
-</span><span id="line-126"><span class="sd">                    None.</span>
+</span><span id="line-125"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to</span>
+</span><span id="line-126"><span class="sd">            None.</span>
 </span><span id="line-127"><span class="sd">        option (:class:`DeleteEventOption`, optional): Configuration options, including</span>
-</span><span id="line-128"><span class="sd">                    `interactive_mode` for confirmation prompts and status messages (e.g.,</span>
-</span><span id="line-129"><span class="sd">                    &quot;SUCCESS: Deleted 3 events&quot;). Defaults to None (uses default</span>
-</span><span id="line-130"><span class="sd">                    :class:`DeleteEventOption` with `interactive_mode=True`).</span>
+</span><span id="line-128"><span class="sd">            `interactive_mode` for confirmation prompts and status messages (e.g.,</span>
+</span><span id="line-129"><span class="sd">            &quot;SUCCESS: Deleted 3 events&quot;). Defaults to None (uses default</span>
+</span><span id="line-130"><span class="sd">            :class:`DeleteEventOption` with `interactive_mode=True`).</span>
 </span><span id="line-131"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
-</span><span id="line-132"><span class="sd">                    :func:`get_client`. If None, a new client is created. Defaults to</span>
-</span><span id="line-133"><span class="sd">                    None.</span>
+</span><span id="line-132"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to</span>
+</span><span id="line-133"><span class="sd">            None.</span>
 </span><span id="line-134">
 </span><span id="line-135"><span class="sd">    Returns:</span>
 </span><span id="line-136"><span class="sd">        str: A message indicating the result of the deletion, e.g., &quot;SUCCESS: Deleted 3 events&quot;</span>

@@ -175,7 +175,7 @@ an AMS Event Form. See <span class="xref std std-ref">vignettes/importing_data</
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>interactive_mode</strong> (<em>bool</em>) – If True, prints status messages (e.g., “Updated 2
 events”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, and prompts for confirmation if
-<cite>require_confirmation</cite> is True. Set to False for silent execution. Defaults
+<code class="xref any docutils literal notranslate"><span class="pre">require_confirmation</span></code> is True. Set to False for silent execution. Defaults
 to True.</p></li>
 <li><p><strong>cache</strong> (<em>bool</em>) – If True, reuses an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> via
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, reducing API calls for multi-function workflows. Set to
@@ -187,7 +187,7 @@ Used to map identifiers to AMS user IDs. Defaults to ‘user_id’.</p></li>
 (e.g., [‘session_details’]). Must match DataFrame columns if specified. If
 None, assumes no table fields. Defaults to None.</p></li>
 <li><p><strong>require_confirmation</strong> (<em>bool</em>) – If True, prompts for user confirmation before
-updating events when <cite>interactive_mode</cite> is True, preventing accidental
+updating events when <a class="reference internal" href="#teamworksams.import_option.UpdateEventOption.interactive_mode" title="teamworksams.import_option.UpdateEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> is True, preventing accidental
 changes. Set to False to skip prompts. Defaults to True.</p></li>
 </ul>
 </dd>
@@ -237,6 +237,10 @@ changes. Set to False to skip prompts. Defaults to True.</p></li>
 </span><span id="line-17"><span class="go">✔ Processed 1 events for 'Training Log'</span>
 </span></code></pre></div>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="teamworksams.import_option.UpdateEventOption.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'user_id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_confirmation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/import_option.html#UpdateEventOption.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.import_option.UpdateEventOption.__init__" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.import_option.UpdateEventOption.__init__'"><span>#</span></a></dt>
+<dd></dd></dl>
 </dd></dl>
 <section id="additional-notes">
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
@@ -252,7 +256,7 @@ with the AMS form to avoid errors.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="update_event_data.html#teamworksams.import_main.update_event_data" title="teamworksams.import_main.update_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.import_main.update_event_data()</span></code></a>: Function using <cite>UpdateEventOption</cite>.</p></li>
+<li><p><a class="reference internal" href="update_event_data.html#teamworksams.import_main.update_event_data" title="teamworksams.import_main.update_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.import_main.update_event_data()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.import_option.UpdateEventOption" title="teamworksams.import_option.UpdateEventOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code></a>.</p></li>
 <li><p><span class="xref std std-ref">vignettes/importing_data</span>: Event update workflows.</p></li>
 </ul>
 </section>
@@ -265,6 +269,7 @@ with the AMS form to avoid errors.</p></li>
 <li><a :data-current="activeSection === '#teamworksams.import_option.UpdateEventOption.cache'" class="reference internal" href="#teamworksams.import_option.UpdateEventOption.cache"><code class="docutils literal notranslate"><span class="pre">UpdateEventOption.cache</span></code></a></li>
 <li><a :data-current="activeSection === '#teamworksams.import_option.UpdateEventOption.id_col'" class="reference internal" href="#teamworksams.import_option.UpdateEventOption.id_col"><code class="docutils literal notranslate"><span class="pre">UpdateEventOption.id_col</span></code></a></li>
 <li><a :data-current="activeSection === '#teamworksams.import_option.UpdateEventOption.table_fields'" class="reference internal" href="#teamworksams.import_option.UpdateEventOption.table_fields"><code class="docutils literal notranslate"><span class="pre">UpdateEventOption.table_fields</span></code></a></li>
+<li><a :data-current="activeSection === '#teamworksams.import_option.UpdateEventOption.__init__'" class="reference internal" href="#teamworksams.import_option.UpdateEventOption.__init__"><code class="docutils literal notranslate"><span class="pre">UpdateEventOption.__init__()</span></code></a></li>
 </ul>
 </li>
 <li><a :data-current="activeSection === '#additional-notes'" class="reference internal" href="#additional-notes">Additional Notes</a></li>

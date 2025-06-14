@@ -599,6 +599,6 @@ Troubleshooting
 Next Steps
 ----------
 
-- Explore :ref:`vignettes/importing_data` for additional data workflows.
+- Explore :ref:`importing_data` for additional data workflows.
 - Consult :ref:`reference` for detailed function and class documentation.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

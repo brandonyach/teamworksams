@@ -175,7 +175,7 @@ and provides status updates.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – A pandas DataFrame containing the profile data to upsert.
 Columns represent field names, and rows contain values. Must include a user identifier
-column (specified by <cite>option.id_col</cite>, e.g., ‘user_id’, ‘username’). Must not
+column (specified by <code class="xref any docutils literal notranslate"><span class="pre">option.id_col</span></code>, e.g., ‘user_id’, ‘username’). Must not
 be empty.</p></li>
 <li><p><strong>form</strong> (<em>str</em>) – The name of the AMS Profile Form to upsert data into. Must be a non-empty
 string and correspond to a valid profile form.</p></li>
@@ -208,7 +208,7 @@ Defaults to None.</p></li>
 <li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If the form is empty, not a profile form, authentication fails, the DataFrame
     is invalid (e.g., empty, missing required fields), the payload cannot be built,
     the API request fails, or the user cancels the operation in interactive mode.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>option.id_col</cite> is invalid.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">option.id_col</span></code> is invalid.</p></li>
 </ul>
 </dd>
 </dl>

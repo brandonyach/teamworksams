@@ -254,6 +254,8 @@
 </span><span id="line-41"><span class="sd">        &gt;&gt;&gt; filter = UserFilter(user_key=&quot;email&quot;, user_value=[&quot;john.doe@example.com&quot;])</span>
 </span><span id="line-42"><span class="sd">        &gt;&gt;&gt; df = get_user(url=&quot;https://example.smartabase.com/site&quot;, filter=filter)</span>
 </span><span id="line-43"><span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="UserFilter.__init__">
+<a class="viewcode-back" href="../../reference/user_filter.html#teamworksams.user_filter.UserFilter.__init__">[docs]</a>
 </span><span id="line-44">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="line-45">        <span class="bp">self</span><span class="p">,</span> 
 </span><span id="line-46">        <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -261,7 +263,8 @@
 </span><span id="line-48">    <span class="p">):</span>
 </span><span id="line-49">        <span class="bp">self</span><span class="o">.</span><span class="n">user_key</span> <span class="o">=</span> <span class="n">user_key</span>
 </span><span id="line-50">        <span class="bp">self</span><span class="o">.</span><span class="n">user_value</span> <span class="o">=</span> <span class="n">user_value</span>
-</span><span id="line-51">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
+</span><span id="line-51">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span></div>
+
 </span><span id="line-52">
 </span><span id="line-53">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="line-54"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the user filter parameters.&quot;&quot;&quot;</span>

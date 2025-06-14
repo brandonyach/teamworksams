@@ -323,7 +323,7 @@ for user assignments.</p>
 a mapping DataFrame, using a user key (e.g., username, email) to identify users. It
 returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> of results, making it easy to track updates and
 issues. This is a powerful function as it will only update the fields based on columns
-provided in the <cite>mapping_df</cite> - meaning that it’s possible to just update things like
+provided in the <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> - meaning that it’s possible to just update things like
 username, email, e.g. alone.</p>
 <p><strong>Basic Usage</strong></p>
 <p>Update user emails:</p>
@@ -358,7 +358,7 @@ username, email, e.g. alone.</p>
 </span></code></pre></div>
 </div>
 <p><strong>Updating Multiple Fields</strong></p>
-<p>Update names and emails using <cite>about</cite> as the key:</p>
+<p>Update names and emails using <code class="xref any docutils literal notranslate"><span class="pre">about</span></code> as the key:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"about"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John Doe"</span><span class="p">,</span> <span class="s2">"Jane Smith"</span><span class="p">],</span>
 </span><span id="line-3">    <span class="s2">"first_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Jonathan"</span><span class="p">,</span> <span class="s2">"Janet"</span><span class="p">],</span>
@@ -522,8 +522,8 @@ example, to filter by email:</p>
 <li><p><strong>user_key (Optional[str])</strong>: Attribute to filter by. Must be one of ‘username’,
 ‘email’, ‘group’, or ‘about’. For example, ‘group’ filters by group membership (e.g.,
 ‘TeamA’). If None, no filtering is applied. Defaults to None.</p></li>
-<li><p><strong>user_value (Optional[Union[str, List[str]]])</strong>: Value(s) to match for <cite>user_key</cite>.
-For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for <cite>user_key=”group”</cite>. Case-sensitive.
+<li><p><strong>user_value (Optional[Union[str, List[str]]])</strong>: Value(s) to match for <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>.
+For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for <code class="xref any docutils literal notranslate"><span class="pre">user_key="group"</span></code>. Case-sensitive.
 If None, no filtering is applied. Defaults to None. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nb">filter</span> <span class="o">=</span> <span class="n">UserFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">"username"</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"john.doe"</span><span class="p">,</span> <span class="s2">"jane.smith"</span><span class="p">])</span>
 </span><span id="line-2"><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">)</span>
@@ -531,7 +531,7 @@ If None, no filtering is applied. Defaults to None. Example:</p>
 </div>
 </li>
 </ul>
-<p>Valid <cite>user_key</cite> values and their <cite>user_value</cite> requirements:</p>
+<p>Valid <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> values and their <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_value" title="teamworksams.export_filter.EventFilter.user_value"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_value</span></code></a> requirements:</p>
 <ul class="simple">
 <li><p><strong>username</strong>: AMS usernames (e.g., [“john.doe”]).</p></li>
 <li><p><strong>email</strong>: User emails (e.g., [”<a class="reference external" href="mailto:john.doe%40example.com">john<span>.</span>doe<span>@</span>example<span>.</span>com</a>”]).</p></li>
@@ -539,7 +539,7 @@ If None, no filtering is applied. Defaults to None. Example:</p>
 <li><p><strong>group</strong>: Group name (e.g., “TeamA”). Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code> to list groups.</p></li>
 </ul>
 <p><strong>Caching</strong></p>
-<p>When <cite>option.cache=True</cite> (default), functions reuse an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">option.cache=True</span></code> (default), functions reuse an existing <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>
 created by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, maintaining an authenticated session and reducing API
 calls for login or data retrieval. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -547,22 +547,22 @@ calls for login or data retrieval. For example:</p>
 </span><span id="line-3"><span class="n">group_df</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">GroupOption</span><span class="p">(</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>  <span class="c1"># Reuses client</span>
 </span></code></pre></div>
 </div>
-<p>Set <cite>cache=False</cite> for independent sessions, ensuring fresh data but increasing API
+<p>Set <code class="xref any docutils literal notranslate"><span class="pre">cache=False</span></code> for independent sessions, ensuring fresh data but increasing API
 overhead.</p>
 <p><strong>Column Selection</strong></p>
-<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>, the <cite>columns</cite> parameter in <code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code> allows selecting
+<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>, the <a class="reference internal" href="../reference/user_option.html#teamworksams.user_option.UserOption.columns" title="teamworksams.user_option.UserOption.columns"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">columns</span></code></a> parameter in <code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code> allows selecting
 specific columns from the API response. Supported columns include:</p>
 <ul class="simple">
-<li><p><cite>user_id</cite>: Unique AMS-generated user ID.</p></li>
-<li><p><cite>first_name</cite>, <cite>last_name</cite>: User’s name.</p></li>
-<li><p><cite>email</cite>: User’s email address.</p></li>
-<li><p><cite>groups</cite>: List of group memberships (e.g., [‘TeamA’]).</p></li>
-<li><p><cite>about</cite>: Full name (concatenation of first and last names).</p></li>
-<li><p><cite>active</cite>: Boolean indicating account status.</p></li>
-<li><p><cite>dob</cite>: Date of birth (format: YYYY-MM-DD).</p></li>
-<li><p><cite>sex</cite>: Gender (e.g., “Male”, “Female”).</p></li>
-<li><p><cite>uuid</cite>: Optional unique identifier.</p></li>
-<li><p>Others: Additional fields like <cite>known_as</cite>, <cite>language</cite>, <cite>sidebar_width</cite> (if available).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>: Unique AMS-generated user ID.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">first_name</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">last_name</span></code>: User’s name.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">email</span></code>: User’s email address.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">groups</span></code>: List of group memberships (e.g., [‘TeamA’]).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">about</span></code>: Full name (concatenation of first and last names).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">active</span></code>: Boolean indicating account status.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">dob</span></code>: Date of birth (format: YYYY-MM-DD).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">sex</span></code>: Gender (e.g., “Male”, “Female”).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">uuid</span></code>: Optional unique identifier.</p></li>
+<li><p>Others: Additional fields like <code class="xref any docutils literal notranslate"><span class="pre">known_as</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">language</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">sidebar_width</span></code> (if available).</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"user_id"</span><span class="p">,</span> <span class="s2">"email"</span><span class="p">,</span> <span class="s2">"active"</span><span class="p">])</span>
@@ -571,9 +571,9 @@ specific columns from the API response. Supported columns include:</p>
 </span></code></pre></div>
 </div>
 <p><strong>Data Validation</strong></p>
-<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, the <cite>mapping_df</cite> DataFrame must include a <cite>user_key</cite> column
+<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, the <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> DataFrame must include a <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> column
 (one of ‘username’, ‘email’, ‘about’, ‘uuid’) and updatable columns from the supported
-list (e.g., <cite>first_name</cite>, <cite>email</cite>, <cite>dob</cite>, <cite>sex</cite>, <cite>active</cite>, <cite>uuid</cite>). Empty values are
+list (e.g., <code class="xref any docutils literal notranslate"><span class="pre">first_name</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">email</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">dob</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">sex</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">active</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">uuid</span></code>). Empty values are
 sent as empty strings. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"uuid"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"025380"</span><span class="p">],</span>
@@ -583,10 +583,10 @@ sent as empty strings. Example:</p>
 </span><span id="line-6"><span class="n">results_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="n">mapping_df</span> <span class="o">=</span> <span class="n">mapping_df</span><span class="p">,</span> <span class="n">user_key</span> <span class="o">=</span> <span class="s2">"uuid"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>, the <cite>user_df</cite> DataFrame must include required columns:
-<cite>first_name</cite>, <cite>last_name</cite>, <cite>username</cite>, <cite>email</cite>, <cite>dob</cite> (format: YYYY-MM-DD),
-<cite>password</cite>, <cite>active</cite> (boolean). Optional columns include <cite>uuid</cite>, <cite>known_as</cite>, <cite>sex</cite>,
-<cite>middle_names</cite>, <cite>language</cite>, <cite>sidebar_width</cite>. Example:</p>
+<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>, the <code class="xref any docutils literal notranslate"><span class="pre">user_df</span></code> DataFrame must include required columns:
+<code class="xref any docutils literal notranslate"><span class="pre">first_name</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">last_name</span></code>, <a class="reference internal" href="../reference/ams_client.html#teamworksams.utils.AMSClient.username" title="teamworksams.utils.AMSClient.username"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">username</span></code></a>, <code class="xref any docutils literal notranslate"><span class="pre">email</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">dob</span></code> (format: YYYY-MM-DD),
+<a class="reference internal" href="../reference/ams_client.html#teamworksams.utils.AMSClient.password" title="teamworksams.utils.AMSClient.password"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">password</span></code></a>, <code class="xref any docutils literal notranslate"><span class="pre">active</span></code> (boolean). Optional columns include <code class="xref any docutils literal notranslate"><span class="pre">uuid</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">known_as</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">sex</span></code>,
+<code class="xref any docutils literal notranslate"><span class="pre">middle_names</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">language</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">sidebar_width</span></code>. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">user_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"first_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Alice"</span><span class="p">],</span>
 </span><span id="line-3">    <span class="s2">"last_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Yu"</span><span class="p">],</span>
@@ -609,11 +609,11 @@ sent as empty strings. Example:</p>
 </span></code></pre></div>
 </div>
 <p><strong>Interactive Mode</strong></p>
-<p>When <cite>interactive_mode=True</cite> (default), functions display progress messages (e.g.,
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> (default), functions display progress messages (e.g.,
 “ℹ Creating 1 users”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars for <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code> and
 <code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>, enhancing feedback in interactive environments. For
 <code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>, it includes detailed success/failure summaries. Set
-<cite>interactive_mode=False</cite> for silent execution in automated pipelines:</p>
+<code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=False</span></code> for silent execution in automated pipelines:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">results_df</span> <span class="o">=</span> <span class="n">edit_user</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output</span>
 </span></code></pre></div>
@@ -708,7 +708,7 @@ interactive use (e.g., Jupyter notebooks), rely on these messages:</p>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore exporting data in <span class="xref std std-ref">vignettes/exporting_data.rst</span>.</p></li>
+<li><p>Explore exporting data in <span class="xref std std-ref">exporting_data.rst</span>.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for function details.</p></li>
 <li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>

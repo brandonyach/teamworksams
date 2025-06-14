@@ -166,28 +166,28 @@
 <span class="sig-prename descclassname"><span class="pre">teamworksams.file_main.</span></span><span class="sig-name descname"><span class="pre">upload_and_attach_to_avatars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="file_upload_option.html#teamworksams.file_option.FileUploadOption" title="teamworksams.file_option.FileUploadOption"><span class="pre">FileUploadOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../_modules/teamworksams/file_main.html#upload_and_attach_to_avatars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.file_main.upload_and_attach_to_avatars" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.file_main.upload_and_attach_to_avatars'"><span>#</span></a></dt>
 <dd><p>Upload files and attach them as avatars to user profiles in an AMS instance.</p>
 <p>Matches the provided or auto-generated <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> to users using
-<cite>user_key</cite>, uploads valid image files from <cite>file_dir</cite>, and updates the <cite>avatarId</cite>
-field in user profiles. If <cite>mapping_df</cite> is None, generates it from image filenames
-in <cite>file_dir</cite> (without extension) as <cite>user_key</cite> values. Preserves other profile
+<a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>, uploads valid image files from <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code>, and updates the <code class="xref any docutils literal notranslate"><span class="pre">avatarId</span></code>
+field in user profiles. If <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> is None, generates it from image filenames
+in <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code> (without extension) as <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> values. Preserves other profile
 fields during updates. Returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with results. See
 <span class="xref std std-ref">vignettes/uploading_files</span> for detailed workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mapping_df</strong> (Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>]) – <p>DataFrame with columns:
-- <cite>user_key</cite> (str): User identifier (e.g., ‘username’, ‘email’, ‘about’,</p>
+- <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> (str): User identifier (e.g., ‘username’, ‘email’, ‘about’,</p>
 <blockquote>
 <div><p>’uuid’).</p>
 </div></blockquote>
 <ul>
-<li><p><cite>file_name</cite> (str): Image file name in <cite>file_dir</cite> (e.g., ‘avatar1.png’).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">file_name</span></code> (str): Image file name in <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code> (e.g., ‘avatar1.png’).</p></li>
 </ul>
-<p>If None, generates from <cite>file_dir</cite> filenames. Defaults to None.</p>
+<p>If None, generates from <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code> filenames. Defaults to None.</p>
 </p></li>
 <li><p><strong>file_dir</strong> (<em>str</em>) – Directory path containing image files (e.g.,
 ‘/path/to/avatars’). Must be a valid directory.</p></li>
 <li><p><strong>user_key</strong> (<em>str</em>) – Column name for user identification (‘username’, ‘email’,
-‘about’, ‘uuid’). Required if <cite>mapping_df</cite> is None or provided.</p></li>
+‘about’, ‘uuid’). Required if <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> is None or provided.</p></li>
 <li><p><strong>url</strong> (<em>str</em>) – AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’).
 Must include a valid site name.</p></li>
 <li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Username for authentication. If None, uses
@@ -197,7 +197,7 @@ Must include a valid site name.</p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>, optional) – Configuration options for
 interactive feedback, caching, and saving results to a CSV. Defaults to
 None (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code> with
-<cite>interactive_mode=True</cite>).</p></li>
+<code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
 </ul>
@@ -205,8 +205,8 @@ None (uses default <code class="xref py py-class docutils literal notranslate"><
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
 <dt>Results with columns:</dt><dd><ul class="simple">
-<li><p>user_key (str): The user identifier from <cite>mapping_df</cite>.</p></li>
-<li><p>file_name (str): The file name from <cite>mapping_df</cite>.</p></li>
+<li><p>user_key (str): The user identifier from <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>.</p></li>
+<li><p>file_name (str): The file name from <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>.</p></li>
 <li><p>user_id (str): Matched user ID (None if failed).</p></li>
 <li><p>file_id (str): Uploaded file ID (None if failed).</p></li>
 <li><p>server_file_name (str): Server-assigned file name (None if failed).</p></li>
@@ -223,13 +223,13 @@ None (uses default <code class="xref py py-class docutils literal notranslate"><
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If:
-    - <cite>file_dir</cite> is invalid or empty.
-    - <cite>mapping_df</cite> is None and no valid images are found.
+    - <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code> is invalid or empty.
+    - <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> is None and no valid images are found.
     - User data retrieval fails.
     - No users are found.
     - File validation fails (e.g., non-image files).
     - File upload or profile update fails.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>user_key</cite> is invalid or <cite>mapping_df</cite> is malformed.</p></li>
+<li><p><strong>ValueError</strong> – If <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> is invalid or <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> is malformed.</p></li>
 </ul>
 </dd>
 </dl>
@@ -278,7 +278,7 @@ Updating avatars: 100%|██████████| 2/2 [00:02&lt;00:00,  1.0
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p>If <code class="docutils literal notranslate"><span class="pre">mapping_df</span></code> is None, the function generates it from image filenames in
-<cite>file_dir</cite>, using names (without extension) as <cite>user_key</cite> values, simplifying
+<code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code>, using names (without extension) as <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> values, simplifying
 batch avatar uploads.</p></li>
 <li><p>Valid image types include .png, .jpg, .jpeg, .gif, and .heic; non-image
 files are skipped with failure reasons.</p></li>
@@ -292,7 +292,7 @@ involves user mapping, file validation, and profile updates.</p></li>
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>: Configuration options for file uploads.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>: For retrieving user data to prepare <cite>mapping_df</cite>.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>: For retrieving user data to prepare <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>.</p></li>
 <li><p><span class="xref std std-ref">vignettes/uploading_files</span>: Avatar upload workflows.</p></li>
 </ul>
 </section>

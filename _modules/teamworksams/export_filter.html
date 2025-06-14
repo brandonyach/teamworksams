@@ -271,6 +271,8 @@
 </span><span id="line-58"><span class="sd">        ...     filter = filter</span>
 </span><span id="line-59"><span class="sd">        ... )</span>
 </span><span id="line-60"><span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="EventFilter.__init__">
+<a class="viewcode-back" href="../../reference/event_filter.html#teamworksams.export_filter.EventFilter.__init__">[docs]</a>
 </span><span id="line-61">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="line-62">        <span class="bp">self</span><span class="p">,</span>
 </span><span id="line-63">        <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -286,7 +288,8 @@
 </span><span id="line-73">        <span class="bp">self</span><span class="o">.</span><span class="n">data_value</span> <span class="o">=</span> <span class="n">data_value</span>
 </span><span id="line-74">        <span class="bp">self</span><span class="o">.</span><span class="n">data_condition</span> <span class="o">=</span> <span class="n">data_condition</span>
 </span><span id="line-75">        <span class="bp">self</span><span class="o">.</span><span class="n">events_per_user</span> <span class="o">=</span> <span class="n">events_per_user</span>
-</span><span id="line-76">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
+</span><span id="line-76">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span></div>
+
 </span><span id="line-77">
 </span><span id="line-78">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="line-79"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the event filter parameters.&quot;&quot;&quot;</span>
@@ -331,6 +334,8 @@
 </span><span id="line-115"><span class="sd">        ...     filter = filter</span>
 </span><span id="line-116"><span class="sd">        ... )</span>
 </span><span id="line-117"><span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SyncEventFilter.__init__">
+<a class="viewcode-back" href="../../reference/sync_event_filter.html#teamworksams.export_filter.SyncEventFilter.__init__">[docs]</a>
 </span><span id="line-118">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="line-119">        <span class="bp">self</span><span class="p">,</span> 
 </span><span id="line-120">        <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -338,7 +343,8 @@
 </span><span id="line-122">    <span class="p">):</span>
 </span><span id="line-123">        <span class="bp">self</span><span class="o">.</span><span class="n">user_key</span> <span class="o">=</span> <span class="n">user_key</span>
 </span><span id="line-124">        <span class="bp">self</span><span class="o">.</span><span class="n">user_value</span> <span class="o">=</span> <span class="n">user_value</span>
-</span><span id="line-125">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
+</span><span id="line-125">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span></div>
+
 </span><span id="line-126">
 </span><span id="line-127">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="line-128"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the sync event filter parameters.&quot;&quot;&quot;</span>
@@ -383,6 +389,8 @@
 </span><span id="line-164"><span class="sd">        ...     filter = filter</span>
 </span><span id="line-165"><span class="sd">        ... )</span>
 </span><span id="line-166"><span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ProfileFilter.__init__">
+<a class="viewcode-back" href="../../reference/profile_filter.html#teamworksams.export_filter.ProfileFilter.__init__">[docs]</a>
 </span><span id="line-167">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="line-168">        <span class="bp">self</span><span class="p">,</span> 
 </span><span id="line-169">        <span class="n">user_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -390,7 +398,8 @@
 </span><span id="line-171">    <span class="p">):</span>
 </span><span id="line-172">        <span class="bp">self</span><span class="o">.</span><span class="n">user_key</span> <span class="o">=</span> <span class="n">user_key</span>
 </span><span id="line-173">        <span class="bp">self</span><span class="o">.</span><span class="n">user_value</span> <span class="o">=</span> <span class="n">user_value</span>
-</span><span id="line-174">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span>
+</span><span id="line-174">        <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">()</span></div>
+
 </span><span id="line-175">
 </span><span id="line-176">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="line-177"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the profile filter parameters.&quot;&quot;&quot;</span>

@@ -161,10 +161,10 @@
 <section id="getting-started-with-teamworksams">
 <span id="getting-started"></span><h1>Getting Started with teamworksams<a class="headerlink" href="#getting-started-with-teamworksams" title="Link to this heading"><span>#</span></a></h1>
 <p><strong>teamworksams</strong> is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS, leveraging Python’s data processing capabilities.</p>
-<p>This guide walks you through installing <cite>teamworksams</cite>, setting up credentials, and running your first API call. Explore advanced features in the <span class="xref std std-ref">vignettes</span> and <span class="xref std std-ref">api_reference</span> vignettes.</p>
+<p>This guide walks you through installing <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code>, setting up credentials, and running your first API call. Explore advanced features in the <span class="xref std std-ref">vignettes</span> and <span class="xref std std-ref">api_reference</span> vignettes.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#overview'"><span>#</span></a></h2>
-<p>The Teamworks AMS (Athlete Management System) API enables programmatic access to data stored in your AMS instance, such as user accounts and event data. <cite>teamworksams</cite> abstracts the complexity of API authentication, request handling, and data processing, delivering results as pandas DataFrames for easy analysis. Key features include:</p>
+<p>The Teamworks AMS (Athlete Management System) API enables programmatic access to data stored in your AMS instance, such as user accounts and event data. <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code> abstracts the complexity of API authentication, request handling, and data processing, delivering results as pandas DataFrames for easy analysis. Key features include:</p>
 <ul class="simple">
 <li><p><strong>Authentication</strong>: Secure login with credentials via environment variables, direct arguments, or keyring.</p></li>
 <li><p><strong>Caching</strong>: Optimize performance with reusable API clients.</p></li>
@@ -173,11 +173,11 @@
 <li><p><strong>File Operations</strong>: Upload avatars and event attachments.</p></li>
 <li><p><strong>Form Handling</strong>: Retrieve AMS form information and schemas.</p></li>
 </ul>
-<p>Use cases include automating athlete data exports, updating user permissions in bulk, or integrating AMS data with analytics pipelines. For example, a sports scientist might use <cite>teamworksams</cite> to fetch daily training logs for analysis in Jupyter notebooks, while a team administrator could update user information programmatically.</p>
+<p>Use cases include automating athlete data exports, updating user permissions in bulk, or integrating AMS data with analytics pipelines. For example, a sports scientist might use <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code> to fetch daily training logs for analysis in Jupyter notebooks, while a team administrator could update user information programmatically.</p>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#installation'"><span>#</span></a></h2>
-<p>Install <cite>teamworksams</cite> using pip:</p>
+<p>Install <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code> using pip:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">pip<span class="w"> </span>install<span class="w"> </span>teamworksams
 </span></code></pre></div>
 </div>
@@ -189,7 +189,7 @@
 <p><strong>Requirements</strong>:</p>
 <ul class="simple">
 <li><p>Python 3.8 or higher.</p></li>
-<li><p>Dependencies (installed automatically): <cite>pandas</cite>, <cite>requests</cite>, <cite>requests_toolbelt</cite>, <cite>python-dotenv</cite>, <cite>tqdm</cite>, <cite>keyring</cite>.</p></li>
+<li><p>Dependencies (installed automatically): <code class="xref any docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">requests</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">requests_toolbelt</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">python-dotenv</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">tqdm</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">keyring</span></code>.</p></li>
 </ul>
 <p>If you plan to run tests or contribute, install test dependencies:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">pip<span class="w"> </span>install<span class="w"> </span>teamworksams<span class="o">[</span>test<span class="o">]</span>
@@ -198,17 +198,17 @@
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#prerequisites'"><span>#</span></a></h2>
-<p>To use <cite>teamworksams</cite>, you need:</p>
+<p>To use <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code>, you need:</p>
 <ol class="arabic simple">
 <li><p><strong>Teamworks AMS Account</strong>: Obtain API access from your AMS administrator, including:
-- <strong>URL</strong>: Your AMS instance URL (e.g., <cite>https://example.smartabase.com/site</cite>).
-- <strong>Username</strong>: Your username (e.g., <cite>username</cite>).
-- <strong>Password</strong>: Your password (e.g., <cite>password</cite>).</p></li>
-<li><p><strong>Python Environment</strong>: A virtual environment (e.g., <cite>venv</cite>, <cite>conda</cite>) is recommended to isolate dependencies.</p></li>
+- <strong>URL</strong>: Your AMS instance URL (e.g., <code class="xref any docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code>).
+- <strong>Username</strong>: Your username (e.g., <a class="reference internal" href="../reference/ams_client.html#teamworksams.utils.AMSClient.username" title="teamworksams.utils.AMSClient.username"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">username</span></code></a>).
+- <strong>Password</strong>: Your password (e.g., <a class="reference internal" href="../reference/ams_client.html#teamworksams.utils.AMSClient.password" title="teamworksams.utils.AMSClient.password"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">password</span></code></a>).</p></li>
+<li><p><strong>Python Environment</strong>: A virtual environment (e.g., <code class="xref any docutils literal notranslate"><span class="pre">venv</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">conda</span></code>) is recommended to isolate dependencies.</p></li>
 <li><p><strong>Optional Tools</strong>:
-- <cite>python-dotenv</cite> for loading <cite>.env</cite> files (included with <cite>teamworksams</cite>).
-- <cite>keyring</cite> for secure credential storage (included).
-- <cite>os</cite> to …</p></li>
+- <code class="xref any docutils literal notranslate"><span class="pre">python-dotenv</span></code> for loading <code class="xref any docutils literal notranslate"><span class="pre">.env</span></code> files (included with <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code>).
+- <code class="xref any docutils literal notranslate"><span class="pre">keyring</span></code> for secure credential storage (included).
+- <code class="xref any docutils literal notranslate"><span class="pre">os</span></code> to …</p></li>
 </ol>
 </section>
 <section id="environment-setup">
@@ -245,7 +245,7 @@
 <p><strong>Requirements</strong>:</p>
 <ul class="simple">
 <li><p>Python 3.8 or higher.</p></li>
-<li><p>Dependencies (installed automatically): <cite>pandas</cite>, <cite>requests</cite>, <cite>requests_toolbelt</cite>, <cite>python-dotenv</cite>, <cite>tqdm</cite>, <cite>keyring</cite>.</p></li>
+<li><p>Dependencies (installed automatically): <code class="xref any docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">requests</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">requests_toolbelt</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">python-dotenv</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">tqdm</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">keyring</span></code>.</p></li>
 </ul>
 <p>If you plan to run tests or contribute, install test dependencies:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">pip<span class="w"> </span>install<span class="w"> </span>teamworksams<span class="o">[</span>test<span class="o">]</span>
@@ -260,17 +260,17 @@
 </section>
 <section id="setting-up-credentials">
 <h2>Setting Up Credentials<a class="headerlink" href="#setting-up-credentials" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#setting-up-credentials'"><span>#</span></a></h2>
-<p><cite>teamworksams</cite> requires an AMS instance URL and credentials for authentication. You can provide these in three ways, ensuring flexibility and security. Below are detailed instructions for each method, with best practices to avoid common pitfalls.</p>
+<p><code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code> requires an AMS instance URL and credentials for authentication. You can provide these in three ways, ensuring flexibility and security. Below are detailed instructions for each method, with best practices to avoid common pitfalls.</p>
 <ol class="arabic">
 <li><p><strong>Using Environment Variables (Recommended)</strong></p>
-<p>Store credentials in a <cite>.env</cite> file for secure, reusable access. This method is ideal for scripts and CI pipelines, as it avoids hardcoding sensitive information.</p>
-<p>Create a <cite>.env</cite> file in your project root:</p>
+<p>Store credentials in a <code class="xref any docutils literal notranslate"><span class="pre">.env</span></code> file for secure, reusable access. This method is ideal for scripts and CI pipelines, as it avoids hardcoding sensitive information.</p>
+<p>Create a <code class="xref any docutils literal notranslate"><span class="pre">.env</span></code> file in your project root:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">AMS_URL=https://example.smartabase.com/site
 </span><span id="line-2">AMS_USERNAME=username
 </span><span id="line-3">AMS_PASSWORD=password
 </span></code></pre></div>
 </div>
-<p>Load the <cite>.env</cite> file in your Python script:</p>
+<p>Load the <code class="xref any docutils literal notranslate"><span class="pre">.env</span></code> file in your Python script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
 </span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span><span class="p">,</span> <span class="n">LoginOption</span>
 </span><span id="line-3">
@@ -327,7 +327,7 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 </div>
 <ol class="arabic" start="2">
 <li><p><strong>Using Direct Arguments</strong></p>
-<p>Pass credentials directly to functions like <cite>get_event_data</cite>. This is useful for quick tests or when credentials are dynamically generated.</p>
+<p>Pass credentials directly to functions like <a class="reference internal" href="../reference/get_event_data.html#teamworksams.export_main.get_event_data" title="teamworksams.export_main.get_event_data"><code class="xref any py py-func docutils literal notranslate"><span class="pre">get_event_data</span></code></a>. This is useful for quick tests or when credentials are dynamically generated.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span><span class="p">,</span> <span class="n">EventFilter</span>
 </span><span id="line-2">
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
@@ -366,14 +366,14 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 </div>
 </li>
 <li><p><strong>Using Keyring (Secure Storage)</strong></p>
-<p>Store credentials securely using the <cite>keyring</cite> library, ideal for local development or when sharing scripts across machines.</p>
+<p>Store credentials securely using the <code class="xref any docutils literal notranslate"><span class="pre">keyring</span></code> library, ideal for local development or when sharing scripts across machines.</p>
 <p>Set credentials:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">import</span><span class="w"> </span><span class="nn">keyring</span>
 </span><span id="line-2"><span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s2">"teamworksams"</span><span class="p">,</span> <span class="s2">"username"</span><span class="p">,</span> <span class="s2">"username"</span><span class="p">)</span>
 </span><span id="line-3"><span class="n">keyring</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="s2">"teamworksams"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">,</span> <span class="s2">"password"</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>Use in <cite>teamworksams</cite>:</p>
+<p>Use in <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user</span>
 </span><span id="line-2">
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">"https://example.smartabase.com/site"</span><span class="p">)</span>
@@ -382,20 +382,20 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 </span></code></pre></div>
 </div>
 <p><strong>Notes</strong>:
-- Ensure <cite>keyring</cite> is installed (included with <cite>teamworksams</cite>).
-- Use a consistent service name (<cite>teamworksams</cite>) for keyring entries.
+- Ensure <code class="xref any docutils literal notranslate"><span class="pre">keyring</span></code> is installed (included with <code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code>).
+- Use a consistent service name (<code class="xref any docutils literal notranslate"><span class="pre">teamworksams</span></code>) for keyring entries.
 - Test keyring setup locally, as some systems (e.g., CI) may lack a keyring backend.</p>
 </li>
 </ol>
 </section>
 <section id="troubleshooting-credentials">
 <h2>Troubleshooting Credentials<a class="headerlink" href="#troubleshooting-credentials" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#troubleshooting-credentials'"><span>#</span></a></h2>
-<p>If you encounter authentication errors (<cite>AMSError</cite>):</p>
+<p>If you encounter authentication errors (<a class="reference internal" href="../reference/ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AMSError</span></code></a>):</p>
 <ul class="simple">
-<li><p><strong>Invalid URL</strong>: Ensure the URL includes the site name (e.g., <cite>https://example.smartabase.com/site</cite>, not <cite>https://example.smartabase.com</cite>).</p></li>
+<li><p><strong>Invalid URL</strong>: Ensure the URL includes the site name (e.g., <code class="xref any docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code>, not <code class="xref any docutils literal notranslate"><span class="pre">https://example.smartabase.com</span></code>).</p></li>
 <li><p><strong>Invalid Credentials</strong>: Verify username and password with your AMS administrator.</p></li>
-<li><p><strong>Missing `.env`</strong>: Check that <cite>load_dotenv()</cite> is called before API functions.</p></li>
-<li><p><strong>Keyring Issues</strong>: Install <cite>keyrings.alt</cite> for CI compatibility (<cite>pip install keyrings.alt</cite>).</p></li>
+<li><p><strong>Missing `.env`</strong>: Check that <code class="xref any docutils literal notranslate"><span class="pre">load_dotenv()</span></code> is called before API functions.</p></li>
+<li><p><strong>Keyring Issues</strong>: Install <code class="xref any docutils literal notranslate"><span class="pre">keyrings.alt</span></code> for CI compatibility (<code class="xref any docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">keyrings.alt</span></code>).</p></li>
 </ul>
 <p>Example error handling:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">login</span>
@@ -445,15 +445,15 @@ print(df[[‘user_id’, ‘first_name’]].head())</p>
 </span></code></pre></div>
 </div>
 <p><strong>What’s Happening</strong>:
-- <cite>login</cite> authenticates with the AMS API, returning session details.
-- <cite>get_user</cite> fetches user data as a pandas DataFrame, with interactive feedback enabled.
+- <a class="reference internal" href="../reference/login.html#teamworksams.login_main.login" title="teamworksams.login_main.login"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.login_main.login()</span></code></a> authenticates with the AMS API, returning session details.
+- <a class="reference internal" href="../reference/get_user.html#teamworksams.user_main.get_user" title="teamworksams.user_main.get_user"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.user_main.get_user()</span></code></a> fetches user data as a pandas DataFrame, with interactive feedback enabled.
 - The output includes user IDs, names, and group affiliations, ready for analysis.</p>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">vignettes/credentials</span> for advanced credential management, caching, and authentication details.</p></li>
-<li><p>Learn about user management in <span class="xref std std-ref">vignettes/user_management</span>.</p></li>
+<li><p>Explore <span class="xref std std-ref">credentials</span> for advanced credential management, caching, and authentication details.</p></li>
+<li><p>Learn about user management in <span class="xref std std-ref">user_management</span>.</p></li>
 <li><p>Dive into the <span class="xref std std-ref">reference</span> for detailed function documentation.</p></li>
 </ul>
 </section>

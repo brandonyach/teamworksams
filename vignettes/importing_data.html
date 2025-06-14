@@ -418,9 +418,9 @@ per user, using <code class="xref py py-class docutils literal notranslate"><spa
 notes for caching, table fields, date/time columns, and interactive mode.</p>
 <p><strong>Option Classes</strong></p>
 <p>Each import function requires a specific option class to configure its behavior. These
-classes must be instantiated with parameters like <cite>interactive_mode</cite>, <cite>cache</cite>,
-<cite>id_col</cite>, <cite>table_fields</cite>, and (for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>)
-<cite>require_confirmation</cite>. For example, to set <cite>id_col=”email”</cite> for
+classes must be instantiated with parameters like <a class="reference internal" href="../reference/delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a>, <a class="reference internal" href="../reference/event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a>,
+<a class="reference internal" href="../reference/insert_event_option.html#teamworksams.import_option.InsertEventOption.id_col" title="teamworksams.import_option.InsertEventOption.id_col"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">id_col</span></code></a>, <a class="reference internal" href="../reference/insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a>, and (for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>)
+<code class="xref any docutils literal notranslate"><span class="pre">require_confirmation</span></code>. For example, to set <code class="xref any docutils literal notranslate"><span class="pre">id_col="email"</span></code> for
 <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>, use:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">insert_event_data</span><span class="p">,</span> <span class="n">InsertEventOption</span>
 </span><span id="line-2"><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -450,7 +450,7 @@ classes must be instantiated with parameters like <cite>interactive_mode</cite>,
 <li><p><strong>interactive_mode (bool)</strong>: If True, displays status messages (e.g., “Processed 2
 events”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, ideal for interactive environments like
 Jupyter notebooks. For <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>, also prompts for confirmation
-if <cite>require_confirmation=True</cite>. Set to False for silent execution in automated
+if <code class="xref any docutils literal notranslate"><span class="pre">require_confirmation=True</span></code>. Set to False for silent execution in automated
 scripts. Defaults to True. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UpdateEventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">update_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output, suitable for pipelines</span>
@@ -475,7 +475,7 @@ below for usage. Example:</p>
 no table fields. Not available for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertProfileOption</span></code>. Defaults to None.
 See “Table Fields” below for details.</p></li>
 <li><p><strong>require_confirmation (bool)</strong>: Only for <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>. If True and
-<cite>interactive_mode=True</cite>, prompts for confirmation before updating events,
+<code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>, prompts for confirmation before updating events,
 preventing accidental overwrites. Defaults to True. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UpdateEventOption</span><span class="p">(</span><span class="n">require_confirmation</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">update_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># Skips prompt, use cautiously</span>
@@ -484,23 +484,23 @@ preventing accidental overwrites. Defaults to True. Example:</p>
 </li>
 </ul>
 <p><strong>Caching</strong></p>
-<p>When <cite>option.cache=True</cite> (default), the import functions reuse an existing
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">option.cache=True</span></code> (default), the import functions reuse an existing
 <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> created by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. This client maintains an
 authenticated session, reducing API calls for login or user data retrieval (e.g.,
-mapping <cite>id_col</cite> to <cite>user_id</cite>). For example, in a workflow with multiple imports:</p>
+mapping <a class="reference internal" href="../reference/insert_event_option.html#teamworksams.import_option.InsertEventOption.id_col" title="teamworksams.import_option.InsertEventOption.id_col"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">id_col</span></code></a> to <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>). For example, in a workflow with multiple imports:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">InsertEventOption</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">insert_event_data</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">"Training Log"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
 </span><span id="line-3"><span class="n">insert_event_data</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">"Training Log"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># Reuses client</span>
 </span></code></pre></div>
 </div>
 <p>This improves performance, especially for large datasets or repeated calls. Set
-<cite>cache=False</cite> for independent sessions, ensuring fresh authentication but increasing
+<code class="xref any docutils literal notranslate"><span class="pre">cache=False</span></code> for independent sessions, ensuring fresh authentication but increasing
 API overhead.</p>
 <p><strong>id_col</strong></p>
-<p>The AMS API requires a <cite>user_id</cite> column in the input DataFrame, representing
-AMS-generated user IDs. By default, <cite>id_col = “user_id”</cite>. If your DataFrame lacks
-<cite>user_id</cite> but includes an alternative identifier (‘username’, ‘email’, or ‘about’),
-set <cite>id_col</cite> to that column. The function maps these identifiers to <cite>user_id</cite> using
+<p>The AMS API requires a <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code> column in the input DataFrame, representing
+AMS-generated user IDs. By default, <code class="xref any docutils literal notranslate"><span class="pre">id_col</span> <span class="pre">=</span> <span class="pre">"user_id"</span></code>. If your DataFrame lacks
+<code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code> but includes an alternative identifier (‘username’, ‘email’, or ‘about’),
+set <a class="reference internal" href="../reference/insert_event_option.html#teamworksams.import_option.InsertEventOption.id_col" title="teamworksams.import_option.InsertEventOption.id_col"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">id_col</span></code></a> to that column. The function maps these identifiers to <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code> using
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code> internally. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"about"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John Doe"</span><span class="p">],</span>
@@ -512,10 +512,10 @@ set <cite>id_col</cite> to that column. The function maps these identifiers to <
 </span><span id="line-8"><span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">"Training Log"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>Valid <cite>id_col</cite> values: ‘user_id’, ‘username’, ‘email’, ‘about’.</p>
+<p>Valid <a class="reference internal" href="../reference/insert_event_option.html#teamworksams.import_option.InsertEventOption.id_col" title="teamworksams.import_option.InsertEventOption.id_col"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">id_col</span></code></a> values: ‘user_id’, ‘username’, ‘email’, ‘about’.</p>
 <p><strong>Table Fields</strong></p>
 <p>Table fields in AMS forms store multiple rows of data within a single event, such as
-exercise details in a strength training session. Specify <cite>table_fields</cite> as a list of
+exercise details in a strength training session. Specify <a class="reference internal" href="../reference/insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a> as a list of
 column names matching the AMS form’s table fields. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"user_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">12345</span><span class="p">],</span>
@@ -530,13 +530,13 @@ column names matching the AMS form’s table fields. For example:</p>
 </span><span id="line-11"><span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">"Strength Testing"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>In this example, <cite>exercise</cite>, <cite>load</cite>, and <cite>reps</cite> are table fields, while <cite>session_rpe</cite>
-is a non-table field recorded once per event. The DataFrame must include <cite>user_id</cite>
-and <cite>start_date</cite> for each row, with non-table fields populating only the first row
-for each <cite>user_id</cite>/<cite>start_date</cite> pair.</p>
-<p>If <cite>table_fields=None</cite> (default) and duplicate <cite>user_id</cite>/<cite>start_date</cite> pairs are
+<p>In this example, <code class="xref any docutils literal notranslate"><span class="pre">exercise</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">load</span></code>, and <code class="xref any docutils literal notranslate"><span class="pre">reps</span></code> are table fields, while <code class="xref any docutils literal notranslate"><span class="pre">session_rpe</span></code>
+is a non-table field recorded once per event. The DataFrame must include <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>
+and <code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code> for each row, with non-table fields populating only the first row
+for each <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code> pair.</p>
+<p>If <code class="xref any docutils literal notranslate"><span class="pre">table_fields=None</span></code> (default) and duplicate <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code> pairs are
 detected, the function splits the DataFrame into multiple API calls, each containing
-unique <cite>user_id</cite>/<cite>start_date</cite> pairs. For example:</p>
+unique <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code> pairs. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"user_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">12345</span><span class="p">],</span>
 </span><span id="line-3">    <span class="s2">"start_date"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"01/01/2025"</span><span class="p">,</span> <span class="s2">"01/01/2025"</span><span class="p">],</span>
@@ -548,14 +548,14 @@ unique <cite>user_id</cite>/<cite>start_date</cite> pairs. For example:</p>
 <p>This splits into two API calls, each with one row, to avoid conflicts.</p>
 <p><strong>Date/Time Columns</strong></p>
 <p>The AMS API requires metadata for event timing. The import functions search for
-columns named <cite>start_date</cite>, <cite>end_date</cite>, <cite>start_time</cite>, and <cite>end_time</cite> in the
+columns named <code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">end_date</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">start_time</span></code>, and <code class="xref any docutils literal notranslate"><span class="pre">end_time</span></code> in the
 DataFrame:</p>
 <ul class="simple">
-<li><p><cite>start_date</cite>, <cite>end_date</cite>: Must be formatted as <cite>dd/mm/YYYY</cite> (e.g., “01/01/2025”).
-If missing, both default to the current date. If <cite>start_time</cite> and <cite>end_time</cite> span
-midnight, <cite>end_date</cite> is set to the next day.</p></li>
-<li><p><cite>start_time</cite>, <cite>end_time</cite>: Must be formatted as <cite>h:mm AM</cite> or <cite>h:mm PM</cite> (e.g.,
-“9:00 AM”). If missing, <cite>start_time</cite> defaults to the current time, and <cite>end_time</cite>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">end_date</span></code>: Must be formatted as <code class="xref any docutils literal notranslate"><span class="pre">dd/mm/YYYY</span></code> (e.g., “01/01/2025”).
+If missing, both default to the current date. If <code class="xref any docutils literal notranslate"><span class="pre">start_time</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">end_time</span></code> span
+midnight, <code class="xref any docutils literal notranslate"><span class="pre">end_date</span></code> is set to the next day.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">start_time</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">end_time</span></code>: Must be formatted as <code class="xref any docutils literal notranslate"><span class="pre">h:mm</span> <span class="pre">AM</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">h:mm</span> <span class="pre">PM</span></code> (e.g.,
+“9:00 AM”). If missing, <code class="xref any docutils literal notranslate"><span class="pre">start_time</span></code> defaults to the current time, and <code class="xref any docutils literal notranslate"><span class="pre">end_time</span></code>
 to one hour later.</p></li>
 </ul>
 <p>Example:</p>
@@ -568,15 +568,15 @@ to one hour later.</p></li>
 </span><span id="line-7"><span class="n">insert_event_data</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">"Training Log"</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">"..."</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>If <cite>start_date</cite> is missing, add it explicitly:</p>
+<p>If <code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code> is missing, add it explicitly:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span><span class="p">[</span><span class="s2">"start_date"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"01/01/2025"</span>
 </span></code></pre></div>
 </div>
 <p><strong>Interactive Mode</strong></p>
-<p>When <cite>interactive_mode=True</cite> (default), import functions display progress messages
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> (default), import functions display progress messages
 (e.g., “ℹ Inserting 2 events”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, enhancing user feedback
 in interactive environments. For <code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>, it also prompts for
-confirmation if <cite>require_confirmation=True</cite>. Set <cite>interactive_mode=False</cite> for
+confirmation if <code class="xref any docutils literal notranslate"><span class="pre">require_confirmation=True</span></code>. Set <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=False</span></code> for
 silent execution in automated pipelines:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UpsertEventOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">upsert_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>  <span class="c1"># No output, ideal for scripts</span>
@@ -604,7 +604,7 @@ interactive feedback. For simple scripts, rely on these:</p>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#best-practices'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><strong>Data Validation</strong>: Ensure <cite>df</cite> includes required columns (e.g., ‘start_date’ for
+<li><p><strong>Data Validation</strong>: Ensure <code class="xref any docutils literal notranslate"><span class="pre">df</span></code> includes required columns (e.g., ‘start_date’ for
 inserts, ‘event_id’ for updates) and valid user identifiers to avoid
 <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
 <li><p><strong>Caching</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.cache=True</span></code> to reuse a <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> across
@@ -653,7 +653,7 @@ before importing profiles or events.</p></li>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">vignettes/exporting_data</span> for data export workflows.</p></li>
+<li><p>Explore <span class="xref std std-ref">exporting_data</span> for data export workflows.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
 <li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>

@@ -1,7 +1,7 @@
 .. _getting_started:
 
 Getting Started with teamworksams
-================================
+=================================
 
 **teamworksams** is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS, leveraging Python’s data processing capabilities.
 
@@ -9,7 +9,7 @@ Getting Started with teamworksams
 This guide walks you through installing `teamworksams`, setting up credentials, and running your first API call. Explore advanced features in the :ref:`vignettes` and :ref:`api_reference` vignettes.
 
 Overview
-----------------
+--------
 
 The Teamworks AMS (Athlete Management System) API enables programmatic access to data stored in your AMS instance, such as user accounts and event data. `teamworksams` abstracts the complexity of API authentication, request handling, and data processing, delivering results as pandas DataFrames for easy analysis. Key features include:
 
@@ -356,13 +356,13 @@ Let’s authenticate and fetch user data to get started. This example logs in, r
    #         ...
 
 **What’s Happening**:
-- `login` authenticates with the AMS API, returning session details.
-- `get_user` fetches user data as a pandas DataFrame, with interactive feedback enabled.
+- :py:func:`teamworksams.login_main.login` authenticates with the AMS API, returning session details.
+- :py:func:`teamworksams.user_main.get_user` fetches user data as a pandas DataFrame, with interactive feedback enabled.
 - The output includes user IDs, names, and group affiliations, ready for analysis.
 
 Next Steps
 ----------
 
-- Explore :ref:`vignettes/credentials` for advanced credential management, caching, and authentication details.
-- Learn about user management in :ref:`vignettes/user_management`.
+- Explore :ref:`credentials` for advanced credential management, caching, and authentication details.
+- Learn about user management in :ref:`user_management`.
 - Dive into the :ref:`reference` for detailed function documentation.

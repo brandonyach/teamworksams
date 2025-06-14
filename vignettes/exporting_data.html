@@ -370,7 +370,7 @@ details.</p>
 date/time handling, caching, column types, interactive mode, and attachment storage.</p>
 <p><strong>Option Classes</strong></p>
 <p>Each export function requires a specific option class to configure its behavior. These
-classes must be instantiated with parameters like <cite>interactive_mode</cite>, <cite>cache</cite>, and
+classes must be instantiated with parameters like <a class="reference internal" href="../reference/delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a>, <a class="reference internal" href="../reference/event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a>, and
 others. For example, to disable column type casting in <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_data</span><span class="p">,</span> <span class="n">EventOption</span>
 </span><span id="line-2"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
@@ -412,7 +412,7 @@ Example:</p>
 </div>
 </li>
 <li><p><strong>download_attachment (bool)</strong>: If True, downloads event attachments (e.g., PDFs,
-images) to <cite>attachment_directory</cite>. Adds columns like ‘attachment_path’ to the
+images) to <a class="reference internal" href="../reference/event_option.html#teamworksams.export_option.EventOption.attachment_directory" title="teamworksams.export_option.EventOption.attachment_directory"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">attachment_directory</span></code></a>. Adds columns like ‘attachment_path’ to the
 DataFrame. Defaults to False. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">download_attachment</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">attachment_directory</span> <span class="o">=</span> <span class="s2">"./files"</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
@@ -420,7 +420,7 @@ DataFrame. Defaults to False. Example:</p>
 </div>
 </li>
 <li><p><strong>attachment_directory (Optional[str])</strong>: Directory path for saving attachments
-(e.g., “./files”). Must be valid if <cite>download_attachment=True</cite>. Defaults to None.
+(e.g., “./files”). Must be valid if <code class="xref any docutils literal notranslate"><span class="pre">download_attachment=True</span></code>. Defaults to None.
 See “Attachments” below.</p></li>
 <li><p><strong>clean_names (bool)</strong>: If True, converts column names to snake_case (e.g.,
 ‘Session RPE’ to ‘session_rpe’), improving compatibility with Python. Defaults to
@@ -469,8 +469,8 @@ users. Example:</p>
 </span></code></pre></div>
 </div>
 </li>
-<li><p><strong>user_value (Union[str, List[str]])</strong>: Value(s) for <cite>user_key</cite>. For ‘group’,
-specify a group name (e.g., “TeamA”). For ‘current_group’, <cite>user_value</cite> is ignored.
+<li><p><strong>user_value (Union[str, List[str]])</strong>: Value(s) for <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>. For ‘group’,
+specify a group name (e.g., “TeamA”). For ‘current_group’, <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_value" title="teamworksams.export_filter.EventFilter.user_value"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_value</span></code></a> is ignored.
 Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nb">filter</span> <span class="o">=</span> <span class="n">EventFilter</span><span class="p">(</span><span class="n">user_key</span> <span class="o">=</span> <span class="s2">"email"</span><span class="p">,</span> <span class="n">user_value</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"john.doe@example.com"</span><span class="p">])</span>
 </span><span id="line-2"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">)</span>
@@ -484,9 +484,9 @@ data. Only for <code class="xref py py-class docutils literal notranslate"><span
 </span></code></pre></div>
 </div>
 </li>
-<li><p><strong>data_value (Optional[str])</strong>: Value for <cite>data_key</cite> (e.g., “60”). Only for
+<li><p><strong>data_value (Optional[str])</strong>: Value for <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.data_key" title="teamworksams.export_filter.EventFilter.data_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">data_key</span></code></a> (e.g., “60”). Only for
 <code class="xref py py-class docutils literal notranslate"><span class="pre">EventFilter</span></code>.</p></li>
-<li><p><strong>data_condition (str)</strong>: Condition for <cite>data_key</cite>/<cite>data_value</cite>. Options: ‘equals’,
+<li><p><strong>data_condition (str)</strong>: Condition for <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.data_key" title="teamworksams.export_filter.EventFilter.data_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">data_key</span></code></a>/<a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.data_value" title="teamworksams.export_filter.EventFilter.data_value"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">data_value</span></code></a>. Options: ‘equals’,
 ‘not_equals’, ‘greater_than’, ‘less_than’, ‘greater_than_or_equals’,
 ‘less_than_or_equals’, ‘contains’. Numeric conditions (e.g., ‘greater_than’) apply
 to numeric fields only. Defaults to ‘equals’. Example:</p>
@@ -500,14 +500,14 @@ to numeric fields only. Defaults to ‘equals’. Example:</p>
 </div>
 </li>
 </ul>
-<p>Valid <cite>user_key</cite> values and their <cite>user_value</cite> requirements:</p>
+<p>Valid <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> values and their <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_value" title="teamworksams.export_filter.EventFilter.user_value"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_value</span></code></a> requirements:</p>
 <ul class="simple">
 <li><p><strong>user_id</strong>: AMS-generated user IDs (e.g., [12345, 12346]).</p></li>
 <li><p><strong>username</strong>: AMS usernames (e.g., [“john.doe”, “jane.smith”]).</p></li>
 <li><p><strong>email</strong>: User emails (e.g., [”<a class="reference external" href="mailto:john.doe%40example.com">john<span>.</span>doe<span>@</span>example<span>.</span>com</a>”]).</p></li>
 <li><p><strong>about</strong>: Full names (e.g., [“John Doe”]).</p></li>
 <li><p><strong>group</strong>: Group name (e.g., “TeamA”). Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code> to list groups.</p></li>
-<li><p><strong>current_group</strong>: Uses the group loaded during the last AMS login; <cite>user_value</cite>
+<li><p><strong>current_group</strong>: Uses the group loaded during the last AMS login; <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.user_value" title="teamworksams.export_filter.EventFilter.user_value"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_value</span></code></a>
 is ignored.</p></li>
 </ul>
 <p>Multiple filters example:</p>
@@ -521,10 +521,10 @@ is ignored.</p></li>
 </span><span id="line-8"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">)</span>  <span class="c1"># Duration &gt; 60 and RPE = 7</span>
 </span></code></pre></div>
 </div>
-<p>Note: All filter conditions must be met (logical AND). Ensure <cite>data_key</cite>,
-<cite>data_value</cite>, and <cite>data_condition</cite> have equal lengths.</p>
+<p>Note: All filter conditions must be met (logical AND). Ensure <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.data_key" title="teamworksams.export_filter.EventFilter.data_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">data_key</span></code></a>,
+<a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.data_value" title="teamworksams.export_filter.EventFilter.data_value"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">data_value</span></code></a>, and <a class="reference internal" href="../reference/event_filter.html#teamworksams.export_filter.EventFilter.data_condition" title="teamworksams.export_filter.EventFilter.data_condition"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">data_condition</span></code></a> have equal lengths.</p>
 <p><strong>Caching</strong></p>
-<p>When <cite>option.cache=True</cite> (default), export functions reuse an existing
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">option.cache=True</span></code> (default), export functions reuse an existing
 <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> created by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, maintaining an authenticated
 session and reducing API calls for login or data retrieval. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -532,20 +532,20 @@ session and reducing API calls for login or data retrieval. For example:</p>
 </span><span id="line-3"><span class="n">df2</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span><span class="n">form</span> <span class="o">=</span> <span class="s2">"Wellness"</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># Reuses client</span>
 </span></code></pre></div>
 </div>
-<p>Set <cite>cache=False</cite> for independent sessions, ensuring fresh data but increasing API
+<p>Set <code class="xref any docutils literal notranslate"><span class="pre">cache=False</span></code> for independent sessions, ensuring fresh data but increasing API
 overhead.</p>
 <p><strong>Date and Time Handling</strong></p>
 <p>The AMS API requires specific formats for date and time parameters:</p>
 <ul>
-<li><p><strong>start_date, end_date</strong>: Must be <cite>DD/MM/YYYY</cite> (e.g., “01/01/2025”) for
+<li><p><strong>start_date, end_date</strong>: Must be <code class="xref any docutils literal notranslate"><span class="pre">DD/MM/YYYY</span></code> (e.g., “01/01/2025”) for
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>. Both are required and must be valid dates, with
-<cite>end_date</cite> not before <cite>start_date</cite>. Example:</p>
+<code class="xref any docutils literal notranslate"><span class="pre">end_date</span></code> not before <code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code>. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span><span class="n">start_date</span> <span class="o">=</span> <span class="s2">"01/01/2025"</span><span class="p">,</span> <span class="n">end_date</span> <span class="o">=</span> <span class="s2">"31/01/2025"</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
 </li>
-<li><p><strong>time_range</strong>: Optional for <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>, a tuple of <cite>h:mm AM/PM</cite>
-times (e.g., <cite>(“12:00 AM”, “11:59 PM”)</cite>). Defaults to full day if unset.
+<li><p><strong>time_range</strong>: Optional for <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>, a tuple of <code class="xref any docutils literal notranslate"><span class="pre">h:mm</span> <span class="pre">AM/PM</span></code>
+times (e.g., <code class="xref any docutils literal notranslate"><span class="pre">("12:00</span> <span class="pre">AM",</span> <span class="pre">"11:59</span> <span class="pre">PM")</span></code>). Defaults to full day if unset.
 Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
 </span><span id="line-2">    <span class="n">form</span> <span class="o">=</span> <span class="s2">"Training Log"</span><span class="p">,</span>
@@ -559,7 +559,7 @@ Example:</p>
 </li>
 <li><p><strong>last_synchronisation_time</strong>: Required for <code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>, a Unix
 timestamp in milliseconds (e.g., 1677654321000 for 2023-03-01 12:25:21 UTC).
-Use the returned <cite>new_sync_time</cite> for subsequent calls. Example:</p>
+Use the returned <code class="xref any docutils literal notranslate"><span class="pre">new_sync_time</span></code> for subsequent calls. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span><span class="p">,</span> <span class="n">new_sync_time</span> <span class="o">=</span> <span class="n">sync_event_data</span><span class="p">(</span>
 </span><span id="line-2">    <span class="n">last_synchronisation_time</span> <span class="o">=</span> <span class="mi">1677654321000</span><span class="p">,</span>
 </span><span id="line-3">    <span class="o">...</span>
@@ -569,29 +569,29 @@ Use the returned <cite>new_sync_time</cite> for subsequent calls. Example:</p>
 </li>
 </ul>
 <p><strong>Column Types</strong></p>
-<p>By default, <cite>cast_to_type=True</cite> converts DataFrame columns to appropriate types
+<p>By default, <code class="xref any docutils literal notranslate"><span class="pre">cast_to_type=True</span></code> converts DataFrame columns to appropriate types
 (e.g., numeric for ‘duration’, datetime for ‘start_date’). Set
-<cite>cast_to_type=False</cite> to return all columns as strings, ensuring consistency:</p>
+<code class="xref any docutils literal notranslate"><span class="pre">cast_to_type=False</span></code> to return all columns as strings, ensuring consistency:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">cast_to_type</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
 </span><span id="line-3"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>  <span class="c1"># All columns as object (string)</span>
 </span></code></pre></div>
 </div>
-<p>Metadata columns (<cite>user_id</cite>, <cite>event_id</cite>, <cite>entered_by_user_id</cite>) are always numeric,
-and event dates (<cite>start_date</cite>, <cite>end_date</cite>) are strings, as required for AMS imports.</p>
+<p>Metadata columns (<code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">event_id</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">entered_by_user_id</span></code>) are always numeric,
+and event dates (<code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">end_date</span></code>) are strings, as required for AMS imports.</p>
 <p><strong>Interactive Mode</strong></p>
-<p>When <cite>interactive_mode=True</cite> (default), export functions display progress messages
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> (default), export functions display progress messages
 (e.g., “ℹ Requesting event data”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, enhancing feedback
-in interactive environments. Set <cite>interactive_mode=False</cite> for silent execution in
+in interactive environments. Set <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=False</span></code> for silent execution in
 automated pipelines:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">SyncEventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">df</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sync_event_data</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output</span>
 </span></code></pre></div>
 </div>
 <p><strong>Attachments</strong></p>
-<p>When <cite>download_attachment=True</cite>, attachments are saved to <cite>attachment_directory</cite>
+<p>When <code class="xref any docutils literal notranslate"><span class="pre">download_attachment=True</span></code>, attachments are saved to <a class="reference internal" href="../reference/event_option.html#teamworksams.export_option.EventOption.attachment_directory" title="teamworksams.export_option.EventOption.attachment_directory"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">attachment_directory</span></code></a>
 (e.g., “./files”), with paths added to the DataFrame (e.g., ‘attachment_path’).
-Supported file types include <cite>.pdf</cite>, <cite>.png</cite>, <cite>.jpg</cite>, etc. Ensure the directory
+Supported file types include <code class="xref any docutils literal notranslate"><span class="pre">.pdf</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">.png</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">.jpg</span></code>, etc. Ensure the directory
 exists and is writable. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="line-2"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"./files"</span><span class="p">,</span> <span class="n">exist_ok</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -600,7 +600,7 @@ exists and is writable. Example:</p>
 </span><span id="line-5"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'attachment_path'</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Paths to saved files</span>
 </span></code></pre></div>
 </div>
-<p>Files are named with AMS-generated IDs (e.g., <cite>12345_1747654002120.pdf</cite>).</p>
+<p>Files are named with AMS-generated IDs (e.g., <code class="xref any docutils literal notranslate"><span class="pre">12345_1747654002120.pdf</span></code>).</p>
 </section>
 <section id="error-handling">
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#error-handling'"><span>#</span></a></h2>
@@ -625,14 +625,14 @@ feedback. For simple scripts, rely on these:</p>
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#best-practices'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p><strong>Filtering</strong>: Use <code class="xref py py-class docutils literal notranslate"><span class="pre">EventFilter</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventFilter</span></code> to limit data
-retrieval (e.g., <cite>user_key=”group”</cite>) for performance.</p></li>
+retrieval (e.g., <code class="xref any docutils literal notranslate"><span class="pre">user_key="group"</span></code>) for performance.</p></li>
 <li><p><strong>Caching</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.cache=True</span></code> to reuse a <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> across
 multiple calls, reducing API overhead.</p></li>
 <li><p><strong>Attachments</strong>: Specify a valid <code class="docutils literal notranslate"><span class="pre">attachment_directory</span></code> when
 <code class="docutils literal notranslate"><span class="pre">download_attachment=True</span></code> to avoid file write errors.</p></li>
-<li><p><strong>Synchronization</strong>: Store the <cite>new_sync_time</cite> from <code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code> for
+<li><p><strong>Synchronization</strong>: Store the <code class="xref any docutils literal notranslate"><span class="pre">new_sync_time</span></code> from <code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code> for
 subsequent calls to maintain incremental updates.</p></li>
-<li><p><strong>Data Validation</strong>: Ensure <cite>form</cite> matches an existing AMS form and dates are in
+<li><p><strong>Data Validation</strong>: Ensure <code class="xref any docutils literal notranslate"><span class="pre">form</span></code> matches an existing AMS form and dates are in
 ‘DD/MM/YYYY’ format to avoid <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code>.</p></li>
 </ul>
 </section>
@@ -672,7 +672,7 @@ subsequent calls to maintain incremental updates.</p></li>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">vignettes/importing_data</span> for additional data workflows.</p></li>
+<li><p>Explore <span class="xref std std-ref">importing_data</span> for additional data workflows.</p></li>
 <li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
 <li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>

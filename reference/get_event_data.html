@@ -179,7 +179,7 @@ string and correspond to a valid form.</p></li>
 <li><p><strong>start_date</strong> (<em>str</em>) – Start date for the event range in ‘DD/MM/YYYY’ format (e.g.,
 ‘01/01/2025’). Must be a valid date.</p></li>
 <li><p><strong>end_date</strong> (<em>str</em>) – End date for the event range in ‘DD/MM/YYYY’ format (e.g.,
-‘31/01/2025’). Must be a valid date and not before <cite>start_date</cite>.</p></li>
+‘31/01/2025’). Must be a valid date and not before <code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code>.</p></li>
 <li><p><strong>url</strong> (<em>str</em>) – AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’). Must
 include a valid site name.</p></li>
 <li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Username for authentication. If None, uses
@@ -190,10 +190,10 @@ include a valid site name.</p></li>
 attributes (e.g., ‘group’) or data fields (e.g., ‘intensity=High’). If None,
 includes all events. Defaults to None.</p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">EventOption</span></code>, optional) – Configuration options, including
-<cite>interactive_mode</cite> for status messages, <cite>download_attachment</cite> to fetch
-attachments, <cite>clean_names</cite> to standardize column names, <cite>guess_col_type</cite> to
-infer data types, <cite>convert_dates</cite> to parse dates, <cite>cache</cite> to reuse a client,
-and <cite>attachment_directory</cite> for saving attachments. Defaults to None (uses
+<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for status messages, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.download_attachment" title="teamworksams.export_option.EventOption.download_attachment"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">download_attachment</span></code></a> to fetch
+attachments, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.clean_names" title="teamworksams.export_option.EventOption.clean_names"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">clean_names</span></code></a> to standardize column names, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.guess_col_type" title="teamworksams.export_option.EventOption.guess_col_type"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">guess_col_type</span></code></a> to
+infer data types, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.convert_dates" title="teamworksams.export_option.EventOption.convert_dates"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">convert_dates</span></code></a> to parse dates, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a> to reuse a client,
+and <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.attachment_directory" title="teamworksams.export_option.EventOption.attachment_directory"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">attachment_directory</span></code></a> for saving attachments. Defaults to None (uses
 default <code class="xref py py-class docutils literal notranslate"><span class="pre">EventOption</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
@@ -212,10 +212,10 @@ default <code class="xref py py-class docutils literal notranslate"><span class=
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <cite>form</cite> is empty, no events/users are found, authentication
+<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <code class="xref any docutils literal notranslate"><span class="pre">form</span></code> is empty, no events/users are found, authentication
     fails, or the API request fails.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>start_date</cite> or <cite>end_date</cite> is not in ‘DD/MM/YYYY’ format,
-    or if <cite>filter</cite> parameters are invalid.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">start_date</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">end_date</span></code> is not in ‘DD/MM/YYYY’ format,
+    or if <code class="xref any docutils literal notranslate"><span class="pre">filter</span></code> parameters are invalid.</p></li>
 </ul>
 </dd>
 </dl>

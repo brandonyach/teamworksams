@@ -167,7 +167,7 @@
 <dd><p>Delete a single event from an AMS instance.</p>
 <p>Sends a request to the AMS API’s deleteevent endpoint to remove the event with the
 specified ID, returning a message indicating success or failure. Requires valid
-authentication and a positive integer <cite>event_id</cite>, obtainable via
+authentication and a positive integer <code class="xref any docutils literal notranslate"><span class="pre">event_id</span></code>, obtainable via
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>. In interactive mode, prompts for confirmation and provides
 feedback. See <span class="xref std std-ref">vignettes/deleting_data</span> for deletion workflows.</p>
 <dl class="field-list simple">
@@ -186,9 +186,9 @@ include a valid site name.</p></li>
 </div></blockquote>
 </p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code>, optional) – Configuration options, including
-<cite>interactive_mode</cite> for confirmation prompts and status messages (e.g.,
+<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for confirmation prompts and status messages (e.g.,
 “SUCCESS: Deleted 134273”). Defaults to None (uses default
-<code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> with <cite>interactive_mode=True</cite>).</p></li>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> with <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to
 None.</p></li>
@@ -230,7 +230,7 @@ None.</p></li>
 <section id="additional-notes">
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Obtain valid <cite>event_id</cite> values using <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> to avoid
+<li><p>Obtain valid <code class="xref any docutils literal notranslate"><span class="pre">event_id</span></code> values using <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> to avoid
 <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code> for non-existent events.</p></li>
 <li><p>The confirmation prompt in <code class="docutils literal notranslate"><span class="pre">option.interactive_mode=True</span></code> ensures safe
 deletion, critical for administrative tasks.</p></li>

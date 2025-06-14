@@ -250,6 +250,8 @@
 </span><span id="line-37"><span class="sd">        ...     print(str(e))</span>
 </span><span id="line-38"><span class="sd">        Invalid credentials - Function: login - Endpoint: user/loginUser - Status Code: 401. Please check inputs or contact your site administrator.</span>
 </span><span id="line-39"><span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AMSError.__init__">
+<a class="viewcode-back" href="../../reference/ams_error.html#teamworksams.utils.AMSError.__init__">[docs]</a>
 </span><span id="line-40">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="line-41">        <span class="bp">self</span><span class="p">,</span>
 </span><span id="line-42">        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -271,6 +273,7 @@
 </span><span id="line-58">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status Code: </span><span class="si">{</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span><span id="line-59">        <span class="n">full_message</span> <span class="o">=</span> <span class="s2">&quot; - &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_parts</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. Please check inputs or contact your site administrator.&quot;</span>
 </span><span id="line-60">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">full_message</span><span class="p">)</span></div>
+</div>
 
 </span><span id="line-61">
 </span><span id="line-62">
@@ -301,6 +304,8 @@
 </span><span id="line-85"><span class="sd">        login_data (Dict): The response data from the login API call.</span>
 </span><span id="line-86"><span class="sd">        _cache (Dict[str, Dict]): Cache for API responses.</span>
 </span><span id="line-87"><span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AMSClient.__init__">
+<a class="viewcode-back" href="../../reference/ams_client.html#teamworksams.utils.AMSClient.__init__">[docs]</a>
 </span><span id="line-88">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
 </span><span id="line-89">            <span class="bp">self</span><span class="p">,</span> 
 </span><span id="line-90">            <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
@@ -327,7 +332,8 @@
 </span><span id="line-111">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
 </span><span id="line-112">                 <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
 </span><span id="line-113">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
-</span><span id="line-114">        <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+</span><span id="line-114">        <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span></div>
+
 </span><span id="line-115">
 </span><span id="line-116">
 <div class="viewcode-block" id="AMSClient.login">

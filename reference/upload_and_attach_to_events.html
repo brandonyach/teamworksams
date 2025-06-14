@@ -165,10 +165,10 @@
 <dt class="sig sig-object py" id="teamworksams.file_main.upload_and_attach_to_events">
 <span class="sig-prename descclassname"><span class="pre">teamworksams.file_main.</span></span><span class="sig-name descname"><span class="pre">upload_and_attach_to_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="file_upload_option.html#teamworksams.file_option.FileUploadOption" title="teamworksams.file_option.FileUploadOption"><span class="pre">FileUploadOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'attachment_id'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../_modules/teamworksams/file_main.html#upload_and_attach_to_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.file_main.upload_and_attach_to_events" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.file_main.upload_and_attach_to_events'"><span>#</span></a></dt>
 <dd><p>Upload files and attach them to events in an AMS Event Form.</p>
-<p>Matches the provided <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> to users and events using <cite>user_key</cite>
-and <cite>mapping_col</cite> (default ‘attachment_id’), uploads valid files from <cite>file_dir</cite>,
-and attaches them to the specified <cite>file_field_name</cite> in the AMS Event Form using
-file references (e.g., <cite>file_id|server_file_name</cite>). Preserves existing event fields
+<p>Matches the provided <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> to users and events using <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>
+and <code class="xref any docutils literal notranslate"><span class="pre">mapping_col</span></code> (default ‘attachment_id’), uploads valid files from <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code>,
+and attaches them to the specified <code class="xref any docutils literal notranslate"><span class="pre">file_field_name</span></code> in the AMS Event Form using
+file references (e.g., <code class="xref any docutils literal notranslate"><span class="pre">file_id|server_file_name</span></code>). Preserves existing event fields
 during updates. Returns a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with upload and attachment
 results, including successes and failures. See <span class="xref std std-ref">vignettes/uploading_files</span> for
 detailed workflows.</p>
@@ -176,25 +176,25 @@ detailed workflows.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mapping_df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – <p>DataFrame with columns:
-- <cite>user_key</cite> (str): User identifier (e.g., ‘username’, ‘email’, ‘about’,</p>
+- <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> (str): User identifier (e.g., ‘username’, ‘email’, ‘about’,</p>
 <blockquote>
 <div><p>’uuid’).</p>
 </div></blockquote>
 <ul>
-<li><p><cite>file_name</cite> (str): File name in <cite>file_dir</cite> (e.g., ‘doc1.pdf’).</p></li>
-<li><p><cite>mapping_col</cite> (str): Matches the event form’s field (e.g.,
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">file_name</span></code> (str): File name in <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code> (e.g., ‘doc1.pdf’).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">mapping_col</span></code> (str): Matches the event form’s field (e.g.,
 ‘attachment_id’). Used for mapping files to events. Must not be empty.</p></li>
 </ul>
 </p></li>
 <li><p><strong>file_dir</strong> (<em>str</em>) – Directory path containing files to upload (e.g.,
 ‘/path/to/files’). Must be a valid directory.</p></li>
-<li><p><strong>user_key</strong> (<em>str</em>) – Column name in <cite>mapping_df</cite> for user identification. Must be
+<li><p><strong>user_key</strong> (<em>str</em>) – Column name in <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> for user identification. Must be
 one of ‘username’, ‘email’, ‘about’, or ‘uuid’.</p></li>
 <li><p><strong>form</strong> (<em>str</em>) – Name of the AMS Event Form (e.g., ‘Document Store’). Must exist
-and contain <cite>file_field_name</cite>.</p></li>
+and contain <code class="xref any docutils literal notranslate"><span class="pre">file_field_name</span></code>.</p></li>
 <li><p><strong>file_field_name</strong> (<em>str</em>) – File upload field in the form (e.g., ‘attachment’).
 Must be a valid file field.</p></li>
-<li><p><strong>mapping_col</strong> (<em>str</em>) – Column name in <cite>mapping_df</cite> and event form for matching
+<li><p><strong>mapping_col</strong> (<em>str</em>) – Column name in <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> and event form for matching
 events to files (e.g., ‘attachment_id’). Defaults to ‘attachment_id’.</p></li>
 <li><p><strong>url</strong> (<em>str</em>) – AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’).
 Must include a valid site name.</p></li>
@@ -205,7 +205,7 @@ Must include a valid site name.</p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>, optional) – Configuration options for
 interactive feedback (e.g., progress bars), caching, and saving results
 to a CSV. Defaults to None (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code> with
-<cite>interactive_mode=True</cite>).</p></li>
+<code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
 </ul>
@@ -213,8 +213,8 @@ to a CSV. Defaults to None (uses default <code class="xref py py-class docutils 
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
 <dt>Results with columns:</dt><dd><ul class="simple">
-<li><p>user_key (str): The user identifier from <cite>mapping_df</cite>.</p></li>
-<li><p>file_name (str): The file name from <cite>mapping_df</cite>.</p></li>
+<li><p>user_key (str): The user identifier from <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>.</p></li>
+<li><p>file_name (str): The file name from <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>.</p></li>
 <li><p>event_id (str): Matched event ID (None if failed).</p></li>
 <li><p>user_id (str): Matched user ID (None if failed).</p></li>
 <li><p>file_id (str): Uploaded file ID (None if failed).</p></li>
@@ -231,7 +231,7 @@ to a CSV. Defaults to None (uses default <code class="xref py py-class docutils 
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If:
-    - <cite>file_dir</cite> is not a valid directory.
+    - <code class="xref any docutils literal notranslate"><span class="pre">file_dir</span></code> is not a valid directory.
     - User data retrieval fails (e.g., invalid credentials, API errors).
     - No users are found in the AMS instance.
     - Event data retrieval fails (e.g., invalid form name, API errors).
@@ -296,12 +296,12 @@ Uploading files: 100%|██████████| 450/450 [00:02&lt;00:00,  
 <section id="additional-notes">
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">mapping_df</span></code> must include <cite>user_key</cite>, <cite>file_name</cite>, and <cite>mapping_col</cite>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">mapping_df</span></code> must include <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>, <code class="xref any docutils literal notranslate"><span class="pre">file_name</span></code>, and <code class="xref any docutils literal notranslate"><span class="pre">mapping_col</span></code>
 (e.g., ‘attachment_id’); missing columns or invalid files raise
 <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
 <li><p>Valid file types include .pdf, .doc, .docx, .txt, .csv, .png, .jpg, .jpeg,
 .gif, .xls, .xlsx, and .heic; others are skipped with failure reasons.</p></li>
-<li><p>Ensure the AMS form has a file field (<cite>file_field_name</cite>) and <cite>mapping_col</cite>
+<li><p>Ensure the AMS form has a file field (<code class="xref any docutils literal notranslate"><span class="pre">file_field_name</span></code>) and <code class="xref any docutils literal notranslate"><span class="pre">mapping_col</span></code>
 (e.g., ‘attachment_id’) to match events correctly.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">option.save_to_file</span></code> to save results for troubleshooting, as the
 function performs multiple steps (user mapping, event matching, upload,
@@ -312,7 +312,7 @@ update).</p></li>
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>: Configuration options for file uploads.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: For retrieving event data to prepare <cite>mapping_df</cite>.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: For retrieving event data to prepare <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>.</p></li>
 <li><p><span class="xref std std-ref">vignettes/uploading_files</span>: Event file upload workflows.</p></li>
 </ul>
 </section>

@@ -184,9 +184,9 @@ include a valid site name.</p></li>
 <li><p><strong>filter</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileFilter</span></code>, optional) – Filter object to narrow results by user
 attributes (e.g., ‘group’). If None, includes all profiles. Defaults to None.</p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileOption</span></code>, optional) – Configuration options, including
-<cite>interactive_mode</cite> for status messages, <cite>clean_names</cite> to standardize column
-names, <cite>guess_col_type</cite> to infer data types, <cite>cache</cite> to reuse a client, and
-<cite>include_missing_users</cite> to include users without profiles. Defaults to None
+<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for status messages, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.clean_names" title="teamworksams.export_option.EventOption.clean_names"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">clean_names</span></code></a> to standardize column
+names, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.guess_col_type" title="teamworksams.export_option.EventOption.guess_col_type"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">guess_col_type</span></code></a> to infer data types, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a> to reuse a client, and
+<a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.include_missing_users" title="teamworksams.export_option.EventOption.include_missing_users"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">include_missing_users</span></code></a> to include users without profiles. Defaults to None
 (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileOption</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
@@ -205,9 +205,9 @@ names, <cite>guess_col_type</cite> to infer data types, <cite>cache</cite> to re
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <cite>form</cite> is empty, no profiles/users are found, authentication
+<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <code class="xref any docutils literal notranslate"><span class="pre">form</span></code> is empty, no profiles/users are found, authentication
     fails, or the API request fails.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>filter</cite> parameters are invalid.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">filter</span></code> parameters are invalid.</p></li>
 </ul>
 </dd>
 </dl>

@@ -184,8 +184,8 @@ include a valid site name.</p></li>
 <li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>, optional) – Configuration options,
-including <cite>table_fields</cite> for table field names, <cite>interactive_mode</cite> for
-status messages and confirmation prompts, and <cite>cache</cite> to reuse a client.
+including <a class="reference internal" href="insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a> for table field names, <a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for
+status messages and confirmation prompts, and <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a> to reuse a client.
 Defaults to None (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
@@ -203,10 +203,10 @@ Defaults to None (uses default <code class="xref py py-class docutils literal no
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <cite>form</cite> is empty, not a database form, authentication
-    fails, <cite>df</cite> is invalid (e.g., empty, missing ‘entry_id’), user cancels in
+<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <code class="xref any docutils literal notranslate"><span class="pre">form</span></code> is empty, not a database form, authentication
+    fails, <code class="xref any docutils literal notranslate"><span class="pre">df</span></code> is invalid (e.g., empty, missing ‘entry_id’), user cancels in
     interactive mode, or the API request fails.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>table_fields</cite> contains invalid field names not in <cite>df</cite>.</p></li>
+<li><p><strong>ValueError</strong> – If <a class="reference internal" href="insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a> contains invalid field names not in <code class="xref any docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
 </ul>
 </dd>
 </dl>

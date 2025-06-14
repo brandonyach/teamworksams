@@ -176,6 +176,6 @@ Best Practices
 Next Steps
 ----------
 
-- Explore :ref:`vignettes/exporting_data` for retrieving event data and IDs.
+- Explore :ref:`exporting_data` for retrieving event data and IDs.
 - Consult :ref:`reference` for detailed function and class documentation.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

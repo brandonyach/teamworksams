@@ -324,6 +324,6 @@ Troubleshooting
 Next Steps
 ----------
 
-- Explore :ref:`vignettes/exporting_data` for retrieving event data.
+- Explore :ref:`exporting_data` for retrieving event data.
 - Consult :ref:`reference` for detailed function and class documentation.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

@@ -167,7 +167,7 @@
 <dd><p>Retrieve database entries from an AMS database form.</p>
 <p>Fetches entries from a specified AMS database form, returning a
 <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> with columns for entry IDs and field values. Supports
-pagination via <cite>limit</cite> and <cite>offset</cite>, and customization through
+pagination via <code class="xref any docutils literal notranslate"><span class="pre">limit</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">offset</span></code>, and customization through
 <code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code> for caching, interactive feedback, or raw output. Ideal
 for retrieving structured data like allergies or equipment lists. See
 <span class="xref std std-ref">vignettes/database_operations</span> for database workflows.</p>
@@ -188,8 +188,8 @@ Defaults to 10000.</p></li>
 <li><p><strong>offset</strong> (<em>int</em>) – Starting index for pagination. Must be non-negative. Use to skip
 entries in large datasets (e.g., 10000 for the next batch). Defaults to 0.</p></li>
 <li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code>, optional) – Configuration options, including
-<cite>interactive_mode</cite> for status messages (e.g., “Retrieved 100 entries”),
-<cite>cache</cite> to reuse a client, and <cite>raw_output</cite> for unprocessed API responses.
+<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for status messages (e.g., “Retrieved 100 entries”),
+<a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a> to reuse a client, and <a class="reference internal" href="form_option.html#teamworksams.form_option.FormOption.raw_output" title="teamworksams.form_option.FormOption.raw_output"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">raw_output</span></code></a> for unprocessed API responses.
 Defaults to None (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code>).</p></li>
 <li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
@@ -208,9 +208,9 @@ entries are found</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <cite>form_name</cite> is empty, not a database form,
+<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <code class="xref any docutils literal notranslate"><span class="pre">form_name</span></code> is empty, not a database form,
     authentication fails, or the API request fails.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>limit</cite> is not positive or <cite>offset</cite> is negative.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">limit</span></code> is not positive or <code class="xref any docutils literal notranslate"><span class="pre">offset</span></code> is negative.</p></li>
 </ul>
 </dd>
 </dl>

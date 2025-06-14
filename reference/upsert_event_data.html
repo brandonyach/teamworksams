@@ -179,7 +179,7 @@ See <span class="xref std std-ref">vignettes/importing_data</span> for upsert wo
 <li><p><strong>df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – A pandas DataFrame containing the event data to upsert.
 Records with an ‘event_id’ column are updated; those without are inserted. Columns
 represent field names (including ‘start_date’, ‘user_id’ or another identifier
-specified by <cite>option.id_col</cite>), and rows contain values. Must not be empty.</p></li>
+specified by <code class="xref any docutils literal notranslate"><span class="pre">option.id_col</span></code>), and rows contain values. Must not be empty.</p></li>
 <li><p><strong>form</strong> (<em>str</em>) – The name of the AMS Event Form to upsert data into. Must be a non-empty
 string and correspond to a valid event form.</p></li>
 <li><p><strong>url</strong> (<em>str</em>) – The AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’).</p></li>
@@ -213,7 +213,7 @@ Defaults to None.</p></li>
     is invalid (e.g., empty, missing required fields for inserts or ‘event_id’ for
     updates), the payload cannot be built, the API request fails, or the user cancels
     the update operation in interactive mode.</p></li>
-<li><p><strong>ValueError</strong> – If <cite>option.id_col</cite> is invalid or <cite>table_fields</cite> contains field names not
+<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">option.id_col</span></code> is invalid or <a class="reference internal" href="insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a> contains field names not
     present in the DataFrame.</p></li>
 </ul>
 </dd>
