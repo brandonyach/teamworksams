@@ -80,7 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="vignettes/user_management.html">User and Group Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vignettes/exporting_data.html">Exporting Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vignettes/importing_data.html">Importing Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vignettes/database_operations.html">Database Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vignettes/database_operations.html">Database Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vignettes/uploading_files.html">Uploading Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vignettes/managing_forms.html">Managing Forms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vignettes/deleting_data.html">Deleting Data</a></li>
@@ -338,7 +338,7 @@ assistance.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="vignettes/importing_data.html#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vignettes/database_operations.html">Database Management</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="vignettes/database_operations.html">Database Operations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vignettes/database_operations.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vignettes/database_operations.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vignettes/database_operations.html#retrieving-entries">Retrieving Entries</a></li>
@@ -388,14 +388,75 @@ assistance.</p></li>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reference/reference.html">Functions and Classes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#credentials-and-authentication">Credentials and Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#user-management">User Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#data-export">Data Export</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#data-import">Data Import</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#database-operations">Database Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#file-management">File Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#form-management">Form Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#deleting-data">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#credentials-and-authentication">Credentials and Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_client.html">get_client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/login.html">login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/ams_client.html">AMSClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/ams_error.html">AMSError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/login_option.html">LoginOption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#user-management">User Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_user.html">get_user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_group.html">get_group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/edit_user.html">edit_user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/create_user.html">create_user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/user_option.html">UserOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/group_option.html">GroupOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/user_filter.html">UserFilter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#exporting-data">Exporting Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_event_data.html">get_event_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sync_event_data.html">sync_event_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_profile_data.html">get_profile_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/event_filter.html">EventFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sync_event_filter.html">SyncEventFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/profile_filter.html">ProfileFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/event_option.html">EventOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/sync_event_option.html">SyncEventOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/profile_option.html">ProfileOption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#importing-data">Importing Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/insert_event_data.html">insert_event_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/update_event_data.html">update_event_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/upsert_event_data.html">upsert_event_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/upsert_profile_data.html">upsert_profile_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/insert_event_option.html">InsertEventOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/update_event_option.html">UpdateEventOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/upsert_event_option.html">UpsertEventOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/upsert_profile_option.html">UpsertProfileOption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#database-operations">Database Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_database.html">get_database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/delete_database_entry.html">delete_database_entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/insert_database_entry.html">insert_database_entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/update_database_entry.html">update_database_entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_database_option.html">GetDatabaseOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/insert_database_option.html">InsertDatabaseOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/update_database_option.html">UpdateDatabaseOption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#uploading-files">Uploading Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/upload_and_attach_to_events.html">upload_and_attach_to_events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/upload_and_attach_to_avatars.html">upload_and_attach_to_avatars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/file_upload_option.html">FileUploadOption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#managing-forms">Managing Forms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_forms.html">get_forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/get_form_schema.html">get_form_schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/form_option.html">FormOption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/reference.html#deleting-data">Deleting Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/delete_event_data.html">delete_event_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/delete_multiple_events.html">delete_multiple_events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/delete_event_option.html">DeleteEventOption</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

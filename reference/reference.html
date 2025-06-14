@@ -81,7 +81,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../vignettes/user_management.html">User and Group Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vignettes/exporting_data.html">Exporting Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vignettes/importing_data.html">Importing Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vignettes/database_operations.html">Database Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vignettes/database_operations.html">Database Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vignettes/uploading_files.html">Uploading Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vignettes/managing_forms.html">Managing Forms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vignettes/deleting_data.html">Deleting Data</a></li>
@@ -163,7 +163,15 @@
 <p>This section provides detailed documentation for all <strong>teamworksams</strong> functions and classes, organized by module. Each entry links to a dedicated page with full parameter details, usage examples, return values, and error conditions. Use this reference to explore specific functionality, complemented by the <span class="xref std std-ref">vignettes</span> section for practical workflows.</p>
 <section id="credentials-and-authentication">
 <h2>Credentials and Authentication<a class="headerlink" href="#credentials-and-authentication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#credentials-and-authentication'"><span>#</span></a></h2>
-
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_client.html">get_client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">login</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ams_client.html">AMSClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ams_error.html">AMSError</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login_option.html">LoginOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>: Client class for handling AMS API requests and authentication.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>: Custom exception for AMS API errors with descriptive messages.</p></li>
@@ -174,7 +182,17 @@
 </section>
 <section id="user-management">
 <h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#user-management'"><span>#</span></a></h2>
-
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_user.html">get_user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_group.html">get_group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="edit_user.html">edit_user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_user.html">create_user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_option.html">UserOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_option.html">GroupOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_filter.html">UserFilter</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: Create new user accounts.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>: Update user fields for existing accounts.</p></li>
@@ -185,9 +203,21 @@
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code>: Configuration options for group-related functions.</p></li>
 </ul>
 </section>
-<section id="data-export">
-<h2>Data Export<a class="headerlink" href="#data-export" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#data-export'"><span>#</span></a></h2>
-
+<section id="exporting-data">
+<h2>Exporting Data<a class="headerlink" href="#exporting-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#exporting-data'"><span>#</span></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_event_data.html">get_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync_event_data.html">sync_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_profile_data.html">get_profile_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="event_filter.html">EventFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync_event_filter.html">SyncEventFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile_filter.html">ProfileFilter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="event_option.html">EventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync_event_option.html">SyncEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile_option.html">ProfileOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: Retrieve event data from an AMS Event Form within a date range.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>: Fetch event data modified since the last synchronization time.</p></li>
@@ -200,9 +230,20 @@
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileOption</span></code>: Configuration options for profile data retrieval.</p></li>
 </ul>
 </section>
-<section id="data-import">
-<h2>Data Import<a class="headerlink" href="#data-import" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#data-import'"><span>#</span></a></h2>
-
+<section id="importing-data">
+<h2>Importing Data<a class="headerlink" href="#importing-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#importing-data'"><span>#</span></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="insert_event_data.html">insert_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_event_data.html">update_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_event_data.html">upsert_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_profile_data.html">upsert_profile_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert_event_option.html">InsertEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_event_option.html">UpdateEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_event_option.html">UpsertEventOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upsert_profile_option.html">UpsertProfileOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>: Insert new event records into an AMS Event Form.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>: Update existing event records in an AMS Event Form.</p></li>
@@ -216,7 +257,17 @@
 </section>
 <section id="database-operations">
 <h2>Database Operations<a class="headerlink" href="#database-operations" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#database-operations'"><span>#</span></a></h2>
-
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_database.html">get_database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete_database_entry.html">delete_database_entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert_database_entry.html">insert_database_entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_database_entry.html">update_database_entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_database_option.html">GetDatabaseOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert_database_option.html">InsertDatabaseOption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update_database_option.html">UpdateDatabaseOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>: Retrieve database entries from an AMS database form.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code>: Delete a specific database entry by ID.</p></li>
@@ -227,18 +278,30 @@
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>: Configuration options for database updates.</p></li>
 </ul>
 </section>
-<section id="file-management">
-<h2>File Management<a class="headerlink" href="#file-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#file-management'"><span>#</span></a></h2>
-
+<section id="uploading-files">
+<h2>Uploading Files<a class="headerlink" href="#uploading-files" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#uploading-files'"><span>#</span></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="upload_and_attach_to_events.html">upload_and_attach_to_events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload_and_attach_to_avatars.html">upload_and_attach_to_avatars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_upload_option.html">FileUploadOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code>: Upload files and attach to events in an AMS Event Form.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>: Upload images and attach as user profile avatars.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>: Configuration options for file upload operations.</p></li>
 </ul>
 </section>
-<section id="form-management">
-<h2>Form Management<a class="headerlink" href="#form-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#form-management'"><span>#</span></a></h2>
-
+<section id="managing-forms">
+<h2>Managing Forms<a class="headerlink" href="#managing-forms" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#managing-forms'"><span>#</span></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_forms.html">get_forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_form_schema.html">get_form_schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form_option.html">FormOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code>: Fetch a list of forms accessible to the user.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>: Fetch and summarize a specific form’s schema.</p></li>
@@ -247,7 +310,13 @@
 </section>
 <section id="deleting-data">
 <h2>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#deleting-data'"><span>#</span></a></h2>
-
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="delete_event_data.html">delete_event_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete_multiple_events.html">delete_multiple_events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete_event_option.html">DeleteEventOption</a></li>
+</ul>
+</div>
 <ul class="simple">
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code>: Delete a single event from an AMS instance.</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>: Delete multiple events from an AMS instance.</p></li>
@@ -260,11 +329,11 @@
 <ul>
 <li><a :data-current="activeSection === '#credentials-and-authentication'" class="reference internal" href="#credentials-and-authentication">Credentials and Authentication</a></li>
 <li><a :data-current="activeSection === '#user-management'" class="reference internal" href="#user-management">User Management</a></li>
-<li><a :data-current="activeSection === '#data-export'" class="reference internal" href="#data-export">Data Export</a></li>
-<li><a :data-current="activeSection === '#data-import'" class="reference internal" href="#data-import">Data Import</a></li>
+<li><a :data-current="activeSection === '#exporting-data'" class="reference internal" href="#exporting-data">Exporting Data</a></li>
+<li><a :data-current="activeSection === '#importing-data'" class="reference internal" href="#importing-data">Importing Data</a></li>
 <li><a :data-current="activeSection === '#database-operations'" class="reference internal" href="#database-operations">Database Operations</a></li>
-<li><a :data-current="activeSection === '#file-management'" class="reference internal" href="#file-management">File Management</a></li>
-<li><a :data-current="activeSection === '#form-management'" class="reference internal" href="#form-management">Form Management</a></li>
+<li><a :data-current="activeSection === '#uploading-files'" class="reference internal" href="#uploading-files">Uploading Files</a></li>
+<li><a :data-current="activeSection === '#managing-forms'" class="reference internal" href="#managing-forms">Managing Forms</a></li>
 <li><a :data-current="activeSection === '#deleting-data'" class="reference internal" href="#deleting-data">Deleting Data</a></li>
 </ul>
 </div>

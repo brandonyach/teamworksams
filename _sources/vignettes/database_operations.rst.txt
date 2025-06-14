@@ -1,4 +1,4 @@
-Database Management
+Database Operations
 ==================
 
 This vignette provides a concise guide to managing database entries in Teamworks AMS using
