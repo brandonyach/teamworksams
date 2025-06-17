@@ -3,11 +3,11 @@ from typing import Optional, List
 class UserOption:
     """Options for configuring user-related operations.
 
-    Customizes the behavior of :func:`teamworksams.user_main.get_user`,
-    :func:`teamworksams.user_main.edit_user`, and
-    :func:`teamworksams.user_main.create_user`, controlling output columns, caching,
+    Customizes the behavior of :func:`get_user`,
+    :func:`edit_user`, and
+    :func:`create_user`, controlling output columns, caching,
     and interactive feedback. Optimizes performance and user experience for user data
-    operations. See :ref:`vignettes/user_management` for usage examples.
+    operations. See :ref:`user_management` for usage examples.
 
     Args:
         columns (Optional[List[str]]): List of column names to include in the output
@@ -52,10 +52,10 @@ class UserOption:
 class GroupOption:
     """Options for configuring group data export.
 
-    Customizes the behavior of :func:`teamworksams.user_main.get_group`, controlling
+    Customizes the behavior of :func:`get_group`, controlling
     data type inference, caching, and interactive feedback. Optimizes the group data
     retrieval process for performance and output formatting. See
-    :ref:`vignettes/user_management` for combining group and user data.
+    :ref:`user_management` for combining group and user data.
 
     Args:
         guess_col_type (bool): If True, infers column data types in the output

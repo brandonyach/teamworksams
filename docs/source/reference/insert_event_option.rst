@@ -1,3 +1,7 @@
+.. _insert_event_data_ref: ../reference/insert_event_data.html
+
+.. _insert_event_option:
+
 InsertEventOption
 =================
 
@@ -21,5 +25,5 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.import_main.insert_event_data`: Function using `InsertEventOption`.
-- :ref:`vignettes/importing_data`: Event insertion workflows.
+- `insert_event_data() <insert_event_data_ref_>`_: Function using `InsertEventOption`.
+- :ref:`importing_data`: Event insertion workflows.

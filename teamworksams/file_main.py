@@ -40,16 +40,16 @@ def upload_and_attach_to_events(
     and attaches them to the specified `file_field_name` in the AMS Event Form using
     file references (e.g., `file_id|server_file_name`). Preserves existing event fields
     during updates. Returns a :class:`pandas.DataFrame` with upload and attachment
-    results, including successes and failures. See :ref:`vignettes/uploading_files` for
+    results, including successes and failures. See :ref:`uploading_files` for
     detailed workflows.
 
     Args:
         mapping_df (:class:`pandas.DataFrame`): DataFrame with columns:
             - `user_key` (str): User identifier (e.g., 'username', 'email', 'about',
-              'uuid').
+            'uuid').
             - `file_name` (str): File name in `file_dir` (e.g., 'doc1.pdf').
             - `mapping_col` (str): Matches the event form’s field (e.g.,
-              'attachment_id'). Used for mapping files to events. Must not be empty.
+            'attachment_id'). Used for mapping files to events. Must not be empty.
         file_dir (str): Directory path containing files to upload (e.g.,
             '/path/to/files'). Must be a valid directory.
         user_key (str): Column name in `mapping_df` for user identification. Must be
@@ -66,11 +66,11 @@ def upload_and_attach_to_events(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`FileUploadOption`, optional): Configuration options for
+        option (FileUploadOption, optional): Configuration options for
             interactive feedback (e.g., progress bars), caching, and saving results
             to a CSV. Defaults to None (uses default :class:`FileUploadOption` with
             `interactive_mode=True`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -98,13 +98,11 @@ def upload_and_attach_to_events(
     Example:
         >>> import pandas as pd
         >>> from teamworksams import upload_and_attach_to_events, FileUploadOption
-
         >>> mapping_df = DataFrame({
         ...     "username": ["user1", "user2"],
         ...     "file_name": ["doc1.pdf", "doc2.pdf"],
         ...     "attachment_id": ["ATT123", "ATT456"]
         ... })
-
         >>> results = upload_and_attach_to_events(
         ...     mapping_df = mapping_df,
         ...     mapping_col = "attachment_id",
@@ -117,7 +115,6 @@ def upload_and_attach_to_events(
         ...     password = "password",
         ...     option = FileUploadOption(interactive_mode = True, save_to_file = "results.csv")
         )
-
         ℹ Fetching all user data from site to match provided files...
         ℹ Retrieved 50 users.
         ℹ Fetching all event data from 'Document Store' to match provided files...
@@ -137,7 +134,6 @@ def upload_and_attach_to_events(
         ℹ Records attempted: 500
         ✔ Successfully attached 450 files to 500 events.
         ℹ Saved results to 'results.csv'   
-        
         >>> print(results.head())
            username file_name event_id user_id file_id server_file_name status reason
         0   user1   doc1.pdf  123456  78901   94196 doc1_1747654002120.pdf SUCCESS None
@@ -589,12 +585,12 @@ def upload_and_attach_to_avatars(
     field in user profiles. If `mapping_df` is None, generates it from image filenames
     in `file_dir` (without extension) as `user_key` values. Preserves other profile
     fields during updates. Returns a :class:`pandas.DataFrame` with results. See
-    :ref:`vignettes/uploading_files` for detailed workflows.
+    :ref:`uploading_files` for detailed workflows.
 
     Args:
         mapping_df (Optional[:class:`pandas.DataFrame`]): DataFrame with columns:
             - `user_key` (str): User identifier (e.g., 'username', 'email', 'about',
-              'uuid').
+            'uuid').
             - `file_name` (str): Image file name in `file_dir` (e.g., 'avatar1.png').
             If None, generates from `file_dir` filenames. Defaults to None.
         file_dir (str): Directory path containing image files (e.g.,
@@ -607,11 +603,11 @@ def upload_and_attach_to_avatars(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`FileUploadOption`, optional): Configuration options for
+        option (FileUploadOption, optional): Configuration options for
             interactive feedback, caching, and saving results to a CSV. Defaults to
             None (uses default :class:`FileUploadOption` with
             `interactive_mode=True`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -637,12 +633,10 @@ def upload_and_attach_to_avatars(
     Examples:
         >>> import pandas as pd
         >>> from teamworksams import upload_and_attach_to_avatars, FileUploadOption
-
         >>> mapping_df = DataFrame({
         ...     "username": ["user1", "user2"],
         ...     "file_name": ["avatar1.png", "avatar2.jpg"]
         ... })
-
         >>> results = upload_and_attach_to_avatars(
         ...     mapping_df = mapping_df,
         ...     file_dir = "/path/to/avatars",
@@ -655,7 +649,6 @@ def upload_and_attach_to_avatars(
         ...         save_to_file = "avatar_results.csv"
         ...     )
         ... )
-
         ℹ Fetching all user data from site to match provided files...
         ℹ Retrieved 50 users.
         ℹ Found 2 valid avatar files in directory for 2 matching users on the site.
@@ -665,7 +658,6 @@ def upload_and_attach_to_avatars(
         Updating avatars: 100%|██████████| 2/2 [00:02<00:00,  1.00s/it]
         ✔ Successfully updated 2 avatar files to 2 users.
         ℹ Saved results to 'avatar_results.csv'
-    
         >>> print(results)
            username  file_name user_id file_id server_file_name status reason
         0   user1  avatar1.png 78901   94196 avatar1_1747654002120.png SUCCESS None

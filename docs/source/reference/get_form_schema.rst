@@ -1,3 +1,8 @@
+.. _form_option_ref: ../reference/form_option.html
+.. _get_forms_ref: ../reference/get_forms.html
+
+.. _get_form_schema:
+
 get_form_schema
 ===============
 
@@ -17,6 +22,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`FormOption`: Configuration options for schema retrieval.
-- :func:`get_forms`: For listing accessible forms.
-- :ref:`vignettes/managing_forms`: Form schema workflows.
+- `FormOption() <form_option_ref_>`_: Configuration options for schema retrieval.
+- `get_forms() <get_forms_ref_>`_: For listing accessible forms.
+- :ref:`managing_forms`: Form schema workflows.

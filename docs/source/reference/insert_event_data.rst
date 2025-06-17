@@ -1,3 +1,8 @@
+.. _update_event_data_ref: ../reference/update_event_data.html
+.. _insert_event_option_ref: ../reference/insert_event_option.html
+
+.. _insert_event_data:
+
 insert_event_data
 =================
 
@@ -17,6 +22,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`InsertEventOption`: Configuration options for event insertion.
-- :func:`update_event_data`: For updating existing events.
-- :ref:`vignettes/importing_data`: Event import workflows.
+- `InsertEventOption() <insert_event_option_ref_>`_: Configuration options for event insertion.
+- `update_event_data() <update_event_data_ref_>`_: For updating existing events.
+- :ref:`importing_data`: Event import workflows.

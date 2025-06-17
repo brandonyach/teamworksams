@@ -15,13 +15,13 @@ def login(
     Establishes a session with the AMS API using provided credentials, returning a
     dictionary with login data, session header, and cookie. Useful for verifying
     credentials or initializing a :class:`AMSClient` for custom API calls. See
-    :ref:`vignettes/credentials` for authentication workflows.
+    :ref:`credentials` for authentication workflows.
 
     Args:
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
         username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`LoginOption`, optional): Configuration options, including `interactive_mode` to enable status messages (e.g., "Successfully logged in"). Defaults to None (uses default :class:`LoginOption`).
+        option (LoginOption, optional): Configuration options, including `interactive_mode` to enable status messages (e.g., "Successfully logged in"). Defaults to None (uses default :class:`LoginOption`).
 
     Returns:
         Dict[str, Any]: A dictionary containing:
@@ -32,12 +32,11 @@ def login(
             - 'cookie': The formatted cookie string (e.g., 'JSESSIONID = session_header').
 
     Raises:
-        AMSError: If the URL is invalid, credentials are missing or invalid, the login
+        :class:`AMSError`: If the URL is invalid, credentials are missing or invalid, the login
             request fails (e.g., HTTP 401), or the session header is not provided.
 
     Examples:
-        >>> from teamworksams import login
-        >>> from teamworksams import LoginOption
+        >>> from teamworksams import login, LoginOption
         >>> login_result = login(
         ...     url = "https://example.smartabase.com/site",
         ...     username = "user",

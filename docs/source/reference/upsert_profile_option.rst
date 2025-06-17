@@ -1,3 +1,9 @@
+.. _upsert_profile_data_ref: ../reference/upsert_profile_data.html
+.. _ams_client_ref: ../reference/ams_client.html
+
+
+.. _upsert_profile_option:
+
 UpsertProfileOption
 ===================
 
@@ -20,4 +26,4 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.import_main.upsert_profile_data`: Function using `UpsertProfileOption`.
+- `upsert_profile_data() <upsert_profile_data_ref_>`_: Function using `UpsertProfileOption`.

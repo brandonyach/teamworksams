@@ -1,3 +1,8 @@
+.. _create_user_ref: ../reference/create_user.html
+.. _user_option_ref: ../reference/user_option.html
+
+.. _edit_user:
+
 edit_user
 =========
 
@@ -17,6 +22,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`UserOption`: Configuration options for user operations.
-- :func:`create_user`: For creating new users.
-- :ref:`vignettes/user_management`: User update workflows.
+- `UserOption() <user_option_ref_>`_: Configuration options for user operations.
+- `create_user() <create_user_ref_>`_: For creating new users.
+- :ref:`user_management`: User update workflows.

@@ -27,7 +27,8 @@ def get_user(
     username, email, group, or about field. The function queries the AMS API, processes the
     response into a pandas DataFrame with columns such as user ID, name, email, and group
     affiliations, and provides interactive feedback on the number of users retrieved if
-    enabled. Supports caching and column selection for customized output.
+    enabled. Supports caching and column selection for customized output. See 
+    :ref:`user_management` for user account workflows.
 
     Args:
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
@@ -97,7 +98,8 @@ def get_group(
     Fetches a list of groups accessible to the authenticated user, such as teams or
     departments, and processes the API response into a pandas DataFrame with group names.
     Provides interactive feedback on the number of groups retrieved if enabled. Supports
-    caching and data type inference for the output DataFrame.
+    caching and data type inference for the output DataFrame. See :ref:`user_management` 
+    for user account workflows.
 
     Args:
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name (e.g., '/site').
@@ -163,47 +165,31 @@ def edit_user(
     option: Optional[UserOption] = None,
     client: Optional[AMSClient] = None
 ) -> DataFrame:
-    """Update user fields in an AMS instance.
+    """
+    Update user fields in an AMS instance.
 
     Updates specified fields for existing users identified by a user key (e.g., username,
     email), using the AMS API’s `/api/v2/person/save` endpoint. The function retrieves
-    complete user data to preserve unchanged fields, applies updates of only the fields provided
-    from the mapping_df DataFrame, and returns a DataFrame of failed updates with reasons. Supports interactive
+    complete user data to preserve unchanged fields, applies updates from the mapping_df
+    DataFrame, and returns a DataFrame of failed updates with reasons. Supports interactive
     feedback, including status messages and confirmation prompts, and allows caching for
-    performance.
+    performance. See :ref:`user_management` for user account workflows.
 
     Args:
-        mapping_df (:class:`pandas.DataFrame`): DataFrame containing a `user_key` column
-            (e.g., 'username') and updatable columns (e.g., 'first_name', 'email',
-            'dob', 'sex', 'username', 'known_as', 'active', 'uuid'). Empty values are
-            sent as empty strings. Must not be empty.
-        user_key (str): Name of the identifier column in `mapping_df`. Must be one of
-            'username', 'email', 'about', or 'uuid'. For example, 'username' matches
-            users by their AMS username.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site').
-            Must include a valid site name.
-        username (Optional[str]): Username for authentication. If None, uses
-            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
-        password (Optional[str]): Password for authentication. If None, uses
-            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`UserOption`, optional): Configuration options, including
-            `interactive_mode` for status messages and progress bars, and `cache` to
-            reuse a client. The `columns` option is ignored. Defaults to None (uses
-            default :class:`UserOption` with `interactive_mode=True`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
-            :func:`get_client`. If None, a new client is created. Defaults to None.
+        mapping_df (pandas.DataFrame): DataFrame containing a user_key column (e.g., 'username') and updatable columns (e.g., 'first_name', 'email', 'dob', 'sex', 'username', 'known_as', 'active', 'uuid'). Empty values are sent as empty strings. Must not be empty.
+        user_key (str): Identifier column in mapping_df. Must be one of 'username', 'email', 'about', or 'uuid'. For example, 'username' matches users by their AMS username.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses AMS_USERNAME environment variable or keyring credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses AMS_PASSWORD environment variable or keyring credentials. Defaults to None.
+        option (UserOption, optional): Configuration options, including interactive_mode for status messages and cache to reuse a client. The columns option is ignored. Defaults to None (uses default UserOption with interactive_mode=True).
+        client (AMSClient, optional): Pre-authenticated client from teamworksams.utils.get_client. If None, a new client is created. Defaults to None.
 
     Returns:
-        :class:`pandas.DataFrame`: A pandas DataFrame containing failed updates with columns:
-            - 'user_id': The user ID (if matched) or None.
-            - 'user_key': The user identifier value that failed to update.
-            - 'reason': The reason for the failure (e.g., 'User not found', 'API request failed').
-            Returns an empty DataFrame if all updates succeed.
+        pandas.DataFrame: DataFrame of failed updates with columns 'user_id' (ID if matched or None), 'user_key' (identifier value), and 'reason' (failure reason). Empty if all updates succeed.
 
     Raises:
-        :class:`AMSError`: If `mapping_df` is invalid, `user_key` is unsupported,
-            no users are found, authentication fails, or the API request fails.
-        :class:`ValueError`: If `mapping_df` is empty or lacks valid columns.
+        AMSError: If mapping_df is invalid, user_key is unsupported, no users are found, authentication fails, or the API request fails.
+        ValueError: If mapping_df is empty or lacks valid columns.
 
     Examples:
         >>> import pandas as pd
@@ -229,6 +215,7 @@ def edit_user(
         Processing users: 100%|██████████| 2/2 [00:4<00:00, 3.46it/s]
         ✔ Successfully updated 2 users.
         ✔ No failed operations.
+
     """
     option = option or UserOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
@@ -390,32 +377,29 @@ def create_user(
     option: Optional[UserOption] = None,
     client: Optional[AMSClient] = None
 ) -> DataFrame:
-    """Create new users in an AMS instance.
+    """
+    Create new users in an AMS instance.
 
     Creates new user accounts using the AMS API’s `/api/v2/person/save` endpoint. The function processes a DataFrame with
     required fields (e.g., 'first_name', 'last_name', 'username', 'email', 'dob',
     'password', 'active') and optional fields (e.g., 'uuid', 'sex'), validates the data,
     and applies the creations. Returns a DataFrame of failed creations with reasons.
-    Supports interactive feedback and caching.
+    Supports interactive feedback and caching. See :ref:`user_management` for user account workflows.
 
     Args:
-        user_df (:class:`pandas.DataFrame`): DataFrame with user data. Required columns: 'first_name', 'last_name', 'username', 'email', 'dob', 'password', 'active'. Optional columns: 'uuid', 'known_as', 'middle_names', 'language', 'sidebar_width', 'sex'. Must not be empty.
-        url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
-        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
-        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`UserOption`, optional): Configuration options, including `interactive_mode` to print status messages (e.g., "Successfully created 1 users") and `cache` to reuse a client. Defaults to None (uses default :class:`UserOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from :func:`get_client`. If None, a new client is created. Defaults to None.
+        user_df (pandas.DataFrame): DataFrame with user data. Required columns are 'first_name', 'last_name', 'username', 'email', 'dob', 'password', 'active'. Optional columns include 'uuid', 'known_as', 'middle_names', 'language', 'sidebar_width', 'sex'. Must not be empty.
+        url (str): AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
+        username (Optional[str]): Username for authentication. If None, uses AMS_USERNAME environment variable or keyring credentials. Defaults to None.
+        password (Optional[str]): Password for authentication. If None, uses AMS_PASSWORD environment variable or keyring credentials. Defaults to None.
+        option (UserOption, optional): Configuration options, including interactive_mode to print status messages and cache to reuse a client. Defaults to None (uses default UserOption).
+        client (AMSClient, optional): Pre-authenticated client from teamworksams.utils.get_client. If None, a new client is created. Defaults to None.
 
     Returns:
-        DataFrame: A pandas DataFrame containing failed creations with columns:
-            - 'user_key': The 'username' value that failed to create.
-            - 'reason': The reason for the failure (e.g., 'Invalid data', 'API request failed').
-            Returns an empty DataFrame if all creations succeed.
+        pandas.DataFrame: DataFrame of failed creations with columns 'user_key' (username that failed) and 'reason' (failure reason). Empty if all creations succeed.
 
     Raises:
-        AMSError: If `user_df` is invalid (e.g., missing required columns), authentication
-            fails, or the API request fails.
-        ValueError: If `user_df` is empty or contains invalid data.
+        AMSError: If user_df is invalid, authentication fails, or the API request fails.
+        ValueError: If user_df is empty or contains invalid data.
 
     Examples:
         >>> import pandas as pd
@@ -440,6 +424,7 @@ def create_user(
         ... )
         ℹ Creating 2 users...
         ✔ Successfully created 2 users.
+
     """
     option = option or UserOption(interactive_mode=True)
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)

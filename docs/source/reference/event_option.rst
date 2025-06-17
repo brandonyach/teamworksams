@@ -1,3 +1,8 @@
+.. _get_event_data_ref: ../reference/get_event_data.html
+.. _event_filter_ref: ../reference/event_filter.html
+
+.. _event_option:
+
 EventOption
 ===========
 
@@ -19,6 +24,6 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.export_main.get_event_data`: Function using `EventOption`.
-- :class:`EventFilter`: For filtering event data.
-- :ref:`vignettes/exporting_data`: Event data workflows.
+- `get_event_data() <get_event_data_ref_>`_: Function using `EventOption`.
+- `EventFilter() <event_filter_ref_>`_: For filtering event data.
+- :ref:`exporting_data`: Event data workflows.

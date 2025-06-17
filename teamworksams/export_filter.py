@@ -6,7 +6,7 @@ class EventFilter:
     """Filter for selecting events in event data export.
 
     Defines criteria for filtering events retrieved by
-    :func:`teamworksams.export_main.get_event_data`, allowing selection based on user
+    `get_event_data`, allowing selection based on user
     attributes (e.g., username, group) or event data fields (e.g., intensity). Validates
     filter parameters to ensure compatibility with the AMS API. 
 
@@ -85,7 +85,7 @@ class SyncEventFilter:
     """Filter for selecting users in sync event data export.
 
     Defines criteria for filtering events retrieved by
-    :func:`teamworksams.export_main.sync_event_data`, allowing selection based on user
+    :func:`sync_event_data`, allowing selection based on user
     attributes (e.g., username, group). Validates filter parameters for compatibility
     with the AMS 'synchronise' endpoint.
 
@@ -136,7 +136,7 @@ class ProfileFilter:
     """Filter for selecting users in profile data export.
 
     Defines criteria for filtering profiles retrieved by
-    :func:`teamworksams.export_main.get_profile_data`, allowing selection based on user
+    :func:`get_profile_data`, allowing selection based on user
     attributes (e.g., username, group). Validates filter parameters for compatibility
     with the AMS API.
 

@@ -30,7 +30,7 @@ def get_event_data(
     a :class:`pandas.DataFrame` with columns like 'event_id', 'user_id', and form fields.
     Supports optional filtering by user attributes (e.g., group) or data fields, and
     downloading attachments if enabled. Provides interactive feedback when
-    ``option.interactive_mode=True``. See :ref:`vignettes/exporting_data` for data
+    ``option.interactive_mode=True``. See :ref:`exporting_data` for data
     export workflows.
 
     Args:
@@ -46,16 +46,16 @@ def get_event_data(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        filter (:class:`EventFilter`, optional): Filter object to narrow results by user
+        filter (EventFilter, optional): Filter object to narrow results by user
             attributes (e.g., 'group') or data fields (e.g., 'intensity=High'). If None,
             includes all events. Defaults to None.
-        option (:class:`EventOption`, optional): Configuration options, including
+        option (EventOption, optional): Configuration options, including
             `interactive_mode` for status messages, `download_attachment` to fetch
             attachments, `clean_names` to standardize column names, `guess_col_type` to
             infer data types, `convert_dates` to parse dates, `cache` to reuse a client,
             and `attachment_directory` for saving attachments. Defaults to None (uses
             default :class:`EventOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -82,7 +82,6 @@ def get_event_data(
         ...     filter = EventFilter(user_key = "group", user_value = "Example Group"),
         ...     option = EventOption(interactive_mode = True, clean_names = True)
         ... )
-        
         ℹ Requesting event data for 'Training Log' between 01/01/2025 and 31/01/2025
         ℹ Processing 10 events...
         ✔ Retrieved 10 event records for form 'Training Log'.
@@ -168,7 +167,7 @@ def sync_event_data(
     1970-01-01). Returns a :class:`pandas.DataFrame` and a new synchronization time for
     subsequent calls. Supports user filtering and options like user metadata inclusion.
     Provides interactive feedback when ``option.interactive_mode=True``. See
-    :ref:`vignettes/exporting_data` for synchronization workflows.
+    :ref:`exporting_data` for synchronization workflows.
 
     Args:
         form (str): Name of the AMS Event Form (e.g., 'Training Log'). Must be a non-empty
@@ -181,14 +180,14 @@ def sync_event_data(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        filter (:class:`SyncEventFilter`, optional): Filter object to narrow results by
+        filter (SyncEventFilter, optional): Filter object to narrow results by
             user attributes (e.g., 'group'). If None, includes all events. Defaults to None.
-        option (:class:`SyncEventOption`, optional): Configuration options, including
+        option (SyncEventOption, optional): Configuration options, including
             `interactive_mode` for status messages, `include_user_data` to add user
             metadata, `include_uuid` to add UUIDs, `guess_col_type` to infer data types,
             `cache` to reuse a client, and `include_missing_users` to include users without
             events. Defaults to None (uses default :class:`SyncEventOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -322,14 +321,14 @@ def get_profile_data(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        filter (:class:`ProfileFilter`, optional): Filter object to narrow results by user
+        filter (ProfileFilter, optional): Filter object to narrow results by user
             attributes (e.g., 'group'). If None, includes all profiles. Defaults to None.
-        option (:class:`ProfileOption`, optional): Configuration options, including
+        option (ProfileOption, optional): Configuration options, including
             `interactive_mode` for status messages, `clean_names` to standardize column
             names, `guess_col_type` to infer data types, `cache` to reuse a client, and
             `include_missing_users` to include users without profiles. Defaults to None
             (uses default :class:`ProfileOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:

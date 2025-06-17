@@ -1,3 +1,9 @@
+.. _upsert_event_data_ref: ../reference/upsert_event_data.html
+.. _ams_client_ref: ../reference/ams_client.html
+
+
+.. _upsert_event_option:
+
 UpsertEventOption
 =================
 
@@ -13,12 +19,12 @@ Additional Notes
   present in the input :class:`pandas.DataFrame` to map user identifiers
   correctly.
 - Use ``cache=True`` to optimize performance when upserting large datasets,
-  reusing a :class:`AMSClient` for both inserts and updates.
+  reusing a `AMSClient() <ams_client_ref_>`_ for both inserts and updates.
 - Specify ``table_fields`` for table fields (e.g., ['session_details']),
   ensuring DataFrame columns match the AMS form exactly.
 
 See Also
 --------
 
-- :func:`teamworksams.import_main.upsert_event_data`: Function using `UpsertEventOption`.
-- :ref:`vignettes/importing_data`: Event upsert workflows.
+- `upsert_event_data() <upsert_event_data_ref_>`_: Function using `UpsertEventOption`.
+- :ref:`importing_data`: Event upsert workflows.

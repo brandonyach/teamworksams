@@ -3,7 +3,7 @@ class LoginOption:
 
     Customizes the behavior of :func:`login`, controlling whether interactive feedback
     is displayed during authentication. Used to tailor the login experience for
-    interactive or automated workflows. See :ref:`vignettes/credentials` for usage.
+    interactive or automated workflows. See :ref:`credentials` for usage.
 
     Args:
         interactive_mode (bool): If True, prints status messages during login (e.g., "Logging in...", "Successfully logged in"). Set to False for silent operation in scripts. Defaults to True.

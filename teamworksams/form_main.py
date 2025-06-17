@@ -19,7 +19,7 @@ def get_forms(
     Retrieves metadata for all forms accessible to the authenticated user, returning a
     :class:`pandas.DataFrame` with columns like 'form_id', 'form_name', and 'type' (e.g.,
     event, profile, database). Ideal for auditing or selecting forms for further operations.
-    Supports interactive feedback and caching. See :ref:`vignettes/managing_forms` for
+    Supports interactive feedback and caching. See :ref:`managing_forms` for
     form management workflows.
 
     Args:
@@ -29,12 +29,12 @@ def get_forms(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`FormOption`, optional): Configuration options, including
+        option (FormOption, optional): Configuration options, including
             `interactive_mode` for status messages (e.g., "Retrieved 5 forms"), `cache`
             to reuse API responses, `raw_output`, `field_details`, and
             `include_instructions` (used in other form functions). Defaults to None
             (uses default :class:`FormOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -100,7 +100,7 @@ def get_form_schema(
     default-to-last-value fields, linked fields, and item types. Returns a formatted
     string summary for console output (ideal for Jupyter notebooks) or the raw API
     response as a dictionary if `option.raw_output` is True. Supports interactive
-    feedback and detailed output options. See :ref:`vignettes/managing_forms` for form
+    feedback and detailed output options. See :ref:`managing_forms` for form
     management workflows.
 
     Args:
@@ -112,12 +112,12 @@ def get_form_schema(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`FormOption`, optional): Configuration options, including
+        option (FormOption, optional): Configuration options, including
             `interactive_mode` for status messages, `cache` to reuse API responses,
             `raw_output` for raw API data, `field_details` for field options/scores,
             and `include_instructions` for section/field instructions. Defaults to None
             (uses default :class:`FormOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -131,7 +131,7 @@ def get_form_schema(
             - Linked fields (count, names).
             - Form item types (count of unique types, count per type, field names per type).
             - Optionally, field instructions and details (options, scores, date selection) if
-              enabled in `option`.
+            enabled in `option`.
 
     Raises:
         :class:`AMSError`: If the form_name is empty, the form is not found, authentication fails,
@@ -146,63 +146,62 @@ def get_form_schema(
         ...     password = "pass",
         ...     option = FormOption(interactive_mode = True, field_details = True)
         ... )
-        ℹ Fetching summary for form 'Training Log' (ID: 5285, Type: event)...
-    ✔ Retrieved summary for form 'Training Log'.
-    =====================================
-    Form Schema Summary: RPE Training Log
-    =====================================
-
-    Form Details
-    ------------
-    - Form Name: RPE Training Log
-    - Form ID: 5285
-
-    Sections
-    --------
-    - Total: 5
-    • Session Details
-    • Summary Calculations
-    • User Account Details
-    • Day of the Week
-    • Profile Details
-
-    Required Fields
-    ---------------
-    - Total: 0
-    - No required fields found.
-
-    Defaults to Last Known Value
-    ----------------------------
-    - Total: 0
-    - No fields default to the last known value.
-
-    Linked Fields
-    -------------
-    - Total: 7
-    • Sport
-    • Position
-    • Height
-    • Dominant Hand
-    • Dominant Foot
-    • Preferred Language
-    • Season
-
-    Form Item Types
-    ---------------
-    - Total Unique Types: 14
-    - Dropdown: 1 field(s)
-        • Session Type
-    - Number: 1 field(s)
-        • Duration
-    - Single Selection: 1 field(s)
-        • Rate your Perceived Exertion (RPE)
-    - Calculation: 5 field(s)
-        • RPE
-        • Session Load
-        • Index
-        • ACWR
-        • Total ACWR
-    ...
+        ... ℹ Fetching summary for form 'Training Log' (ID: 5285, Type: event)...
+        ... ✔ Retrieved summary for form 'Training Log'.
+        ... 
+        ... Form Schema Summary: RPE Training Log
+        ... =====================================
+        ... 
+        ... Form Details
+        ... ------------
+        ... - Form Name: RPE Training Log
+        ... - Form ID: 5285
+        ... 
+        ... Sections
+        ... --------
+        ... - Total: 5
+        ... • Session Details
+        ... • Summary Calculations
+        ... • User Account Details
+        ... • Day of the Week
+        ... • Profile Details
+        ... 
+        ... Required Fields
+        ... ---------------
+        ... - Total: 0
+        ... - No required fields found.
+        ... 
+        ... Defaults to Last Known Value
+        ... ----------------------------
+        ... - Total: 0
+        ... - No fields default to the last known value.
+        ... 
+        ... Linked Fields
+        ... -------------
+        ... - Total: 7
+        ...    • Sport
+        ...    • Position
+        ...    • Height
+        ...    • Dominant Hand
+        ...    • Dominant Foot
+        ...    • Preferred Language
+        ...    • Season
+        ... 
+        ... Form Item Types
+        ... ---------------
+        ... - Total Unique Types: 14
+        ... - Dropdown: 1 field(s)
+        ...     • Session Type
+        ... - Number: 1 field(s)
+        ...     • Duration
+        ... - Single Selection: 1 field(s)
+        ...     • Rate your Perceived Exertion (RPE)
+        ... - Calculation: 5 field(s)
+        ...     • RPE
+        ...     • Session Load
+        ...     • Index
+        ...     • ACWR
+        ...     • Total ACWR    
     """
     option = option or FormOption()
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)

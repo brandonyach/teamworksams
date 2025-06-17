@@ -4,10 +4,10 @@ from typing import Optional, List
 class InsertEventOption:
     """Options for configuring the insert_event_data function.
 
-    Customizes the behavior of :func:`teamworksams.import_main.insert_event_data`,
+    Customizes the behavior of :func:`insert_event_data`,
     controlling user identifier mapping, caching, interactive feedback, and table fields.
     Optimizes performance and user experience for inserting new events into an AMS Event
-    Form. See :ref:`vignettes/importing_data` for import workflows.
+    Form. See :ref:`importing_data` for import workflows.
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as
@@ -74,10 +74,10 @@ class InsertEventOption:
 class UpdateEventOption:
     """Options for configuring the update_event_data function.
 
-    Customizes the behavior of :func:`teamworksams.import_main.update_event_data`,
+    Customizes the behavior of :func:`update_event_data`,
     controlling user identifier mapping, confirmation prompts, caching, interactive
     feedback, and table fields. Ensures safe and efficient updates of existing events in
-    an AMS Event Form. See :ref:`vignettes/importing_data` for update workflows.
+    an AMS Event Form. See :ref:`importing_data` for update workflows.
 
     Args:
         interactive_mode (bool): If True, prints status messages (e.g., "Updated 2
@@ -152,10 +152,10 @@ class UpdateEventOption:
 class UpsertEventOption:
     """Options for configuring the upsert_event_data function.
 
-    Customizes the behavior of :func:`teamworksams.import_main.upsert_event_data`,
+    Customizes the behavior of :func:`upsert_event_data`,
     controlling user identifier mapping, caching, interactive feedback, and table fields.
     Optimizes performance for inserting new events and updating existing ones in an AMS
-    Event Form. See :ref:`vignettes/importing_data` for upsert workflows.
+    Event Form. See :ref:`importing_data` for upsert workflows.
 
     Args:
         interactive_mode (bool): If True, prints status messages (e.g., "Upserted 2
@@ -225,7 +225,7 @@ class UpsertEventOption:
 class UpsertProfileOption:
     """Options for configuring the upsert_profile_data function.
 
-    Customizes the behavior of :func:`teamworksams.import_main.upsert_profile_data`,
+    Customizes the behavior of :func:`upsert_profile_data`,
     controlling user identifier mapping, caching, and interactive feedback. Ensures
     efficient upserting of profile records in an AMS Profile Form, with one record per
     user. 

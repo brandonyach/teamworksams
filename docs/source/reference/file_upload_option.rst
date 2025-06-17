@@ -1,3 +1,8 @@
+.. _upload_and_attach_to_events_ref: ../reference/upload_and_attach_to_events.html
+.. _upload_and_attach_to_avatars_ref: ../reference/upload_and_attach_to_avatars.html
+
+.. _file_upload_option:
+
 FileUploadOption
 ================
 
@@ -19,6 +24,6 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.file_main.upload_and_attach_to_events`: Function for event file uploads.
-- :func:`teamworksams.file_main.upload_and_attach_to_avatars`: Function for avatar uploads.
-- :ref:`vignettes/uploading_files`: File upload workflows.
+- `upload_and_attach_to_events() <upload_and_attach_to_events_ref_>`_: Function for event file uploads.
+- `upload_and_attach_to_avatars() <upload_and_attach_to_avatars_ref_>`_: Function for avatar uploads.
+- :ref:`uploading_files`: File upload workflows.

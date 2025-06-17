@@ -4,11 +4,11 @@ from typing import Optional, List
 class GetDatabaseOption:
     """Options for retrieving database entries from an AMS database form.
 
-    Customizes the behavior of :func:`teamworksams.database_main.get_database`,
+    Customizes the behavior of :func:`get_database`,
     controlling caching and interactive feedback. These options optimize performance
     and user experience for fetching database entries, such as allergies or equipment
     lists, typically used in one-off operations. See
-    :ref:`vignettes/database_operations` for database workflows.
+    :ref:`database_operations` for database workflows.
 
     Args:
         interactive_mode (bool): If True, prints status messages during execution,
@@ -47,10 +47,10 @@ class GetDatabaseOption:
 class InsertDatabaseOption:
     """Options for inserting database entries into an AMS database form.
 
-    Customizes the behavior of :func:`teamworksams.database_main.insert_database_entry`,
+    Customizes the behavior of :func:`insert_database_entry`,
     controlling table fields, caching, and interactive feedback. These options tailor
     the insertion process for one-off operations, ensuring data aligns with the AMS
-    form’s structure. See :ref:`vignettes/database_operations` for database workflows.
+    form’s structure. See :ref:`database_operations` for database workflows.
 
     Args:
         table_fields (Optional[List[str]]): List of field names in the AMS form that
@@ -99,10 +99,10 @@ class InsertDatabaseOption:
 class UpdateDatabaseOption:
     """Options for updating database entries in an AMS database form.
 
-    Customizes the behavior of :func:`teamworksams.database_main.update_database_entry`,
+    Customizes the behavior of :py:func:`update_database_entry`,
     controlling table fields, caching, and interactive feedback with confirmation
     prompts. These options ensure safe and efficient updates for one-off operations.
-    See :ref:`vignettes/database_operations` for database workflows.
+    See :ref:`database_operations` for database workflows.
 
     Args:
         table_fields (Optional[List[str]]): List of field names in the AMS form that
@@ -112,7 +112,7 @@ class UpdateDatabaseOption:
         interactive_mode (bool): If True, prints status messages (e.g., "Updated 2
             entries") and prompts for confirmation before updating, preventing
             accidental changes. Set to False for silent execution. Defaults to True.
-        cache (bool): If True, reuses cached API responses via the :class:`AMSClient`,
+        cache (bool): If True, reuses cached API responses via the AMSClient,
             reducing API calls for repeated operations. Set to False for independent
             requests. Defaults to True.
 

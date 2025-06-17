@@ -3,10 +3,10 @@ from typing import Optional
 class DeleteEventOption:
     """Options for configuring event data deletion.
 
-    Customizes the behavior of :func:`teamworksams.delete_main.delete_event_data` and
-    :func:`teamworksams.delete_main.delete_multiple_events`, controlling whether
+    Customizes the behavior of :func:`delete_event_data` and
+    :func:`delete_multiple_events`, controlling whether
     interactive feedback, such as confirmation prompts and status messages, is enabled.
-    Ensures safe deletion of AMS events. See :ref:`vignettes/deleting_data` for
+    Ensures safe deletion of AMS events. See :ref:`deleting_data` for
     deletion workflows.
 
     Args:

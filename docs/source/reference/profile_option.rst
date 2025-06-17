@@ -1,3 +1,7 @@
+.. _get_profile_data_ref: ../reference/get_profile_data.html
+
+.. _profile_option:
+
 ProfileOption
 =============
 
@@ -19,5 +23,5 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.export_main.get_profile_data`: Function using `ProfileOption`.
+- `get_profile_data() <get_profile_data_ref_>`_: Function using `ProfileOption`.
 - :class:`ProfileFilter`: For filtering profile data.

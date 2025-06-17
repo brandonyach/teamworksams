@@ -1,3 +1,5 @@
+.. _user_filter:
+
 UserFilter
 ==========
 
@@ -9,4 +11,4 @@ UserFilter
 See Also
 --------
 
-- :ref:`vignettes/user_management`: User update workflows.
+- :ref:`user_management`: User update workflows.

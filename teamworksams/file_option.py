@@ -3,11 +3,11 @@ from typing import Optional
 class FileUploadOption:
     """Configuration options for file upload operations.
 
-    Customizes the behavior of :func:`teamworksams.file_main.upload_and_attach_to_events`
-    and :func:`teamworksams.file_main.upload_and_attach_to_avatars`, controlling
+    Customizes the behavior of :func:`upload_and_attach_to_events`
+    and :func:`upload_and_attach_to_avatars`, controlling
     interactive feedback, caching, and result storage. These options optimize the
     upload process for attaching files to events or user avatars. See
-    :ref:`vignettes/uploading_files` for file upload workflows.
+    :ref:`uploading_files` for file upload workflows.
 
     Args:
         interactive_mode (bool): If True, prints status messages (e.g., "Uploading 2

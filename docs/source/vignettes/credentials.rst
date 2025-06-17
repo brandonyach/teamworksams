@@ -1,7 +1,15 @@
-Managing Credentials, Authentication, and Caching
-===============================================
+.. _login_ref: ../reference/login.html
+.. _login_option_ref: ../reference/login_option.html
+.. _get_user_ref: ../reference/get_user.html
+.. _get_client_ref: ../reference/get_client.html
+.. _ams_client_ref: ../reference/ams_client.html
 
-This vignette provides a comprehensive guide to managing credentials for the Teamworks AMS API, authenticating with the ``login`` function, and optimizing performance using caching with the ``get_client`` function. This guide covers best practices, security considerations, and troubleshooting tips to ensure a smooth experience with **teamworksams**.
+.. _credentials:
+
+Managing Credentials, Authentication, and Caching
+=================================================
+
+This vignette provides a comprehensive guide to managing credentials for the Teamworks AMS API, authenticating with the `login() <login_ref_>`_ function, and optimizing performance using caching with the `get_client() <get_client_ref_>`_ function. This guide covers best practices, security considerations, and troubleshooting tips to ensure a smooth experience with **teamworksams**.
 
 Overview
 --------
@@ -9,8 +17,8 @@ Overview
 Interacting with the Teamworks AMS API requires authentication using a valid AMS instance URL, username, and password. **teamworksams** offers flexible credential management to balance security, convenience, and performance:
 
 - **Credentials**: Provided via environment variables, direct arguments, or `keyring` for secure storage.
-- **Authentication**: Handled by the ``login`` function or automatically via ``get_client`` in other functions.
-- **Caching**: Enabled through ``get_client`` to reuse authenticated sessions, reducing API overhead.
+- **Authentication**: Handled by the `login() <login_ref_>`_ function or automatically via `get_client() <get_client_ref_>`_ in other functions.
+- **Caching**: Enabled through `get_client() <get_client_ref_>`_ to reuse authenticated sessions, reducing API overhead.
 
 Credential Management
 ---------------------
@@ -75,7 +83,7 @@ Storing credentials in a ``.env`` file is the most secure and scalable approach,
 
 - Ensure the ``.env`` file is stored in a secure location (e.g., not shared publicly).
 
-See :func:`login` for more details.
+See `login() <login_ref_>`_ for more details.
 
 
 **Alternatively: Access Environment Variables with os**
@@ -213,10 +221,10 @@ The ``keyring`` library (included with **teamworksams**) stores credentials in y
    import keyring
    print(keyring.get_password("teamworksams", "username"))  # Should print: username
 
-Authentication with ``login``
-----------------------------
+Authentication with `login() <login_ref_>`_
+-------------------------------------------
 
-The ``login`` function authenticates with the AMS API, returning a dictionary with session details (login data, session header, cookie). It’s useful for manual authentication, debugging, or initializing a client for custom API calls.
+The `login() <login_ref_>`_ function authenticates with the AMS API, returning a dictionary with session details (login data, session header, cookie). It’s useful for manual authentication, debugging, or initializing a client for custom API calls.
 
 **Basic Usage**:
 
@@ -243,7 +251,7 @@ The ``login`` function authenticates with the AMS API, returning a dictionary wi
 
 **Interactive Mode**:
 
-Control feedback with ``LoginOption``:
+Control feedback with `LoginOption() <login_option_ref_>`_
 
 .. code-block:: python
 
@@ -282,10 +290,10 @@ Handle authentication failures gracefully:
    ✖ Failed to log wrong into https://example.smartabase.com/site: Invalid URL or login credentials...
    Authentication failed: Invalid URL or login credentials...
 
-Caching with ``get_client``
---------------------------
+Caching with :func:`get_client`
+-------------------------------
 
-The ``get_client`` function creates or reuses an authenticated ``AMSClient`` instance, optimizing performance by caching sessions. Caching reduces authentication overhead for repeated API calls, making it ideal for workflows involving multiple operations.
+The `get_client() <get_client_ref_>`_ function creates or reuses an authenticated `AMSClient() <ams_client_ref_>`_ instance, optimizing performance by caching sessions. Caching reduces authentication overhead for repeated API calls, making it ideal for workflows involving multiple operations.
 
 **Enabling Caching**:
 

@@ -1,3 +1,10 @@
+.. _delete_event_option_ref: ../reference/delete_event_option.html
+.. _delete_multiple_events_ref: ../reference/delete_multiple_events.html
+.. _get_event_data_ref: ../reference/get_event_data.html
+.. _ams_error_ref: ../reference/ams_error.html
+
+.. _delete_event_data:
+
 delete_event_data
 =================
 
@@ -6,8 +13,8 @@ delete_event_data
 Additional Notes
 ----------------
 
-- Obtain valid `event_id` values using :func:`get_event_data` to avoid
-  :class:`AMSError` for non-existent events.
+- Obtain valid `event_id` values using `get_event_data() <get_event_data_ref_>`_ to avoid
+  `AMSError() <ams_error_ref_>`_ for non-existent events.
 - The confirmation prompt in ``option.interactive_mode=True`` ensures safe
   deletion, critical for administrative tasks.
 - The returned string (e.g., "SUCCESS: Deleted 134273") can be parsed for
@@ -16,7 +23,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`DeleteEventOption`: Configuration options for deletion.
-- :func:`delete_multiple_events`: For deleting multiple events.
-- :func:`get_event_data`: For retrieving event IDs.
-- :ref:`vignettes/deleting_data`: Single event deletion workflows.
+- `delete_event_option() <delete_event_option_ref_>`_: Configuration options for deletion.
+- `delete_multiple_events() <delete_multiple_events_ref_>`_: For deleting multiple events.
+- :ref:`deleting_data`: Single event deletion workflows.

@@ -1,3 +1,5 @@
+.. _user_option:
+
 UserOption
 ==========
 
@@ -9,4 +11,4 @@ UserOption
 See Also
 --------
 
-- :ref:`vignettes/user_management`: User update workflows.
+- :ref:`user_management`: User update workflows.

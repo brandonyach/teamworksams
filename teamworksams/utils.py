@@ -11,7 +11,7 @@ class AMSError(Exception):
     Raised for errors during AMS API interactions, such as authentication failures or
     invalid responses. Provides detailed error information, including function, endpoint,
     and HTTP status code, to aid debugging. Used by functions like
-    :func:`get_client` and :func:`teamworksams.login_main.login`.
+    :func:`get_client` and :func:`login`.
 
     Args:
         message (str): The primary error message describing the issue.
@@ -66,8 +66,8 @@ class AMSClient:
 
     Handles authentication, API requests, and caching for AMS operations. Created by
     :func:`get_client` and used internally by functions like
-    :func:`teamworksams.user_main.get_user`. Supports direct use for custom API calls
-    with methods like :meth:`_fetch`. See :ref:`vignettes/credentials` for setup.
+    :func:`get_user`. Supports direct use for custom API calls
+    with methods like :meth:`_fetch`. See :ref:`credentials` for setup.
 
     Args:
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.

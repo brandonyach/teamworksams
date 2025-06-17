@@ -5,10 +5,10 @@ from .export_validate import _validate_user_filter_key
 class UserFilter:
     """Filter for selecting users in user data export.
 
-    Defines criteria for filtering users retrieved by :func:`teamworksams.user_main.get_user`,
+    Defines criteria for filtering users retrieved by :func:`get_user`,
     allowing selection based on attributes like username, email, group, or about field.
     Validates the filter key to ensure it is supported. See
-    :ref:`vignettes/user_management` for filtering workflows.
+    :ref:`user_management` for filtering workflows.
 
     Args:
         user_key (Optional[str]): Attribute to filter by. Must be one of 'username',

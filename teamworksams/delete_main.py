@@ -18,7 +18,7 @@ def delete_event_data(
     specified ID, returning a message indicating success or failure. Requires valid
     authentication and a positive integer `event_id`, obtainable via
     :func:`get_event_data`. In interactive mode, prompts for confirmation and provides
-    feedback. See :ref:`vignettes/deleting_data` for deletion workflows.
+    feedback. See :ref:`deleting_data` for deletion workflows.
 
     Args:
         event_id (int): ID of the event to delete. Must be a positive integer (e.g.,
@@ -29,12 +29,12 @@ def delete_event_data(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to
-             None.
-        option (:class:`DeleteEventOption`, optional): Configuration options, including
+            None.
+        option (DeleteEventOption, optional): Configuration options, including
             `interactive_mode` for confirmation prompts and status messages (e.g.,
             "SUCCESS: Deleted 134273"). Defaults to None (uses default
             :class:`DeleteEventOption` with `interactive_mode=True`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to
             None.
 
@@ -111,8 +111,8 @@ def delete_multiple_events(
     Sends a request to the AMS API's event/deleteAll endpoint to remove a list of events
     specified by their IDs, returning a message indicating success or failure. Requires
     valid authentication and a non-empty list of positive integer `event_ids`, obtainable
-    via :func:`get_event_data`. In interactive mode, prompts for confirmation and provides
-    feedback. See :ref:`vignettes/deleting_data` for deletion workflows.
+    via get_event_data. In interactive mode, prompts for confirmation and provides
+    feedback. See :ref:`deleting_data` for deletion workflows.
 
     Args:
         event_ids (List[int]): List of event IDs to delete. Must be a non-empty list of
@@ -124,11 +124,11 @@ def delete_multiple_events(
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to
             None.
-        option (:class:`DeleteEventOption`, optional): Configuration options, including
+        option (DeleteEventOption, optional): Configuration options, including
             `interactive_mode` for confirmation prompts and status messages (e.g.,
             "SUCCESS: Deleted 3 events"). Defaults to None (uses default
             :class:`DeleteEventOption` with `interactive_mode=True`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to
             None.
 

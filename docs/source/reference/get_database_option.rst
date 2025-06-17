@@ -1,3 +1,7 @@
+.. _get_database_ref: ../reference/get_database.html
+
+.. _get_database_option:
+
 GetDatabaseOption
 =================
 
@@ -13,11 +17,11 @@ Additional Notes
   entries," useful for one-off queries in interactive environments.
 - Set ``cache=False`` to ensure fresh data when retrieving entries, especially
   if the AMS database form has been recently updated.
-- Use with :func:`teamworksams.database_main.get_database` for occasional data
+- Use with `get_database() <get_database_ref_>`_ for occasional data
   retrieval tasks, such as auditing or reporting.
 
 See Also
 --------
 
-- :func:`teamworksams.database_main.get_database`: Function using `GetDatabaseOption`.
-- :ref:`vignettes/database_operations`: Database retrieval workflows.
+- `get_database() <get_database_ref_>`_: Function using `GetDatabaseOption`.
+- :ref:`database_operations`: Database retrieval workflows.

@@ -1,27 +1,36 @@
+.. _get_user_ref: ../reference/get_user.html
+.. _get_event_data_ref: ../reference/get_event_data.html
+.. _upload_and_attach_to_events_ref: ../reference/upload_and_attach_to_events.html
+.. _upload_and_attach_to_avatars_ref: ../reference/upload_and_attach_to_avatars.html
+.. _file_upload_option_ref: ../reference/file_upload_option.html
+.. _update_event_data_ref: ../reference/update_event_data.html
+
+.. _uploading_files:
+
 Uploading Files
 ===============
 
 This vignette provides a comprehensive guide to uploading files in Teamworks AMS using
-**teamworksams**, covering :func:`upload_and_attach_to_events` and
-:func:`upload_and_attach_to_avatars`. It outlines detailed workflows for attaching 
+**teamworksams**, covering `upload_and_attach_to_events() <upload_and_attach_to_events_ref_>`_ and
+`upload_and_attach_to_avatars() <upload_and_attach_to_avatars_ref_>`_. It outlines detailed workflows for attaching 
 files to event forms (e.g., 'Document Store') or setting user profile avatars. These 
 complex, multi-step functions require careful setup, so this guide breaks down each 
 step with Python/pandas examples. See :ref:`reference` for detailed function 
-documentation and :ref:`vignettes/exporting_data` for related data tasks.
+documentation and :ref:`exporting_data` for related data tasks.
 
 Overview
 --------
 
 **teamworksams** supports file uploads to AMS with two key functions:
 
-- :func:`upload_and_attach_to_events`: Uploads files and attaches them to events in an
+- `upload_and_attach_to_events() <upload_and_attach_to_events_ref_>`_: Uploads files and attaches them to events in an
   Event Form, matching users and events via a  supplied mapping DataFrame.
-- :func:`upload_and_attach_to_avatars`: Uploads images and sets them as user profile
+- `upload_and_attach_to_avatars() <upload_and_attach_to_avatars_ref_>`_: Uploads images and sets them as user profile
   avatars, with optional auto-generated mapping.
 
 Both functions return a :class:`pandas.DataFrame` with results, detailing successes and
 failures. They involve multiple steps: user/event mapping, file validation, uploading,
-and AMS updates. The :class:`FileUploadOption` customizes behavior, such as saving
+and AMS updates. The `FileUploadOption() <file_upload_option_ref_>`_ customizes behavior, such as saving
 results to CSV. Examples use the placeholder URL
 ``https://example.smartabase.com/site`` and credentials in a ``.env`` file.
 
@@ -29,7 +38,7 @@ Prerequisites
 -------------
 
 Ensure **teamworksams** is installed and credentials are configured, as in
-:ref:`vignettes/getting_started`. Use a ``.env`` file:
+:ref:`getting_started`. Use a ``.env`` file:
 
 .. code-block:: text
    :caption: .env
@@ -50,9 +59,9 @@ Dependencies (installed with **teamworksams**): ``pandas``, ``requests``,
 and ensure the AMS form has appropriate fields (e.g., 'attachment' for events).
 
 Uploading Files to Events
-------------------------
+-------------------------
 
-Use :func:`upload_and_attach_to_events` to upload files and attach them to an AMS Event
+Use `upload_and_attach_to_events() <upload_and_attach_to_events_ref_>`_ to upload files and attach them to an AMS Event
 Form, matching users and events via a mapping DataFrame.
 
 **Preparing the Mapping DataFrame**
@@ -141,15 +150,15 @@ Upload files from a directory and attach to the 'attachment' field:
 4. Validates files in `file_dir` (e.g., .pdf, .png).
 5. Uploads files to server and generates file references.
 6. Updates events with file references in `file_field_name`, using 
-:func:`update_event_data`.
+`update_event_data() <update_event_data_ref_>`_.
 7. Returns results, optionally, saving to CSV.
 
-See :func:`upload_and_attach_to_events` and :class:`FileUploadOption` for details.
+See `upload_and_attach_to_events() <upload_and_attach_to_events_ref_>`_ and `FileUploadOption() <file_upload_option_ref_>`_ for details.
 
 Uploading Avatars
 -----------------
 
-Use :func:`upload_and_attach_to_avatars` to upload images and set them as user profile
+Use `upload_and_attach_to_avatars() <upload_and_attach_to_avatars_ref_>`_ to upload images and set them as user profile
 avatars, with optional automatic mapping.
 
 **Using a Mapping DataFrame**
@@ -235,7 +244,7 @@ very useful in scenarios where no `mapping_df` is available, or the file names a
 5. Uploads images and updates user profiles’ `avatarId`.
 6. Returns results, optionally saving to CSV.
 
-See :func:`upload_and_attach_to_avatars` and :class:`FileUploadOption` for details.
+See `upload_and_attach_to_avatars() <upload_and_attach_to_avatars_ref_>`_ and `FileUploadOption() <file_upload_option_ref_>`_ for details.
 
 Error Handling
 --------------
@@ -269,7 +278,7 @@ Common errors include:
 Best Practices
 --------------
 
-- **Prepare Mapping DataFrame**: Use :func:`get_user` or :func:`get_event_data` to
+- **Prepare Mapping DataFrame**: Use `get_user() <get_user_ref_>`_ or `get_event_data() <get_event_data_ref_>`_ to
   ensure valid `user_key` and `attachment_id` values.
 - **Validate Files**: Place only supported files (.pdf, .png, etc., for events;
   images for avatars) in `file_dir` to avoid failures.
@@ -314,7 +323,7 @@ Troubleshooting
 
      ⚠️ Failed to attach files: User not found...
 
-  **Solution**: Validate users with :func:`get_user`:
+  **Solution**: Validate users with `get_user() <get_user_ref_>`_:
 
     .. code-block:: python
 

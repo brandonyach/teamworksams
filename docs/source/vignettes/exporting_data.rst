@@ -1,28 +1,39 @@
+.. _get_event_data_ref: ../reference/get_event_data.html
+.. _sync_event_data_ref: ../reference/sync_event_data.html
+.. _event_filter_ref: ../reference/event_filter.html
+.. _event_option_ref: ../reference/event_option.html
+.. _sync_event_filter_ref: ../reference/sync_event_filter.html
+.. _sync_event_option_ref: ../reference/sync_event_option.html
+.. _ams_client_ref: ../reference/ams_client.html
+.. _get_client_ref: ../reference/get_client.html
+
+.. _exporting_data:
+
 Exporting Data
 ==============
 
 This vignette provides an in-depth guide to exporting event data from Teamworks AMS using
-**teamworksams**, focusing on the :func:`get_event_data` and :func:`sync_event_data`
+**teamworksams**, focusing on the `get_event_data() <get_event_data_ref_>`_ and `sync_event_data() <sync_event_data_ref_>`_
 functions. It covers practical workflows for retrieving event data within a date range, 
 synchronizing updated events, and applying filters and options to customize outputs. 
 This guide equips you to efficiently export AMS event data for analysis or reporting. See
 :ref:`reference` for detailed function documentation and
-:ref:`vignettes/importing_data` for additional data workflows.
+:ref:`importing_data` for additional data workflows.
 
 Overview
 --------
 
 **teamworksams** simplifies exporting AMS event data, offering two key functions:
 
-- :func:`get_event_data`: Retrieves event data from an AMS Event Form (e.g., 'Training
+- `get_event_data() <get_event_data_ref_>`_: Retrieves event data from an AMS Event Form (e.g., 'Training
   Log') for a specified date range, with optional filtering by user attributes or data
   fields and support for downloading attachments.
-- :func:`sync_event_data`: Fetches events inserted or updated since a synchronization
+- `sync_event_data() <sync_event_data_ref_>`_: Fetches events inserted or updated since a synchronization
   time, ideal for incremental data updates, with options to include user metadata or UUIDs.
 
 These functions return :class:`pandas.DataFrame` objects, enabling seamless integration
-with Python data analysis tools like pandas. Filters (:class:`EventFilter`,
-:class:`SyncEventFilter`) and options (:class:`EventOption`, :class:`SyncEventOption`)
+with Python data analysis tools like pandas. Filters (`EventFilter() <event_filter_ref_>`_,
+`SyncEventFilter() <sync_event_filter_ref_>`_) and options (`EventOption() <event_option_ref_>`_, `SyncEventOption() <sync_event_option_ref_>`_)
 provide fine-grained control over data retrieval. All examples use the placeholder URL
 ``https://example.smartabase.com/site``, username ``username``, and password ``password``,
 managed via a ``.env`` file.
@@ -31,7 +42,7 @@ Prerequisites
 -------------
 
 Ensure **teamworksams** is installed and credentials are configured, as described in
-:ref:`vignettes/getting_started`. Use a ``.env`` file for secure credential management:
+:ref:`getting_started`. Use a ``.env`` file for secure credential management:
 
 .. code-block:: text
    :caption: .env
@@ -48,15 +59,15 @@ Load credentials:
    load_dotenv()
 
 Required dependencies (installed with **teamworksams**): ``pandas``, ``requests``,
-``python-dotenv``, ``tqdm``. See :ref:`vignettes/credentials` for alternative credential
+``python-dotenv``, ``tqdm``. See :ref:`credentials` for alternative credential
 methods (``os``, direct arguments, ``keyring``).
 
 Exporting Event Data
 --------------------
 
-Use :func:`get_event_data` to retrieve event data from an AMS Event Form within a date
+Use `get_event_data() <get_event_data_ref_>`_ to retrieve event data from an AMS Event Form within a date
 range, optionally filtering by user attributes or data fields and customizing outputs
-with :class:`EventOption`.
+with `EventOption() <event_option_ref_>`_.
 
 **Basic Usage**
 
@@ -87,7 +98,7 @@ Fetch all events from the 'Training Log' form for January 2025:
 
 **Filtering Events**
 
-Use :class:`EventFilter` to narrow results, e.g., events for users in 'TeamA' with
+Use `EventFilter() <event_filter_ref_>`_ to narrow results, e.g., events for users in 'TeamA' with
 'intensity' equal to 'High':
 
 .. code-block:: python
@@ -148,12 +159,12 @@ or relative path. If None, attachments will be saved in the current working dire
    ✔ Retrieved 10 event records for form 'Training Log'.
    Index(['about', 'user_id', 'event_id', 'form', 'start_date', 'attachment_path'], ...)
 
-See :func:`get_event_data`, :class:`EventFilter`, and :class:`EventOption` for details.
+See `get_event_data() <get_event_data_ref_>`_, `EventFilter() <event_filter_ref_>`_, and `EventOption() <event_option_ref_>`_ for details.
 
 Synchronizing Event Data
 ------------------------
 
-Use :func:`sync_event_data` to fetch events inserted or updated since a synchronization
+Use `sync_event_data() <sync_event_data_ref_>`_ to fetch events inserted or updated since a synchronization
 time, ideal for incremental updates. Returns a :class:`pandas.DataFrame` and a new
 synchronization time.
 
@@ -186,7 +197,7 @@ Synchronize events from 'Training Log' since March 1, 2023:
 
 Now, the next time you synchronise with that form, you can use the newly acquired 
 'new_sync_time' value to find any records that have been inserted/updated since 
-you last called :func:`sync_event_data`:
+you last called `sync_event_data() <sync_event_data_ref_>`_:
 
 .. code-block:: python
 
@@ -242,22 +253,22 @@ Access deleted event IDs from the DataFrame’s attributes:
 
    Deleted event IDs: [67888, 67889]
 
-See :func:`sync_event_data`, :class:`SyncEventFilter`, and :class:`SyncEventOption` for
+See `sync_event_data() <sync_event_data_ref_>`_, `SyncEventFilter() <sync_event_filter_ref_>`_, and `SyncEventOption() <sync_event_option_ref_>`_ for
 details.
 
 Options and Usage Notes
 -----------------------
 
-This section provides detailed guidance on using option classes (:class:`EventOption`,
-:class:`SyncEventOption`) and filter classes (:class:`EventFilter`,
-:class:`SyncEventFilter`) to customize export operations, along with key usage notes for
+This section provides detailed guidance on using option classes (`EventOption() <event_option_ref_>`_,
+`SyncEventOption() <sync_event_option_ref_>`_) and filter classes (`EventFilter() <event_filter_ref_>`_,
+`SyncEventFilter() <sync_event_filter_ref_>`_) to customize export operations, along with key usage notes for
 date/time handling, caching, column types, interactive mode, and attachment storage.
 
 **Option Classes**
 
 Each export function requires a specific option class to configure its behavior. These
 classes must be instantiated with parameters like `interactive_mode`, `cache`, and
-others. For example, to disable column type casting in :func:`get_event_data`:
+others. For example, to disable column type casting in `get_event_data() <get_event_data_ref_>`_:
 
 .. code-block:: python
 
@@ -272,10 +283,10 @@ others. For example, to disable column type casting in :func:`get_event_data`:
 
 The option classes and their associated functions are:
 
-- :func:`get_event_data`: :class:`EventOption`
-- :func:`sync_event_data`: :class:`SyncEventOption`
+- `get_event_data() <get_event_data_ref_>`_: `EventOption() <event_option_ref_>`_
+- `sync_event_data() <sync_event_data_ref_>`_: `SyncEventOption() <sync_event_option_ref_>`_
 
-Available parameters for :class:`EventOption` (and similar for :class:`SyncEventOption`,
+Available parameters for `EventOption() <event_option_ref_>`_ (and similar for `SyncEventOption() <sync_event_option_ref_>`_,
 except where noted):
 
 - **interactive_mode (bool)**: If True, displays status messages (e.g., “Retrieved 10
@@ -288,8 +299,8 @@ except where noted):
      option = EventOption(interactive_mode = False)
      df = get_event_data(..., option = option)  # No output, suitable for scripts
 
-- **cache (bool)**: If True, reuses an existing :class:`AMSClient` via
-  :func:`get_client`, reducing API calls for authentication or data retrieval. Set to
+- **cache (bool)**: If True, reuses an existing `AMSClient() <ams_client_ref_>`_ via
+  `get_client() <get_client_ref_>`_, reducing API calls for authentication or data retrieval. Set to
   False for fresh data, increasing API overhead. Defaults to True. See “Caching” below.
 
 - **guess_col_type (bool)**: If True, attempts to cast DataFrame columns to appropriate
@@ -324,7 +335,7 @@ except where noted):
      option = EventOption(clean_names = True)
      df = get_event_data(..., option = option)  # Columns like 'session_rpe'
 
-- **include_user_data (bool)**: Only for :class:`SyncEventOption`. If True, includes
+- **include_user_data (bool)**: Only for `SyncEventOption() <sync_event_option_ref_>`_. If True, includes
   user metadata (e.g., 'about', 'email') in the DataFrame. Defaults to False. Example:
 
   .. code-block:: python
@@ -332,7 +343,7 @@ except where noted):
      option = SyncEventOption(include_user_data = True)
      df, _ = sync_event_data(..., option = option)  # Includes 'about' column
 
-- **include_uuid (bool)**: Only for :class:`SyncEventOption`. If True, includes user
+- **include_uuid (bool)**: Only for `SyncEventOption() <sync_event_option_ref_>`_. If True, includes user
   UUIDs in the DataFrame. Defaults to False. Example:
 
   .. code-block:: python
@@ -342,9 +353,9 @@ except where noted):
 
 **Filter Classes**
 
-Filters narrow data retrieval for efficiency. Use :class:`EventFilter` for
-:func:`get_event_data` and :class:`SyncEventFilter` for :func:`sync_event_data`. For
-example, to filter by email in :func:`get_event_data`:
+Filters narrow data retrieval for efficiency. Use `EventFilter() <event_filter_ref_>`_ for
+`get_event_data() <get_event_data_ref_>`_ and `SyncEventFilter() <sync_event_filter_ref_>`_ for `sync_event_data() <sync_event_data_ref_>`_. For
+example, to filter by email in `get_event_data() <get_event_data_ref_>`_:
 
 .. code-block:: python
 
@@ -357,7 +368,7 @@ example, to filter by email in :func:`get_event_data`:
        filter = EventFilter(user_key = "email", user_value = "john.doe@example.com")
    )
 
-Available parameters for :class:`EventFilter` (and similar for :class:`SyncEventFilter`):
+Available parameters for `EventFilter() <event_filter_ref_>`_ (and similar for `SyncEventFilter() <sync_event_filter_ref_>`_):
 
 - **user_key (str)**: User identification method. Must be one of 'user_id',
   'username', 'email', 'about', 'group', or 'current_group'. Specifies how to filter
@@ -378,7 +389,7 @@ Available parameters for :class:`EventFilter` (and similar for :class:`SyncEvent
      df = get_event_data(..., filter = filter)
 
 - **data_key (Optional[str])**: Field name in the form (e.g., 'duration') to filter
-  data. Only for :class:`EventFilter`. Example:
+  data. Only for `EventFilter() <event_filter_ref_>`_. Example:
 
   .. code-block:: python
 
@@ -386,7 +397,7 @@ Available parameters for :class:`EventFilter` (and similar for :class:`SyncEvent
      df = get_event_data(..., filter = filter)
 
 - **data_value (Optional[str])**: Value for `data_key` (e.g., “60”). Only for
-  :class:`EventFilter`.
+  `EventFilter() <event_filter_ref_>`_.
 
 - **data_condition (str)**: Condition for `data_key`/`data_value`. Options: 'equals',
   'not_equals', 'greater_than', 'less_than', 'greater_than_or_equals',
@@ -431,7 +442,7 @@ Note: All filter conditions must be met (logical AND). Ensure `data_key`,
 **Caching**
 
 When `option.cache=True` (default), export functions reuse an existing
-:class:`AMSClient` created by :func:`get_client`, maintaining an authenticated
+`AMSClient() <ams_client_ref_>`_ created by `get_client() <get_client_ref_>`_, maintaining an authenticated
 session and reducing API calls for login or data retrieval. For example:
 
 .. code-block:: python
@@ -448,14 +459,14 @@ overhead.
 The AMS API requires specific formats for date and time parameters:
 
 - **start_date, end_date**: Must be `DD/MM/YYYY` (e.g., “01/01/2025”) for
-  :func:`get_event_data`. Both are required and must be valid dates, with
+  `get_event_data() <get_event_data_ref_>`_. Both are required and must be valid dates, with
   `end_date` not before `start_date`. Example:
 
   .. code-block:: python
 
      df = get_event_data(start_date = "01/01/2025", end_date = "31/01/2025", ...)
 
-- **time_range**: Optional for :func:`get_event_data`, a tuple of `h:mm AM/PM`
+- **time_range**: Optional for `get_event_data() <get_event_data_ref_>`_, a tuple of `h:mm AM/PM`
   times (e.g., `("12:00 AM", "11:59 PM")`). Defaults to full day if unset.
   Example:
 
@@ -469,7 +480,7 @@ The AMS API requires specific formats for date and time parameters:
          url = "..."
      )
 
-- **last_synchronisation_time**: Required for :func:`sync_event_data`, a Unix
+- **last_synchronisation_time**: Required for `sync_event_data() <sync_event_data_ref_>`_, a Unix
   timestamp in milliseconds (e.g., 1677654321000 for 2023-03-01 12:25:21 UTC).
   Use the returned `new_sync_time` for subsequent calls. Example:
 
@@ -550,13 +561,13 @@ feedback. For simple scripts, rely on these:
 Best Practices
 --------------
 
-- **Filtering**: Use :class:`EventFilter` or :class:`SyncEventFilter` to limit data
+- **Filtering**: Use `EventFilter() <event_filter_ref_>`_ or `SyncEventFilter() <sync_event_filter_ref_>`_ to limit data
   retrieval (e.g., `user_key="group"`) for performance.
-- **Caching**: Enable ``option.cache=True`` to reuse a :class:`AMSClient` across
+- **Caching**: Enable ``option.cache=True`` to reuse a `AMSClient() <ams_client_ref_>`_ across
   multiple calls, reducing API overhead.
 - **Attachments**: Specify a valid ``attachment_directory`` when
   ``download_attachment=True`` to avoid file write errors.
-- **Synchronization**: Store the `new_sync_time` from :func:`sync_event_data` for
+- **Synchronization**: Store the `new_sync_time` from `sync_event_data() <sync_event_data_ref_>`_ for
   subsequent calls to maintain incremental updates.
 - **Data Validation**: Ensure `form` matches an existing AMS form and dates are in
   'DD/MM/YYYY' format to avoid :class:`ValueError`.

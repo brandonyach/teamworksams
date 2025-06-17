@@ -1,3 +1,9 @@
+.. _get_profile_data_ref: ../reference/get_profile_data.html
+.. _upsert_profile_option_ref: ../reference/upsert_profile_option.html
+
+
+.. _upsert_profile_data:
+
 upsert_profile_data
 ===================
 
@@ -16,5 +22,5 @@ Additional Notes
 See Also
 --------
 
-- :class:`UpsertProfileOption`: Configuration options for profile upserts.
-- :func:`get_profile_data`: For retrieving profile data.
+- `UpsertProfileOption() <upsert_profile_option_ref_>`_: Configuration options for profile upserts.
+- `get_profile_data() <get_profile_data_ref_>`_: For retrieving profile data.

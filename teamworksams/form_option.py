@@ -1,11 +1,11 @@
 class FormOption:
     """Options for configuring form schema export and summary functions.
 
-    Customizes the behavior of :func:`teamworksams.form_main.get_forms` and
-    :func:`teamworksams.form_main.get_form_schema`, controlling interactive feedback,
+    Customizes the behavior of :func:`get_forms` and
+    :func:`get_form_schema`, controlling interactive feedback,
     caching, output format, and schema detail level. These options optimize form metadata
     retrieval for administrative tasks like auditing or integration. See
-    :ref:`vignettes/managing_forms` for form management workflows.
+    :ref:`managing_forms` for form management workflows.
 
     Args:
         interactive_mode (bool): If True, prints status messages during execution,

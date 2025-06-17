@@ -1,3 +1,8 @@
+.. _insert_database_option_ref: ../reference/insert_database_option.html
+.. _update_database_entry_ref: ../reference/update_database_entry.html
+
+.. _insert_database_entry:
+
 insert_database_entry
 =====================
 
@@ -16,6 +21,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`InsertDatabaseOption`: Configuration options for insertion.
-- :func:`update_database_entry`: For updating existing entries.
-- :ref:`vignettes/database_operations`: Database workflows.
+- `InsertDatabaseOption() <insert_database_option_ref_>`_: Configuration options for insertion.
+- `update_database_entry() <update_database_entry_ref_>`_: For updating existing entries.
+- :ref:`database_operations`: Database workflows.

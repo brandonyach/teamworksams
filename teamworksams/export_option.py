@@ -4,11 +4,11 @@ from typing import Optional
 class EventOption:  
     """Options for configuring event data export.
 
-    Defines customization options for the :func:`teamworksams.export_main.get_event_data` function, controlling aspects such as
+    Defines customization options for the :func:`get_event_data` function, controlling aspects such as
     downloading attachments, cleaning column names, caching API responses, and enabling
     interactive feedback. These options allow users to tailor the event data retrieval process,
     including data formatting, performance optimization, and user experience. See
-    :ref:`vignettes/exporting_data` for usage examples.
+    :ref:`exporting_data` for usage examples.
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as the
@@ -82,10 +82,10 @@ class EventOption:
 class SyncEventOption:
     """Options for configuring sync event data export.
 
-    Customizes the behavior of :func:`teamworksams.export_main.sync_event_data`,
+    Customizes the behavior of :func:`sync_event_data`,
     controlling output formatting, user metadata inclusion, caching, and interactive
     feedback. Optimizes performance for synchronized event exports. See
-    :ref:`vignettes/exporting_data` for synchronization workflows.
+    :ref:`exporting_data` for synchronization workflows.
 
     Args:
         interactive_mode (bool): Whether to print status messages during execution, such as the
@@ -144,7 +144,7 @@ class SyncEventOption:
 class ProfileOption:
     """Options for configuring profile data export.
 
-    Customizes the behavior of :func:`teamworksams.export_main.get_profile_data`,
+    Customizes the behavior of :func:`get_profile_data`,
     controlling output formatting, caching, and interactive feedback. Optimizes
     performance for profile data exports. 
 

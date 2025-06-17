@@ -27,9 +27,9 @@ def get_database(
     Fetches entries from a specified AMS database form, returning a
     :class:`pandas.DataFrame` with columns for entry IDs and field values. Supports
     pagination via `limit` and `offset`, and customization through
-    :class:`GetDatabaseOption` for caching, interactive feedback, or raw output. Ideal
+    `GetDatabaseOption` for caching, interactive feedback, or raw output. Ideal
     for retrieving structured data like allergies or equipment lists. See
-    :ref:`vignettes/database_operations` for database workflows.
+    :ref:`database_operations` for database workflows.
 
     Args:
         form_name (str): Name of the AMS database form (e.g., 'Allergies'). Must be a
@@ -45,11 +45,11 @@ def get_database(
             Defaults to 10000.
         offset (int): Starting index for pagination. Must be non-negative. Use to skip
             entries in large datasets (e.g., 10000 for the next batch). Defaults to 0.
-        option (:class:`GetDatabaseOption`, optional): Configuration options, including
+        option (GetDatabaseOption, optional): Configuration options, including
             `interactive_mode` for status messages (e.g., "Retrieved 100 entries"),
             `cache` to reuse a client, and `raw_output` for unprocessed API responses.
             Defaults to None (uses default :class:`GetDatabaseOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -132,8 +132,8 @@ def delete_database_entry(
 
     Sends a request to the AMS API to delete the database entry with the specified ID,
     returning True if successful. Requires valid credentials and a valid entry ID,
-    typically obtained from :func:`get_database`. See
-    :ref:`vignettes/database_operations` for database workflows.
+    typically obtained from get_database. See
+    :ref:`database_operations` for database workflows.
 
     Args:
         database_entry_id (int): ID of the database entry to delete. Must be a
@@ -144,7 +144,7 @@ def delete_database_entry(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -205,7 +205,7 @@ def insert_database_entry(
     Processes a :class:`pandas.DataFrame` containing database entry data, validates it,
     and inserts new entries into the specified AMS database form via the API. Supports
     table fields and customizable options for caching and interactive feedback. See
-    :ref:`vignettes/database_operations` for database workflows.
+    :ref:`database_operations` for database workflows.
 
     Args:
         df (:class:`pandas.DataFrame`): DataFrame with database entry data. Columns
@@ -219,11 +219,11 @@ def insert_database_entry(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`InsertDatabaseOption`, optional): Configuration options,
+        option (InsertDatabaseOption, optional): Configuration options,
             including `table_fields` for table field names, `interactive_mode` for status
             messages (e.g., "Inserted 3 entries"), and `cache` to reuse a client.
             Defaults to None (uses default :class:`InsertDatabaseOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:
@@ -332,7 +332,7 @@ def update_database_entry(
     Processes a :class:`pandas.DataFrame` with an 'entry_id' column to update existing
     entries in the specified AMS database form via the API. Validates data, supports
     table fields, and offers interactive confirmation prompts. See
-    :ref:`vignettes/database_operations` for database workflows.
+    :ref:`database_operations` for database workflows.
 
     Args:
         df (:class:`pandas.DataFrame`): DataFrame with database entry data. Must include
@@ -346,11 +346,11 @@ def update_database_entry(
             :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.
         password (Optional[str]): Password for authentication. If None, uses
             :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.
-        option (:class:`UpdateDatabaseOption`, optional): Configuration options,
+        option (UpdateDatabaseOption, optional): Configuration options,
             including `table_fields` for table field names, `interactive_mode` for
             status messages and confirmation prompts, and `cache` to reuse a client.
             Defaults to None (uses default :class:`UpdateDatabaseOption`).
-        client (:class:`AMSClient`, optional): Pre-authenticated client from
+        client (AMSClient, optional): Pre-authenticated client from
             :func:`get_client`. If None, a new client is created. Defaults to None.
 
     Returns:

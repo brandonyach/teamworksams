@@ -1,3 +1,5 @@
+.. _group_option:
+
 GroupOption
 ===========
 

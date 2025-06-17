@@ -27,7 +27,7 @@ def insert_event_data(
     new events into the specified Event Form. Supports table fields via the InsertEventOption,
     which allows configuration of user identifier mapping, caching, and interactive feedback.
     Provides status updates if interactive mode is enabled, reporting the number of events
-    inserted. See :ref:`vignettes/importing_data` for import workflows.
+    inserted. See :ref:`importing_data` for import workflows.
 
     Args:
         df (:class:`pandas.DataFrame`): A pandas DataFrame containing the event data to insert. Columns
@@ -40,12 +40,12 @@ def insert_event_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (:class:`InsertEventOption`, optional): Configuration options for the insertion,
+        option (InsertEventOption, optional): Configuration options for the insertion,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages), cache (for API response caching), and
             table_fields (list of table field names). If None, uses default
             InsertEventOption. Defaults to None.
-        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
+        client (AMSClient, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -138,7 +138,7 @@ def update_event_data(
     the AMS API to update existing events in the specified Event Form. Supports table fields
     via the UpdateEventOption, which allows configuration of user identifier mapping, caching,
     and interactive feedback. In interactive mode, prompts for confirmation before updating
-    and provides status updates. See :ref:`vignettes/importing_data` for update workflows.
+    and provides status updates. See :ref:`importing_data` for update workflows.
 
     Args:
         df (:class:`pandas.DataFrame`): A pandas DataFrame containing the event data to update. Must include
@@ -151,12 +151,12 @@ def update_event_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (:class:`UpdateEventOption`, optional): Configuration options for the update,
+        option (UpdateEventOption, optional): Configuration options for the update,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages and confirmation), cache (for API response
             caching), and table_fields (list of table field names). If None, uses default
             UpdateEventOption. Defaults to None.
-        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
+        client (AMSClient, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -258,7 +258,7 @@ def upsert_event_data(
     specified Event Form. Supports table fields via the UpsertEventOption, which allows
     configuration of user identifier mapping, caching, and interactive feedback. In
     interactive mode, prompts for confirmation before updating and provides status updates.
-    See :ref:`vignettes/importing_data` for upsert workflows.
+    See :ref:`importing_data` for upsert workflows.
 
     Args:
         df (:class:`pandas.DataFrame`): A pandas DataFrame containing the event data to upsert. 
@@ -272,12 +272,12 @@ def upsert_event_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (:class:`UpsertEventOption`, optional): Configuration options for the upsert,
+        option (UpsertEventOption, optional): Configuration options for the upsert,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages and confirmation), cache (for API response
             caching), and table_fields (list of table field names). If None, uses default
             UpsertEventOption. Defaults to None.
-        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
+        client (AMSClient, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
@@ -424,11 +424,11 @@ def upsert_profile_data(
             AMS_USERNAME environment variable. Defaults to None.
         password (Optional[str]): The password for authentication. If None, uses the
             AMS_PASSWORD environment variable. Defaults to None.
-        option (:class:`UpsertEventOption`, optional): Configuration options for the upsert,
+        option (UpsertEventOption, optional): Configuration options for the upsert,
             including id_col (column for user identifiers, e.g., 'user_id', 'username'),
             interactive_mode (for status messages and confirmation), and cache (for API
             response caching). If None, uses default UpsertProfileOption. Defaults to None.
-        client (:class:`AMSClient`, optional): A pre-authenticated AMSClient instance. If None,
+        client (AMSClient, optional): A pre-authenticated AMSClient instance. If None,
             a new client is created using the provided url, username, and password.
             Defaults to None.
 
