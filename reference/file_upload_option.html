@@ -160,17 +160,17 @@
 </nav>
 <div id="content" role="main">
 <section id="fileuploadoption">
-<h1>FileUploadOption<a class="headerlink" href="#fileuploadoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="file-upload-option"></span><h1>FileUploadOption<a class="headerlink" href="#fileuploadoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.file_option.FileUploadOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.file_option.</span></span><span class="sig-name descname"><span class="pre">FileUploadOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_to_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/file_option.html#FileUploadOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.file_option.FileUploadOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.file_option.FileUploadOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Configuration options for file upload operations.</p>
-<p>Customizes the behavior of <a class="reference internal" href="upload_and_attach_to_events.html#teamworksams.file_main.upload_and_attach_to_events" title="teamworksams.file_main.upload_and_attach_to_events"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.file_main.upload_and_attach_to_events()</span></code></a>
-and <a class="reference internal" href="upload_and_attach_to_avatars.html#teamworksams.file_main.upload_and_attach_to_avatars" title="teamworksams.file_main.upload_and_attach_to_avatars"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.file_main.upload_and_attach_to_avatars()</span></code></a>, controlling
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code>
+and <code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>, controlling
 interactive feedback, caching, and result storage. These options optimize the
 upload process for attaching files to events or user avatars. See
-<span class="xref std std-ref">vignettes/uploading_files</span> for file upload workflows.</p>
+<a class="reference internal" href="../vignettes/uploading_files.html#uploading-files"><span class="std std-ref">Uploading Files</span></a> for file upload workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -182,8 +182,8 @@ execution. Defaults to True.</p></li>
 reducing API calls for user/event data retrieval or uploads. Set to False
 for fresh data. Defaults to True.</p></li>
 <li><p><strong>save_to_file</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – File path to save upload results as a CSV
-(e.g., ‘results.csv’). The CSV includes columns like <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>,
-<code class="xref any docutils literal notranslate"><span class="pre">file_name</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">status</span></code>, and <code class="xref any docutils literal notranslate"><span class="pre">reason</span></code>. If None, results are not saved.
+(e.g., ‘results.csv’). The CSV includes columns like <code class="xref py py-obj docutils literal notranslate"><span class="pre">user_key</span></code>,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">file_name</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">status</span></code>, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">reason</span></code>. If None, results are not saved.
 Defaults to None.</p></li>
 <li><p><strong>interactive_mode</strong> – Whether to print status messages during execution, such as
 the list of files being uploaded and their file IDs. Defaults to True.</p></li>
@@ -267,9 +267,9 @@ during the upload process.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="upload_and_attach_to_events.html#teamworksams.file_main.upload_and_attach_to_events" title="teamworksams.file_main.upload_and_attach_to_events"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.file_main.upload_and_attach_to_events()</span></code></a>: Function for event file uploads.</p></li>
-<li><p><a class="reference internal" href="upload_and_attach_to_avatars.html#teamworksams.file_main.upload_and_attach_to_avatars" title="teamworksams.file_main.upload_and_attach_to_avatars"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.file_main.upload_and_attach_to_avatars()</span></code></a>: Function for avatar uploads.</p></li>
-<li><p><span class="xref std std-ref">vignettes/uploading_files</span>: File upload workflows.</p></li>
+<li><p><a class="reference external" href="../reference/upload_and_attach_to_events.html">upload_and_attach_to_events()</a>: Function for event file uploads.</p></li>
+<li><p><a class="reference external" href="../reference/upload_and_attach_to_avatars.html">upload_and_attach_to_avatars()</a>: Function for avatar uploads.</p></li>
+<li><p><a class="reference internal" href="../vignettes/uploading_files.html#uploading-files"><span class="std std-ref">Uploading Files</span></a>: File upload workflows.</p></li>
 </ul>
 </section>
 </section>

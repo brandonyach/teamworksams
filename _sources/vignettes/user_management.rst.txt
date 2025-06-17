@@ -1,12 +1,26 @@
+.. _get_user_ref: ../reference/get_user.html
+.. _get_group_ref: ../reference/get_group.html
+.. _create_user_ref: ../reference/create_user.html
+.. _edit_user_ref: ../reference/edit_user.html
+.. _user_filter_ref: ../reference/user_filter.html
+.. _user_option_ref: ../reference/user_option.html
+.. _group_option_ref: ../reference/group_option.html
+.. _ams_client_ref: ../reference/ams_client.html
+.. _get_client_ref: ../reference/get_client.html
+
+.. _user_management:
+
+
 User and Group Management
 =========================
 
 This vignette provides a comprehensive guide to managing users and groups in a Teamworks
-AMS instance using **teamworksams**, covering :func:`get_user`, :func:`get_group`,
-:func:`edit_user`, and :func:`create_user`. It equips you to fetch user and group data, 
+AMS instance using **teamworksams**, covering `get_user() <get_user_ref_>`_, `get_group() <get_group_ref_>`_,
+`edit_user() <edit_user_ref_>`_, and `create_user() <create_user_ref_>`_. It equips you to fetch user and group data, 
 update user accounts, and create new users withpractical workflows, detailed examples, 
 best practices, and troubleshooting tips. See :ref:`reference` for detailed function 
-documentation and :ref:`vignettes/database_operations` for additional administrative tasks.
+documentation and :ref:`exporting_data` and :ref:`importing_data` for additional 
+data-related workflows.
 
 Overview
 --------
@@ -14,19 +28,11 @@ Overview
 **teamworksams** simplifies user and group management through the Teamworks AMS API,
 offering functions to:
 
-- **Fetch Users**: Retrieve user data (e.g., IDs, names, account info, groups) with
-  flexible filtering.
-- **Fetch Groups**: List groups accessible to the user.
-- **Update Users**: Modify user fields (e.g., email, name) for existing accounts.
-- **Create Users**: Add new user accounts with required and optional attributes.
-
-The functions covered in this vignette are:
-
-- :func:`get_user`: Fetch user data, optionally filtered by attributes like group or
-  email.
-- :func:`get_group`: Retrieve a list of groups.
-- :func:`edit_user`: Update existing user accounts.
-- :func:`create_user`: Create new user accounts.
+- **Fetch Users**: Retrieve user data (e.g., IDs, names, account info, groups), optionally filtered by attributes like group or
+  email with `get_user() <get_user_ref_>`_.
+- **Fetch Groups**: List groups accessible to the user with `get_group() <get_group_ref_>`_.
+- **Update Users**: Modify user fields (e.g., email, name) for existing accounts with `edit_user() <edit_user_ref_>`_.
+- **Create Users**: Add new user accounts with required and optional attributes with `create_user() <create_user_ref_>`_
 
 All examples use the placeholder AMS instance URL
 ``https://example.smartabase.com/site``, username ``username``, and password
@@ -36,7 +42,7 @@ Prerequisites
 -------------
 
 Ensure **teamworksams** is installed and credentials are configured, as described in
-:ref:`vignettes/getting_started`. The recommended setup is a ``.env`` file:
+:ref:`getting_started`. The recommended setup is a ``.env`` file:
 
 .. code-block:: text
    :caption: .env
@@ -53,13 +59,13 @@ Load credentials with ``python-dotenv``:
    load_dotenv()
 
 Alternatively, use ``os``, direct arguments, or ``keyring`` (see
-:ref:`vignettes/credentials`). Required dependencies (installed with
+:ref:`credentials`). Required dependencies (installed with
 **teamworksams**): ``pandas``, ``requests``, ``python-dotenv``, ``tqdm``.
 
-Fetching User Data with :func:`get_user`
----------------------------------------
+Fetching User Data with `get_user() <get_user_ref_>`_
+-----------------------------------------------------
 
-The :func:`get_user` function retrieves user data as a :class:`pandas.DataFrame`, with
+The `get_user() <get_user_ref_>`_ function retrieves user data as a :class:`pandas.DataFrame`, with
 optional filtering using a :class:`UserFilter` object to narrow results by attributes
 like username, email, group, or about field. It’s ideal for auditing user accounts,
 generating reports, or identifying specific users.
@@ -147,10 +153,10 @@ Fetch users by email:
 - Limit columns with ``option.columns`` to optimize DataFrame size.
 - Enable ``interactive_mode`` for real-time feedback during long operations.
 
-Fetching Group Data with :func:`get_group`
------------------------------------------
+Fetching Group Data with `get_group() <get_group_ref_>`_
+--------------------------------------------------------
 
-The :func:`get_group` function retrieves a list of groups (e.g., teams, departments) as
+The `get_group() <get_group_ref_>`_ function retrieves a list of groups (e.g., teams, departments) as
 a :class:`pandas.DataFrame`. It’s useful for auditing group structures or preparing data
 for user assignments.
 
@@ -183,13 +189,13 @@ Fetch all accessible groups:
 
 **Best Practices**
 
-- Use ``guess_col_type=True`` in :class:`GroupOption` to ensure consistent data types.
-- Cache the client for efficiency when combining with :func:`get_user`.
+- Use ``guess_col_type=True`` in `GroupOption() <group_option_ref_>`_ to ensure consistent data types.
+- Cache the client for efficiency when combining with `get_user() <get_user_ref_>`_.
 
-Updating User Profiles with :func:`edit_user`
---------------------------------------------
+Updating User Profiles with `edit_user() <edit_user_ref_>`_
+-----------------------------------------------------------
 
-The :func:`edit_user` function updates existing user fields (e.g., email, name) based on
+The `edit_user() <edit_user_ref_>`_ function updates existing user fields (e.g., email, name) based on
 a mapping DataFrame, using a user key (e.g., username, email) to identify users. It
 returns a :class:`pandas.DataFrame` of results, making it easy to track updates and
 issues. This is a powerful function as it will only update the fields based on columns
@@ -260,10 +266,10 @@ Update names and emails using `about` as the key:
 - Use ``interactive_mode`` for progress tracking and confirmation prompts.
 - Check ``results_df`` for successful updates and errors.
 
-Creating New Users with :func:`create_user`
-------------------------------------------
+Creating New Users with `create_user() <create_user_ref_>`_
+-----------------------------------------------------------
 
-The :func:`create_user` function adds new user accounts, requiring fields like
+The `create_user() <create_user_ref_>`_ function adds new user accounts, requiring fields like
 ``first_name``, ``username``, and ``password``. It returns a :class:`pandas.DataFrame`
 of failed creations.
 
@@ -332,8 +338,8 @@ Create users with optional fields:
 Options and Usage Notes
 -----------------------
 
-This section provides detailed guidance on using option classes (:class:`UserOption`,
-:class:`GroupOption`) and the filter class (:class:`UserFilter`) to customize user and
+This section provides detailed guidance on using option classes (`UserOption() <user_option_ref_>`_,
+`GroupOption() <group_option_ref_>`_, and the filter class `UserFilter() <user_filter_ref_>`_ to customize user and
 group operations, along with key usage notes for caching, column selection, data
 validation, and interactive mode.
 
@@ -341,7 +347,7 @@ validation, and interactive mode.
 
 Each user and group function supports a specific option class to configure its behavior.
 These classes must be instantiated with parameters like ``interactive_mode``,
-``cache``, and others. For example, to select specific columns in :func:`get_user`:
+``cache``, and others. For example, to select specific columns in `get_user() <get_user_ref_>`_:
 
 .. code-block:: python
 
@@ -354,12 +360,12 @@ These classes must be instantiated with parameters like ``interactive_mode``,
 
 The option classes and their associated functions are:
 
-- :func:`get_user`, :func:`edit_user`, :func:`create_user`: :class:`UserOption`
-- :func:`get_group`: :class:`GroupOption`
+- `get_user() <get_user_ref_>`_, `edit_user() <edit_user_ref_>`_, `create_user() <create_user_ref_>`_: `UserOption() <user_option_ref_>`_
+- `get_group() <get_group_ref_>`_: `GroupOption() <group_option_ref_>`_
 
-Available parameters for :class:`UserOption`:
+Available parameters for `UserFilter() <user_filter_ref_>`_:
 
-- **columns (Optional[List[str]])**: Only for :func:`get_user`. List of column names
+- **columns (Optional[List[str]])**: Only for `get_user() <get_user_ref_>`_. List of column names
   to include in the output DataFrame (e.g., ['user_id', 'first_name', 'email']). If
   None, includes all available columns (e.g., 'user_id', 'first_name', 'last_name',
   'email', 'groups', 'about', 'active', 'dob', 'sex', 'uuid'). Defaults to None.
@@ -371,8 +377,8 @@ Available parameters for :class:`UserOption`:
      df = get_user(url = "...", option = option)
 
 - **interactive_mode (bool)**: If True, displays status messages (e.g., “Retrieved 5
-  users” for :func:`get_user`, “Successfully updated 2 users” for :func:`edit_user`)
-  and :mod:`tqdm` progress bars for :func:`edit_user` and :func:`create_user`. Set to
+  users” for `get_user() <get_user_ref_>`_, “Successfully updated 2 users” for `edit_user() <edit_user_ref_>`_)
+  and :mod:`tqdm` progress bars for `edit_user() <edit_user_ref_>`_ and `create_user() <create_user_ref_>`_. Set to
   False for silent execution in automated scripts. Defaults to True. Example:
 
   .. code-block:: python
@@ -380,15 +386,15 @@ Available parameters for :class:`UserOption`:
      option = UserOption(interactive_mode = False)
      failed_df = create_user(..., option = option)  # No output
 
-- **cache (bool)**: If True, reuses an existing :class:`AMSClient` via
-  :func:`get_client`, reducing API calls for authentication or data retrieval. Set to
+- **cache (bool)**: If True, reuses an existing `AMSClient() <ams_client_ref_>`_ via
+  `get_client() <get_client_ref_>`_, reducing API calls for authentication or data retrieval. Set to
   False for fresh data, increasing API overhead. Defaults to True. See “Caching” below.
 
-Available parameters for :class:`GroupOption`:
+Available parameters for `GroupOption() <group_option_ref_>`_:
 
 - **guess_col_type (bool)**: If True, infers column data types in the output DataFrame
   (e.g., string for 'name'), ensuring compatibility with operations like merging with
-  :func:`get_user` results. Set to False to use default pandas types (e.g., object).
+  `get_user() <get_user_ref_>`_ results. Set to False to use default pandas types (e.g., object).
   Defaults to True. Example:
 
   .. code-block:: python
@@ -405,7 +411,7 @@ Available parameters for :class:`GroupOption`:
 
 **Filter Class**
 
-The :class:`UserFilter` class filters users in :func:`get_user` by attributes. For
+The `UserFilter() <user_filter_ref_>`_ class filters users in `get_user() <get_user_ref_>`_ by attributes. For
 example, to filter by email:
 
 .. code-block:: python
@@ -435,12 +441,12 @@ Valid `user_key` values and their `user_value` requirements:
 - **username**: AMS usernames (e.g., ["john.doe"]).
 - **email**: User emails (e.g., ["john.doe@example.com"]).
 - **about**: Full names (e.g., ["John Doe"]).
-- **group**: Group name (e.g., “TeamA”). Use :func:`get_group` to list groups.
+- **group**: Group name (e.g., “TeamA”). Use `get_group() <get_group_ref_>`_ to list groups.
 
 **Caching**
 
-When `option.cache=True` (default), functions reuse an existing :class:`AMSClient`
-created by :func:`get_client`, maintaining an authenticated session and reducing API
+When `option.cache=True` (default), functions reuse an existing `AMSClient() <ams_client_ref_>`_
+created by `get_client() <get_client_ref_>`_, maintaining an authenticated session and reducing API
 calls for login or data retrieval. For example:
 
 .. code-block:: python
@@ -454,7 +460,7 @@ overhead.
 
 **Column Selection**
 
-For :func:`get_user`, the `columns` parameter in :class:`UserOption` allows selecting
+For `get_user() <get_user_ref_>`_, the `columns` parameter in `UserOption() <user_option_ref_>`_ allows selecting
 specific columns from the API response. Supported columns include:
 
 - `user_id`: Unique AMS-generated user ID.
@@ -463,7 +469,7 @@ specific columns from the API response. Supported columns include:
 - `groups`: List of group memberships (e.g., ['TeamA']).
 - `about`: Full name (concatenation of first and last names).
 - `active`: Boolean indicating account status.
-- `dob`: Date of birth (format: YYYY-MM-DD).
+- `dob`: Date of birth (format: YYYY-MM-DD or DD/MM/YYYY).
 - `sex`: Gender (e.g., “Male”, “Female”).
 - `uuid`: Optional unique identifier.
 - Others: Additional fields like `known_as`, `language`, `sidebar_width` (if available).
@@ -478,7 +484,7 @@ Example:
 
 **Data Validation**
 
-For :func:`edit_user`, the `mapping_df` DataFrame must include a `user_key` column
+For `edit_user() <edit_user_ref_>`_, the `mapping_df` DataFrame must include a `user_key` column
 (one of 'username', 'email', 'about', 'uuid') and updatable columns from the supported
 list (e.g., `first_name`, `email`, `dob`, `sex`, `active`, `uuid`). Empty values are
 sent as empty strings. Example:
@@ -492,8 +498,8 @@ sent as empty strings. Example:
    })
    results_df = edit_user(mapping_df = mapping_df, user_key = "uuid", url = "...")
 
-For :func:`create_user`, the `user_df` DataFrame must include required columns:
-`first_name`, `last_name`, `username`, `email`, `dob` (format: YYYY-MM-DD),
+For `create_user() <create_user_ref_>`_, the `user_df` DataFrame must include required columns:
+`first_name`, `last_name`, `username`, `email`, `dob` (format: YYYY-MM-DD or DD/MM/YYYY),
 `password`, `active` (boolean). Optional columns include `uuid`, `known_as`, `sex`,
 `middle_names`, `language`, `sidebar_width`. Example:
 
@@ -524,9 +530,9 @@ Validate data before submission to avoid :class:`AMSError`:
 **Interactive Mode**
 
 When `interactive_mode=True` (default), functions display progress messages (e.g.,
-“ℹ Creating 1 users”) and :mod:`tqdm` progress bars for :func:`edit_user` and
-:func:`create_user`, enhancing feedback in interactive environments. For
-:func:`edit_user`, it includes detailed success/failure summaries. Set
+“ℹ Creating 1 users”) and :mod:`tqdm` progress bars for `edit_user() <edit_user_ref_>`_ and
+`create_user() <create_user_ref_>`_, enhancing feedback in interactive environments. For
+`edit_user() <edit_user_ref_>`_, it includes detailed success/failure summaries. Set
 `interactive_mode=False` for silent execution in automated pipelines:
 
 .. code-block:: python
@@ -561,8 +567,8 @@ Best Practices
 
 - **Security**: Store credentials in ``.env`` or ``keyring`` to prevent exposure. Keep
   ``.env`` files in secure, private directories.
-- **Data Validation**: Verify DataFrame inputs before calling :func:`edit_user` or
-  :func:`create_user`:
+- **Data Validation**: Verify DataFrame inputs before calling `edit_user() <edit_user_ref_>`_ or
+  `create_user() <create_user_ref_>`_:
 
   .. code-block:: python
 
@@ -629,6 +635,6 @@ Troubleshooting
 Next Steps
 ----------
 
-- Explore exporting data in :ref:`exporting_data.rst`.
+- Explore exporting data in :ref:`exporting_data`.
 - Consult :ref:`reference` for function details.
 - Visit `GitHub <https://github.com/brandonyach/teamworksams>`_ for support.

@@ -1,3 +1,9 @@
+.. _get_database_ref: ../reference/get_database.html
+.. _insert_database_entry_ref: ../reference/insert_database_entry.html
+.. _get_database_option_ref: ../reference/get_database_option.html
+
+.. _get_database:
+
 get_database
 ============
 
@@ -16,6 +22,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`GetDatabaseOption`: Configuration options for database retrieval.
-- :func:`insert_database_entry`: For inserting new entries.
-- :ref:`vignettes/database_operations`: Database workflows.
+- `GetDatabaseOption() <get_database_option_ref_>`_: Configuration options for database retrieval.
+- `insert_database_entry() <insert_database_entry_ref_>`_: For inserting new entries.
+- :ref:`database_operations`: Database workflows.

@@ -1,3 +1,8 @@
+.. _sync_event_filter_ref: ../reference/sync_event_filter.html
+.. _sync_event_option_ref: ../reference/sync_event_option.html
+
+.. _sync_event_data:
+
 sync_event_data
 ===============
 
@@ -17,6 +22,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`SyncEventFilter`: For filtering synchronized events.
-- :class:`SyncEventOption`: Configuration options for synchronization.
-- :ref:`vignettes/exporting_data`: Synchronization workflows.
+- `SyncEventFilter() <sync_event_filter_ref_>`_: For filtering synchronized events.
+- `SyncEventOption() <sync_event_option_ref_>`_: Configuration options for synchronization.
+- :ref:`exporting_data`: Synchronization workflows.

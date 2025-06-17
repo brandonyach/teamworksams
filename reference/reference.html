@@ -159,10 +159,10 @@
 </nav>
 <div id="content" role="main">
 <section id="functions-and-classes">
-<h1>Functions and Classes<a class="headerlink" href="#functions-and-classes" title="Link to this heading"><span>#</span></a></h1>
-<p>This section provides detailed documentation for all <strong>teamworksams</strong> functions and classes, organized by module. Each entry links to a dedicated page with full parameter details, usage examples, return values, and error conditions. Use this reference to explore specific functionality, complemented by the <span class="xref std std-ref">vignettes</span> section for practical workflows.</p>
-<section id="credentials-and-authentication">
-<h2>Credentials and Authentication<a class="headerlink" href="#credentials-and-authentication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#credentials-and-authentication'"><span>#</span></a></h2>
+<span id="reference"></span><h1>Functions and Classes<a class="headerlink" href="#functions-and-classes" title="Link to this heading"><span>#</span></a></h1>
+<p>This section provides detailed documentation for all <strong>teamworksams</strong> functions and classes, organized by module. Each entry links to a dedicated page with full parameter details, usage examples, return values, and error conditions. Use this reference to explore specific functionality, complemented by the vignettes section for practical workflows.</p>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#authentication'"><span>#</span></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="get_client.html">get_client</a></li>
@@ -172,13 +172,6 @@
 <li class="toctree-l1"><a class="reference internal" href="login_option.html">LoginOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>: Client class for handling AMS API requests and authentication.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>: Custom exception for AMS API errors with descriptive messages.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>: Create or retrieve an authenticated client for API interactions.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">login()</span></code>: Authenticate with an AMS instance and return session details.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginOption</span></code>: Configuration options for the login process.</p></li>
-</ul>
 </section>
 <section id="user-management">
 <h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#user-management'"><span>#</span></a></h2>
@@ -193,15 +186,6 @@
 <li class="toctree-l1"><a class="reference internal" href="user_filter.html">UserFilter</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: Create new user accounts.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">edit_user()</span></code>: Update user fields for existing accounts.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>: Retrieve user data as a pandas DataFrame, with optional filtering.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_group()</span></code>: Fetch group data as a pandas DataFrame.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserFilter</span></code>: Filter object for narrowing user data queries.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code>: Configuration options for user-related functions.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupOption</span></code>: Configuration options for group-related functions.</p></li>
-</ul>
 </section>
 <section id="exporting-data">
 <h2>Exporting Data<a class="headerlink" href="#exporting-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#exporting-data'"><span>#</span></a></h2>
@@ -218,17 +202,6 @@
 <li class="toctree-l1"><a class="reference internal" href="profile_option.html">ProfileOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: Retrieve event data from an AMS Event Form within a date range.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>: Fetch event data modified since the last synchronization time.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_profile_data()</span></code>: Retrieve profile data from an AMS Profile Form.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EventFilter</span></code>: Filter object for event data queries.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">EventOption</span></code>: Configuration options for event data retrieval.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventFilter</span></code>: Filter object for synchronized event queries.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventOption</span></code>: Configuration options for synchronized event retrieval.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileFilter</span></code>: Filter object for profile data queries.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileOption</span></code>: Configuration options for profile data retrieval.</p></li>
-</ul>
 </section>
 <section id="importing-data">
 <h2>Importing Data<a class="headerlink" href="#importing-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#importing-data'"><span>#</span></a></h2>
@@ -244,19 +217,9 @@
 <li class="toctree-l1"><a class="reference internal" href="upsert_profile_option.html">UpsertProfileOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>: Insert new event records into an AMS Event Form.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_event_data()</span></code>: Update existing event records in an AMS Event Form.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_event_data()</span></code>: Insert and update event records in an AMS Event Form.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_profile_data()</span></code>: Upsert profile data in an AMS Profile Form.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">InsertEventOption</span></code>: Configuration options for event insertion.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateEventOption</span></code>: Configuration options for event updates.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertEventOption</span></code>: Configuration options for event upserts.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UpsertProfileOption</span></code>: Configuration options for profile upserts.</p></li>
-</ul>
 </section>
-<section id="database-operations">
-<h2>Database Operations<a class="headerlink" href="#database-operations" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#database-operations'"><span>#</span></a></h2>
+<section id="database-management">
+<h2>Database Management<a class="headerlink" href="#database-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#database-management'"><span>#</span></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="get_database.html">get_database</a></li>
@@ -268,18 +231,9 @@
 <li class="toctree-l1"><a class="reference internal" href="update_database_option.html">UpdateDatabaseOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>: Retrieve database entries from an AMS database form.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code>: Delete a specific database entry by ID.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code>: Insert new database entries into a form.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>: Update existing database entries in a form.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code>: Configuration options for database retrieval.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">InsertDatabaseOption</span></code>: Configuration options for database insertion.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>: Configuration options for database updates.</p></li>
-</ul>
 </section>
-<section id="uploading-files">
-<h2>Uploading Files<a class="headerlink" href="#uploading-files" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#uploading-files'"><span>#</span></a></h2>
+<section id="file-operations">
+<h2>File Operations<a class="headerlink" href="#file-operations" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#file-operations'"><span>#</span></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="upload_and_attach_to_events.html">upload_and_attach_to_events</a></li>
@@ -287,14 +241,9 @@
 <li class="toctree-l1"><a class="reference internal" href="file_upload_option.html">FileUploadOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_events()</span></code>: Upload files and attach to events in an AMS Event Form.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">upload_and_attach_to_avatars()</span></code>: Upload images and attach as user profile avatars.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileUploadOption</span></code>: Configuration options for file upload operations.</p></li>
-</ul>
 </section>
-<section id="managing-forms">
-<h2>Managing Forms<a class="headerlink" href="#managing-forms" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#managing-forms'"><span>#</span></a></h2>
+<section id="form-management">
+<h2>Form Management<a class="headerlink" href="#form-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#form-management'"><span>#</span></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="get_forms.html">get_forms</a></li>
@@ -302,11 +251,6 @@
 <li class="toctree-l1"><a class="reference internal" href="form_option.html">FormOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code>: Fetch a list of forms accessible to the user.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>: Fetch and summarize a specific form’s schema.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code>: Configuration options for form metadata and schema retrieval.</p></li>
-</ul>
 </section>
 <section id="deleting-data">
 <h2>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#deleting-data'"><span>#</span></a></h2>
@@ -317,23 +261,18 @@
 <li class="toctree-l1"><a class="reference internal" href="delete_event_option.html">DeleteEventOption</a></li>
 </ul>
 </div>
-<ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code>: Delete a single event from an AMS instance.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>: Delete multiple events from an AMS instance.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code>: Configuration options for event deletion.</p></li>
-</ul>
 </section>
 </section>
 </div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
 <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
 <ul>
-<li><a :data-current="activeSection === '#credentials-and-authentication'" class="reference internal" href="#credentials-and-authentication">Credentials and Authentication</a></li>
+<li><a :data-current="activeSection === '#authentication'" class="reference internal" href="#authentication">Authentication</a></li>
 <li><a :data-current="activeSection === '#user-management'" class="reference internal" href="#user-management">User Management</a></li>
 <li><a :data-current="activeSection === '#exporting-data'" class="reference internal" href="#exporting-data">Exporting Data</a></li>
 <li><a :data-current="activeSection === '#importing-data'" class="reference internal" href="#importing-data">Importing Data</a></li>
-<li><a :data-current="activeSection === '#database-operations'" class="reference internal" href="#database-operations">Database Operations</a></li>
-<li><a :data-current="activeSection === '#uploading-files'" class="reference internal" href="#uploading-files">Uploading Files</a></li>
-<li><a :data-current="activeSection === '#managing-forms'" class="reference internal" href="#managing-forms">Managing Forms</a></li>
+<li><a :data-current="activeSection === '#database-management'" class="reference internal" href="#database-management">Database Management</a></li>
+<li><a :data-current="activeSection === '#file-operations'" class="reference internal" href="#file-operations">File Operations</a></li>
+<li><a :data-current="activeSection === '#form-management'" class="reference internal" href="#form-management">Form Management</a></li>
 <li><a :data-current="activeSection === '#deleting-data'" class="reference internal" href="#deleting-data">Deleting Data</a></li>
 </ul>
 </div>

@@ -160,16 +160,16 @@
 </nav>
 <div id="content" role="main">
 <section id="upserteventoption">
-<h1>UpsertEventOption<a class="headerlink" href="#upserteventoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="upsert-event-option"></span><h1>UpsertEventOption<a class="headerlink" href="#upserteventoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.import_option.UpsertEventOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.import_option.</span></span><span class="sig-name descname"><span class="pre">UpsertEventOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'user_id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/import_option.html#UpsertEventOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.import_option.UpsertEventOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.import_option.UpsertEventOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for configuring the upsert_event_data function.</p>
-<p>Customizes the behavior of <a class="reference internal" href="upsert_event_data.html#teamworksams.import_main.upsert_event_data" title="teamworksams.import_main.upsert_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.import_main.upsert_event_data()</span></code></a>,
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">upsert_event_data()</span></code>,
 controlling user identifier mapping, caching, interactive feedback, and table fields.
 Optimizes performance for inserting new events and updating existing ones in an AMS
-Event Form. See <span class="xref std std-ref">vignettes/importing_data</span> for upsert workflows.</p>
+Event Form. See <a class="reference internal" href="../vignettes/importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a> for upsert workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -247,7 +247,7 @@ None, assumes no table fields. Defaults to None.</p></li>
 present in the input <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> to map user identifiers
 correctly.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">cache=True</span></code> to optimize performance when upserting large datasets,
-reusing a <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> for both inserts and updates.</p></li>
+reusing a <a class="reference external" href="../reference/ams_client.html">AMSClient()</a> for both inserts and updates.</p></li>
 <li><p>Specify <code class="docutils literal notranslate"><span class="pre">table_fields</span></code> for table fields (e.g., [‘session_details’]),
 ensuring DataFrame columns match the AMS form exactly.</p></li>
 </ul>
@@ -255,8 +255,8 @@ ensuring DataFrame columns match the AMS form exactly.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="upsert_event_data.html#teamworksams.import_main.upsert_event_data" title="teamworksams.import_main.upsert_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.import_main.upsert_event_data()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.import_option.UpsertEventOption" title="teamworksams.import_option.UpsertEventOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">UpsertEventOption</span></code></a>.</p></li>
-<li><p><span class="xref std std-ref">vignettes/importing_data</span>: Event upsert workflows.</p></li>
+<li><p><a class="reference external" href="../reference/upsert_event_data.html">upsert_event_data()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">UpsertEventOption</span></code>.</p></li>
+<li><p><a class="reference internal" href="../vignettes/importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a>: Event upsert workflows.</p></li>
 </ul>
 </section>
 </section>

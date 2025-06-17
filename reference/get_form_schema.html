@@ -160,7 +160,7 @@
 </nav>
 <div id="content" role="main">
 <section id="get-form-schema">
-<h1>get_form_schema<a class="headerlink" href="#get-form-schema" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>get_form_schema<a class="headerlink" href="#get-form-schema" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="teamworksams.form_main.get_form_schema">
 <span class="sig-prename descclassname"><span class="pre">teamworksams.form_main.</span></span><span class="sig-name descname"><span class="pre">get_form_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="form_option.html#teamworksams.form_option.FormOption" title="teamworksams.form_option.FormOption"><span class="pre">FormOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/teamworksams/form_main.html#get_form_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.form_main.get_form_schema" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.form_main.get_form_schema'"><span>#</span></a></dt>
@@ -168,8 +168,8 @@
 <p>Retrieves the schema for a specified AMS form, detailing sections, required fields,
 default-to-last-value fields, linked fields, and item types. Returns a formatted
 string summary for console output (ideal for Jupyter notebooks) or the raw API
-response as a dictionary if <code class="xref any docutils literal notranslate"><span class="pre">option.raw_output</span></code> is True. Supports interactive
-feedback and detailed output options. See <span class="xref std std-ref">vignettes/managing_forms</span> for form
+response as a dictionary if <code class="xref py py-obj docutils literal notranslate"><span class="pre">option.raw_output</span></code> is True. Supports interactive
+feedback and detailed output options. See <a class="reference internal" href="../vignettes/managing_forms.html#managing-forms"><span class="std std-ref">Managing Forms</span></a> for form
 management workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -182,18 +182,18 @@ include a valid site name.</p></li>
 <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_USERNAME</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
 <li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
-<li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code>, optional) – Configuration options, including
-<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for status messages, <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a> to reuse API responses,
-<a class="reference internal" href="form_option.html#teamworksams.form_option.FormOption.raw_output" title="teamworksams.form_option.FormOption.raw_output"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">raw_output</span></code></a> for raw API data, <a class="reference internal" href="form_option.html#teamworksams.form_option.FormOption.field_details" title="teamworksams.form_option.FormOption.field_details"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">field_details</span></code></a> for field options/scores,
-and <a class="reference internal" href="form_option.html#teamworksams.form_option.FormOption.include_instructions" title="teamworksams.form_option.FormOption.include_instructions"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">include_instructions</span></code></a> for section/field instructions. Defaults to None
+<li><p><strong>option</strong> (<a class="reference internal" href="form_option.html#teamworksams.form_option.FormOption" title="teamworksams.form_option.FormOption"><em>FormOption</em></a><em>, </em><em>optional</em>) – Configuration options, including
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode</span></code> for status messages, <code class="xref py py-obj docutils literal notranslate"><span class="pre">cache</span></code> to reuse API responses,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">raw_output</span></code> for raw API data, <code class="xref py py-obj docutils literal notranslate"><span class="pre">field_details</span></code> for field options/scores,
+and <code class="xref py py-obj docutils literal notranslate"><span class="pre">include_instructions</span></code> for section/field instructions. Defaults to None
 (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code>).</p></li>
-<li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
+<li><p><strong>client</strong> (<a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><em>AMSClient</em></a><em>, </em><em>optional</em>) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl>
-<dt>If <code class="xref any docutils literal notranslate"><span class="pre">option.raw_output</span></code> is True, returns the raw API response as a</dt><dd><p>dictionary containing the form schema. Otherwise, returns a formatted text string
+<dd class="field-even"><p><dl class="simple">
+<dt>If <code class="xref py py-obj docutils literal notranslate"><span class="pre">option.raw_output</span></code> is True, returns the raw API response as a</dt><dd><p>dictionary containing the form schema. Otherwise, returns a formatted text string
 summarizing the form schema, including:
 - Form details (name, ID, type).
 - Sections (count, names).
@@ -201,10 +201,8 @@ summarizing the form schema, including:
 - Fields that default to the last known value (count, names).
 - Linked fields (count, names).
 - Form item types (count of unique types, count per type, field names per type).
-- Optionally, field instructions and details (options, scores, date selection) if</p>
-<blockquote>
-<div><p>enabled in <code class="xref any docutils literal notranslate"><span class="pre">option</span></code>.</p>
-</div></blockquote>
+- Optionally, field instructions and details (options, scores, date selection) if
+enabled in <code class="xref py py-obj docutils literal notranslate"><span class="pre">option</span></code>.</p>
 </dd>
 </dl>
 </p>
@@ -218,111 +216,72 @@ summarizing the form schema, including:
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_form_schema</span><span class="p">,</span> <span class="n">FormOption</span>
-</span><span id="line-2"><span class="gp">&gt;&gt;&gt; </span><span class="n">summary</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
-</span><span id="line-3"><span class="gp">... </span>    <span class="n">form</span> <span class="o">=</span> <span class="s2">"Allergies"</span><span class="p">,</span>
-</span><span id="line-4"><span class="gp">... </span>    <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
-</span><span id="line-5"><span class="gp">... </span>    <span class="n">username</span> <span class="o">=</span> <span class="s2">"user"</span><span class="p">,</span>
-</span><span id="line-6"><span class="gp">... </span>    <span class="n">password</span> <span class="o">=</span> <span class="s2">"pass"</span><span class="p">,</span>
-</span><span id="line-7"><span class="gp">... </span>    <span class="n">option</span> <span class="o">=</span> <span class="n">FormOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">field_details</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-</span><span id="line-8"><span class="gp">... </span><span class="p">)</span>
-</span><span id="line-9"><span class="go">ℹ Fetching summary for form 'Training Log' (ID: 5285, Type: event)...</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">&gt;&gt;&gt; from teamworksams import get_form_schema, FormOption
+</span><span id="line-2">&gt;&gt;&gt; summary = get_form_schema(
+</span><span id="line-3">...     form = "Allergies",
+</span><span id="line-4">...     url = "https://example.smartabase.com/site",
+</span><span id="line-5">...     username = "user",
+</span><span id="line-6">...     password = "pass",
+</span><span id="line-7">...     option = FormOption(interactive_mode = True, field_details = True)
+</span><span id="line-8">... )
+</span><span id="line-9">... ℹ Fetching summary for form 'Training Log' (ID: 5285, Type: event)...
+</span><span id="line-10">... ✔ Retrieved summary for form 'Training Log'.
+</span><span id="line-11">...
+</span><span id="line-12">... Form Schema Summary: RPE Training Log
+</span><span id="line-13">... =====================================
+</span><span id="line-14">...
+</span><span id="line-15">... Form Details
+</span><span id="line-16">... ------------
+</span><span id="line-17">... - Form Name: RPE Training Log
+</span><span id="line-18">... - Form ID: 5285
+</span><span id="line-19">...
+</span><span id="line-20">... Sections
+</span><span id="line-21">... --------
+</span><span id="line-22">... - Total: 5
+</span><span id="line-23">... • Session Details
+</span><span id="line-24">... • Summary Calculations
+</span><span id="line-25">... • User Account Details
+</span><span id="line-26">... • Day of the Week
+</span><span id="line-27">... • Profile Details
+</span><span id="line-28">...
+</span><span id="line-29">... Required Fields
+</span><span id="line-30">... ---------------
+</span><span id="line-31">... - Total: 0
+</span><span id="line-32">... - No required fields found.
+</span><span id="line-33">...
+</span><span id="line-34">... Defaults to Last Known Value
+</span><span id="line-35">... ----------------------------
+</span><span id="line-36">... - Total: 0
+</span><span id="line-37">... - No fields default to the last known value.
+</span><span id="line-38">...
+</span><span id="line-39">... Linked Fields
+</span><span id="line-40">... -------------
+</span><span id="line-41">... - Total: 7
+</span><span id="line-42">...    • Sport
+</span><span id="line-43">...    • Position
+</span><span id="line-44">...    • Height
+</span><span id="line-45">...    • Dominant Hand
+</span><span id="line-46">...    • Dominant Foot
+</span><span id="line-47">...    • Preferred Language
+</span><span id="line-48">...    • Season
+</span><span id="line-49">...
+</span><span id="line-50">... Form Item Types
+</span><span id="line-51">... ---------------
+</span><span id="line-52">... - Total Unique Types: 14
+</span><span id="line-53">... - Dropdown: 1 field(s)
+</span><span id="line-54">...     • Session Type
+</span><span id="line-55">... - Number: 1 field(s)
+</span><span id="line-56">...     • Duration
+</span><span id="line-57">... - Single Selection: 1 field(s)
+</span><span id="line-58">...     • Rate your Perceived Exertion (RPE)
+</span><span id="line-59">... - Calculation: 5 field(s)
+</span><span id="line-60">...     • RPE
+</span><span id="line-61">...     • Session Load
+</span><span id="line-62">...     • Index
+</span><span id="line-63">...     • ACWR
+</span><span id="line-64">...     • Total ACWR
 </span></code></pre></div>
 </div>
-<section id="retrieved-summary-for-form-training-log">
-<h2>✔ Retrieved summary for form ‘Training Log’.<a class="headerlink" href="#retrieved-summary-for-form-training-log" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#retrieved-summary-for-form-training-log'"><span>#</span></a></h2>
-</section>
-<section id="form-schema-summary-rpe-training-log">
-<h2>Form Schema Summary: RPE Training Log<a class="headerlink" href="#form-schema-summary-rpe-training-log" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#form-schema-summary-rpe-training-log'"><span>#</span></a></h2>
-<section id="form-details">
-<h3>Form Details<a class="headerlink" href="#form-details" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#form-details'"><span>#</span></a></h3>
-<ul class="simple">
-<li><p>Form Name: RPE Training Log</p></li>
-<li><p>Form ID: 5285</p></li>
-</ul>
-</section>
-<section id="sections">
-<h3>Sections<a class="headerlink" href="#sections" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#sections'"><span>#</span></a></h3>
-<ul class="simple">
-<li><p>Total: 5</p></li>
-</ul>
-<ul class="simple">
-<li><p>Session Details</p></li>
-<li><p>Summary Calculations</p></li>
-<li><p>User Account Details</p></li>
-<li><p>Day of the Week</p></li>
-<li><p>Profile Details</p></li>
-</ul>
-</section>
-<section id="required-fields">
-<h3>Required Fields<a class="headerlink" href="#required-fields" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#required-fields'"><span>#</span></a></h3>
-<ul class="simple">
-<li><p>Total: 0</p></li>
-<li><p>No required fields found.</p></li>
-</ul>
-</section>
-<section id="defaults-to-last-known-value">
-<h3>Defaults to Last Known Value<a class="headerlink" href="#defaults-to-last-known-value" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#defaults-to-last-known-value'"><span>#</span></a></h3>
-<ul class="simple">
-<li><p>Total: 0</p></li>
-<li><p>No fields default to the last known value.</p></li>
-</ul>
-</section>
-<section id="linked-fields">
-<h3>Linked Fields<a class="headerlink" href="#linked-fields" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#linked-fields'"><span>#</span></a></h3>
-<ul class="simple">
-<li><p>Total: 7</p></li>
-</ul>
-<ul class="simple">
-<li><p>Sport</p></li>
-<li><p>Position</p></li>
-<li><p>Height</p></li>
-<li><p>Dominant Hand</p></li>
-<li><p>Dominant Foot</p></li>
-<li><p>Preferred Language</p></li>
-<li><p>Season</p></li>
-</ul>
-</section>
-<section id="form-item-types">
-<h3>Form Item Types<a class="headerlink" href="#form-item-types" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#form-item-types'"><span>#</span></a></h3>
-<ul class="simple">
-<li><p>Total Unique Types: 14</p></li>
-<li><dl class="simple">
-<dt>Dropdown: 1 field(s)</dt><dd><ul>
-<li><p>Session Type</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Number: 1 field(s)</dt><dd><ul>
-<li><p>Duration</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Single Selection: 1 field(s)</dt><dd><ul>
-<li><p>Rate your Perceived Exertion (RPE)</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Calculation: 5 field(s)</dt><dd><ul>
-<li><p>RPE</p></li>
-<li><p>Session Load</p></li>
-<li><p>Index</p></li>
-<li><p>ACWR</p></li>
-<li><p>Total ACWR</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>…</p>
-</section>
-</section>
 </dd></dl>
 <section id="additional-notes">
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
@@ -339,9 +298,9 @@ values), crucial for understanding form requirements before data operations.</p>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code>: Configuration options for schema retrieval.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code>: For listing accessible forms.</p></li>
-<li><p><span class="xref std std-ref">vignettes/managing_forms</span>: Form schema workflows.</p></li>
+<li><p><a class="reference external" href="../reference/form_option.html">FormOption()</a>: Configuration options for schema retrieval.</p></li>
+<li><p><a class="reference external" href="../reference/get_forms.html">get_forms()</a>: For listing accessible forms.</p></li>
+<li><p><a class="reference internal" href="../vignettes/managing_forms.html#managing-forms"><span class="std std-ref">Managing Forms</span></a>: Form schema workflows.</p></li>
 </ul>
 </section>
 </section>

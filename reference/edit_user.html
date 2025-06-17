@@ -160,61 +160,39 @@
 </nav>
 <div id="content" role="main">
 <section id="edit-user">
-<h1>edit_user<a class="headerlink" href="#edit-user" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>edit_user<a class="headerlink" href="#edit-user" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="teamworksams.user_main.edit_user">
-<span class="sig-prename descclassname"><span class="pre">teamworksams.user_main.</span></span><span class="sig-name descname"><span class="pre">edit_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="user_option.html#teamworksams.user_option.UserOption" title="teamworksams.user_option.UserOption"><span class="pre">UserOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../_modules/teamworksams/user_main.html#edit_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.user_main.edit_user" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.user_main.edit_user'"><span>#</span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">teamworksams.user_main.</span></span><span class="sig-name descname"><span class="pre">edit_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="user_option.html#teamworksams.user_option.UserOption" title="teamworksams.user_option.UserOption"><span class="pre">UserOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../_modules/teamworksams/user_main.html#edit_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.user_main.edit_user" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.user_main.edit_user'"><span>#</span></a></dt>
 <dd><p>Update user fields in an AMS instance.</p>
 <p>Updates specified fields for existing users identified by a user key (e.g., username,
-email), using the AMS API’s <code class="xref any docutils literal notranslate"><span class="pre">/api/v2/person/save</span></code> endpoint. The function retrieves
-complete user data to preserve unchanged fields, applies updates of only the fields provided
-from the mapping_df DataFrame, and returns a DataFrame of failed updates with reasons. Supports interactive
+email), using the AMS API’s <code class="xref py py-obj docutils literal notranslate"><span class="pre">/api/v2/person/save</span></code> endpoint. The function retrieves
+complete user data to preserve unchanged fields, applies updates from the mapping_df
+DataFrame, and returns a DataFrame of failed updates with reasons. Supports interactive
 feedback, including status messages and confirmation prompts, and allows caching for
-performance.</p>
+performance. See <a class="reference internal" href="../vignettes/user_management.html#user-management"><span class="std std-ref">User and Group Management</span></a> for user account workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mapping_df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>) – DataFrame containing a <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> column
-(e.g., ‘username’) and updatable columns (e.g., ‘first_name’, ‘email’,
-‘dob’, ‘sex’, ‘username’, ‘known_as’, ‘active’, ‘uuid’). Empty values are
-sent as empty strings. Must not be empty.</p></li>
-<li><p><strong>user_key</strong> (<em>str</em>) – Name of the identifier column in <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code>. Must be one of
-‘username’, ‘email’, ‘about’, or ‘uuid’. For example, ‘username’ matches
-users by their AMS username.</p></li>
-<li><p><strong>url</strong> (<em>str</em>) – The AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’).
-Must include a valid site name.</p></li>
-<li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Username for authentication. If None, uses
-<span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_USERNAME</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
-<li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses
-<span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
-<li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code>, optional) – Configuration options, including
-<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for status messages and progress bars, and <a class="reference internal" href="event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a> to
-reuse a client. The <a class="reference internal" href="user_option.html#teamworksams.user_option.UserOption.columns" title="teamworksams.user_option.UserOption.columns"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">columns</span></code></a> option is ignored. Defaults to None (uses
-default <code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code> with <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>).</p></li>
-<li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
-<code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
+<li><p><strong>mapping_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing a user_key column (e.g., ‘username’) and updatable columns (e.g., ‘first_name’, ‘email’, ‘dob’, ‘sex’, ‘username’, ‘known_as’, ‘active’, ‘uuid’). Empty values are sent as empty strings. Must not be empty.</p></li>
+<li><p><strong>user_key</strong> (<em>str</em>) – Identifier column in mapping_df. Must be one of ‘username’, ‘email’, ‘about’, or ‘uuid’. For example, ‘username’ matches users by their AMS username.</p></li>
+<li><p><strong>url</strong> (<em>str</em>) – AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’). Must include a valid site name.</p></li>
+<li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Username for authentication. If None, uses AMS_USERNAME environment variable or keyring credentials. Defaults to None.</p></li>
+<li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses AMS_PASSWORD environment variable or keyring credentials. Defaults to None.</p></li>
+<li><p><strong>option</strong> (<a class="reference internal" href="user_option.html#teamworksams.user_option.UserOption" title="teamworksams.user_option.UserOption"><em>UserOption</em></a><em>, </em><em>optional</em>) – Configuration options, including interactive_mode for status messages and cache to reuse a client. The columns option is ignored. Defaults to None (uses default UserOption with interactive_mode=True).</p></li>
+<li><p><strong>client</strong> (<a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><em>AMSClient</em></a><em>, </em><em>optional</em>) – Pre-authenticated client from teamworksams.utils.get_client. If None, a new client is created. Defaults to None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl>
-<dt>A pandas DataFrame containing failed updates with columns:</dt><dd><ul class="simple">
-<li><p>’user_id’: The user ID (if matched) or None.</p></li>
-<li><p>’user_key’: The user identifier value that failed to update.</p></li>
-<li><p>’reason’: The reason for the failure (e.g., ‘User not found’, ‘API request failed’).</p></li>
-</ul>
-<p>Returns an empty DataFrame if all updates succeed.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>DataFrame of failed updates with columns ‘user_id’ (ID if matched or None), ‘user_key’ (identifier value), and ‘reason’ (failure reason). Empty if all updates succeed.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p>
+<dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> is invalid, <a class="reference internal" href="event_filter.html#teamworksams.export_filter.EventFilter.user_key" title="teamworksams.export_filter.EventFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> is unsupported,
-    no users are found, authentication fails, or the API request fails.</p></li>
-<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">mapping_df</span></code> is empty or lacks valid columns.</p></li>
+<li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If mapping_df is invalid, user_key is unsupported, no users are found, authentication fails, or the API request fails.</p></li>
+<li><p><strong>ValueError</strong> – If mapping_df is empty or lacks valid columns.</p></li>
 </ul>
 </dd>
 </dl>
@@ -260,9 +238,9 @@ large updates, enhancing visibility in interactive scripts.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UserOption</span></code>: Configuration options for user operations.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">create_user()</span></code>: For creating new users.</p></li>
-<li><p><span class="xref std std-ref">vignettes/user_management</span>: User update workflows.</p></li>
+<li><p><a class="reference external" href="../reference/user_option.html">UserOption()</a>: Configuration options for user operations.</p></li>
+<li><p><a class="reference external" href="../reference/create_user.html">create_user()</a>: For creating new users.</p></li>
+<li><p><a class="reference internal" href="../vignettes/user_management.html#user-management"><span class="std std-ref">User and Group Management</span></a>: User update workflows.</p></li>
 </ul>
 </section>
 </section>

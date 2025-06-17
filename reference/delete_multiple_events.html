@@ -160,16 +160,16 @@
 </nav>
 <div id="content" role="main">
 <section id="delete-multiple-events">
-<h1>delete_multiple_events<a class="headerlink" href="#delete-multiple-events" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>delete_multiple_events<a class="headerlink" href="#delete-multiple-events" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="teamworksams.delete_main.delete_multiple_events">
 <span class="sig-prename descclassname"><span class="pre">teamworksams.delete_main.</span></span><span class="sig-name descname"><span class="pre">delete_multiple_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption" title="teamworksams.delete_option.DeleteEventOption"><span class="pre">DeleteEventOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/teamworksams/delete_main.html#delete_multiple_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.delete_main.delete_multiple_events" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.delete_main.delete_multiple_events'"><span>#</span></a></dt>
 <dd><p>Delete multiple events from an AMS instance.</p>
 <p>Sends a request to the AMS API’s event/deleteAll endpoint to remove a list of events
 specified by their IDs, returning a message indicating success or failure. Requires
-valid authentication and a non-empty list of positive integer <code class="xref any docutils literal notranslate"><span class="pre">event_ids</span></code>, obtainable
-via <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>. In interactive mode, prompts for confirmation and provides
-feedback. See <span class="xref std std-ref">vignettes/deleting_data</span> for deletion workflows.</p>
+valid authentication and a non-empty list of positive integer <code class="xref py py-obj docutils literal notranslate"><span class="pre">event_ids</span></code>, obtainable
+via get_event_data. In interactive mode, prompts for confirmation and provides
+feedback. See <a class="reference internal" href="../vignettes/deleting_data.html#deleting-data"><span class="std std-ref">Deleting Data</span></a> for deletion workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -182,11 +182,11 @@ include a valid site name.</p></li>
 <li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to
 None.</p></li>
-<li><p><strong>option</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code>, optional) – Configuration options, including
-<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a> for confirmation prompts and status messages (e.g.,
+<li><p><strong>option</strong> (<a class="reference internal" href="delete_event_option.html#teamworksams.delete_option.DeleteEventOption" title="teamworksams.delete_option.DeleteEventOption"><em>DeleteEventOption</em></a><em>, </em><em>optional</em>) – Configuration options, including
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode</span></code> for confirmation prompts and status messages (e.g.,
 “SUCCESS: Deleted 3 events”). Defaults to None (uses default
-<code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> with <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>).</p></li>
-<li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> with <code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>).</p></li>
+<li><p><strong>client</strong> (<a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><em>AMSClient</em></a><em>, </em><em>optional</em>) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to
 None.</p></li>
 </ul>
@@ -227,10 +227,10 @@ None.</p></li>
 <section id="additional-notes">
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> to collect <code class="xref any docutils literal notranslate"><span class="pre">event_ids</span></code> for batch deletion,
-ensuring all IDs are valid to avoid <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
+<li><p>Use <a class="reference external" href="../reference/get_event_data.html">get_event_data()</a> to collect <code class="xref py py-obj docutils literal notranslate"><span class="pre">event_ids</span></code> for batch deletion,
+ensuring all IDs are valid to avoid <a class="reference external" href="../reference/ams_error.html">AMSError()</a>.</p></li>
 <li><p>Batch deletion is more efficient than multiple calls to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code>, but confirmation prompts remain critical for
+<a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a>, but confirmation prompts remain critical for
 safety.</p></li>
 <li><p>The returned string (e.g., “SUCCESS: Deleted 3 events”) indicates the
 overall result; individual failures may require API-level debugging.</p></li>
@@ -239,10 +239,10 @@ overall result; individual failures may require API-level debugging.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code>: Configuration options for deletion.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code>: For single event deletion.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code>: For retrieving event IDs.</p></li>
-<li><p><span class="xref std std-ref">vignettes/deleting_data</span>: Batch event deletion workflows.</p></li>
+<li><p><a class="reference external" href="../reference/delete_event_option.html">delete_event_option()</a>: Configuration options for deletion.</p></li>
+<li><p><a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a>: For single event deletion.</p></li>
+<li><p><a class="reference external" href="../reference/get_event_data.html">get_event_data()</a>: For retrieving event IDs.</p></li>
+<li><p><a class="reference internal" href="../vignettes/deleting_data.html#deleting-data"><span class="std std-ref">Deleting Data</span></a>: Batch event deletion workflows.</p></li>
 </ul>
 </section>
 </section>

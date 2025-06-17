@@ -1,24 +1,31 @@
+.. _delete_event_data_ref: ../reference/delete_event_data.html
+.. _delete_event_option_ref: ../reference/delete_event_option.html
+.. _delete_multiple_events_ref: ../reference/delete_multiple_events.html
+.. _get_event_data_ref: ../reference/get_event_data.html
+
+.. _deleting_data:
+
 Deleting Data
 =============
 
 This vignette provides a guide to deleting event data in Teamworks AMS using
-**teamworksams**, covering :func:`delete_event_data` and
-:func:`delete_multiple_events`. It outlines
+**teamworksams**, covering `delete_event_data() <delete_event_data_ref_>`_ and
+`delete_multiple_events() <delete_multiple_events_ref_>`_. It outlines
 safe workflows for removing single or multiple events from AMS Event Forms, with
 Python/pandas examples. emphasizing safety features like confirmation prompts and integration with
-:func:`get_event_data` for event ID retrieval. See :ref:`reference` for detailed
-documentation and :ref:`vignettes/getting_started` if you haven't already.
+`get_event_data() <get_event_data_ref_>`_ for event ID retrieval. See :ref:`reference` for detailed
+documentation and :ref:`getting_started` if you haven't already.
 
 Overview
 --------
 
 **teamworksams** supports event deletion with two key functions:
 
-- :func:`delete_event_data`: Deletes a single event by ID.
-- :func:`delete_multiple_events`: Deletes multiple events by a list of IDs.
+- `delete_event_data() <delete_event_data_ref_>`_: Deletes a single event by ID.
+- `delete_multiple_events() <delete_multiple_events_ref_>`_: Deletes multiple events by a list of IDs.
 
 These functions are used for data cleanup, removing outdated or erroneous events.
-Deletion is permanent, so the :class:`DeleteEventOption` provides interactive
+Deletion is permanent, so the `delete_event_option() <delete_event_option_ref_>`_ provides interactive
 confirmation prompts for safety. Examples use the placeholder URL
 ``https://example.smartabase.com/site`` and credentials in a ``.env`` file.
 
@@ -26,7 +33,7 @@ Prerequisites
 -------------
 
 Ensure **teamworksams** is installed and credentials are configured, as in
-:ref:`vignettes/getting_started`. Use a ``.env`` file:
+:ref:`getting_started`. Use a ``.env`` file:
 
 .. code-block:: text
    :caption: .env
@@ -43,12 +50,12 @@ Load credentials:
    load_dotenv()
 
 Dependencies (installed with **teamworksams**): ``pandas``, ``requests``,
-``python-dotenv``, ``tqdm``. Use :func:`get_event_data` to retrieve valid event IDs.
+``python-dotenv``, ``tqdm``. Use `get_event_data() <get_event_data_ref_>`_ to retrieve valid event IDs.
 
 Deleting a Single Event
 -----------------------
 
-Use :func:`delete_event_data` to remove a single event by its ID:
+Use `delete_event_data() <delete_event_data_ref_>`_ to remove a single event by its ID:
 
 **Retrieving Event ID**
 
@@ -90,12 +97,12 @@ Delete the event with confirmation:
    ✔ SUCCESS: Deleted 134273
    SUCCESS: Deleted 134273
 
-See :func:`delete_event_data` and :class:`DeleteEventOption` for details.
+See `delete_event_data() <delete_event_data_ref_>`_ and `delete_event_option() <delete_event_option_ref_>`_ for details.
 
 Deleting Multiple Events
 ------------------------
 
-Use :func:`delete_multiple_events` to remove multiple events by their IDs:
+Use `delete_multiple_events() <delete_multiple_events_ref_>`_ to remove multiple events by their IDs:
 
 **Retrieving Event IDs**
 
@@ -135,7 +142,7 @@ Delete multiple events with confirmation:
    ✔ SUCCESS: Deleted 3 events
    SUCCESS: Deleted 3 events
 
-See :func:`delete_multiple_events` and :class:`DeleteEventOption` for details.
+See `delete_multiple_events() <delete_multiple_events_ref_>`_ and `delete_event_option() <delete_event_option_ref_>`_ for details.
 
 Error Handling
 --------------
@@ -163,14 +170,14 @@ Common errors include:
 Best Practices
 --------------
 
-- **Validate Event IDs**: Use :func:`get_event_data` to ensure `event_id` values
+- **Validate Event IDs**: Use `get_event_data() <get_event_data_ref_>`_ to ensure `event_id` values
   are valid before deletion.
 - **Use Confirmation**: Enable ``option.interactive_mode=True`` to prompt for
   confirmation, preventing accidental deletions.
-- **Batch Deletion**: Prefer :func:`delete_multiple_events` for efficiency when
+- **Batch Deletion**: Prefer `delete_multiple_events() <delete_multiple_events_ref_>`_ for efficiency when
   removing multiple events.
 - **Log Results**: Capture returned messages for auditing deletion outcomes.
-- **Test First**: Filter events with :func:`get_event_data` to review before
+- **Test First**: Filter events with `get_event_data() <get_event_data_ref_>`_ to review before
   deleting.
 
 Next Steps

@@ -160,15 +160,15 @@
 </nav>
 <div id="content" role="main">
 <section id="delete-database-entry">
-<h1>delete_database_entry<a class="headerlink" href="#delete-database-entry" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>delete_database_entry<a class="headerlink" href="#delete-database-entry" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="teamworksams.database_main.delete_database_entry">
 <span class="sig-prename descclassname"><span class="pre">teamworksams.database_main.</span></span><span class="sig-name descname"><span class="pre">delete_database_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_entry_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><span class="pre">AMSClient</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/teamworksams/database_main.html#delete_database_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.database_main.delete_database_entry" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.database_main.delete_database_entry'"><span>#</span></a></dt>
 <dd><p>Delete a specific database entry from an AMS instance.</p>
 <p>Sends a request to the AMS API to delete the database entry with the specified ID,
 returning True if successful. Requires valid credentials and a valid entry ID,
-typically obtained from <a class="reference internal" href="get_database.html#teamworksams.database_main.get_database" title="teamworksams.database_main.get_database"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code></a>. See
-<span class="xref std std-ref">vignettes/database_operations</span> for database workflows.</p>
+typically obtained from get_database. See
+<a class="reference internal" href="../vignettes/database_operations.html#database-operations"><span class="std std-ref">Database Operations</span></a> for database workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -180,7 +180,7 @@ include a valid site name.</p></li>
 <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_USERNAME</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
 <li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
-<li><p><strong>client</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>, optional) – Pre-authenticated client from
+<li><p><strong>client</strong> (<a class="reference internal" href="ams_client.html#teamworksams.utils.AMSClient" title="teamworksams.utils.AMSClient"><em>AMSClient</em></a><em>, </em><em>optional</em>) – Pre-authenticated client from
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>. If None, a new client is created. Defaults to None.</p></li>
 </ul>
 </dd>
@@ -194,7 +194,7 @@ include a valid site name.</p></li>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If authentication fails, the API request fails, or the
     deletion fails.</p></li>
-<li><p><strong>ValueError</strong> – If <code class="xref any docutils literal notranslate"><span class="pre">database_entry_id</span></code> is negative or not an integer.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="xref py py-obj docutils literal notranslate"><span class="pre">database_entry_id</span></code> is negative or not an integer.</p></li>
 </ul>
 </dd>
 </dl>
@@ -215,8 +215,8 @@ include a valid site name.</p></li>
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">database_entry_id</span></code> must be a valid ID from the AMS database form,
-obtainable via <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>; invalid IDs raise <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
-<li><p>Use a pre-authenticated <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> with <code class="docutils literal notranslate"><span class="pre">client</span></code> to reduce
+obtainable via <a class="reference external" href="../reference/get_database.html">get_database()</a>; invalid IDs raise <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
+<li><p>Use a pre-authenticated <a class="reference external" href="../reference/ams_client.html">AMSClient()</a> with <code class="docutils literal notranslate"><span class="pre">client</span></code> to reduce
 authentication overhead in batch deletions.</p></li>
 <li><p>Deletion is permanent; ensure correct ID before executing.</p></li>
 </ul>
@@ -224,8 +224,8 @@ authentication overhead in batch deletions.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>: For retrieving entry IDs.</p></li>
-<li><p><span class="xref std std-ref">vignettes/database_operations</span>: Database workflows.</p></li>
+<li><p><a class="reference external" href="../reference/get_database.html">get_database()</a>: For retrieving entry IDs.</p></li>
+<li><p><a class="reference internal" href="../vignettes/database_operations.html#database-operations"><span class="std std-ref">Database Operations</span></a>: Database workflows.</p></li>
 </ul>
 </section>
 </section>

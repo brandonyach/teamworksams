@@ -159,16 +159,16 @@
 </nav>
 <div id="content" role="main">
 <section id="deleteeventoption">
-<h1>DeleteEventOption<a class="headerlink" href="#deleteeventoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="delete-event-option"></span><h1>DeleteEventOption<a class="headerlink" href="#deleteeventoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.delete_option.DeleteEventOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.delete_option.</span></span><span class="sig-name descname"><span class="pre">DeleteEventOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/delete_option.html#DeleteEventOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.delete_option.DeleteEventOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.delete_option.DeleteEventOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for configuring event data deletion.</p>
-<p>Customizes the behavior of <a class="reference internal" href="delete_event_data.html#teamworksams.delete_main.delete_event_data" title="teamworksams.delete_main.delete_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.delete_main.delete_event_data()</span></code></a> and
-<a class="reference internal" href="delete_multiple_events.html#teamworksams.delete_main.delete_multiple_events" title="teamworksams.delete_main.delete_multiple_events"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.delete_main.delete_multiple_events()</span></code></a>, controlling whether
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>, controlling whether
 interactive feedback, such as confirmation prompts and status messages, is enabled.
-Ensures safe deletion of AMS events. See <span class="xref std std-ref">vignettes/deleting_data</span> for
+Ensures safe deletion of AMS events. See <a class="reference internal" href="../vignettes/deleting_data.html#deleting-data"><span class="std std-ref">Deleting Data</span></a> for
 deletion workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -213,17 +213,17 @@ False for silent execution in automated scripts. Defaults to True.</p>
 preventing accidental data loss, and to display status messages like
 “SUCCESS: Deleted 134273”.</p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">interactive_mode=False</span></code> for automated scripts where silent execution
-is preferred, but ensure robust error handling with <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
-<li><p>Use with <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code> for
+is preferred, but ensure robust error handling with <a class="reference external" href="../reference/ams_error.html">AMSError()</a>.</p></li>
+<li><p>Use with <a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a> or <a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a> for
 safe event deletion.</p></li>
 </ul>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="delete_event_data.html#teamworksams.delete_main.delete_event_data" title="teamworksams.delete_main.delete_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.delete_main.delete_event_data()</span></code></a>: Function for single event deletion.</p></li>
-<li><p><a class="reference internal" href="delete_multiple_events.html#teamworksams.delete_main.delete_multiple_events" title="teamworksams.delete_main.delete_multiple_events"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.delete_main.delete_multiple_events()</span></code></a>: Function for batch event deletion.</p></li>
-<li><p><span class="xref std std-ref">vignettes/deleting_data</span>: Event deletion workflows.</p></li>
+<li><p><a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a>: Function for single event deletion.</p></li>
+<li><p><a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a>: Function for batch event deletion.</p></li>
+<li><p><a class="reference internal" href="../vignettes/deleting_data.html#deleting-data"><span class="std std-ref">Deleting Data</span></a>: Event deletion workflows.</p></li>
 </ul>
 </section>
 </section>

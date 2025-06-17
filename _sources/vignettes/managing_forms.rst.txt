@@ -1,26 +1,33 @@
+.. _get_forms_ref: ../reference/get_forms.html
+.. _get_form_schema_ref: ../reference/get_form_schema.html
+.. _form_option_ref: ../reference/form_option.html
+.. _insert_event_data_ref: ../reference/insert_event_data.html
+
+.. _managing_forms:
+
 Managing Forms
 ==============
 
 This vignette provides a concise guide to managing AMS forms using **teamworksams**,
-covering :func:`get_forms` and :func:`get_form_schema`. It outlines workflows for listing accessible forms and summarizing form schemas
+covering `get_forms() <get_forms_ref_>`_ and `get_form_schema() <get_form_schema_ref_>`_. It outlines workflows for listing accessible forms and summarizing form schemas
 to understand their structure (e.g., sections, fields, types). These functions support
 one-off tasks like auditing or preparing for data operations, with simple Python/pandas
 examples. See :ref:`reference` for detailed documentation and
-:ref:`vignettes/exporting_data` for related tasks.
+:ref:`exporting_data` for related tasks.
 
 Overview
 --------
 
 **teamworksams** enables exploration of AMS forms with two key functions:
 
-- :func:`get_forms`: Retrieves a :class:`pandas.DataFrame` listing all forms accessible
+- `get_forms() <get_forms_ref_>`_: Retrieves a :class:`pandas.DataFrame` listing all forms accessible
   to the user, including IDs, names, and types (e.g., event, profile, database).
-- :func:`get_form_schema`: Summarizes a form’s schema as a formatted string or raw
+- `get_form_schema() <get_form_schema_ref_>`_: Summarizes a form’s schema as a formatted string or raw
   dictionary, detailing sections, fields, and types.
 
 These functions are typically used for administrative tasks, such as auditing forms or
 understanding field requirements before importing/exporting data. The
-:class:`FormOption` customizes behavior, like enabling interactive feedback. Examples use
+`FormOption() <form_option_ref_>`_ customizes behavior, like enabling interactive feedback. Examples use
 the placeholder URL ``https://example.smartabase.com/site`` and credentials in a
 ``.env`` file.
 
@@ -28,7 +35,7 @@ Prerequisites
 -------------
 
 Ensure **teamworksams** is installed and credentials are set, as in
-:ref:`vignettes/getting_started`. Use a ``.env`` file:
+:ref:`getting_started`. Use a ``.env`` file:
 
 .. code-block:: text
    :caption: .env
@@ -48,9 +55,9 @@ Dependencies (installed with **teamworksams**): ``pandas``, ``requests``,
 ``python-dotenv``, ``tqdm``.
 
 Listing Accessible Forms
--------------
+------------------------
 
-Use :func:`get_forms` to retrieve a list of accessible forms:
+Use `get_forms() <get_forms_ref_>`_ to retrieve a list of accessible forms:
 
 .. code-block:: python
 
@@ -81,12 +88,12 @@ Filter the DataFrame to find specific form types:
    print(event_forms["form_name"].tolist())
    ['Training Log']
 
-See :func:`get_forms` and :class:`FormOption` for details.
+See `get_forms() <get_forms_ref_>`_ and `FormOption() <form_option_ref_>`_ for details.
 
 Inspecting Schemas
 ------------------
 
-Use :func:`get_form_schema` to summarize a form’s schema:
+Use `get_form_schema() <get_form_schema_ref_>`_ to summarize a form’s schema:
 
 .. code-block:: python
 
@@ -207,7 +214,7 @@ Use :func:`get_form_schema` to summarize a form’s schema:
       ...
 
 
-Set `field_details` within :class:`FormOption` to  include detailed field
+Set `field_details` within `FormOption() <form_option_ref_>`_ to  include detailed field
             information, such as options, scores, date ranges, etc. in the schema summary,
             increasing verbosity:
 
@@ -223,10 +230,10 @@ Set `field_details` within :class:`FormOption` to  include detailed field
    )
    print(detailed_schema.keys())
 
-See :func:`get_form_schema` and :class:`FormOption` for output options.
+See `get_form_schema() <get_form_schema_ref_>`_ and `FormOption() <form_option_ref_>`_ for output options.
 
 
-Set `include_instructions` within :class:`FormOption` to include section
+Set `include_instructions` within `FormOption() <form_option_ref_>`_ to include section
             and field instructions in the schema summary, useful for documentation:
 
 .. code-block:: python
@@ -241,7 +248,7 @@ Set `include_instructions` within :class:`FormOption` to include section
    )
    print(instructions_schema.keys())
 
-See :func:`get_form_schema` and :class:`FormOption` for output options.
+See `get_form_schema() <get_form_schema_ref_>`_ and `FormOption() <form_option_ref_>`_ for output options.
 
 
 Retrieve raw schema for custom processing:
@@ -256,7 +263,7 @@ Retrieve raw schema for custom processing:
    print(raw_schema.keys())
    dict_keys(['form_id', 'name', 'type', 'sections', ...])
 
-See :func:`get_form_schema` and :class:`FormOption` for output options.
+See `get_form_schema() <get_form_schema_ref_>`_ and `FormOption() <form_option_ref_>`_ for output options.
 
 Error Handling
 --------------
@@ -277,14 +284,14 @@ Form functions raise :class:`AMSError` with descriptive messages:
 Best Practices
 --------------
 
-- **Verify Form Names**: Use :func:`get_forms` to confirm `form` name before
-  calling :func:`get_form_schema`.
+- **Verify Form Names**: Use `get_forms() <get_forms_ref_>`_ to confirm `form` name before
+  calling `get_form_schema() <get_form_schema_ref_>`_.
 - **Use Caching**: Enable ``option.cache=True`` for efficiency in repeated
   form queries.
-- **Raw Output**: Set ``option.raw_output=True`` for :func:`get_form_schema`
+- **Raw Output**: Set ``option.raw_output=True`` for `get_form_schema() <get_form_schema_ref_>`_
   when integrating with custom tools.
 - **Detailed Summaries**: Use ``option.field_details=True`` to understand
-  field options before data operations (e.g., :func:`insert_event_data`).
+  field options before data operations (e.g., `insert_event_data() <insert_event_data_ref_>`_).
 - **Interactive Mode**: Enable ``option.interactive_mode=True`` for feedback
   during administrative tasks.
 

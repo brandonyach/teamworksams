@@ -1,3 +1,7 @@
+.. _update_event_data_ref: ../reference/update_event_data.html
+
+.. _update_event_option:
+
 UpdateEventOption
 =================
 
@@ -19,5 +23,5 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.import_main.update_event_data`: Function using `UpdateEventOption`.
-- :ref:`vignettes/importing_data`: Event update workflows.
+- `update_event_data() <update_event_data_ref_>`_: Function using `UpdateEventOption`.
+- :ref:`importing_data`: Event update workflows.

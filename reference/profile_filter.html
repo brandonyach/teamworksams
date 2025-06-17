@@ -160,14 +160,14 @@
 </nav>
 <div id="content" role="main">
 <section id="profilefilter">
-<h1>ProfileFilter<a class="headerlink" href="#profilefilter" title="Link to this heading"><span>#</span></a></h1>
+<span id="profile-filter"></span><h1>ProfileFilter<a class="headerlink" href="#profilefilter" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.export_filter.ProfileFilter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.export_filter.</span></span><span class="sig-name descname"><span class="pre">ProfileFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/export_filter.html#ProfileFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.export_filter.ProfileFilter" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.export_filter.ProfileFilter'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Filter for selecting users in profile data export.</p>
 <p>Defines criteria for filtering profiles retrieved by
-<a class="reference internal" href="get_profile_data.html#teamworksams.export_main.get_profile_data" title="teamworksams.export_main.get_profile_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.get_profile_data()</span></code></a>, allowing selection based on user
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_profile_data()</span></code>, allowing selection based on user
 attributes (e.g., username, group). Validates filter parameters for compatibility
 with the AMS API.</p>
 <dl class="field-list simple">
@@ -227,14 +227,14 @@ If None, no filtering is applied. Defaults to None.</p></li>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">user_key</span></code> must be one of ‘username’, ‘email’, ‘group’, or ‘about’;
 <code class="docutils literal notranslate"><span class="pre">user_value</span></code> is case-sensitive and supports lists (e.g., [‘TeamA’]).</p></li>
-<li><p>Use with <a class="reference internal" href="get_profile_data.html#teamworksams.export_main.get_profile_data" title="teamworksams.export_main.get_profile_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.get_profile_data()</span></code></a> to limit profiles to
+<li><p>Use with <a class="reference external" href="../reference/get_profile_data.html">get_profile_data()</a> to limit profiles to
 specific users, reducing API load for large datasets.</p></li>
 </ul>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="get_profile_data.html#teamworksams.export_main.get_profile_data" title="teamworksams.export_main.get_profile_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.get_profile_data()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.export_filter.ProfileFilter" title="teamworksams.export_filter.ProfileFilter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ProfileFilter</span></code></a>.</p></li>
+<li><p><a class="reference external" href="../reference/get_profile_data.html">get_profile_data()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">ProfileFilter</span></code>.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileOption</span></code>: Configuration options for profile retrieval.</p></li>
 </ul>
 </section>

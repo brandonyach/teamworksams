@@ -1,3 +1,11 @@
+.. _get_user_ref: ../reference/get_user.html
+.. _get_event_data_ref: ../reference/get_event_data.html
+.. _upload_and_attach_to_events_ref: ../reference/upload_and_attach_to_events.html
+.. _upload_and_attach_to_avatars_ref: ../reference/upload_and_attach_to_avatars.html
+.. _file_upload_option_ref: ../reference/file_option.html
+
+.. _upload_and_attach_to_events:
+
 upload_and_attach_to_events
 ===========================
 
@@ -20,6 +28,6 @@ Additional Notes
 See Also
 --------
 
-- :class:`FileUploadOption`: Configuration options for file uploads.
-- :func:`get_event_data`: For retrieving event data to prepare `mapping_df`.
-- :ref:`vignettes/uploading_files`: Event file upload workflows.
+- `FileUploadOption() <file_upload_option_ref_>`_: Configuration options for file uploads.
+- `get_event_data() <get_event_data_ref_>`_: For retrieving event data to prepare `mapping_df`.
+- :ref:`uploading_files`: Event file upload workflows.

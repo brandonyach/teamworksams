@@ -160,16 +160,16 @@
 </nav>
 <div id="content" role="main">
 <section id="userfilter">
-<h1>UserFilter<a class="headerlink" href="#userfilter" title="Link to this heading"><span>#</span></a></h1>
+<span id="user-filter"></span><h1>UserFilter<a class="headerlink" href="#userfilter" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.user_filter.UserFilter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.user_filter.</span></span><span class="sig-name descname"><span class="pre">UserFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/user_filter.html#UserFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.user_filter.UserFilter" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.user_filter.UserFilter'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Filter for selecting users in user data export.</p>
-<p>Defines criteria for filtering users retrieved by <a class="reference internal" href="get_user.html#teamworksams.user_main.get_user" title="teamworksams.user_main.get_user"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.user_main.get_user()</span></code></a>,
+<p>Defines criteria for filtering users retrieved by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>,
 allowing selection based on attributes like username, email, group, or about field.
 Validates the filter key to ensure it is supported. See
-<span class="xref std std-ref">vignettes/user_management</span> for filtering workflows.</p>
+<a class="reference internal" href="../vignettes/user_management.html#user-management"><span class="std std-ref">User and Group Management</span></a> for filtering workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -177,8 +177,8 @@ Validates the filter key to ensure it is supported. See
 ‘email’, ‘group’, or ‘about’. For example, ‘group’ filters by group
 membership. If None, no filtering is applied. Defaults to None.</p></li>
 <li><p><strong>user_value</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em><em>]</em>) – Value(s) to match for
-<a class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key" title="teamworksams.user_filter.UserFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a>. For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for
-<code class="xref any docutils literal notranslate"><span class="pre">user_key="group"</span></code> matches users in those groups. Case-sensitive. If None,
+<a class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key" title="teamworksams.user_filter.UserFilter.user_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_key</span></code></a>. For example, ‘TeamA’ or [‘TeamA’, ‘TeamB’] for
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">user_key="group"</span></code> matches users in those groups. Case-sensitive. If None,
 no filtering is applied. Defaults to None.</p></li>
 </ul>
 </dd>
@@ -205,7 +205,7 @@ no filtering is applied. Defaults to None.</p></li>
 </dd></dl>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If <a class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key" title="teamworksams.user_filter.UserFilter.user_key"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">user_key</span></code></a> is not ‘username’, ‘email’, ‘group’, or
+<dd class="field-odd"><p><strong>ValueError</strong> – If <a class="reference internal" href="#teamworksams.user_filter.UserFilter.user_key" title="teamworksams.user_filter.UserFilter.user_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_key</span></code></a> is not ‘username’, ‘email’, ‘group’, or
     ‘about’.</p>
 </dd>
 </dl>
@@ -232,7 +232,7 @@ no filtering is applied. Defaults to None.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><span class="xref std std-ref">vignettes/user_management</span>: User update workflows.</p></li>
+<li><p><a class="reference internal" href="../vignettes/user_management.html#user-management"><span class="std std-ref">User and Group Management</span></a>: User update workflows.</p></li>
 </ul>
 </section>
 </section>

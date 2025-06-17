@@ -232,7 +232,7 @@
 </span><span id="line-19"><span class="sd">    Retrieves metadata for all forms accessible to the authenticated user, returning a</span>
 </span><span id="line-20"><span class="sd">    :class:`pandas.DataFrame` with columns like &#39;form_id&#39;, &#39;form_name&#39;, and &#39;type&#39; (e.g.,</span>
 </span><span id="line-21"><span class="sd">    event, profile, database). Ideal for auditing or selecting forms for further operations.</span>
-</span><span id="line-22"><span class="sd">    Supports interactive feedback and caching. See :ref:`vignettes/managing_forms` for</span>
+</span><span id="line-22"><span class="sd">    Supports interactive feedback and caching. See :ref:`managing_forms` for</span>
 </span><span id="line-23"><span class="sd">    form management workflows.</span>
 </span><span id="line-24">
 </span><span id="line-25"><span class="sd">    Args:</span>
@@ -242,12 +242,12 @@
 </span><span id="line-29"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-30"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
 </span><span id="line-31"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-32"><span class="sd">        option (:class:`FormOption`, optional): Configuration options, including</span>
+</span><span id="line-32"><span class="sd">        option (FormOption, optional): Configuration options, including</span>
 </span><span id="line-33"><span class="sd">            `interactive_mode` for status messages (e.g., &quot;Retrieved 5 forms&quot;), `cache`</span>
 </span><span id="line-34"><span class="sd">            to reuse API responses, `raw_output`, `field_details`, and</span>
 </span><span id="line-35"><span class="sd">            `include_instructions` (used in other form functions). Defaults to None</span>
 </span><span id="line-36"><span class="sd">            (uses default :class:`FormOption`).</span>
-</span><span id="line-37"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-37"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-38"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-39">
 </span><span id="line-40"><span class="sd">    Returns:</span>
@@ -316,7 +316,7 @@
 </span><span id="line-100"><span class="sd">    default-to-last-value fields, linked fields, and item types. Returns a formatted</span>
 </span><span id="line-101"><span class="sd">    string summary for console output (ideal for Jupyter notebooks) or the raw API</span>
 </span><span id="line-102"><span class="sd">    response as a dictionary if `option.raw_output` is True. Supports interactive</span>
-</span><span id="line-103"><span class="sd">    feedback and detailed output options. See :ref:`vignettes/managing_forms` for form</span>
+</span><span id="line-103"><span class="sd">    feedback and detailed output options. See :ref:`managing_forms` for form</span>
 </span><span id="line-104"><span class="sd">    management workflows.</span>
 </span><span id="line-105">
 </span><span id="line-106"><span class="sd">    Args:</span>
@@ -328,12 +328,12 @@
 </span><span id="line-112"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-113"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
 </span><span id="line-114"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-115"><span class="sd">        option (:class:`FormOption`, optional): Configuration options, including</span>
+</span><span id="line-115"><span class="sd">        option (FormOption, optional): Configuration options, including</span>
 </span><span id="line-116"><span class="sd">            `interactive_mode` for status messages, `cache` to reuse API responses,</span>
 </span><span id="line-117"><span class="sd">            `raw_output` for raw API data, `field_details` for field options/scores,</span>
 </span><span id="line-118"><span class="sd">            and `include_instructions` for section/field instructions. Defaults to None</span>
 </span><span id="line-119"><span class="sd">            (uses default :class:`FormOption`).</span>
-</span><span id="line-120"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-120"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-121"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-122">
 </span><span id="line-123"><span class="sd">    Returns:</span>
@@ -347,7 +347,7 @@
 </span><span id="line-131"><span class="sd">            - Linked fields (count, names).</span>
 </span><span id="line-132"><span class="sd">            - Form item types (count of unique types, count per type, field names per type).</span>
 </span><span id="line-133"><span class="sd">            - Optionally, field instructions and details (options, scores, date selection) if</span>
-</span><span id="line-134"><span class="sd">              enabled in `option`.</span>
+</span><span id="line-134"><span class="sd">            enabled in `option`.</span>
 </span><span id="line-135">
 </span><span id="line-136"><span class="sd">    Raises:</span>
 </span><span id="line-137"><span class="sd">        :class:`AMSError`: If the form_name is empty, the form is not found, authentication fails,</span>
@@ -362,98 +362,97 @@
 </span><span id="line-146"><span class="sd">        ...     password = &quot;pass&quot;,</span>
 </span><span id="line-147"><span class="sd">        ...     option = FormOption(interactive_mode = True, field_details = True)</span>
 </span><span id="line-148"><span class="sd">        ... )</span>
-</span><span id="line-149"><span class="sd">        ℹ Fetching summary for form &#39;Training Log&#39; (ID: 5285, Type: event)...</span>
-</span><span id="line-150"><span class="sd">    ✔ Retrieved summary for form &#39;Training Log&#39;.</span>
-</span><span id="line-151"><span class="sd">    =====================================</span>
-</span><span id="line-152"><span class="sd">    Form Schema Summary: RPE Training Log</span>
-</span><span id="line-153"><span class="sd">    =====================================</span>
-</span><span id="line-154">
-</span><span id="line-155"><span class="sd">    Form Details</span>
-</span><span id="line-156"><span class="sd">    ------------</span>
-</span><span id="line-157"><span class="sd">    - Form Name: RPE Training Log</span>
-</span><span id="line-158"><span class="sd">    - Form ID: 5285</span>
-</span><span id="line-159">
-</span><span id="line-160"><span class="sd">    Sections</span>
-</span><span id="line-161"><span class="sd">    --------</span>
-</span><span id="line-162"><span class="sd">    - Total: 5</span>
-</span><span id="line-163"><span class="sd">    • Session Details</span>
-</span><span id="line-164"><span class="sd">    • Summary Calculations</span>
-</span><span id="line-165"><span class="sd">    • User Account Details</span>
-</span><span id="line-166"><span class="sd">    • Day of the Week</span>
-</span><span id="line-167"><span class="sd">    • Profile Details</span>
-</span><span id="line-168">
-</span><span id="line-169"><span class="sd">    Required Fields</span>
-</span><span id="line-170"><span class="sd">    ---------------</span>
-</span><span id="line-171"><span class="sd">    - Total: 0</span>
-</span><span id="line-172"><span class="sd">    - No required fields found.</span>
-</span><span id="line-173">
-</span><span id="line-174"><span class="sd">    Defaults to Last Known Value</span>
-</span><span id="line-175"><span class="sd">    ----------------------------</span>
-</span><span id="line-176"><span class="sd">    - Total: 0</span>
-</span><span id="line-177"><span class="sd">    - No fields default to the last known value.</span>
-</span><span id="line-178">
-</span><span id="line-179"><span class="sd">    Linked Fields</span>
-</span><span id="line-180"><span class="sd">    -------------</span>
-</span><span id="line-181"><span class="sd">    - Total: 7</span>
-</span><span id="line-182"><span class="sd">    • Sport</span>
-</span><span id="line-183"><span class="sd">    • Position</span>
-</span><span id="line-184"><span class="sd">    • Height</span>
-</span><span id="line-185"><span class="sd">    • Dominant Hand</span>
-</span><span id="line-186"><span class="sd">    • Dominant Foot</span>
-</span><span id="line-187"><span class="sd">    • Preferred Language</span>
-</span><span id="line-188"><span class="sd">    • Season</span>
-</span><span id="line-189">
-</span><span id="line-190"><span class="sd">    Form Item Types</span>
-</span><span id="line-191"><span class="sd">    ---------------</span>
-</span><span id="line-192"><span class="sd">    - Total Unique Types: 14</span>
-</span><span id="line-193"><span class="sd">    - Dropdown: 1 field(s)</span>
-</span><span id="line-194"><span class="sd">        • Session Type</span>
-</span><span id="line-195"><span class="sd">    - Number: 1 field(s)</span>
-</span><span id="line-196"><span class="sd">        • Duration</span>
-</span><span id="line-197"><span class="sd">    - Single Selection: 1 field(s)</span>
-</span><span id="line-198"><span class="sd">        • Rate your Perceived Exertion (RPE)</span>
-</span><span id="line-199"><span class="sd">    - Calculation: 5 field(s)</span>
-</span><span id="line-200"><span class="sd">        • RPE</span>
-</span><span id="line-201"><span class="sd">        • Session Load</span>
-</span><span id="line-202"><span class="sd">        • Index</span>
-</span><span id="line-203"><span class="sd">        • ACWR</span>
-</span><span id="line-204"><span class="sd">        • Total ACWR</span>
-</span><span id="line-205"><span class="sd">    ...</span>
-</span><span id="line-206"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="line-207">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">FormOption</span><span class="p">()</span>
-</span><span id="line-208">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
-</span><span id="line-209">    
-</span><span id="line-210">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
-</span><span id="line-211">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_form_summary&quot;</span><span class="p">)</span>
-</span><span id="line-212">    
-</span><span id="line-213">    <span class="c1"># Step 1: Fetch the form ID and type</span>
-</span><span id="line-214">    <span class="n">form_id</span><span class="p">,</span> <span class="n">form_type</span> <span class="o">=</span> <span class="n">_fetch_form_id_and_type</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
-</span><span id="line-215">    
-</span><span id="line-216">    <span class="c1"># Step 2: Fetch the form schema</span>
-</span><span id="line-217">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-218">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Fetching summary for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; (ID: </span><span class="si">{</span><span class="n">form_id</span><span class="si">}</span><span class="s2">, Type: </span><span class="si">{</span><span class="n">form_type</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
-</span><span id="line-219">    
-</span><span id="line-220">    <span class="n">schema_data</span> <span class="o">=</span> <span class="n">_fetch_form_schema</span><span class="p">(</span><span class="n">form_id</span><span class="p">,</span> <span class="n">form_type</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
-</span><span id="line-221">    
-</span><span id="line-222">    <span class="c1"># Step 3: If raw_output is True, return the raw schema data</span>
-</span><span id="line-223">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">raw_output</span><span class="p">:</span>
-</span><span id="line-224">        <span class="k">return</span> <span class="n">schema_data</span>
-</span><span id="line-225">    
-</span><span id="line-226">    <span class="c1"># Step 4: Parse the schema</span>
-</span><span id="line-227">    <span class="n">schema_info</span> <span class="o">=</span> <span class="n">_parse_form_schema</span><span class="p">(</span><span class="n">schema_data</span><span class="p">)</span>
-</span><span id="line-228">    
-</span><span id="line-229">    <span class="c1"># Step 5: Format and print the summary</span>
-</span><span id="line-230">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-231">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Retrieved summary for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
-</span><span id="line-232">    
-</span><span id="line-233">    <span class="n">formatted_output</span> <span class="o">=</span> <span class="n">_format_form_summary</span><span class="p">(</span>
-</span><span id="line-234">        <span class="n">schema_info</span><span class="p">,</span>
-</span><span id="line-235">        <span class="n">include_instructions</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">include_instructions</span><span class="p">,</span>
-</span><span id="line-236">        <span class="n">field_details</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">field_details</span>
-</span><span id="line-237">    <span class="p">)</span>
-</span><span id="line-238">    <span class="nb">print</span><span class="p">(</span><span class="n">formatted_output</span><span class="p">)</span>
-</span><span id="line-239">    
-</span><span id="line-240">    <span class="k">return</span> <span class="n">formatted_output</span></div>
+</span><span id="line-149"><span class="sd">        ... ℹ Fetching summary for form &#39;Training Log&#39; (ID: 5285, Type: event)...</span>
+</span><span id="line-150"><span class="sd">        ... ✔ Retrieved summary for form &#39;Training Log&#39;.</span>
+</span><span id="line-151"><span class="sd">        ... </span>
+</span><span id="line-152"><span class="sd">        ... Form Schema Summary: RPE Training Log</span>
+</span><span id="line-153"><span class="sd">        ... =====================================</span>
+</span><span id="line-154"><span class="sd">        ... </span>
+</span><span id="line-155"><span class="sd">        ... Form Details</span>
+</span><span id="line-156"><span class="sd">        ... ------------</span>
+</span><span id="line-157"><span class="sd">        ... - Form Name: RPE Training Log</span>
+</span><span id="line-158"><span class="sd">        ... - Form ID: 5285</span>
+</span><span id="line-159"><span class="sd">        ... </span>
+</span><span id="line-160"><span class="sd">        ... Sections</span>
+</span><span id="line-161"><span class="sd">        ... --------</span>
+</span><span id="line-162"><span class="sd">        ... - Total: 5</span>
+</span><span id="line-163"><span class="sd">        ... • Session Details</span>
+</span><span id="line-164"><span class="sd">        ... • Summary Calculations</span>
+</span><span id="line-165"><span class="sd">        ... • User Account Details</span>
+</span><span id="line-166"><span class="sd">        ... • Day of the Week</span>
+</span><span id="line-167"><span class="sd">        ... • Profile Details</span>
+</span><span id="line-168"><span class="sd">        ... </span>
+</span><span id="line-169"><span class="sd">        ... Required Fields</span>
+</span><span id="line-170"><span class="sd">        ... ---------------</span>
+</span><span id="line-171"><span class="sd">        ... - Total: 0</span>
+</span><span id="line-172"><span class="sd">        ... - No required fields found.</span>
+</span><span id="line-173"><span class="sd">        ... </span>
+</span><span id="line-174"><span class="sd">        ... Defaults to Last Known Value</span>
+</span><span id="line-175"><span class="sd">        ... ----------------------------</span>
+</span><span id="line-176"><span class="sd">        ... - Total: 0</span>
+</span><span id="line-177"><span class="sd">        ... - No fields default to the last known value.</span>
+</span><span id="line-178"><span class="sd">        ... </span>
+</span><span id="line-179"><span class="sd">        ... Linked Fields</span>
+</span><span id="line-180"><span class="sd">        ... -------------</span>
+</span><span id="line-181"><span class="sd">        ... - Total: 7</span>
+</span><span id="line-182"><span class="sd">        ...    • Sport</span>
+</span><span id="line-183"><span class="sd">        ...    • Position</span>
+</span><span id="line-184"><span class="sd">        ...    • Height</span>
+</span><span id="line-185"><span class="sd">        ...    • Dominant Hand</span>
+</span><span id="line-186"><span class="sd">        ...    • Dominant Foot</span>
+</span><span id="line-187"><span class="sd">        ...    • Preferred Language</span>
+</span><span id="line-188"><span class="sd">        ...    • Season</span>
+</span><span id="line-189"><span class="sd">        ... </span>
+</span><span id="line-190"><span class="sd">        ... Form Item Types</span>
+</span><span id="line-191"><span class="sd">        ... ---------------</span>
+</span><span id="line-192"><span class="sd">        ... - Total Unique Types: 14</span>
+</span><span id="line-193"><span class="sd">        ... - Dropdown: 1 field(s)</span>
+</span><span id="line-194"><span class="sd">        ...     • Session Type</span>
+</span><span id="line-195"><span class="sd">        ... - Number: 1 field(s)</span>
+</span><span id="line-196"><span class="sd">        ...     • Duration</span>
+</span><span id="line-197"><span class="sd">        ... - Single Selection: 1 field(s)</span>
+</span><span id="line-198"><span class="sd">        ...     • Rate your Perceived Exertion (RPE)</span>
+</span><span id="line-199"><span class="sd">        ... - Calculation: 5 field(s)</span>
+</span><span id="line-200"><span class="sd">        ...     • RPE</span>
+</span><span id="line-201"><span class="sd">        ...     • Session Load</span>
+</span><span id="line-202"><span class="sd">        ...     • Index</span>
+</span><span id="line-203"><span class="sd">        ...     • ACWR</span>
+</span><span id="line-204"><span class="sd">        ...     • Total ACWR    </span>
+</span><span id="line-205"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-206">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">FormOption</span><span class="p">()</span>
+</span><span id="line-207">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+</span><span id="line-208">    
+</span><span id="line-209">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+</span><span id="line-210">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_form_summary&quot;</span><span class="p">)</span>
+</span><span id="line-211">    
+</span><span id="line-212">    <span class="c1"># Step 1: Fetch the form ID and type</span>
+</span><span id="line-213">    <span class="n">form_id</span><span class="p">,</span> <span class="n">form_type</span> <span class="o">=</span> <span class="n">_fetch_form_id_and_type</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+</span><span id="line-214">    
+</span><span id="line-215">    <span class="c1"># Step 2: Fetch the form schema</span>
+</span><span id="line-216">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-217">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Fetching summary for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; (ID: </span><span class="si">{</span><span class="n">form_id</span><span class="si">}</span><span class="s2">, Type: </span><span class="si">{</span><span class="n">form_type</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
+</span><span id="line-218">    
+</span><span id="line-219">    <span class="n">schema_data</span> <span class="o">=</span> <span class="n">_fetch_form_schema</span><span class="p">(</span><span class="n">form_id</span><span class="p">,</span> <span class="n">form_type</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+</span><span id="line-220">    
+</span><span id="line-221">    <span class="c1"># Step 3: If raw_output is True, return the raw schema data</span>
+</span><span id="line-222">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">raw_output</span><span class="p">:</span>
+</span><span id="line-223">        <span class="k">return</span> <span class="n">schema_data</span>
+</span><span id="line-224">    
+</span><span id="line-225">    <span class="c1"># Step 4: Parse the schema</span>
+</span><span id="line-226">    <span class="n">schema_info</span> <span class="o">=</span> <span class="n">_parse_form_schema</span><span class="p">(</span><span class="n">schema_data</span><span class="p">)</span>
+</span><span id="line-227">    
+</span><span id="line-228">    <span class="c1"># Step 5: Format and print the summary</span>
+</span><span id="line-229">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-230">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Retrieved summary for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+</span><span id="line-231">    
+</span><span id="line-232">    <span class="n">formatted_output</span> <span class="o">=</span> <span class="n">_format_form_summary</span><span class="p">(</span>
+</span><span id="line-233">        <span class="n">schema_info</span><span class="p">,</span>
+</span><span id="line-234">        <span class="n">include_instructions</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">include_instructions</span><span class="p">,</span>
+</span><span id="line-235">        <span class="n">field_details</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">field_details</span>
+</span><span id="line-236">    <span class="p">)</span>
+</span><span id="line-237">    <span class="nb">print</span><span class="p">(</span><span class="n">formatted_output</span><span class="p">)</span>
+</span><span id="line-238">    
+</span><span id="line-239">    <span class="k">return</span> <span class="n">formatted_output</span></div>
 
 </span></code></pre></div>
     </div></div>

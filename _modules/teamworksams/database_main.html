@@ -240,9 +240,9 @@
 </span><span id="line-27"><span class="sd">    Fetches entries from a specified AMS database form, returning a</span>
 </span><span id="line-28"><span class="sd">    :class:`pandas.DataFrame` with columns for entry IDs and field values. Supports</span>
 </span><span id="line-29"><span class="sd">    pagination via `limit` and `offset`, and customization through</span>
-</span><span id="line-30"><span class="sd">    :class:`GetDatabaseOption` for caching, interactive feedback, or raw output. Ideal</span>
+</span><span id="line-30"><span class="sd">    `GetDatabaseOption` for caching, interactive feedback, or raw output. Ideal</span>
 </span><span id="line-31"><span class="sd">    for retrieving structured data like allergies or equipment lists. See</span>
-</span><span id="line-32"><span class="sd">    :ref:`vignettes/database_operations` for database workflows.</span>
+</span><span id="line-32"><span class="sd">    :ref:`database_operations` for database workflows.</span>
 </span><span id="line-33">
 </span><span id="line-34"><span class="sd">    Args:</span>
 </span><span id="line-35"><span class="sd">        form_name (str): Name of the AMS database form (e.g., &#39;Allergies&#39;). Must be a</span>
@@ -258,11 +258,11 @@
 </span><span id="line-45"><span class="sd">            Defaults to 10000.</span>
 </span><span id="line-46"><span class="sd">        offset (int): Starting index for pagination. Must be non-negative. Use to skip</span>
 </span><span id="line-47"><span class="sd">            entries in large datasets (e.g., 10000 for the next batch). Defaults to 0.</span>
-</span><span id="line-48"><span class="sd">        option (:class:`GetDatabaseOption`, optional): Configuration options, including</span>
+</span><span id="line-48"><span class="sd">        option (GetDatabaseOption, optional): Configuration options, including</span>
 </span><span id="line-49"><span class="sd">            `interactive_mode` for status messages (e.g., &quot;Retrieved 100 entries&quot;),</span>
 </span><span id="line-50"><span class="sd">            `cache` to reuse a client, and `raw_output` for unprocessed API responses.</span>
 </span><span id="line-51"><span class="sd">            Defaults to None (uses default :class:`GetDatabaseOption`).</span>
-</span><span id="line-52"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-52"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-53"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-54">
 </span><span id="line-55"><span class="sd">    Returns:</span>
@@ -348,8 +348,8 @@
 </span><span id="line-132">
 </span><span id="line-133"><span class="sd">    Sends a request to the AMS API to delete the database entry with the specified ID,</span>
 </span><span id="line-134"><span class="sd">    returning True if successful. Requires valid credentials and a valid entry ID,</span>
-</span><span id="line-135"><span class="sd">    typically obtained from :func:`get_database`. See</span>
-</span><span id="line-136"><span class="sd">    :ref:`vignettes/database_operations` for database workflows.</span>
+</span><span id="line-135"><span class="sd">    typically obtained from get_database. See</span>
+</span><span id="line-136"><span class="sd">    :ref:`database_operations` for database workflows.</span>
 </span><span id="line-137">
 </span><span id="line-138"><span class="sd">    Args:</span>
 </span><span id="line-139"><span class="sd">        database_entry_id (int): ID of the database entry to delete. Must be a</span>
@@ -360,7 +360,7 @@
 </span><span id="line-144"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-145"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
 </span><span id="line-146"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-147"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-147"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-148"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-149">
 </span><span id="line-150"><span class="sd">    Returns:</span>
@@ -424,7 +424,7 @@
 </span><span id="line-205"><span class="sd">    Processes a :class:`pandas.DataFrame` containing database entry data, validates it,</span>
 </span><span id="line-206"><span class="sd">    and inserts new entries into the specified AMS database form via the API. Supports</span>
 </span><span id="line-207"><span class="sd">    table fields and customizable options for caching and interactive feedback. See</span>
-</span><span id="line-208"><span class="sd">    :ref:`vignettes/database_operations` for database workflows.</span>
+</span><span id="line-208"><span class="sd">    :ref:`database_operations` for database workflows.</span>
 </span><span id="line-209">
 </span><span id="line-210"><span class="sd">    Args:</span>
 </span><span id="line-211"><span class="sd">        df (:class:`pandas.DataFrame`): DataFrame with database entry data. Columns</span>
@@ -438,11 +438,11 @@
 </span><span id="line-219"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-220"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
 </span><span id="line-221"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-222"><span class="sd">        option (:class:`InsertDatabaseOption`, optional): Configuration options,</span>
+</span><span id="line-222"><span class="sd">        option (InsertDatabaseOption, optional): Configuration options,</span>
 </span><span id="line-223"><span class="sd">            including `table_fields` for table field names, `interactive_mode` for status</span>
 </span><span id="line-224"><span class="sd">            messages (e.g., &quot;Inserted 3 entries&quot;), and `cache` to reuse a client.</span>
 </span><span id="line-225"><span class="sd">            Defaults to None (uses default :class:`InsertDatabaseOption`).</span>
-</span><span id="line-226"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-226"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-227"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-228">
 </span><span id="line-229"><span class="sd">    Returns:</span>
@@ -554,7 +554,7 @@
 </span><span id="line-332"><span class="sd">    Processes a :class:`pandas.DataFrame` with an &#39;entry_id&#39; column to update existing</span>
 </span><span id="line-333"><span class="sd">    entries in the specified AMS database form via the API. Validates data, supports</span>
 </span><span id="line-334"><span class="sd">    table fields, and offers interactive confirmation prompts. See</span>
-</span><span id="line-335"><span class="sd">    :ref:`vignettes/database_operations` for database workflows.</span>
+</span><span id="line-335"><span class="sd">    :ref:`database_operations` for database workflows.</span>
 </span><span id="line-336">
 </span><span id="line-337"><span class="sd">    Args:</span>
 </span><span id="line-338"><span class="sd">        df (:class:`pandas.DataFrame`): DataFrame with database entry data. Must include</span>
@@ -568,11 +568,11 @@
 </span><span id="line-346"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-347"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
 </span><span id="line-348"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-349"><span class="sd">        option (:class:`UpdateDatabaseOption`, optional): Configuration options,</span>
+</span><span id="line-349"><span class="sd">        option (UpdateDatabaseOption, optional): Configuration options,</span>
 </span><span id="line-350"><span class="sd">            including `table_fields` for table field names, `interactive_mode` for</span>
 </span><span id="line-351"><span class="sd">            status messages and confirmation prompts, and `cache` to reuse a client.</span>
 </span><span id="line-352"><span class="sd">            Defaults to None (uses default :class:`UpdateDatabaseOption`).</span>
-</span><span id="line-353"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-353"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-354"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-355">
 </span><span id="line-356"><span class="sd">    Returns:</span>

@@ -160,7 +160,7 @@
 </nav>
 <div id="content" role="main">
 <section id="loginoption">
-<h1>LoginOption<a class="headerlink" href="#loginoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="login-option"></span><h1>LoginOption<a class="headerlink" href="#loginoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.login_option.LoginOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.login_option.</span></span><span class="sig-name descname"><span class="pre">LoginOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/login_option.html#LoginOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.login_option.LoginOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.login_option.LoginOption'"><span>#</span></a></dt>
@@ -168,7 +168,7 @@
 <p>Options for configuring the <a class="reference internal" href="login.html#teamworksams.login_main.login" title="teamworksams.login_main.login"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.login_main.login()</span></code></a> function.</p>
 <p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">login()</span></code>, controlling whether interactive feedback
 is displayed during authentication. Used to tailor the login experience for
-interactive or automated workflows. See <span class="xref std std-ref">vignettes/credentials</span> for usage.</p>
+interactive or automated workflows. See <a class="reference internal" href="../vignettes/credentials.html#credentials"><span class="std std-ref">Managing Credentials, Authentication, and Caching</span></a> for usage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>interactive_mode</strong> (<em>bool</em>) – If True, prints status messages during login (e.g., “Logging in…”, “Successfully logged in”). Set to False for silent operation in scripts. Defaults to True.</p>
@@ -206,14 +206,14 @@ interactive or automated workflows. See <span class="xref std std-ref">vignettes
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
 <ul class="simple">
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> for user-friendly feedback during login, such as “Successfully logged in,” ideal for interactive scripts or debugging.</p></li>
-<li><p>Used exclusively with <a class="reference internal" href="login.html#teamworksams.login_main.login" title="teamworksams.login_main.login"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.login_main.login()</span></code></a> to customize authentication behavior.</p></li>
+<li><p>Used exclusively with <a class="reference external" href="../reference/login.html">login()</a> to customize authentication behavior.</p></li>
 </ul>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="login.html#teamworksams.login_main.login" title="teamworksams.login_main.login"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.login_main.login()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.login_option.LoginOption" title="teamworksams.login_option.LoginOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">LoginOption</span></code></a>.</p></li>
-<li><p><span class="xref std std-ref">vignettes/credentials</span>: Authentication configuration examples.</p></li>
+<li><p><a class="reference external" href="../reference/login.html">login()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginOption</span></code>.</p></li>
+<li><p><a class="reference internal" href="../vignettes/credentials.html#credentials"><span class="std std-ref">Managing Credentials, Authentication, and Caching</span></a>: Authentication configuration examples.</p></li>
 </ul>
 </section>
 </section>

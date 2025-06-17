@@ -1,3 +1,7 @@
+.. _insert_database_entry_ref: ../reference/insert_database_entry.html
+
+.. _insert_database_option:
+
 InsertDatabaseOption
 ====================
 
@@ -20,5 +24,5 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.database_main.insert_database_entry`: Function using `InsertDatabaseOption`.
-- :ref:`vignettes/database_operations`: Database insertion workflows.
+- `insert_database_entry() <insert_database_entry_ref_>`_: Function using `InsertDatabaseOption`.
+- :ref:`database_operations`: Database insertion workflows.

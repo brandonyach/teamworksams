@@ -217,11 +217,11 @@
 </span><span id="line-4"><span class="k">class</span><span class="w"> </span><span class="nc">EventOption</span><span class="p">:</span>  
 </span><span id="line-5"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring event data export.</span>
 </span><span id="line-6">
-</span><span id="line-7"><span class="sd">    Defines customization options for the :func:`teamworksams.export_main.get_event_data` function, controlling aspects such as</span>
+</span><span id="line-7"><span class="sd">    Defines customization options for the :func:`get_event_data` function, controlling aspects such as</span>
 </span><span id="line-8"><span class="sd">    downloading attachments, cleaning column names, caching API responses, and enabling</span>
 </span><span id="line-9"><span class="sd">    interactive feedback. These options allow users to tailor the event data retrieval process,</span>
 </span><span id="line-10"><span class="sd">    including data formatting, performance optimization, and user experience. See</span>
-</span><span id="line-11"><span class="sd">    :ref:`vignettes/exporting_data` for usage examples.</span>
+</span><span id="line-11"><span class="sd">    :ref:`exporting_data` for usage examples.</span>
 </span><span id="line-12">
 </span><span id="line-13"><span class="sd">    Args:</span>
 </span><span id="line-14"><span class="sd">        interactive_mode (bool): Whether to print status messages during execution, such as the</span>
@@ -301,10 +301,10 @@
 </span><span id="line-82"><span class="k">class</span><span class="w"> </span><span class="nc">SyncEventOption</span><span class="p">:</span>
 </span><span id="line-83"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring sync event data export.</span>
 </span><span id="line-84">
-</span><span id="line-85"><span class="sd">    Customizes the behavior of :func:`teamworksams.export_main.sync_event_data`,</span>
+</span><span id="line-85"><span class="sd">    Customizes the behavior of :func:`sync_event_data`,</span>
 </span><span id="line-86"><span class="sd">    controlling output formatting, user metadata inclusion, caching, and interactive</span>
 </span><span id="line-87"><span class="sd">    feedback. Optimizes performance for synchronized event exports. See</span>
-</span><span id="line-88"><span class="sd">    :ref:`vignettes/exporting_data` for synchronization workflows.</span>
+</span><span id="line-88"><span class="sd">    :ref:`exporting_data` for synchronization workflows.</span>
 </span><span id="line-89">
 </span><span id="line-90"><span class="sd">    Args:</span>
 </span><span id="line-91"><span class="sd">        interactive_mode (bool): Whether to print status messages during execution, such as the</span>
@@ -369,7 +369,7 @@
 </span><span id="line-144"><span class="k">class</span><span class="w"> </span><span class="nc">ProfileOption</span><span class="p">:</span>
 </span><span id="line-145"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring profile data export.</span>
 </span><span id="line-146">
-</span><span id="line-147"><span class="sd">    Customizes the behavior of :func:`teamworksams.export_main.get_profile_data`,</span>
+</span><span id="line-147"><span class="sd">    Customizes the behavior of :func:`get_profile_data`,</span>
 </span><span id="line-148"><span class="sd">    controlling output formatting, caching, and interactive feedback. Optimizes</span>
 </span><span id="line-149"><span class="sd">    performance for profile data exports. </span>
 </span><span id="line-150">

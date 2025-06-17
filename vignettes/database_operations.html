@@ -159,35 +159,35 @@
 </nav>
 <div id="content" role="main">
 <section id="database-operations">
-<h1>Database Operations<a class="headerlink" href="#database-operations" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>Database Operations<a class="headerlink" href="#database-operations" title="Link to this heading"><span>#</span></a></h1>
 <p>This vignette provides a concise guide to managing database entries in Teamworks AMS using
-<strong>teamworksams</strong>, covering <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code>, and <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>. It outlines simple workflows
+<strong>teamworksams</strong>, covering <a class="reference external" href="../reference/get_database.html">get_database()</a>, <a class="reference external" href="../reference/delete_database_entry.html">delete_database_entry()</a>,
+<a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a>, and <a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>. It outlines simple workflows
 for retrieving, deleting, inserting, and updating entries in AMS database forms
-(e.g., ‘Allergies’). See <span class="xref std std-ref">reference</span> for detailed function documentation and
-<span class="xref std std-ref">vignettes/exporting_data</span> or <span class="xref std std-ref">vignettes/importing_data</span> for event form data tasks.</p>
+(e.g., ‘Allergies’). See <a class="reference internal" href="../reference/reference.html#reference"><span class="std std-ref">Functions and Classes</span></a> for detailed function documentation and
+<a class="reference internal" href="exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a> or <a class="reference internal" href="importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a> for event form data tasks.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#overview'"><span>#</span></a></h2>
 <p><strong>teamworksams</strong> supports managing AMS database forms, which store structured data like
 allergies or equipment lists, with four key functions:</p>
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>: Retrieves entries as a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code>: Deletes a specific entry by ID.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code>: Inserts new entries.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>: Updates existing entries by ID.</p></li>
+<li><p><a class="reference external" href="../reference/get_database.html">get_database()</a>: Retrieves entries as a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p></li>
+<li><p><a class="reference external" href="../reference/delete_database_entry.html">delete_database_entry()</a>: Deletes a specific entry by ID.</p></li>
+<li><p><a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a>: Inserts new entries.</p></li>
+<li><p><a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>: Updates existing entries by ID.</p></li>
 </ul>
 <p>These functions are typically used for one-off tasks, such as auditing or updating a
-database form. Options (<code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertDatabaseOption</span></code>,
-<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>) customize behavior, like enabling interactive feedback or
+database form. Options (<a class="reference external" href="../reference/get_database_option.html">GetDatabaseOption()</a>, <a class="reference external" href="../reference/insert_database_option.html">InsertDatabaseOption()</a>,
+<a class="reference external" href="../reference/update_database_option.html">UpdateDatabaseOption()</a>) customize behavior, like enabling interactive feedback or
 specifying table fields. Examples use the placeholder URL
 <code class="docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code> and credentials managed via a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#prerequisites'"><span>#</span></a></h2>
 <p>Ensure <strong>teamworksams</strong> is installed and credentials are set, as described in
-<span class="xref std std-ref">vignettes/getting_started</span>. Use a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id1" title="Link to this code"><span>#</span></a></div>
+<a class="reference internal" href="getting_started.html#getting-started"><span class="std std-ref">Getting Started with teamworksams</span></a>. Use a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id2" title="Link to this code"><span>#</span></a></div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">AMS_URL=https://example.smartabase.com/site
 </span><span id="line-2">AMS_USERNAME=username
 </span><span id="line-3">AMS_PASSWORD=password
@@ -204,7 +204,7 @@ specifying table fields. Examples use the placeholder URL
 </section>
 <section id="retrieving-entries">
 <h2>Retrieving Entries<a class="headerlink" href="#retrieving-entries" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#retrieving-entries'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code> to fetch entries from a database form, such as ‘Allergies’:</p>
+<p>Use <a class="reference external" href="../reference/get_database.html">get_database()</a> to fetch entries from a database form, such as ‘Allergies’:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_database</span><span class="p">,</span> <span class="n">GetDatabaseOption</span>
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">get_database</span><span class="p">(</span>
@@ -226,11 +226,11 @@ specifying table fields. Examples use the placeholder URL
 </span><span id="line-5">1  386198    Eggs
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code> for pagination options.</p>
+<p>See <a class="reference external" href="../reference/get_database.html">get_database()</a> and <a class="reference external" href="../reference/get_database_option.html">GetDatabaseOption()</a> for pagination options.</p>
 </section>
 <section id="deleting-entries">
 <h2>Deleting Entries<a class="headerlink" href="#deleting-entries" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#deleting-entries'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code> to remove a specific entry by ID:</p>
+<p>Use <a class="reference external" href="../reference/delete_database_entry.html">delete_database_entry()</a> to remove a specific entry by ID:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">delete_database_entry</span>
 </span><span id="line-2">
 </span><span id="line-3"><span class="n">result</span> <span class="o">=</span> <span class="n">delete_database_entry</span><span class="p">(</span>
@@ -244,11 +244,11 @@ specifying table fields. Examples use the placeholder URL
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">✔ Successfully deleted database entry 386197.
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code> for details.</p>
+<p>See <a class="reference external" href="../reference/delete_database_entry.html">delete_database_entry()</a> for details.</p>
 </section>
 <section id="inserting-entries">
 <h2>Inserting Entries<a class="headerlink" href="#inserting-entries" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#inserting-entries'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code> to add new entries to a form:</p>
+<p>Use <a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a> to add new entries to a form:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">insert_database_entry</span><span class="p">,</span> <span class="n">InsertDatabaseOption</span>
 </span><span id="line-2">
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"Allergy"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Peanuts"</span><span class="p">]})</span>
@@ -270,11 +270,11 @@ specifying table fields. Examples use the placeholder URL
 </span><span id="line-6">ℹ Records attempted: 1
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertDatabaseOption</span></code> for table fields.</p>
+<p>See <a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a> and <a class="reference external" href="../reference/insert_database_option.html">InsertDatabaseOption()</a> for table fields.</p>
 </section>
 <section id="updating-entries">
 <h2>Updating Entries<a class="headerlink" href="#updating-entries" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#updating-entries'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code> to modify existing entries by <code class="xref any docutils literal notranslate"><span class="pre">entry_id</span></code>:</p>
+<p>Use <a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a> to modify existing entries by <code class="xref py py-obj docutils literal notranslate"><span class="pre">entry_id</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">update_database_entry</span><span class="p">,</span> <span class="n">UpdateDatabaseOption</span>
 </span><span id="line-2">
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"entry_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">386198</span><span class="p">],</span> <span class="s2">"Allergy"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Eggs Updated"</span><span class="p">]})</span>
@@ -297,18 +297,18 @@ specifying table fields. Examples use the placeholder URL
 </span><span id="line-7">ℹ Records attempted: 1
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code> for details.</p>
+<p>See <a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a> and <a class="reference external" href="../reference/update_database_option.html">UpdateDatabaseOption()</a> for details.</p>
 </section>
 <section id="options-and-usage-notes">
 <h2>Options and Usage Notes<a class="headerlink" href="#options-and-usage-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#options-and-usage-notes'"><span>#</span></a></h2>
 <p>This section provides detailed guidance on using option classes
-(<code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertDatabaseOption</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>)
+(<a class="reference external" href="../reference/get_database_option.html">GetDatabaseOption()</a>, <a class="reference external" href="../reference/insert_database_option.html">InsertDatabaseOption()</a>, <a class="reference external" href="../reference/update_database_option.html">UpdateDatabaseOption()</a>)
 to customize database operations, along with key usage notes for caching, table fields,
 pagination, entry IDs, and interactive mode.</p>
 <p><strong>Option Classes</strong></p>
 <p>Each database function supports a specific option class to configure its behavior. These
-classes must be instantiated with parameters like <a class="reference internal" href="../reference/delete_event_option.html#teamworksams.delete_option.DeleteEventOption.interactive_mode" title="teamworksams.delete_option.DeleteEventOption.interactive_mode"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">interactive_mode</span></code></a>, <a class="reference internal" href="../reference/event_option.html#teamworksams.export_option.EventOption.cache" title="teamworksams.export_option.EventOption.cache"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">cache</span></code></a>, and
-<a class="reference internal" href="../reference/insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a>. For example, to disable caching in <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>:</p>
+classes must be instantiated with parameters like <code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">cache</span></code>, and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">table_fields</span></code>. For example, to disable caching in <a class="reference external" href="../reference/get_database.html">get_database()</a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_database</span><span class="p">,</span> <span class="n">GetDatabaseOption</span>
 </span><span id="line-2">
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">get_database</span><span class="p">(</span>
@@ -320,16 +320,16 @@ classes must be instantiated with parameters like <a class="reference internal" 
 </div>
 <p>The option classes and their associated functions are:</p>
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code></p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertDatabaseOption</span></code></p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code></p></li>
+<li><p><a class="reference external" href="../reference/get_database.html">get_database()</a>: <a class="reference external" href="../reference/get_database_option.html">GetDatabaseOption()</a></p></li>
+<li><p><a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a>: <a class="reference external" href="../reference/insert_database_option.html">InsertDatabaseOption()</a></p></li>
+<li><p><a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>: <a class="reference external" href="../reference/update_database_option.html">UpdateDatabaseOption()</a></p></li>
 </ul>
 <p>Available parameters for each option class:</p>
 <ul>
 <li><p><strong>interactive_mode (bool)</strong>: If True, displays status messages (e.g., “Retrieved 100
-entries” for <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>, “Processed 1 entries” for
-<code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code>) and prompts for confirmation in
-<code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>, ideal for interactive environments like Jupyter
+entries” for <a class="reference external" href="../reference/get_database.html">get_database()</a>, “Processed 1 entries” for
+<a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a>) and prompts for confirmation in
+<a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>, ideal for interactive environments like Jupyter
 notebooks. Set to False for silent execution in automated scripts. Defaults to True.
 Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">UpdateDatabaseOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -341,8 +341,8 @@ Example:</p>
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, reducing API calls for authentication or form metadata retrieval.
 Set to False for fresh data, increasing API overhead. Defaults to True. See “Caching”
 below.</p></li>
-<li><p><strong>table_fields (Optional[List[str]])</strong>: Only for <code class="xref py py-class docutils literal notranslate"><span class="pre">InsertDatabaseOption</span></code> and
-<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>. List of AMS form table field names (e.g.,
+<li><p><strong>table_fields (Optional[List[str]])</strong>: Only for <a class="reference external" href="../reference/insert_database_option.html">InsertDatabaseOption()</a> and
+<a class="reference external" href="../reference/update_database_option.html">UpdateDatabaseOption()</a>. List of AMS form table field names (e.g.,
 [‘Exercise’]). Must match <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> columns if specified. If None,
 no fields are treated as table fields. Defaults to None. See “Table Fields” below.
 Example:</p>
@@ -354,21 +354,21 @@ Example:</p>
 </li>
 </ul>
 <p><strong>Caching</strong></p>
-<p>When <code class="xref any docutils literal notranslate"><span class="pre">option.cache=True</span></code> (default), database functions reuse an existing
-<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> created by <code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code>, maintaining an authenticated session
+<p>When <code class="xref py py-obj docutils literal notranslate"><span class="pre">option.cache=True</span></code> (default), database functions reuse an existing
+<a class="reference external" href="../reference/ams_client.html">AMSClient()</a> created by <a class="reference external" href="../reference/get_client.html">get_client()</a>, maintaining an authenticated session
 and reducing API calls for login or form metadata (e.g., form ID, type). For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">GetDatabaseOption</span><span class="p">(</span><span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">df1</span> <span class="o">=</span> <span class="n">get_database</span><span class="p">(</span><span class="n">form_name</span> <span class="o">=</span> <span class="s2">"Allergies"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
 </span><span id="line-3"><span class="n">df2</span> <span class="o">=</span> <span class="n">get_database</span><span class="p">(</span><span class="n">form_name</span> <span class="o">=</span> <span class="s2">"Workouts"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># Reuses client</span>
 </span></code></pre></div>
 </div>
-<p>This improves performance for multiple operations in a session. Set <code class="xref any docutils literal notranslate"><span class="pre">cache=False</span></code> for
+<p>This improves performance for multiple operations in a session. Set <code class="xref py py-obj docutils literal notranslate"><span class="pre">cache=False</span></code> for
 independent sessions, ensuring fresh data but increasing API overhead.</p>
 <p><strong>Table Fields</strong></p>
 <p>Table fields in AMS database forms store multiple rows of data within a single entry,
-such as exercise details in a workout log. Specify <a class="reference internal" href="../reference/insert_database_option.html#teamworksams.database_option.InsertDatabaseOption.table_fields" title="teamworksams.database_option.InsertDatabaseOption.table_fields"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">table_fields</span></code></a> as a list of column
-names matching the AMS form’s table fields in <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_database_entry()</span></code> or
-<code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>. For example:</p>
+such as exercise details in a workout log. Specify <code class="xref py py-obj docutils literal notranslate"><span class="pre">table_fields</span></code> as a list of column
+names matching the AMS form’s table fields in <a class="reference external" href="../reference/insert_database_entry.html">insert_database_entry()</a> or
+<a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 </span><span id="line-2">    <span class="s2">"user_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">12345</span><span class="p">,</span> <span class="mi">12345</span><span class="p">],</span>
 </span><span id="line-3">    <span class="s2">"session_rpe"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
@@ -379,15 +379,15 @@ names matching the AMS form’s table fields in <code class="xref py py-func doc
 </span><span id="line-8"><span class="n">insert_database_entry</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">"Workouts"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>In this example, <code class="xref any docutils literal notranslate"><span class="pre">exercise</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">reps</span></code> are table fields, while <code class="xref any docutils literal notranslate"><span class="pre">session_rpe</span></code> is a
-non-table field recorded once per entry. The DataFrame must include <code class="xref any docutils literal notranslate"><span class="pre">user_id</span></code> for each
+<p>In this example, <code class="xref py py-obj docutils literal notranslate"><span class="pre">exercise</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">reps</span></code> are table fields, while <code class="xref py py-obj docutils literal notranslate"><span class="pre">session_rpe</span></code> is a
+non-table field recorded once per entry. The DataFrame must include <code class="xref py py-obj docutils literal notranslate"><span class="pre">user_id</span></code> for each
 row, with non-table fields populating only the first row for each entry. If
-<code class="xref any docutils literal notranslate"><span class="pre">table_fields=None</span></code> (default) and duplicate entries are detected, the function raises
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">table_fields=None</span></code> (default) and duplicate entries are detected, the function raises
 an <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code> to prevent conflicts.</p>
 <p><strong>Pagination</strong></p>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code> function supports pagination via <code class="xref any docutils literal notranslate"><span class="pre">limit</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">offset</span></code> to manage
-large datasets. The <code class="xref any docutils literal notranslate"><span class="pre">limit</span></code> parameter sets the maximum number of entries returned per
-request (default 10000), and <code class="xref any docutils literal notranslate"><span class="pre">offset</span></code> specifies the starting index (default 0). For
+<p>The <a class="reference external" href="../reference/get_database.html">get_database()</a> function supports pagination via <code class="xref py py-obj docutils literal notranslate"><span class="pre">limit</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">offset</span></code> to manage
+large datasets. The <code class="xref py py-obj docutils literal notranslate"><span class="pre">limit</span></code> parameter sets the maximum number of entries returned per
+request (default 10000), and <code class="xref py py-obj docutils literal notranslate"><span class="pre">offset</span></code> specifies the starting index (default 0). For
 example, to retrieve the next batch of 100 entries:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">get_database</span><span class="p">(</span>
 </span><span id="line-2">    <span class="n">form_name</span> <span class="o">=</span> <span class="s2">"Allergies"</span><span class="p">,</span>
@@ -397,7 +397,7 @@ example, to retrieve the next batch of 100 entries:</p>
 </span><span id="line-6"><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>Use smaller <code class="xref any docutils literal notranslate"><span class="pre">limit</span></code> values for large datasets to manage memory, and increment <code class="xref any docutils literal notranslate"><span class="pre">offset</span></code>
+<p>Use smaller <code class="xref py py-obj docutils literal notranslate"><span class="pre">limit</span></code> values for large datasets to manage memory, and increment <code class="xref py py-obj docutils literal notranslate"><span class="pre">offset</span></code>
 to fetch additional pages. Example for fetching all entries in batches:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="line-2"><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
@@ -417,26 +417,26 @@ to fetch additional pages. Example for fetching all entries in batches:</p>
 </span></code></pre></div>
 </div>
 <p><strong>Entry IDs</strong></p>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_database_entry()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code> functions require
-valid entry IDs (<code class="xref any docutils literal notranslate"><span class="pre">database_entry_id</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">entry_id</span></code> in the DataFrame). Obtain these IDs
-using <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>, which returns a DataFrame with an <code class="xref any docutils literal notranslate"><span class="pre">id</span></code> column. For example:</p>
+<p>The <a class="reference external" href="../reference/delete_database_entry.html">delete_database_entry()</a> and <a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a> functions require
+valid entry IDs (<code class="xref py py-obj docutils literal notranslate"><span class="pre">database_entry_id</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">entry_id</span></code> in the DataFrame). Obtain these IDs
+using <a class="reference external" href="../reference/get_database.html">get_database()</a>, which returns a DataFrame with an <code class="xref py py-obj docutils literal notranslate"><span class="pre">id</span></code> column. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">get_database</span><span class="p">(</span><span class="n">form_name</span> <span class="o">=</span> <span class="s2">"Allergies"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">entry_id</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span><span id="line-3"><span class="n">result</span> <span class="o">=</span> <span class="n">delete_database_entry</span><span class="p">(</span><span class="n">database_entry_id</span> <span class="o">=</span> <span class="n">entry_id</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>For <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>, the DataFrame must include an <code class="xref any docutils literal notranslate"><span class="pre">entry_id</span></code> column with
+<p>For <a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>, the DataFrame must include an <code class="xref py py-obj docutils literal notranslate"><span class="pre">entry_id</span></code> column with
 valid integer IDs. Invalid or missing IDs raise an <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"entry_id"</span><span class="p">:</span> <span class="p">[</span><span class="mi">386198</span><span class="p">],</span> <span class="s2">"Allergy"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Eggs Updated"</span><span class="p">]})</span>
 </span><span id="line-2"><span class="n">update_database_entry</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="s2">"Allergies"</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">"..."</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
-<p>Always validate <code class="xref any docutils literal notranslate"><span class="pre">entry_id</span></code> values using <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code> to avoid errors.</p>
+<p>Always validate <code class="xref py py-obj docutils literal notranslate"><span class="pre">entry_id</span></code> values using <a class="reference external" href="../reference/get_database.html">get_database()</a> to avoid errors.</p>
 <p><strong>Interactive Mode</strong></p>
-<p>When <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> (default), database functions display progress messages
+<p>When <code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> (default), database functions display progress messages
 (e.g., “ℹ Inserting 1 entries”) and <code class="xref py py-mod docutils literal notranslate"><span class="pre">tqdm</span></code> progress bars, enhancing feedback in
-interactive environments. For <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>, it also prompts for
-confirmation to prevent accidental overwrites. Set <code class="xref any docutils literal notranslate"><span class="pre">interactive_mode=False</span></code> for silent
+interactive environments. For <a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>, it also prompts for
+confirmation to prevent accidental overwrites. Set <code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode=False</span></code> for silent
 execution in automated pipelines:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">option</span> <span class="o">=</span> <span class="n">InsertDatabaseOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span><span id="line-2"><span class="n">insert_database_entry</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">)</span>  <span class="c1"># No output</span>
@@ -459,20 +459,20 @@ execution in automated pipelines:</p>
 <ul class="simple">
 <li><p><strong>Validate Form</strong>: Ensure <code class="docutils literal notranslate"><span class="pre">form_name</span></code> matches an AMS database form to avoid
 <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSError</span></code>.</p></li>
-<li><p><strong>Check IDs</strong>: Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code> to obtain valid <code class="docutils literal notranslate"><span class="pre">entry_id</span></code> values for
+<li><p><strong>Check IDs</strong>: Use <a class="reference external" href="../reference/get_database.html">get_database()</a> to obtain valid <code class="docutils literal notranslate"><span class="pre">entry_id</span></code> values for
 updates or deletions.</p></li>
 <li><p><strong>Use Caching</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.cache=True</span></code> for efficiency in one-off tasks.</p></li>
 <li><p><strong>Confirm Updates</strong>: Leverage <code class="docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> in
-<code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code> for confirmation prompts to prevent errors.</p></li>
+<a class="reference external" href="../reference/update_database_option.html">UpdateDatabaseOption()</a> for confirmation prompts to prevent errors.</p></li>
 <li><p><strong>Table Fields</strong>: Specify <code class="docutils literal notranslate"><span class="pre">table_fields</span></code> accurately for forms with table data.</p></li>
 </ul>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">vignettes/exporting_data</span> or <span class="xref std std-ref">vignettes/importing_data</span> for
+<li><p>Explore <a class="reference internal" href="exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a> or <a class="reference internal" href="importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a> for
 frequent data tasks.</p></li>
-<li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
+<li><p>Consult <a class="reference internal" href="../reference/reference.html#reference"><span class="std std-ref">Functions and Classes</span></a> for detailed function and class documentation.</p></li>
 <li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>

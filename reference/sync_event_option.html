@@ -160,16 +160,16 @@
 </nav>
 <div id="content" role="main">
 <section id="synceventoption">
-<h1>SyncEventOption<a class="headerlink" href="#synceventoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="sync-event-option"></span><h1>SyncEventOption<a class="headerlink" href="#synceventoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.export_option.SyncEventOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.export_option.</span></span><span class="sig-name descname"><span class="pre">SyncEventOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_user_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_missing_users</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess_col_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/export_option.html#SyncEventOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.export_option.SyncEventOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.export_option.SyncEventOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for configuring sync event data export.</p>
-<p>Customizes the behavior of <a class="reference internal" href="sync_event_data.html#teamworksams.export_main.sync_event_data" title="teamworksams.export_main.sync_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.sync_event_data()</span></code></a>,
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>,
 controlling output formatting, user metadata inclusion, caching, and interactive
 feedback. Optimizes performance for synchronized event exports. See
-<span class="xref std std-ref">vignettes/exporting_data</span> for synchronization workflows.</p>
+<a class="reference internal" href="../vignettes/exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a> for synchronization workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -282,9 +282,9 @@ enhancing visibility in interactive scripts.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="sync_event_data.html#teamworksams.export_main.sync_event_data" title="teamworksams.export_main.sync_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.sync_event_data()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.export_option.SyncEventOption" title="teamworksams.export_option.SyncEventOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SyncEventOption</span></code></a>.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventFilter</span></code>: For filtering synchronized events.</p></li>
-<li><p><span class="xref std std-ref">vignettes/exporting_data</span>: Synchronization workflows.</p></li>
+<li><p><a class="reference external" href="../reference/sync_event_data.html">sync_event_data()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncEventOption</span></code>.</p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncEventFilter()</span> <span class="pre">&lt;sync_event_filter_ref_&gt;`_</span></code>: For filtering synchronized events.</p></li>
+<li><p><a class="reference internal" href="../vignettes/exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a>: Synchronization workflows.</p></li>
 </ul>
 </section>
 </section>

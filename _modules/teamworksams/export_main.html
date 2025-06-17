@@ -243,7 +243,7 @@
 </span><span id="line-30"><span class="sd">    a :class:`pandas.DataFrame` with columns like &#39;event_id&#39;, &#39;user_id&#39;, and form fields.</span>
 </span><span id="line-31"><span class="sd">    Supports optional filtering by user attributes (e.g., group) or data fields, and</span>
 </span><span id="line-32"><span class="sd">    downloading attachments if enabled. Provides interactive feedback when</span>
-</span><span id="line-33"><span class="sd">    ``option.interactive_mode=True``. See :ref:`vignettes/exporting_data` for data</span>
+</span><span id="line-33"><span class="sd">    ``option.interactive_mode=True``. See :ref:`exporting_data` for data</span>
 </span><span id="line-34"><span class="sd">    export workflows.</span>
 </span><span id="line-35">
 </span><span id="line-36"><span class="sd">    Args:</span>
@@ -259,16 +259,16 @@
 </span><span id="line-46"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-47"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
 </span><span id="line-48"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-49"><span class="sd">        filter (:class:`EventFilter`, optional): Filter object to narrow results by user</span>
+</span><span id="line-49"><span class="sd">        filter (EventFilter, optional): Filter object to narrow results by user</span>
 </span><span id="line-50"><span class="sd">            attributes (e.g., &#39;group&#39;) or data fields (e.g., &#39;intensity=High&#39;). If None,</span>
 </span><span id="line-51"><span class="sd">            includes all events. Defaults to None.</span>
-</span><span id="line-52"><span class="sd">        option (:class:`EventOption`, optional): Configuration options, including</span>
+</span><span id="line-52"><span class="sd">        option (EventOption, optional): Configuration options, including</span>
 </span><span id="line-53"><span class="sd">            `interactive_mode` for status messages, `download_attachment` to fetch</span>
 </span><span id="line-54"><span class="sd">            attachments, `clean_names` to standardize column names, `guess_col_type` to</span>
 </span><span id="line-55"><span class="sd">            infer data types, `convert_dates` to parse dates, `cache` to reuse a client,</span>
 </span><span id="line-56"><span class="sd">            and `attachment_directory` for saving attachments. Defaults to None (uses</span>
 </span><span id="line-57"><span class="sd">            default :class:`EventOption`).</span>
-</span><span id="line-58"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
+</span><span id="line-58"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
 </span><span id="line-59"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
 </span><span id="line-60">
 </span><span id="line-61"><span class="sd">    Returns:</span>
@@ -295,336 +295,335 @@
 </span><span id="line-82"><span class="sd">        ...     filter = EventFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
 </span><span id="line-83"><span class="sd">        ...     option = EventOption(interactive_mode = True, clean_names = True)</span>
 </span><span id="line-84"><span class="sd">        ... )</span>
-</span><span id="line-85"><span class="sd">        </span>
-</span><span id="line-86"><span class="sd">        ℹ Requesting event data for &#39;Training Log&#39; between 01/01/2025 and 31/01/2025</span>
-</span><span id="line-87"><span class="sd">        ℹ Processing 10 events...</span>
-</span><span id="line-88"><span class="sd">        ✔ Retrieved 10 event records for form &#39;Training Log&#39;.</span>
-</span><span id="line-89"><span class="sd">        &gt;&gt;&gt; print(df.head())</span>
-</span><span id="line-90"><span class="sd">           about  user_id  event_id  form         start_date  duration  intensity</span>
-</span><span id="line-91"><span class="sd">        0  John Doe    12345    67890  Training Log  01/01/2025        60       High</span>
-</span><span id="line-92"><span class="sd">        1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium</span>
-</span><span id="line-93"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="line-94">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">EventOption</span><span class="p">()</span>
-</span><span id="line-95">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
-</span><span id="line-96">    
-</span><span id="line-97">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
-</span><span id="line-98">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">)</span>
-</span><span id="line-99">    
-</span><span id="line-100">    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">_validate_dates</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
-</span><span id="line-101">    <span class="n">start_date_api</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
-</span><span id="line-102">    <span class="n">end_date_api</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
-</span><span id="line-103">    
-</span><span id="line-104">    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
-</span><span id="line-105">        <span class="n">_validate_event_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">user_key</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">user_value</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_key</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_value</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_condition</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">events_per_user</span><span class="p">)</span>
-</span><span id="line-106">    
-</span><span id="line-107">    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
-</span><span id="line-108">    
-</span><span id="line-109">    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
-</span><span id="line-110">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-111">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch events for - Function: get_event_data&quot;</span><span class="p">)</span>
-</span><span id="line-112">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">])</span>
-</span><span id="line-113">    
-</span><span id="line-114">    <span class="n">endpoint</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_event_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">start_date_api</span><span class="p">,</span> <span class="n">end_date_api</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">events_per_user</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
-</span><span id="line-115">    
-</span><span id="line-116">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-117">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting event data for &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-118">    
-</span><span id="line-119">    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
-</span><span id="line-120">    
-</span><span id="line-121">    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span> <span class="ow">or</span> <span class="s2">&quot;events&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">]:</span>
-</span><span id="line-122">        <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No events found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; in the date range </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
-</span><span id="line-123">                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
-</span><span id="line-124">    
-</span><span id="line-125">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-126">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Processing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> events...&quot;</span><span class="p">)</span>
-</span><span id="line-127">        
-</span><span id="line-128">    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_events_to_rows</span><span class="p">(</span>
-</span><span id="line-129">        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">],</span> 
-</span><span id="line-130">        <span class="n">start</span><span class="p">,</span> 
-</span><span id="line-131">        <span class="n">end</span><span class="p">,</span> 
-</span><span id="line-132">        <span class="nb">filter</span><span class="p">,</span> 
-</span><span id="line-133">        <span class="n">download_attachment</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">download_attachment</span><span class="p">,</span> 
-</span><span id="line-134">        <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> 
-</span><span id="line-135">        <span class="n">option</span><span class="o">=</span><span class="n">option</span>
-</span><span id="line-136">    <span class="p">)</span>
-</span><span id="line-137">    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
-</span><span id="line-138">        <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No event data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
-</span><span id="line-139">                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
-</span><span id="line-140">        
-</span><span id="line-141">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-</span><span id="line-142">    
-</span><span id="line-143">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_transform_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">clean_names</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">convert_dates</span><span class="p">)</span>
-</span><span id="line-144">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
-</span><span id="line-145">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">],</span> <span class="n">event_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
-</span><span id="line-146">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_sort_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span>
-</span><span id="line-147">    
-</span><span id="line-148">    <span class="n">_print_event_status</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
-</span><span id="line-149">    
-</span><span id="line-150">    <span class="k">return</span> <span class="n">event_df</span></div>
+</span><span id="line-85"><span class="sd">        ℹ Requesting event data for &#39;Training Log&#39; between 01/01/2025 and 31/01/2025</span>
+</span><span id="line-86"><span class="sd">        ℹ Processing 10 events...</span>
+</span><span id="line-87"><span class="sd">        ✔ Retrieved 10 event records for form &#39;Training Log&#39;.</span>
+</span><span id="line-88"><span class="sd">        &gt;&gt;&gt; print(df.head())</span>
+</span><span id="line-89"><span class="sd">           about  user_id  event_id  form         start_date  duration  intensity</span>
+</span><span id="line-90"><span class="sd">        0  John Doe    12345    67890  Training Log  01/01/2025        60       High</span>
+</span><span id="line-91"><span class="sd">        1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium</span>
+</span><span id="line-92"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-93">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">EventOption</span><span class="p">()</span>
+</span><span id="line-94">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+</span><span id="line-95">    
+</span><span id="line-96">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+</span><span id="line-97">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">)</span>
+</span><span id="line-98">    
+</span><span id="line-99">    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">_validate_dates</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+</span><span id="line-100">    <span class="n">start_date_api</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
+</span><span id="line-101">    <span class="n">end_date_api</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)</span>
+</span><span id="line-102">    
+</span><span id="line-103">    <span class="k">if</span> <span class="nb">filter</span><span class="p">:</span>
+</span><span id="line-104">        <span class="n">_validate_event_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">.</span><span class="n">user_key</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">user_value</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_key</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_value</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">data_condition</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">events_per_user</span><span class="p">)</span>
+</span><span id="line-105">    
+</span><span id="line-106">    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+</span><span id="line-107">    
+</span><span id="line-108">    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
+</span><span id="line-109">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-110">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch events for - Function: get_event_data&quot;</span><span class="p">)</span>
+</span><span id="line-111">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">])</span>
+</span><span id="line-112">    
+</span><span id="line-113">    <span class="n">endpoint</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_event_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">start_date_api</span><span class="p">,</span> <span class="n">end_date_api</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="nb">filter</span><span class="o">.</span><span class="n">events_per_user</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="line-114">    
+</span><span id="line-115">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-116">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting event data for &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-117">    
+</span><span id="line-118">    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+</span><span id="line-119">    
+</span><span id="line-120">    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span> <span class="ow">or</span> <span class="s2">&quot;events&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">]:</span>
+</span><span id="line-121">        <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No events found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; in the date range </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+</span><span id="line-122">                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+</span><span id="line-123">    
+</span><span id="line-124">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-125">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Processing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;events&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> events...&quot;</span><span class="p">)</span>
+</span><span id="line-126">        
+</span><span id="line-127">    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_events_to_rows</span><span class="p">(</span>
+</span><span id="line-128">        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">],</span> 
+</span><span id="line-129">        <span class="n">start</span><span class="p">,</span> 
+</span><span id="line-130">        <span class="n">end</span><span class="p">,</span> 
+</span><span id="line-131">        <span class="nb">filter</span><span class="p">,</span> 
+</span><span id="line-132">        <span class="n">download_attachment</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">download_attachment</span><span class="p">,</span> 
+</span><span id="line-133">        <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> 
+</span><span id="line-134">        <span class="n">option</span><span class="o">=</span><span class="n">option</span>
+</span><span id="line-135">    <span class="p">)</span>
+</span><span id="line-136">    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+</span><span id="line-137">        <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No event data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; between </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+</span><span id="line-138">                           <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_event_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">)</span>
+</span><span id="line-139">        
+</span><span id="line-140">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+</span><span id="line-141">    
+</span><span id="line-142">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_transform_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">clean_names</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">convert_dates</span><span class="p">)</span>
+</span><span id="line-143">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
+</span><span id="line-144">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">],</span> <span class="n">event_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
+</span><span id="line-145">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">_sort_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span>
+</span><span id="line-146">    
+</span><span id="line-147">    <span class="n">_print_event_status</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+</span><span id="line-148">    
+</span><span id="line-149">    <span class="k">return</span> <span class="n">event_df</span></div>
 
+</span><span id="line-150">    
 </span><span id="line-151">    
-</span><span id="line-152">    
-</span><span id="line-153">
+</span><span id="line-152">
 <div class="viewcode-block" id="sync_event_data">
 <a class="viewcode-back" href="../../reference/sync_event_data.html#teamworksams.export_main.sync_event_data">[docs]</a>
-</span><span id="line-154"><span class="k">def</span><span class="w"> </span><span class="nf">sync_event_data</span><span class="p">(</span>
-</span><span id="line-155">    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="line-156">    <span class="n">last_synchronisation_time</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-</span><span id="line-157">    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="line-158">    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-159">    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-160">    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SyncEventFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-161">    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SyncEventOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-162">    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="line-163"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-</span><span id="line-164"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve event data from an AMS event form modified since the last synchronization time.</span>
-</span><span id="line-165">
-</span><span id="line-166"><span class="sd">    Fetches event data from an AMS Event Form using the &#39;synchronise&#39; endpoint, returning</span>
-</span><span id="line-167"><span class="sd">    only events inserted/updated since `last_synchronisation_time` (milliseconds since</span>
-</span><span id="line-168"><span class="sd">    1970-01-01). Returns a :class:`pandas.DataFrame` and a new synchronization time for</span>
-</span><span id="line-169"><span class="sd">    subsequent calls. Supports user filtering and options like user metadata inclusion.</span>
-</span><span id="line-170"><span class="sd">    Provides interactive feedback when ``option.interactive_mode=True``. See</span>
-</span><span id="line-171"><span class="sd">    :ref:`vignettes/exporting_data` for synchronization workflows.</span>
-</span><span id="line-172">
-</span><span id="line-173"><span class="sd">    Args:</span>
-</span><span id="line-174"><span class="sd">        form (str): Name of the AMS Event Form (e.g., &#39;Training Log&#39;). Must be a non-empty</span>
-</span><span id="line-175"><span class="sd">            string and correspond to a valid form.</span>
-</span><span id="line-176"><span class="sd">        last_synchronisation_time (int): Last synchronization time in milliseconds since</span>
-</span><span id="line-177"><span class="sd">            1970-01-01 (e.g., 1677654321000 for 2023-03-01 12:25:21). Must be non-negative.</span>
-</span><span id="line-178"><span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
-</span><span id="line-179"><span class="sd">            include a valid site name.</span>
-</span><span id="line-180"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
-</span><span id="line-181"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-182"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
-</span><span id="line-183"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-184"><span class="sd">        filter (:class:`SyncEventFilter`, optional): Filter object to narrow results by</span>
-</span><span id="line-185"><span class="sd">            user attributes (e.g., &#39;group&#39;). If None, includes all events. Defaults to None.</span>
-</span><span id="line-186"><span class="sd">        option (:class:`SyncEventOption`, optional): Configuration options, including</span>
-</span><span id="line-187"><span class="sd">            `interactive_mode` for status messages, `include_user_data` to add user</span>
-</span><span id="line-188"><span class="sd">            metadata, `include_uuid` to add UUIDs, `guess_col_type` to infer data types,</span>
-</span><span id="line-189"><span class="sd">            `cache` to reuse a client, and `include_missing_users` to include users without</span>
-</span><span id="line-190"><span class="sd">            events. Defaults to None (uses default :class:`SyncEventOption`).</span>
-</span><span id="line-191"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
-</span><span id="line-192"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
-</span><span id="line-193">
-</span><span id="line-194"><span class="sd">    Returns:</span>
-</span><span id="line-195"><span class="sd">        Tuple[:class:`pandas.DataFrame`, int]: A tuple containing:</span>
-</span><span id="line-196"><span class="sd">            - A DataFrame with event data (columns: &#39;event_id&#39;, &#39;user_id&#39;, &#39;start_date&#39;,</span>
-</span><span id="line-197"><span class="sd">              &#39;form&#39;, etc.). Empty with columns [&#39;user_id&#39;, &#39;event_id&#39;, &#39;form&#39;,</span>
-</span><span id="line-198"><span class="sd">              &#39;start_date&#39;] if no new events are found.</span>
-</span><span id="line-199"><span class="sd">            - An integer representing the new synchronization time (milliseconds) for</span>
-</span><span id="line-200"><span class="sd">              subsequent calls.</span>
-</span><span id="line-201">
-</span><span id="line-202"><span class="sd">    Raises:</span>
-</span><span id="line-203"><span class="sd">        :class:`AMSError`: If `form` is empty, no users match the filter, authentication</span>
-</span><span id="line-204"><span class="sd">            fails, or the API request fails.</span>
-</span><span id="line-205"><span class="sd">        :class:`ValueError`: If `last_synchronisation_time` is negative or not an integer.</span>
-</span><span id="line-206">
-</span><span id="line-207"><span class="sd">    Examples:</span>
-</span><span id="line-208"><span class="sd">        &gt;&gt;&gt; from teamworksams import sync_event_data, SyncEventFilter, SyncEventOption</span>
-</span><span id="line-209"><span class="sd">        &gt;&gt;&gt; df, new_sync_time = sync_event_data(</span>
-</span><span id="line-210"><span class="sd">        ...     form = &quot;Training Log&quot;,</span>
-</span><span id="line-211"><span class="sd">        ...     last_synchronisation_time = 1677654321000,</span>
-</span><span id="line-212"><span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
-</span><span id="line-213"><span class="sd">        ...     username = &quot;user&quot;,</span>
-</span><span id="line-214"><span class="sd">        ...     password = &quot;pass&quot;,</span>
-</span><span id="line-215"><span class="sd">        ...     filter = SyncEventFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
-</span><span id="line-216"><span class="sd">        ...     option = SyncEventOption(interactive_mode = True, include_user_data = True)</span>
-</span><span id="line-217"><span class="sd">        ... )</span>
-</span><span id="line-218"><span class="sd">        ℹ Requesting event data for form &#39;Training Log&#39; since last synchronisation time 2023-03-01 12:25:21</span>
-</span><span id="line-219"><span class="sd">        ✔ Retrieved 5 event records for form &#39;Training Log&#39; since last synchronisation time 2023-03-01 12:25:21</span>
-</span><span id="line-220"><span class="sd">        &gt;&gt;&gt; print(df.head())</span>
-</span><span id="line-221"><span class="sd">           about  user_id  event_id  form         start_date  duration  intensity</span>
-</span><span id="line-222"><span class="sd">        0  John Doe    12345    67890  Training Log  01/03/2025        60       High</span>
-</span><span id="line-223"><span class="sd">        &gt;&gt;&gt; print(new_sync_time)</span>
-</span><span id="line-224"><span class="sd">        1677654400000</span>
-</span><span id="line-225"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="line-226">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">SyncEventOption</span><span class="p">()</span>
-</span><span id="line-227">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
-</span><span id="line-228">    
-</span><span id="line-229">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
-</span><span id="line-230">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;sync_event&quot;</span><span class="p">)</span>
-</span><span id="line-231">    
-</span><span id="line-232">    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">last_synchronisation_time</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">last_synchronisation_time</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="line-233">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;last_synchronisation_time must be a non-negative integer (milliseconds since 1970-01-01).&quot;</span><span class="p">)</span>
-</span><span id="line-234">    
-</span><span id="line-235">    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
-</span><span id="line-236">    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
-</span><span id="line-237">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-238">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch events for - Function: symc_event_data&quot;</span><span class="p">)</span>
-</span><span id="line-239">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">])</span>
-</span><span id="line-240">    
-</span><span id="line-241">    <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_sync_event_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">last_synchronisation_time</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">)</span>
-</span><span id="line-242">    
-</span><span id="line-243">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-244">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting event data for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronisation time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-245">    
-</span><span id="line-246">    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;synchronise&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
-</span><span id="line-247">    
-</span><span id="line-248">    <span class="n">export_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;export&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">{}</span>
-</span><span id="line-249">    
-</span><span id="line-250">    <span class="n">events</span> <span class="o">=</span> <span class="n">export_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="p">[])</span>
-</span><span id="line-251">    
-</span><span id="line-252">    <span class="n">new_sync_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastSynchronisationTimeOnServer&quot;</span><span class="p">,</span> <span class="n">last_synchronisation_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="n">last_synchronisation_time</span>
-</span><span id="line-253">    
-</span><span id="line-254">    <span class="n">deleted_event_ids</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idsOfDeletedEvents&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
-</span><span id="line-255">    
-</span><span id="line-256">    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_events_to_rows</span><span class="p">(</span>
-</span><span id="line-257">        <span class="n">events</span><span class="p">,</span>
-</span><span id="line-258">        <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  
-</span><span id="line-259">        <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>          
-</span><span id="line-260">        <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                 
-</span><span id="line-261">        <span class="n">download_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  
-</span><span id="line-262">        <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
-</span><span id="line-263">        <span class="n">option</span><span class="o">=</span><span class="n">option</span>
-</span><span id="line-264">    <span class="p">)</span>
-</span><span id="line-265">    
-</span><span id="line-266">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="k">if</span> <span class="n">rows</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-</span><span id="line-267">    
-</span><span id="line-268">    <span class="k">if</span> <span class="ow">not</span> <span class="n">event_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-</span><span id="line-269">        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_transform_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">clean_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">guess_col_type</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">,</span> <span class="n">convert_dates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="line-270">        
-</span><span id="line-271">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_user_data</span><span class="p">:</span>
-</span><span id="line-272">            <span class="n">event_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
-</span><span id="line-273">        
-</span><span id="line-274">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_uuid</span> <span class="ow">and</span> <span class="n">user_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="line-275">            <span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;uuid&quot;</span><span class="p">})</span>
-</span><span id="line-276">            <span class="n">event_df</span> <span class="o">=</span> <span class="n">event_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">user_df</span><span class="p">[[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
-</span><span id="line-277">        
-</span><span id="line-278">        <span class="n">front_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_user_data</span> <span class="k">else</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
-</span><span id="line-279">        
-</span><span id="line-280">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_uuid</span><span class="p">:</span>
-</span><span id="line-281">            <span class="n">front_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">)</span>
-</span><span id="line-282">            
-</span><span id="line-283">        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">(</span><span class="n">front_cols</span><span class="p">,</span> <span class="n">event_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
-</span><span id="line-284">        
-</span><span id="line-285">        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_sort_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span>
-</span><span id="line-286">    
-</span><span id="line-287">    <span class="n">event_df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;deleted_event_ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deleted_event_ids</span>
-</span><span id="line-288">    
-</span><span id="line-289">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-290">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="line-291">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ No new data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronization time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-292">        <span class="k">else</span><span class="p">:</span>
-</span><span id="line-293">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> event records for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronisation time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-294">    
-</span><span id="line-295">    <span class="k">return</span> <span class="n">event_df</span><span class="p">,</span> <span class="n">new_sync_time</span></div>
+</span><span id="line-153"><span class="k">def</span><span class="w"> </span><span class="nf">sync_event_data</span><span class="p">(</span>
+</span><span id="line-154">    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="line-155">    <span class="n">last_synchronisation_time</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="line-156">    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="line-157">    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-158">    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-159">    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SyncEventFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-160">    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SyncEventOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-161">    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="line-162"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span><span id="line-163"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve event data from an AMS event form modified since the last synchronization time.</span>
+</span><span id="line-164">
+</span><span id="line-165"><span class="sd">    Fetches event data from an AMS Event Form using the &#39;synchronise&#39; endpoint, returning</span>
+</span><span id="line-166"><span class="sd">    only events inserted/updated since `last_synchronisation_time` (milliseconds since</span>
+</span><span id="line-167"><span class="sd">    1970-01-01). Returns a :class:`pandas.DataFrame` and a new synchronization time for</span>
+</span><span id="line-168"><span class="sd">    subsequent calls. Supports user filtering and options like user metadata inclusion.</span>
+</span><span id="line-169"><span class="sd">    Provides interactive feedback when ``option.interactive_mode=True``. See</span>
+</span><span id="line-170"><span class="sd">    :ref:`exporting_data` for synchronization workflows.</span>
+</span><span id="line-171">
+</span><span id="line-172"><span class="sd">    Args:</span>
+</span><span id="line-173"><span class="sd">        form (str): Name of the AMS Event Form (e.g., &#39;Training Log&#39;). Must be a non-empty</span>
+</span><span id="line-174"><span class="sd">            string and correspond to a valid form.</span>
+</span><span id="line-175"><span class="sd">        last_synchronisation_time (int): Last synchronization time in milliseconds since</span>
+</span><span id="line-176"><span class="sd">            1970-01-01 (e.g., 1677654321000 for 2023-03-01 12:25:21). Must be non-negative.</span>
+</span><span id="line-177"><span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+</span><span id="line-178"><span class="sd">            include a valid site name.</span>
+</span><span id="line-179"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+</span><span id="line-180"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-181"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+</span><span id="line-182"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-183"><span class="sd">        filter (SyncEventFilter, optional): Filter object to narrow results by</span>
+</span><span id="line-184"><span class="sd">            user attributes (e.g., &#39;group&#39;). If None, includes all events. Defaults to None.</span>
+</span><span id="line-185"><span class="sd">        option (SyncEventOption, optional): Configuration options, including</span>
+</span><span id="line-186"><span class="sd">            `interactive_mode` for status messages, `include_user_data` to add user</span>
+</span><span id="line-187"><span class="sd">            metadata, `include_uuid` to add UUIDs, `guess_col_type` to infer data types,</span>
+</span><span id="line-188"><span class="sd">            `cache` to reuse a client, and `include_missing_users` to include users without</span>
+</span><span id="line-189"><span class="sd">            events. Defaults to None (uses default :class:`SyncEventOption`).</span>
+</span><span id="line-190"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
+</span><span id="line-191"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+</span><span id="line-192">
+</span><span id="line-193"><span class="sd">    Returns:</span>
+</span><span id="line-194"><span class="sd">        Tuple[:class:`pandas.DataFrame`, int]: A tuple containing:</span>
+</span><span id="line-195"><span class="sd">            - A DataFrame with event data (columns: &#39;event_id&#39;, &#39;user_id&#39;, &#39;start_date&#39;,</span>
+</span><span id="line-196"><span class="sd">              &#39;form&#39;, etc.). Empty with columns [&#39;user_id&#39;, &#39;event_id&#39;, &#39;form&#39;,</span>
+</span><span id="line-197"><span class="sd">              &#39;start_date&#39;] if no new events are found.</span>
+</span><span id="line-198"><span class="sd">            - An integer representing the new synchronization time (milliseconds) for</span>
+</span><span id="line-199"><span class="sd">              subsequent calls.</span>
+</span><span id="line-200">
+</span><span id="line-201"><span class="sd">    Raises:</span>
+</span><span id="line-202"><span class="sd">        :class:`AMSError`: If `form` is empty, no users match the filter, authentication</span>
+</span><span id="line-203"><span class="sd">            fails, or the API request fails.</span>
+</span><span id="line-204"><span class="sd">        :class:`ValueError`: If `last_synchronisation_time` is negative or not an integer.</span>
+</span><span id="line-205">
+</span><span id="line-206"><span class="sd">    Examples:</span>
+</span><span id="line-207"><span class="sd">        &gt;&gt;&gt; from teamworksams import sync_event_data, SyncEventFilter, SyncEventOption</span>
+</span><span id="line-208"><span class="sd">        &gt;&gt;&gt; df, new_sync_time = sync_event_data(</span>
+</span><span id="line-209"><span class="sd">        ...     form = &quot;Training Log&quot;,</span>
+</span><span id="line-210"><span class="sd">        ...     last_synchronisation_time = 1677654321000,</span>
+</span><span id="line-211"><span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+</span><span id="line-212"><span class="sd">        ...     username = &quot;user&quot;,</span>
+</span><span id="line-213"><span class="sd">        ...     password = &quot;pass&quot;,</span>
+</span><span id="line-214"><span class="sd">        ...     filter = SyncEventFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
+</span><span id="line-215"><span class="sd">        ...     option = SyncEventOption(interactive_mode = True, include_user_data = True)</span>
+</span><span id="line-216"><span class="sd">        ... )</span>
+</span><span id="line-217"><span class="sd">        ℹ Requesting event data for form &#39;Training Log&#39; since last synchronisation time 2023-03-01 12:25:21</span>
+</span><span id="line-218"><span class="sd">        ✔ Retrieved 5 event records for form &#39;Training Log&#39; since last synchronisation time 2023-03-01 12:25:21</span>
+</span><span id="line-219"><span class="sd">        &gt;&gt;&gt; print(df.head())</span>
+</span><span id="line-220"><span class="sd">           about  user_id  event_id  form         start_date  duration  intensity</span>
+</span><span id="line-221"><span class="sd">        0  John Doe    12345    67890  Training Log  01/03/2025        60       High</span>
+</span><span id="line-222"><span class="sd">        &gt;&gt;&gt; print(new_sync_time)</span>
+</span><span id="line-223"><span class="sd">        1677654400000</span>
+</span><span id="line-224"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-225">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">SyncEventOption</span><span class="p">()</span>
+</span><span id="line-226">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+</span><span id="line-227">    
+</span><span id="line-228">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+</span><span id="line-229">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;sync_event&quot;</span><span class="p">)</span>
+</span><span id="line-230">    
+</span><span id="line-231">    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">last_synchronisation_time</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">last_synchronisation_time</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="line-232">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;last_synchronisation_time must be a non-negative integer (milliseconds since 1970-01-01).&quot;</span><span class="p">)</span>
+</span><span id="line-233">    
+</span><span id="line-234">    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+</span><span id="line-235">    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
+</span><span id="line-236">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-237">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch events for - Function: symc_event_data&quot;</span><span class="p">)</span>
+</span><span id="line-238">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;event_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span> <span class="s2">&quot;start_date&quot;</span><span class="p">])</span>
+</span><span id="line-239">    
+</span><span id="line-240">    <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_sync_event_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">last_synchronisation_time</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">)</span>
+</span><span id="line-241">    
+</span><span id="line-242">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-243">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting event data for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronisation time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-244">    
+</span><span id="line-245">    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;synchronise&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+</span><span id="line-246">    
+</span><span id="line-247">    <span class="n">export_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;export&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">{}</span>
+</span><span id="line-248">    
+</span><span id="line-249">    <span class="n">events</span> <span class="o">=</span> <span class="n">export_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="p">[])</span>
+</span><span id="line-250">    
+</span><span id="line-251">    <span class="n">new_sync_time</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastSynchronisationTimeOnServer&quot;</span><span class="p">,</span> <span class="n">last_synchronisation_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="n">last_synchronisation_time</span>
+</span><span id="line-252">    
+</span><span id="line-253">    <span class="n">deleted_event_ids</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idsOfDeletedEvents&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="p">[]</span>
+</span><span id="line-254">    
+</span><span id="line-255">    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_events_to_rows</span><span class="p">(</span>
+</span><span id="line-256">        <span class="n">events</span><span class="p">,</span>
+</span><span id="line-257">        <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  
+</span><span id="line-258">        <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>          
+</span><span id="line-259">        <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                 
+</span><span id="line-260">        <span class="n">download_attachment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  
+</span><span id="line-261">        <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
+</span><span id="line-262">        <span class="n">option</span><span class="o">=</span><span class="n">option</span>
+</span><span id="line-263">    <span class="p">)</span>
+</span><span id="line-264">    
+</span><span id="line-265">    <span class="n">event_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="k">if</span> <span class="n">rows</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span><span id="line-266">    
+</span><span id="line-267">    <span class="k">if</span> <span class="ow">not</span> <span class="n">event_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+</span><span id="line-268">        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_transform_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">clean_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">guess_col_type</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">,</span> <span class="n">convert_dates</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="line-269">        
+</span><span id="line-270">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_user_data</span><span class="p">:</span>
+</span><span id="line-271">            <span class="n">event_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
+</span><span id="line-272">        
+</span><span id="line-273">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_uuid</span> <span class="ow">and</span> <span class="n">user_df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="line-274">            <span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;userId&quot;</span><span class="p">:</span> <span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;uuid&quot;</span><span class="p">})</span>
+</span><span id="line-275">            <span class="n">event_df</span> <span class="o">=</span> <span class="n">event_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">user_df</span><span class="p">[[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</span><span id="line-276">        
+</span><span id="line-277">        <span class="n">front_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_user_data</span> <span class="k">else</span> <span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
+</span><span id="line-278">        
+</span><span id="line-279">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">include_uuid</span><span class="p">:</span>
+</span><span id="line-280">            <span class="n">front_cols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">)</span>
+</span><span id="line-281">            
+</span><span id="line-282">        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">(</span><span class="n">front_cols</span><span class="p">,</span> <span class="n">event_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
+</span><span id="line-283">        
+</span><span id="line-284">        <span class="n">event_df</span> <span class="o">=</span> <span class="n">_sort_event_data</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span>
+</span><span id="line-285">    
+</span><span id="line-286">    <span class="n">event_df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;deleted_event_ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deleted_event_ids</span>
+</span><span id="line-287">    
+</span><span id="line-288">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-289">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="line-290">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ No new data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronization time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-291">        <span class="k">else</span><span class="p">:</span>
+</span><span id="line-292">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Retrieved </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">event_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> event records for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39; since last synchronisation time </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">((</span><span class="n">last_synchronisation_time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-293">    
+</span><span id="line-294">    <span class="k">return</span> <span class="n">event_df</span><span class="p">,</span> <span class="n">new_sync_time</span></div>
 
+</span><span id="line-295">
 </span><span id="line-296">
 </span><span id="line-297">
-</span><span id="line-298">
 <div class="viewcode-block" id="get_profile_data">
 <a class="viewcode-back" href="../../reference/get_profile_data.html#teamworksams.export_main.get_profile_data">[docs]</a>
-</span><span id="line-299"><span class="k">def</span><span class="w"> </span><span class="nf">get_profile_data</span><span class="p">(</span>
-</span><span id="line-300">    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="line-301">    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="line-302">    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-303">    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-304">    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProfileFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-305">    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProfileOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-306">    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="line-307"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
-</span><span id="line-308"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve profile data from an AMS Profile Form.</span>
-</span><span id="line-309">
-</span><span id="line-310"><span class="sd">    Fetches profile data from the specified AMS Profile Form, returning a</span>
-</span><span id="line-311"><span class="sd">    :class:`pandas.DataFrame` with columns like &#39;profile_id&#39;, &#39;user_id&#39;, and form fields.</span>
-</span><span id="line-312"><span class="sd">    Supports optional filtering by user attributes (e.g., group) and customization like</span>
-</span><span id="line-313"><span class="sd">    column name standardization. Provides interactive feedback when</span>
-</span><span id="line-314"><span class="sd">    ``option.interactive_mode=True``.</span>
-</span><span id="line-315">
-</span><span id="line-316"><span class="sd">    Args:</span>
-</span><span id="line-317"><span class="sd">        form (str): Name of the AMS Profile Form (e.g., &#39;Athlete Profile&#39;). Must be a</span>
-</span><span id="line-318"><span class="sd">            non-empty string and correspond to a valid form.</span>
-</span><span id="line-319"><span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
-</span><span id="line-320"><span class="sd">            include a valid site name.</span>
-</span><span id="line-321"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
-</span><span id="line-322"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-323"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
-</span><span id="line-324"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-325"><span class="sd">        filter (:class:`ProfileFilter`, optional): Filter object to narrow results by user</span>
-</span><span id="line-326"><span class="sd">            attributes (e.g., &#39;group&#39;). If None, includes all profiles. Defaults to None.</span>
-</span><span id="line-327"><span class="sd">        option (:class:`ProfileOption`, optional): Configuration options, including</span>
-</span><span id="line-328"><span class="sd">            `interactive_mode` for status messages, `clean_names` to standardize column</span>
-</span><span id="line-329"><span class="sd">            names, `guess_col_type` to infer data types, `cache` to reuse a client, and</span>
-</span><span id="line-330"><span class="sd">            `include_missing_users` to include users without profiles. Defaults to None</span>
-</span><span id="line-331"><span class="sd">            (uses default :class:`ProfileOption`).</span>
-</span><span id="line-332"><span class="sd">        client (:class:`AMSClient`, optional): Pre-authenticated client from</span>
-</span><span id="line-333"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
-</span><span id="line-334">
-</span><span id="line-335"><span class="sd">    Returns:</span>
-</span><span id="line-336"><span class="sd">        :class:`pandas.DataFrame`: Profile data with columns like &#39;profile_id&#39;, &#39;user_id&#39;,</span>
-</span><span id="line-337"><span class="sd">            &#39;form&#39;, and form fields (e.g., &#39;ID&#39;). Empty with columns [&#39;user_id&#39;,</span>
-</span><span id="line-338"><span class="sd">            &#39;profile_id&#39;, &#39;form&#39;] if no profiles are found.</span>
-</span><span id="line-339">
-</span><span id="line-340"><span class="sd">    Raises:</span>
-</span><span id="line-341"><span class="sd">        :class:`AMSError`: If `form` is empty, no profiles/users are found, authentication</span>
-</span><span id="line-342"><span class="sd">            fails, or the API request fails.</span>
-</span><span id="line-343"><span class="sd">        :class:`ValueError`: If `filter` parameters are invalid.</span>
-</span><span id="line-344">
-</span><span id="line-345"><span class="sd">    Examples:</span>
-</span><span id="line-346"><span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
-</span><span id="line-347"><span class="sd">        &gt;&gt;&gt; from teamworksams import get_profile_data, ProfileFilter, ProfileOption</span>
-</span><span id="line-348"><span class="sd">        &gt;&gt;&gt; df = get_profile_data(</span>
-</span><span id="line-349"><span class="sd">        ...     form = &quot;Athlete Profile&quot;,</span>
-</span><span id="line-350"><span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
-</span><span id="line-351"><span class="sd">        ...     username = &quot;user&quot;,</span>
-</span><span id="line-352"><span class="sd">        ...     password = &quot;pass&quot;,</span>
-</span><span id="line-353"><span class="sd">        ...     filter = ProfileFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
-</span><span id="line-354"><span class="sd">        ...     option = ProfileOption(interactive_mode = True, clean_names = True)</span>
-</span><span id="line-355"><span class="sd">        ... )</span>
-</span><span id="line-356"><span class="sd">        ℹ Requesting profile data for form &#39;Athlete Profile&#39;</span>
-</span><span id="line-357"><span class="sd">        ℹ Processing 5 profiles...</span>
-</span><span id="line-358"><span class="sd">        &gt;&gt;&gt; print(df.head())</span>
-</span><span id="line-359"><span class="sd">           about  user_id  profile_id  form              ID</span>
-</span><span id="line-360"><span class="sd">        0  John Doe    12345      54321  Athlete Profile    2435t4yrgfddeqwret12</span>
-</span><span id="line-361"><span class="sd">        1  Jane Smith  12346      54322  Athlete Profile    2435t4yrgfddeqwret6</span>
-</span><span id="line-362"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="line-363">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">ProfileOption</span><span class="p">()</span>
-</span><span id="line-364">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
-</span><span id="line-365">    
-</span><span id="line-366">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
-</span><span id="line-367">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">)</span>
-</span><span id="line-368">    
-</span><span id="line-369">    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
-</span><span id="line-370">    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
-</span><span id="line-371">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-372">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch profiles for - Function: get_profile_data&quot;</span><span class="p">)</span>
-</span><span id="line-373">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;profile_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">])</span>
-</span><span id="line-374">    
-</span><span id="line-375">    <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_profile_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">)</span>
-</span><span id="line-376">    
-</span><span id="line-377">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-378">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting profile data for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-</span><span id="line-379">    
-</span><span id="line-380">    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
-</span><span id="line-381">    
-</span><span id="line-382">    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-</span><span id="line-383">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid API response: expected a dictionary, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
-</span><span id="line-384">    <span class="k">if</span> <span class="s2">&quot;profiles&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-</span><span id="line-385">        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown error&quot;</span><span class="p">)</span>
-</span><span id="line-386">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No profiles found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
-</span><span id="line-387">    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;profiles&quot;</span><span class="p">]:</span>
-</span><span id="line-388">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-389">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ No profiles found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-</span><span id="line-390">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;profile_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">])</span>
-</span><span id="line-391">    
-</span><span id="line-392">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-393">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Processing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> profiles...&quot;</span><span class="p">)</span>
-</span><span id="line-394">        
-</span><span id="line-395">    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_profile_rows</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;profiles&quot;</span><span class="p">],</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
-</span><span id="line-396">    
-</span><span id="line-397">    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
-</span><span id="line-398">       <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No profile data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
-</span><span id="line-399">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-</span><span id="line-400">    
-</span><span id="line-401">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_transform_profile_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">clean_names</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">)</span>
-</span><span id="line-402">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
-</span><span id="line-403">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">],</span> <span class="n">profile_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
-</span><span id="line-404">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_sort_profile_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">)</span>
-</span><span id="line-405">    
-</span><span id="line-406">    <span class="n">_print_profile_status</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
-</span><span id="line-407">    
-</span><span id="line-408">    <span class="k">return</span> <span class="n">profile_df</span></div>
+</span><span id="line-298"><span class="k">def</span><span class="w"> </span><span class="nf">get_profile_data</span><span class="p">(</span>
+</span><span id="line-299">    <span class="n">form</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="line-300">    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="line-301">    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-302">    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-303">    <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProfileFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-304">    <span class="n">option</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProfileOption</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-305">    <span class="n">client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AMSClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="line-306"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="line-307"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve profile data from an AMS Profile Form.</span>
+</span><span id="line-308">
+</span><span id="line-309"><span class="sd">    Fetches profile data from the specified AMS Profile Form, returning a</span>
+</span><span id="line-310"><span class="sd">    :class:`pandas.DataFrame` with columns like &#39;profile_id&#39;, &#39;user_id&#39;, and form fields.</span>
+</span><span id="line-311"><span class="sd">    Supports optional filtering by user attributes (e.g., group) and customization like</span>
+</span><span id="line-312"><span class="sd">    column name standardization. Provides interactive feedback when</span>
+</span><span id="line-313"><span class="sd">    ``option.interactive_mode=True``.</span>
+</span><span id="line-314">
+</span><span id="line-315"><span class="sd">    Args:</span>
+</span><span id="line-316"><span class="sd">        form (str): Name of the AMS Profile Form (e.g., &#39;Athlete Profile&#39;). Must be a</span>
+</span><span id="line-317"><span class="sd">            non-empty string and correspond to a valid form.</span>
+</span><span id="line-318"><span class="sd">        url (str): AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must</span>
+</span><span id="line-319"><span class="sd">            include a valid site name.</span>
+</span><span id="line-320"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses</span>
+</span><span id="line-321"><span class="sd">            :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-322"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses</span>
+</span><span id="line-323"><span class="sd">            :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-324"><span class="sd">        filter (ProfileFilter, optional): Filter object to narrow results by user</span>
+</span><span id="line-325"><span class="sd">            attributes (e.g., &#39;group&#39;). If None, includes all profiles. Defaults to None.</span>
+</span><span id="line-326"><span class="sd">        option (ProfileOption, optional): Configuration options, including</span>
+</span><span id="line-327"><span class="sd">            `interactive_mode` for status messages, `clean_names` to standardize column</span>
+</span><span id="line-328"><span class="sd">            names, `guess_col_type` to infer data types, `cache` to reuse a client, and</span>
+</span><span id="line-329"><span class="sd">            `include_missing_users` to include users without profiles. Defaults to None</span>
+</span><span id="line-330"><span class="sd">            (uses default :class:`ProfileOption`).</span>
+</span><span id="line-331"><span class="sd">        client (AMSClient, optional): Pre-authenticated client from</span>
+</span><span id="line-332"><span class="sd">            :func:`get_client`. If None, a new client is created. Defaults to None.</span>
+</span><span id="line-333">
+</span><span id="line-334"><span class="sd">    Returns:</span>
+</span><span id="line-335"><span class="sd">        :class:`pandas.DataFrame`: Profile data with columns like &#39;profile_id&#39;, &#39;user_id&#39;,</span>
+</span><span id="line-336"><span class="sd">            &#39;form&#39;, and form fields (e.g., &#39;ID&#39;). Empty with columns [&#39;user_id&#39;,</span>
+</span><span id="line-337"><span class="sd">            &#39;profile_id&#39;, &#39;form&#39;] if no profiles are found.</span>
+</span><span id="line-338">
+</span><span id="line-339"><span class="sd">    Raises:</span>
+</span><span id="line-340"><span class="sd">        :class:`AMSError`: If `form` is empty, no profiles/users are found, authentication</span>
+</span><span id="line-341"><span class="sd">            fails, or the API request fails.</span>
+</span><span id="line-342"><span class="sd">        :class:`ValueError`: If `filter` parameters are invalid.</span>
+</span><span id="line-343">
+</span><span id="line-344"><span class="sd">    Examples:</span>
+</span><span id="line-345"><span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+</span><span id="line-346"><span class="sd">        &gt;&gt;&gt; from teamworksams import get_profile_data, ProfileFilter, ProfileOption</span>
+</span><span id="line-347"><span class="sd">        &gt;&gt;&gt; df = get_profile_data(</span>
+</span><span id="line-348"><span class="sd">        ...     form = &quot;Athlete Profile&quot;,</span>
+</span><span id="line-349"><span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+</span><span id="line-350"><span class="sd">        ...     username = &quot;user&quot;,</span>
+</span><span id="line-351"><span class="sd">        ...     password = &quot;pass&quot;,</span>
+</span><span id="line-352"><span class="sd">        ...     filter = ProfileFilter(user_key = &quot;group&quot;, user_value = &quot;Example Group&quot;),</span>
+</span><span id="line-353"><span class="sd">        ...     option = ProfileOption(interactive_mode = True, clean_names = True)</span>
+</span><span id="line-354"><span class="sd">        ... )</span>
+</span><span id="line-355"><span class="sd">        ℹ Requesting profile data for form &#39;Athlete Profile&#39;</span>
+</span><span id="line-356"><span class="sd">        ℹ Processing 5 profiles...</span>
+</span><span id="line-357"><span class="sd">        &gt;&gt;&gt; print(df.head())</span>
+</span><span id="line-358"><span class="sd">           about  user_id  profile_id  form              ID</span>
+</span><span id="line-359"><span class="sd">        0  John Doe    12345      54321  Athlete Profile    2435t4yrgfddeqwret12</span>
+</span><span id="line-360"><span class="sd">        1  Jane Smith  12346      54322  Athlete Profile    2435t4yrgfddeqwret6</span>
+</span><span id="line-361"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-362">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">ProfileOption</span><span class="p">()</span>
+</span><span id="line-363">    <span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">get_client</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">)</span>
+</span><span id="line-364">    
+</span><span id="line-365">    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="p">:</span>
+</span><span id="line-366">        <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Form name is required&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">)</span>
+</span><span id="line-367">    
+</span><span id="line-368">    <span class="n">user_ids</span><span class="p">,</span> <span class="n">user_df</span> <span class="o">=</span> <span class="n">_fetch_user_ids</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+</span><span id="line-369">    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_ids</span><span class="p">:</span>
+</span><span id="line-370">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-371">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ No users found to fetch profiles for - Function: get_profile_data&quot;</span><span class="p">)</span>
+</span><span id="line-372">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;profile_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">])</span>
+</span><span id="line-373">    
+</span><span id="line-374">    <span class="n">payload</span> <span class="o">=</span> <span class="n">_build_profile_payload</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">user_ids</span><span class="p">)</span>
+</span><span id="line-375">    
+</span><span id="line-376">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-377">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Requesting profile data for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+</span><span id="line-378">    
+</span><span id="line-379">    <span class="n">data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">_fetch</span><span class="p">(</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">cache</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+</span><span id="line-380">    
+</span><span id="line-381">    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+</span><span id="line-382">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid API response: expected a dictionary, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
+</span><span id="line-383">    <span class="k">if</span> <span class="s2">&quot;profiles&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span><span id="line-384">        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown error&quot;</span><span class="p">)</span>
+</span><span id="line-385">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No profiles found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
+</span><span id="line-386">    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;profiles&quot;</span><span class="p">]:</span>
+</span><span id="line-387">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-388">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ No profiles found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+</span><span id="line-389">        <span class="k">return</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;profile_id&quot;</span><span class="p">,</span> <span class="s2">&quot;form&quot;</span><span class="p">])</span>
+</span><span id="line-390">    
+</span><span id="line-391">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-392">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Processing </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;profiles&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> profiles...&quot;</span><span class="p">)</span>
+</span><span id="line-393">        
+</span><span id="line-394">    <span class="n">rows</span> <span class="o">=</span> <span class="n">_process_profile_rows</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;profiles&quot;</span><span class="p">],</span> <span class="nb">filter</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+</span><span id="line-395">    
+</span><span id="line-396">    <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span><span class="p">:</span>
+</span><span id="line-397">       <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No profile data found for form &#39;</span><span class="si">{</span><span class="n">form</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;get_profile_data&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;profilesearch&quot;</span><span class="p">)</span>
+</span><span id="line-398">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+</span><span id="line-399">    
+</span><span id="line-400">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_transform_profile_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">clean_names</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">guess_col_type</span><span class="p">)</span>
+</span><span id="line-401">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_append_user_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">user_df</span><span class="p">,</span> <span class="n">option</span><span class="o">.</span><span class="n">include_missing_users</span><span class="p">)</span>
+</span><span id="line-402">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_reorder_columns</span><span class="p">([</span><span class="s1">&#39;about&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">],</span> <span class="n">profile_df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;entered_by_user_id&#39;</span><span class="p">])</span>
+</span><span id="line-403">    <span class="n">profile_df</span> <span class="o">=</span> <span class="n">_sort_profile_data</span><span class="p">(</span><span class="n">profile_df</span><span class="p">)</span>
+</span><span id="line-404">    
+</span><span id="line-405">    <span class="n">_print_profile_status</span><span class="p">(</span><span class="n">profile_df</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+</span><span id="line-406">    
+</span><span id="line-407">    <span class="k">return</span> <span class="n">profile_df</span></div>
 
 </span></code></pre></div>
     </div></div>

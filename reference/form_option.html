@@ -160,17 +160,17 @@
 </nav>
 <div id="content" role="main">
 <section id="formoption">
-<h1>FormOption<a class="headerlink" href="#formoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="form-option"></span><h1>FormOption<a class="headerlink" href="#formoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.form_option.FormOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.form_option.</span></span><span class="sig-name descname"><span class="pre">FormOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_instructions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/form_option.html#FormOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.form_option.FormOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.form_option.FormOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for configuring form schema export and summary functions.</p>
-<p>Customizes the behavior of <a class="reference internal" href="get_forms.html#teamworksams.form_main.get_forms" title="teamworksams.form_main.get_forms"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.form_main.get_forms()</span></code></a> and
-<a class="reference internal" href="get_form_schema.html#teamworksams.form_main.get_form_schema" title="teamworksams.form_main.get_form_schema"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.form_main.get_form_schema()</span></code></a>, controlling interactive feedback,
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>, controlling interactive feedback,
 caching, output format, and schema detail level. These options optimize form metadata
 retrieval for administrative tasks like auditing or integration. See
-<span class="xref std std-ref">vignettes/managing_forms</span> for form management workflows.</p>
+<a class="reference internal" href="../vignettes/managing_forms.html#managing-forms"><span class="std std-ref">Managing Forms</span></a> for form management workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -275,7 +275,7 @@ Defaults to False.</p></li>
 <ul class="simple">
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">interactive_mode=True</span></code> for status messages like “Retrieved 5 forms,”
 useful for administrative tasks in interactive environments.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">raw_output=True</span></code> with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> to process the raw API
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">raw_output=True</span></code> with <a class="reference external" href="../reference/get_forms.html">get_forms()</a> to process the raw API
 response programmatically, bypassing the formatted string.</p></li>
 <li><p>Enable <code class="docutils literal notranslate"><span class="pre">field_details=True</span></code> and <code class="docutils literal notranslate"><span class="pre">include_instructions=True</span></code> to get
 verbose schema summaries, ideal for form documentation or integration
@@ -285,9 +285,9 @@ planning.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="get_forms.html#teamworksams.form_main.get_forms" title="teamworksams.form_main.get_forms"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.form_main.get_forms()</span></code></a>: Function for listing forms.</p></li>
-<li><p><a class="reference internal" href="get_form_schema.html#teamworksams.form_main.get_form_schema" title="teamworksams.form_main.get_form_schema"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.form_main.get_form_schema()</span></code></a>: Function for schema summaries.</p></li>
-<li><p><span class="xref std std-ref">vignettes/managing_forms</span>: Form management workflows.</p></li>
+<li><p><a class="reference external" href="../reference/get_forms.html">get_forms()</a> Function for listing forms.</p></li>
+<li><p><a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a> Function for schema summaries.</p></li>
+<li><p><a class="reference internal" href="../vignettes/managing_forms.html#managing-forms"><span class="std std-ref">Managing Forms</span></a>: Form management workflows.</p></li>
 </ul>
 </section>
 </section>

@@ -160,16 +160,16 @@
 </nav>
 <div id="content" role="main">
 <section id="inserteventoption">
-<h1>InsertEventOption<a class="headerlink" href="#inserteventoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="insert-event-option"></span><h1>InsertEventOption<a class="headerlink" href="#inserteventoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.import_option.InsertEventOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.import_option.</span></span><span class="sig-name descname"><span class="pre">InsertEventOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'user_id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/import_option.html#InsertEventOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.import_option.InsertEventOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.import_option.InsertEventOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for configuring the insert_event_data function.</p>
-<p>Customizes the behavior of <a class="reference internal" href="insert_event_data.html#teamworksams.import_main.insert_event_data" title="teamworksams.import_main.insert_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.import_main.insert_event_data()</span></code></a>,
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>,
 controlling user identifier mapping, caching, interactive feedback, and table fields.
 Optimizes performance and user experience for inserting new events into an AMS Event
-Form. See <span class="xref std std-ref">vignettes/importing_data</span> for import workflows.</p>
+Form. See <a class="reference internal" href="../vignettes/importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a> for import workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -231,7 +231,7 @@ None, assumes no table fields. Defaults to None.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ValueError</strong> – If <a class="reference internal" href="#teamworksams.import_option.InsertEventOption.id_col" title="teamworksams.import_option.InsertEventOption.id_col"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">id_col</span></code></a> is not one of ‘user_id’, ‘about’, ‘username’, or</p></li>
+<li><p><strong>ValueError</strong> – If <a class="reference internal" href="#teamworksams.import_option.InsertEventOption.id_col" title="teamworksams.import_option.InsertEventOption.id_col"><code class="xref py py-obj docutils literal notranslate"><span class="pre">id_col</span></code></a> is not one of ‘user_id’, ‘about’, ‘username’, or</p></li>
 <li><p><strong>'email'.</strong> – </p></li>
 </ul>
 </dd>
@@ -274,8 +274,8 @@ for interactive environments like Jupyter notebooks.</p></li>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="insert_event_data.html#teamworksams.import_main.insert_event_data" title="teamworksams.import_main.insert_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.import_main.insert_event_data()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.import_option.InsertEventOption" title="teamworksams.import_option.InsertEventOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">InsertEventOption</span></code></a>.</p></li>
-<li><p><span class="xref std std-ref">vignettes/importing_data</span>: Event insertion workflows.</p></li>
+<li><p><a class="reference external" href="../reference/insert_event_data.html">insert_event_data()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">InsertEventOption</span></code>.</p></li>
+<li><p><a class="reference internal" href="../vignettes/importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a>: Event insertion workflows.</p></li>
 </ul>
 </section>
 </section>

@@ -216,11 +216,11 @@
 </span><span id="line-3"><span class="k">class</span><span class="w"> </span><span class="nc">UserOption</span><span class="p">:</span>
 </span><span id="line-4"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring user-related operations.</span>
 </span><span id="line-5">
-</span><span id="line-6"><span class="sd">    Customizes the behavior of :func:`teamworksams.user_main.get_user`,</span>
-</span><span id="line-7"><span class="sd">    :func:`teamworksams.user_main.edit_user`, and</span>
-</span><span id="line-8"><span class="sd">    :func:`teamworksams.user_main.create_user`, controlling output columns, caching,</span>
+</span><span id="line-6"><span class="sd">    Customizes the behavior of :func:`get_user`,</span>
+</span><span id="line-7"><span class="sd">    :func:`edit_user`, and</span>
+</span><span id="line-8"><span class="sd">    :func:`create_user`, controlling output columns, caching,</span>
 </span><span id="line-9"><span class="sd">    and interactive feedback. Optimizes performance and user experience for user data</span>
-</span><span id="line-10"><span class="sd">    operations. See :ref:`vignettes/user_management` for usage examples.</span>
+</span><span id="line-10"><span class="sd">    operations. See :ref:`user_management` for usage examples.</span>
 </span><span id="line-11">
 </span><span id="line-12"><span class="sd">    Args:</span>
 </span><span id="line-13"><span class="sd">        columns (Optional[List[str]]): List of column names to include in the output</span>
@@ -271,10 +271,10 @@
 </span><span id="line-52"><span class="k">class</span><span class="w"> </span><span class="nc">GroupOption</span><span class="p">:</span>
 </span><span id="line-53"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring group data export.</span>
 </span><span id="line-54">
-</span><span id="line-55"><span class="sd">    Customizes the behavior of :func:`teamworksams.user_main.get_group`, controlling</span>
+</span><span id="line-55"><span class="sd">    Customizes the behavior of :func:`get_group`, controlling</span>
 </span><span id="line-56"><span class="sd">    data type inference, caching, and interactive feedback. Optimizes the group data</span>
 </span><span id="line-57"><span class="sd">    retrieval process for performance and output formatting. See</span>
-</span><span id="line-58"><span class="sd">    :ref:`vignettes/user_management` for combining group and user data.</span>
+</span><span id="line-58"><span class="sd">    :ref:`user_management` for combining group and user data.</span>
 </span><span id="line-59">
 </span><span id="line-60"><span class="sd">    Args:</span>
 </span><span id="line-61"><span class="sd">        guess_col_type (bool): If True, infers column data types in the output</span>

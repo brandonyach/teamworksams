@@ -1,3 +1,6 @@
+.. _login_ref: ../reference/login.html
+.. _get_user_ref: ../reference/get_user.html
+
 .. _getting_started:
 
 Getting Started with teamworksams
@@ -6,7 +9,7 @@ Getting Started with teamworksams
 **teamworksams** is a Python package that connects to the Teamworks AMS API, enabling users to return a flat export of Teamworks AMS data, import data from Python to Teamworks AMS, create and edit users, upload and attach files to events, update user avatars, work with database forms and related entries, and retrieve form metadata and schemas. It streamlines automation and data management for Teamworks AMS, leveraging Python’s data processing capabilities.
 
 
-This guide walks you through installing `teamworksams`, setting up credentials, and running your first API call. Explore advanced features in the :ref:`vignettes` and :ref:`api_reference` vignettes.
+This guide walks you through installing `teamworksams`, setting up credentials, and running your first API call. Explore advanced features in the workflow vignettes and :ref:`reference` vignettes.
 
 Overview
 --------
@@ -23,14 +26,28 @@ The Teamworks AMS (Athlete Management System) API enables programmatic access to
 
 Use cases include automating athlete data exports, updating user permissions in bulk, or integrating AMS data with analytics pipelines. For example, a sports scientist might use `teamworksams` to fetch daily training logs for analysis in Jupyter notebooks, while a team administrator could update user information programmatically.
 
+Prerequisites
+-------------
+
+Before using `teamworksams`, ensure you have:
+
+1. **Teamworks AMS Account**: Obtain API access from your AMS administrator, including:
+   - **URL**: Your AMS instance URL (e.g., `https://example.smartabase.com/site`).
+   - **Username**: Your username (e.g., `username`).
+   - **Password**: Your password (e.g., `password`).
+2. **Python Environment**: Python 3.8 or higher. A virtual environment (e.g., `venv`, `conda`) is recommended to isolate dependencies.
+3. **Optional Tools**:
+   - `python-dotenv` for loading `.env` files (included with `teamworksams`).
+   - `keyring` for secure credential storage (included).
+
 Installation
 ------------
 
-Install `teamworksams` using pip:
+Currently, `teamworksams` is available for installation from GitHub. Use pip to install the package:
 
 .. code-block:: bash
 
-   pip install teamworksams
+   pip install git+https://github.com/brandonyach/teamworksams.git
 
 Verify the installation:
 
@@ -40,45 +57,16 @@ Verify the installation:
    print(teamworksams.__version__)  # Should print '0.1.0'
 
 **Requirements**:
-
 - Python 3.8 or higher.
 - Dependencies (installed automatically): `pandas`, `requests`, `requests_toolbelt`, `python-dotenv`, `tqdm`, `keyring`.
 
-If you plan to run tests or contribute, install test dependencies:
+For testing or contributing, install test dependencies:
 
 .. code-block:: bash
 
-   pip install teamworksams[test]
+   pip install git+https://github.com/brandonyach/teamworksams.git#egg=teamworksams[test]
 
-Prerequisites
--------------
-
-To use `teamworksams`, you need:
-
-1. **Teamworks AMS Account**: Obtain API access from your AMS administrator, including:
-   - **URL**: Your AMS instance URL (e.g., `https://example.smartabase.com/site`).
-   - **Username**: Your username (e.g., `username`).
-   - **Password**: Your password (e.g., `password`).
-2. **Python Environment**: A virtual environment (e.g., `venv`, `conda`) is recommended to isolate dependencies.
-3. **Optional Tools**:
-   - `python-dotenv` for loading `.env` files (included with `teamworksams`).
-   - `keyring` for secure credential storage (included).
-   - `os` to ...
-
-Environment Setup
------------------
-
-Before using **teamworksams**, configure your environment to ensure smooth operation across platforms. This section covers setting up Python, installing dependencies, and preparing your workspace.
-
-**Step 1: Install Python**
-
-Ensure Python 3.8 or higher is installed. Verify with:
-
-.. code-block:: bash
-
-   python --version  # Should output Python 3.8.x or higher
-
-If not installed, download from `python.org <https://www.python.org/downloads/>`_ or use:
+If Python 3.8+ is not installed, download from `python.org <https://www.python.org/downloads/>`_ or use:
 
 .. code-block:: bash
 
@@ -92,44 +80,31 @@ If not installed, download from `python.org <https://www.python.org/downloads/>`
    # Windows
    # Download installer from python.org and follow prompts
 
-**Step 2: Create a Project Directory**
+Environment Setup
+-----------------
 
-Organize your scripts and configuration files:
+Set up your project workspace to organize scripts and configuration files:
 
-.. code-block:: bash
+1. Create a project directory:
 
-   mkdir teamworksams_project
-   cd teamworksams_project
+   .. code-block:: bash
 
-**Step 3: Install teamworksams**
+      mkdir teamworksams_project
+      cd teamworksams_project
 
-Activate your virtual environment and install:
+2. Create and activate a virtual environment:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   pip install teamworksams
+      # macOS/Linux
+      python -m venv venv
+      source venv/bin/activate
 
+      # Windows
+      python -m venv venv
+      venv\Scripts\activate
 
-**Requirements**:
-
-- Python 3.8 or higher.
-- Dependencies (installed automatically): `pandas`, `requests`, `requests_toolbelt`, `python-dotenv`, `tqdm`, `keyring`.
-
-If you plan to run tests or contribute, install test dependencies:
-
-.. code-block:: bash
-
-   pip install teamworksams[test]
-
-**Step 4: Verify Installation**
-
-Test the import:
-
-.. code-block:: python
-
-   import teamworksams
-   print(teamworksams.__version__)  # Should print 0.1.0
-
+3. Install `teamworksams` (as shown in the Installation section above).
 
 Setting Up Credentials
 ----------------------
@@ -167,54 +142,29 @@ Setting Up Credentials
 
 
 
-   Alternatively, you can load environment variables directly using Python’s ``os`` module, which **teamworksams** supports as a fallback. This method requires manually setting environment variables or sourcing a ``.env`` file in your shell.
-
- **Example (Manual Setup)**:
-
-Set variables in your shell:
-
-   .. tab-set::
-
-   .. tab-item:: macOS/Linux
-
-      .. code-block:: bash
-
-         export AMS_URL=https://example.smartabase.com/site
-         export AMS_USERNAME=username
-         export AMS_PASSWORD=password
-
-   .. tab-item:: Windows (Command Prompt)
-
-      .. code-block:: bash
-
-         set AMS_URL=https://example.smartabase.com/site
-         set AMS_USERNAME=username
-         set AMS_PASSWORD=password
-
-   Use in Python:
+   Alternatively, you can load environment variables directly using Python’s ``os`` module, which **teamworksams** supports as a fallback. This method requires manually setting environment variables or sourcing a ``.env`` file in your shell, then using the ``os`` library:
 
    .. code-block:: python
 
-   import os
-   from teamworksams import get_user
-   from teamworksams.user_option import UserOption
+      import os
+      from teamworksams import get_user, UserOption
 
-   url = os.getenv("AMS_URL")
-   df = get_user(
-      url=url,
-      option=UserOption(interactive_mode=True)
-   )
-   print(df[['user_id', 'first_name']].head())
+      url = os.getenv("AMS_URL")
+      df = get_user(
+         url=url,
+         option=UserOption(interactive_mode=True)
+      )
+      print(df[['user_id', 'first_name']].head())
 
    **Output**:
 
    .. code-block:: text
 
-   ℹ Fetching user data...
-   ✔ Retrieved 5 users.
-      user_id first_name
-   0    12345       John
-   ...
+      ℹ Fetching user data...
+      ✔ Retrieved 5 users.
+         user_id first_name
+      0    12345       John
+      ...
 
 **Note**:
 
@@ -242,15 +192,6 @@ Set variables in your shell:
         option = EventOption(interactive_mode = True, clean_names = True)
         )
       print(df)
-      # Output: 
-      # ✔ Successfully logged amsbuilder into https://example.smartabase.com/site.
-      # ℹ Requesting event data for 'Training Log' between 01/01/2025 and 31/01/2025
-      # ℹ Processing 250 events...
-      # ✔ Retrieved 250 event records for form 'Training Log'.
-      # about  user_id  event_id  form         start_date  duration  intensity
-      # 0  John Doe    12345    67890  Training Log  01/01/2025        60       High
-      # 1  Jane Smith  12346    67891  Training Log  02/01/2025        45     Medium
-
 
       from teamworksams import get_client, get_user
 
@@ -261,9 +202,6 @@ Set variables in your shell:
           interactive_mode=True
       )
       print(f"Authenticated: {client.authenticated}")
-      # Output: ✔ Successfully logged username into https://example.smartabase.com/site.
-      #         Authenticated: True
-
 
 
 3. **Using Keyring (Secure Storage)**
@@ -297,7 +235,7 @@ Set variables in your shell:
 Troubleshooting Credentials
 ---------------------------
 
-If you encounter authentication errors (`AMSError`):
+If you encounter authentication errors (:py:class:`AMSError`):
 
 - **Invalid URL**: Ensure the URL includes the site name (e.g., `https://example.smartabase.com/site`, not `https://example.smartabase.com`).
 - **Invalid Credentials**: Verify username and password with your AMS administrator.
@@ -317,6 +255,7 @@ Example error handling:
        )
    except AMSError as e:
        print(e)  # Invalid URL or login credentials...
+
 
 Quick Start
 -----------
@@ -338,26 +277,20 @@ Let’s authenticate and fetch user data to get started. This example logs in, r
        option=LoginOption(interactive_mode=True)
    )
    print(f"Session header: {login_result['session_header']}")
-   # Output: ℹ Logging username into https://example.smartabase.com/site...
-   #         ✔ Successfully logged username into https://example.smartabase.com/site.
-   #         Session header: abc123
 
    # Fetch users
    df = get_user(
        url="https://example.smartabase.com/site",
        option=UserOption(interactive_mode=True)
    )
-   print(df[['user_id', 'first_name', 'groups']].head())
-   # Output: ℹ Fetching user data...
-   #         ✔ Retrieved 10 users.
-   #            user_id first_name  groups
-   #         0   12345   John Doe  Team A
-   #         1   12346 Jane Smith  Team A
-   #         ...
 
-**What’s Happening**:
-- :py:func:`teamworksams.login_main.login` authenticates with the AMS API, returning session details.
-- :py:func:`teamworksams.user_main.get_user` fetches user data as a pandas DataFrame, with interactive feedback enabled.
+
+**What’s Happening**
+
+- `login() <login_ref_>`_ authenticates with the AMS API, returning session details.
+
+- `get_user() <get_user_ref_>`_ fetches user data as a pandas DataFrame, with interactive feedback enabled.
+
 - The output includes user IDs, names, and group affiliations, ready for analysis.
 
 Next Steps

@@ -224,7 +224,7 @@
 </span><span id="line-11"><span class="sd">    Raised for errors during AMS API interactions, such as authentication failures or</span>
 </span><span id="line-12"><span class="sd">    invalid responses. Provides detailed error information, including function, endpoint,</span>
 </span><span id="line-13"><span class="sd">    and HTTP status code, to aid debugging. Used by functions like</span>
-</span><span id="line-14"><span class="sd">    :func:`get_client` and :func:`teamworksams.login_main.login`.</span>
+</span><span id="line-14"><span class="sd">    :func:`get_client` and :func:`login`.</span>
 </span><span id="line-15">
 </span><span id="line-16"><span class="sd">    Args:</span>
 </span><span id="line-17"><span class="sd">        message (str): The primary error message describing the issue.</span>
@@ -285,8 +285,8 @@
 </span><span id="line-66">
 </span><span id="line-67"><span class="sd">    Handles authentication, API requests, and caching for AMS operations. Created by</span>
 </span><span id="line-68"><span class="sd">    :func:`get_client` and used internally by functions like</span>
-</span><span id="line-69"><span class="sd">    :func:`teamworksams.user_main.get_user`. Supports direct use for custom API calls</span>
-</span><span id="line-70"><span class="sd">    with methods like :meth:`_fetch`. See :ref:`vignettes/credentials` for setup.</span>
+</span><span id="line-69"><span class="sd">    :func:`get_user`. Supports direct use for custom API calls</span>
+</span><span id="line-70"><span class="sd">    with methods like :meth:`_fetch`. See :ref:`credentials` for setup.</span>
 </span><span id="line-71">
 </span><span id="line-72"><span class="sd">    Args:</span>
 </span><span id="line-73"><span class="sd">        url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must include a valid site name.</span>

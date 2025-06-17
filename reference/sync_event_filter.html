@@ -160,14 +160,14 @@
 </nav>
 <div id="content" role="main">
 <section id="synceventfilter">
-<h1>SyncEventFilter<a class="headerlink" href="#synceventfilter" title="Link to this heading"><span>#</span></a></h1>
+<span id="sync-event-filter"></span><h1>SyncEventFilter<a class="headerlink" href="#synceventfilter" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.export_filter.SyncEventFilter">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.export_filter.</span></span><span class="sig-name descname"><span class="pre">SyncEventFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/export_filter.html#SyncEventFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.export_filter.SyncEventFilter" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.export_filter.SyncEventFilter'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Filter for selecting users in sync event data export.</p>
 <p>Defines criteria for filtering events retrieved by
-<a class="reference internal" href="sync_event_data.html#teamworksams.export_main.sync_event_data" title="teamworksams.export_main.sync_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.sync_event_data()</span></code></a>, allowing selection based on user
+<code class="xref py py-func docutils literal notranslate"><span class="pre">sync_event_data()</span></code>, allowing selection based on user
 attributes (e.g., username, group). Validates filter parameters for compatibility
 with the AMS ‘synchronise’ endpoint.</p>
 <dl class="field-list simple">
@@ -230,16 +230,16 @@ If None, no filtering is applied. Defaults to None.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">user_key</span></code> must be one of ‘username’, ‘email’, ‘group’, or ‘about’;
 <code class="docutils literal notranslate"><span class="pre">user_value</span></code> is case-sensitive and supports lists for multiple values (e.g.,
 [‘TeamA’]).</p></li>
-<li><p>Use with <a class="reference internal" href="sync_event_data.html#teamworksams.export_main.sync_event_data" title="teamworksams.export_main.sync_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.sync_event_data()</span></code></a> to limit synchronized
+<li><p>Use with <a class="reference external" href="../reference/sync_event_data.html">sync_event_data()</a> to limit synchronized
 events to specific users, optimizing performance for incremental updates.</p></li>
 </ul>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="sync_event_data.html#teamworksams.export_main.sync_event_data" title="teamworksams.export_main.sync_event_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.export_main.sync_event_data()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.export_filter.SyncEventFilter" title="teamworksams.export_filter.SyncEventFilter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SyncEventFilter</span></code></a>.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SyncEventOption</span></code>: Configuration options for synchronization.</p></li>
-<li><p><span class="xref std std-ref">vignettes/exporting_data</span>: Synchronization workflows.</p></li>
+<li><p><a class="reference external" href="../reference/sync_event_data.html">sync_event_data()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncEventFilter</span></code>.</p></li>
+<li><p><a class="reference external" href="../reference/sync_event_option.html">SyncEventOption()</a>: Configuration options for synchronization.</p></li>
+<li><p><a class="reference internal" href="../vignettes/exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a>: Synchronization workflows.</p></li>
 </ul>
 </section>
 </section>

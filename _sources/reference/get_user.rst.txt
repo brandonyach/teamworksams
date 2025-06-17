@@ -1,3 +1,5 @@
+.. _get_user:
+
 get_user
 ========
 

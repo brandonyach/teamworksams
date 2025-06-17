@@ -160,17 +160,17 @@
 </nav>
 <div id="content" role="main">
 <section id="getdatabaseoption">
-<h1>GetDatabaseOption<a class="headerlink" href="#getdatabaseoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="get-database-option"></span><h1>GetDatabaseOption<a class="headerlink" href="#getdatabaseoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.database_option.GetDatabaseOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.database_option.</span></span><span class="sig-name descname"><span class="pre">GetDatabaseOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/database_option.html#GetDatabaseOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.database_option.GetDatabaseOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.database_option.GetDatabaseOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for retrieving database entries from an AMS database form.</p>
-<p>Customizes the behavior of <a class="reference internal" href="get_database.html#teamworksams.database_main.get_database" title="teamworksams.database_main.get_database"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.database_main.get_database()</span></code></a>,
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">get_database()</span></code>,
 controlling caching and interactive feedback. These options optimize performance
 and user experience for fetching database entries, such as allergies or equipment
 lists, typically used in one-off operations. See
-<span class="xref std std-ref">vignettes/database_operations</span> for database workflows.</p>
+<a class="reference internal" href="../vignettes/database_operations.html#database-operations"><span class="std std-ref">Database Operations</span></a> for database workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -228,15 +228,15 @@ Set to False for fresh data. Defaults to True.</p></li>
 entries,” useful for one-off queries in interactive environments.</p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">cache=False</span></code> to ensure fresh data when retrieving entries, especially
 if the AMS database form has been recently updated.</p></li>
-<li><p>Use with <a class="reference internal" href="get_database.html#teamworksams.database_main.get_database" title="teamworksams.database_main.get_database"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.database_main.get_database()</span></code></a> for occasional data
+<li><p>Use with <a class="reference external" href="../reference/get_database.html">get_database()</a> for occasional data
 retrieval tasks, such as auditing or reporting.</p></li>
 </ul>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="get_database.html#teamworksams.database_main.get_database" title="teamworksams.database_main.get_database"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.database_main.get_database()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.database_option.GetDatabaseOption" title="teamworksams.database_option.GetDatabaseOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code></a>.</p></li>
-<li><p><span class="xref std std-ref">vignettes/database_operations</span>: Database retrieval workflows.</p></li>
+<li><p><a class="reference external" href="../reference/get_database.html">get_database()</a>: Function using <code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseOption</span></code>.</p></li>
+<li><p><a class="reference internal" href="../vignettes/database_operations.html#database-operations"><span class="std std-ref">Database Operations</span></a>: Database retrieval workflows.</p></li>
 </ul>
 </section>
 </section>

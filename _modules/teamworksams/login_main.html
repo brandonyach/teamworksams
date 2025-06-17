@@ -228,13 +228,13 @@
 </span><span id="line-15"><span class="sd">    Establishes a session with the AMS API using provided credentials, returning a</span>
 </span><span id="line-16"><span class="sd">    dictionary with login data, session header, and cookie. Useful for verifying</span>
 </span><span id="line-17"><span class="sd">    credentials or initializing a :class:`AMSClient` for custom API calls. See</span>
-</span><span id="line-18"><span class="sd">    :ref:`vignettes/credentials` for authentication workflows.</span>
+</span><span id="line-18"><span class="sd">    :ref:`credentials` for authentication workflows.</span>
 </span><span id="line-19">
 </span><span id="line-20"><span class="sd">    Args:</span>
 </span><span id="line-21"><span class="sd">        url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must include a valid site name.</span>
 </span><span id="line-22"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
 </span><span id="line-23"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-24"><span class="sd">        option (:class:`LoginOption`, optional): Configuration options, including `interactive_mode` to enable status messages (e.g., &quot;Successfully logged in&quot;). Defaults to None (uses default :class:`LoginOption`).</span>
+</span><span id="line-24"><span class="sd">        option (LoginOption, optional): Configuration options, including `interactive_mode` to enable status messages (e.g., &quot;Successfully logged in&quot;). Defaults to None (uses default :class:`LoginOption`).</span>
 </span><span id="line-25">
 </span><span id="line-26"><span class="sd">    Returns:</span>
 </span><span id="line-27"><span class="sd">        Dict[str, Any]: A dictionary containing:</span>
@@ -245,62 +245,61 @@
 </span><span id="line-32"><span class="sd">            - &#39;cookie&#39;: The formatted cookie string (e.g., &#39;JSESSIONID = session_header&#39;).</span>
 </span><span id="line-33">
 </span><span id="line-34"><span class="sd">    Raises:</span>
-</span><span id="line-35"><span class="sd">        AMSError: If the URL is invalid, credentials are missing or invalid, the login</span>
+</span><span id="line-35"><span class="sd">        :class:`AMSError`: If the URL is invalid, credentials are missing or invalid, the login</span>
 </span><span id="line-36"><span class="sd">            request fails (e.g., HTTP 401), or the session header is not provided.</span>
 </span><span id="line-37">
 </span><span id="line-38"><span class="sd">    Examples:</span>
-</span><span id="line-39"><span class="sd">        &gt;&gt;&gt; from teamworksams import login</span>
-</span><span id="line-40"><span class="sd">        &gt;&gt;&gt; from teamworksams import LoginOption</span>
-</span><span id="line-41"><span class="sd">        &gt;&gt;&gt; login_result = login(</span>
-</span><span id="line-42"><span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
-</span><span id="line-43"><span class="sd">        ...     username = &quot;user&quot;,</span>
-</span><span id="line-44"><span class="sd">        ...     password = &quot;pass&quot;,</span>
-</span><span id="line-45"><span class="sd">        ...     option = LoginOption(interactive_mode = True)</span>
-</span><span id="line-46"><span class="sd">        ... )</span>
-</span><span id="line-47"><span class="sd">        ℹ Logging user into https://example.smartabase.com/site...</span>
-</span><span id="line-48"><span class="sd">        ✔ Successfully logged user into https://example.smartabase.com/site.</span>
-</span><span id="line-49"><span class="sd">        &gt;&gt;&gt; print(login_result.keys())</span>
-</span><span id="line-50"><span class="sd">        dict_keys([&#39;login_data&#39;, &#39;session_header&#39;, &#39;cookie&#39;])</span>
-</span><span id="line-51"><span class="sd">        &gt;&gt;&gt; print(login_result[&#39;cookie&#39;])</span>
-</span><span id="line-52"><span class="sd">        JSESSIONID=abc123</span>
-</span><span id="line-53"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="line-54">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">LoginOption</span><span class="p">()</span>
-</span><span id="line-55">    
-</span><span id="line-56">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-57">        <span class="n">username_display</span> <span class="o">=</span> <span class="n">username</span> <span class="ow">or</span> <span class="s2">&quot;AMS_USERNAME&quot;</span>
-</span><span id="line-58">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Logging </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-</span><span id="line-59">    
-</span><span id="line-60">    <span class="c1"># Validate credentials</span>
-</span><span id="line-61">    <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
-</span><span id="line-62">        <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_USERNAME&quot;</span><span class="p">)</span>
-</span><span id="line-63">        <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_PASSWORD&quot;</span><span class="p">)</span>
-</span><span id="line-64">        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
-</span><span id="line-65">            <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-66">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ Failed to log </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: No valid credentials provided&quot;</span><span class="p">)</span>
-</span><span id="line-67">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
-</span><span id="line-68">    
-</span><span id="line-69">    <span class="k">try</span><span class="p">:</span>
-</span><span id="line-70">        <span class="n">client</span> <span class="o">=</span> <span class="n">AMSClient</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-</span><span id="line-71">        
-</span><span id="line-72">        <span class="k">if</span> <span class="ow">not</span> <span class="n">client</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
-</span><span id="line-73">            <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-74">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ Failed to log </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: Authentication failed&quot;</span><span class="p">)</span>
-</span><span id="line-75">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Authentication failed&quot;</span><span class="p">)</span>
-</span><span id="line-76">        
-</span><span id="line-77">        <span class="n">login_object</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="line-78">            <span class="s2">&quot;login_data&quot;</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">login_data</span><span class="p">,</span>
-</span><span id="line-79">            <span class="s2">&quot;session_header&quot;</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">session_header</span><span class="p">,</span>
-</span><span id="line-80">            <span class="s2">&quot;cookie&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;JSESSIONID=</span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">session_header</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="line-81">        <span class="p">}</span>
-</span><span id="line-82">        
-</span><span id="line-83">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-84">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Successfully logged </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-</span><span id="line-85">        
-</span><span id="line-86">        <span class="k">return</span> <span class="n">login_object</span>
-</span><span id="line-87">    
-</span><span id="line-88">    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="line-89">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-90">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ Failed to log </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</span><span id="line-39"><span class="sd">        &gt;&gt;&gt; from teamworksams import login, LoginOption</span>
+</span><span id="line-40"><span class="sd">        &gt;&gt;&gt; login_result = login(</span>
+</span><span id="line-41"><span class="sd">        ...     url = &quot;https://example.smartabase.com/site&quot;,</span>
+</span><span id="line-42"><span class="sd">        ...     username = &quot;user&quot;,</span>
+</span><span id="line-43"><span class="sd">        ...     password = &quot;pass&quot;,</span>
+</span><span id="line-44"><span class="sd">        ...     option = LoginOption(interactive_mode = True)</span>
+</span><span id="line-45"><span class="sd">        ... )</span>
+</span><span id="line-46"><span class="sd">        ℹ Logging user into https://example.smartabase.com/site...</span>
+</span><span id="line-47"><span class="sd">        ✔ Successfully logged user into https://example.smartabase.com/site.</span>
+</span><span id="line-48"><span class="sd">        &gt;&gt;&gt; print(login_result.keys())</span>
+</span><span id="line-49"><span class="sd">        dict_keys([&#39;login_data&#39;, &#39;session_header&#39;, &#39;cookie&#39;])</span>
+</span><span id="line-50"><span class="sd">        &gt;&gt;&gt; print(login_result[&#39;cookie&#39;])</span>
+</span><span id="line-51"><span class="sd">        JSESSIONID=abc123</span>
+</span><span id="line-52"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-53">    <span class="n">option</span> <span class="o">=</span> <span class="n">option</span> <span class="ow">or</span> <span class="n">LoginOption</span><span class="p">()</span>
+</span><span id="line-54">    
+</span><span id="line-55">    <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-56">        <span class="n">username_display</span> <span class="o">=</span> <span class="n">username</span> <span class="ow">or</span> <span class="s2">&quot;AMS_USERNAME&quot;</span>
+</span><span id="line-57">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ℹ Logging </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</span><span id="line-58">    
+</span><span id="line-59">    <span class="c1"># Validate credentials</span>
+</span><span id="line-60">    <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
+</span><span id="line-61">        <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_USERNAME&quot;</span><span class="p">)</span>
+</span><span id="line-62">        <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_PASSWORD&quot;</span><span class="p">)</span>
+</span><span id="line-63">        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
+</span><span id="line-64">            <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-65">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ Failed to log </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: No valid credentials provided&quot;</span><span class="p">)</span>
+</span><span id="line-66">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
+</span><span id="line-67">    
+</span><span id="line-68">    <span class="k">try</span><span class="p">:</span>
+</span><span id="line-69">        <span class="n">client</span> <span class="o">=</span> <span class="n">AMSClient</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span><span id="line-70">        
+</span><span id="line-71">        <span class="k">if</span> <span class="ow">not</span> <span class="n">client</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+</span><span id="line-72">            <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-73">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ Failed to log </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: Authentication failed&quot;</span><span class="p">)</span>
+</span><span id="line-74">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Authentication failed&quot;</span><span class="p">)</span>
+</span><span id="line-75">        
+</span><span id="line-76">        <span class="n">login_object</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="line-77">            <span class="s2">&quot;login_data&quot;</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">login_data</span><span class="p">,</span>
+</span><span id="line-78">            <span class="s2">&quot;session_header&quot;</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">session_header</span><span class="p">,</span>
+</span><span id="line-79">            <span class="s2">&quot;cookie&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;JSESSIONID=</span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">session_header</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="line-80">        <span class="p">}</span>
+</span><span id="line-81">        
+</span><span id="line-82">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-83">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Successfully logged </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="line-84">        
+</span><span id="line-85">        <span class="k">return</span> <span class="n">login_object</span>
+</span><span id="line-86">    
+</span><span id="line-87">    <span class="k">except</span> <span class="n">AMSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="line-88">        <span class="k">if</span> <span class="n">option</span><span class="o">.</span><span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-89">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✖ Failed to log </span><span class="si">{</span><span class="n">username_display</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 </span></code></pre></div>
     </div></div>

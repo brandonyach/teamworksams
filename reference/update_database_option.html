@@ -160,16 +160,16 @@
 </nav>
 <div id="content" role="main">
 <section id="updatedatabaseoption">
-<h1>UpdateDatabaseOption<a class="headerlink" href="#updatedatabaseoption" title="Link to this heading"><span>#</span></a></h1>
+<span id="update-database-option"></span><h1>UpdateDatabaseOption<a class="headerlink" href="#updatedatabaseoption" title="Link to this heading"><span>#</span></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="teamworksams.database_option.UpdateDatabaseOption">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">teamworksams.database_option.</span></span><span class="sig-name descname"><span class="pre">UpdateDatabaseOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interactive_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/database_option.html#UpdateDatabaseOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.database_option.UpdateDatabaseOption" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.database_option.UpdateDatabaseOption'"><span>#</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Options for updating database entries in an AMS database form.</p>
-<p>Customizes the behavior of <a class="reference internal" href="update_database_entry.html#teamworksams.database_main.update_database_entry" title="teamworksams.database_main.update_database_entry"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.database_main.update_database_entry()</span></code></a>,
+<p>Customizes the behavior of <code class="xref py py-func docutils literal notranslate"><span class="pre">update_database_entry()</span></code>,
 controlling table fields, caching, and interactive feedback with confirmation
 prompts. These options ensure safe and efficient updates for one-off operations.
-See <span class="xref std std-ref">vignettes/database_operations</span> for database workflows.</p>
+See <a class="reference internal" href="../vignettes/database_operations.html#database-operations"><span class="std std-ref">Database Operations</span></a> for database workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -180,7 +180,7 @@ Defaults to None.</p></li>
 <li><p><strong>interactive_mode</strong> (<em>bool</em>) – If True, prints status messages (e.g., “Updated 2
 entries”) and prompts for confirmation before updating, preventing
 accidental changes. Set to False for silent execution. Defaults to True.</p></li>
-<li><p><strong>cache</strong> (<em>bool</em>) – If True, reuses cached API responses via the <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>,
+<li><p><strong>cache</strong> (<em>bool</em>) – If True, reuses cached API responses via the AMSClient,
 reducing API calls for repeated operations. Set to False for independent
 requests. Defaults to True.</p></li>
 </ul>
@@ -246,14 +246,14 @@ preventing accidental changes to existing entries.</p></li>
 <li><p>Specify <code class="docutils literal notranslate"><span class="pre">table_fields</span></code> for table fields in the AMS form, ensuring
 <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> columns align to avoid errors.</p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">cache=True</span></code> for efficient updates in one-off operations, reusing the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code>.</p></li>
+<a class="reference external" href="../reference/ams_client.html">AMSClient()</a>.</p></li>
 </ul>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#see-also'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="update_database_entry.html#teamworksams.database_main.update_database_entry" title="teamworksams.database_main.update_database_entry"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.database_main.update_database_entry()</span></code></a>: Function using <a class="reference internal" href="#teamworksams.database_option.UpdateDatabaseOption" title="teamworksams.database_option.UpdateDatabaseOption"><code class="xref any py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code></a>.</p></li>
-<li><p><span class="xref std std-ref">vignettes/database_operations</span>: Database update workflows.</p></li>
+<li><p><a class="reference external" href="../reference/update_database_entry.html">update_database_entry()</a>: Function using <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateDatabaseOption</span></code>.</p></li>
+<li><p><a class="reference internal" href="../vignettes/database_operations.html#database-operations"><span class="std std-ref">Database Operations</span></a>: Database update workflows.</p></li>
 </ul>
 </section>
 </section>

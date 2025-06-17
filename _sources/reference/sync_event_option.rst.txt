@@ -1,3 +1,8 @@
+.. _sync_event_data_ref: ../reference/sync_event_data.html
+.. _sync_event_filter_ref: ../reference/sync_event_filter.html
+
+.. _sync_event_option:
+
 SyncEventOption
 ===============
 
@@ -19,6 +24,6 @@ Additional Notes
 See Also
 --------
 
-- :func:`teamworksams.export_main.sync_event_data`: Function using `SyncEventOption`.
-- :class:`SyncEventFilter`: For filtering synchronized events.
-- :ref:`vignettes/exporting_data`: Synchronization workflows.
+- `sync_event_data() <sync_event_data_ref_>`_: Function using `SyncEventOption`.
+- `SyncEventFilter() <sync_event_filter_ref_>`_`: For filtering synchronized events.
+- :ref:`exporting_data`: Synchronization workflows.

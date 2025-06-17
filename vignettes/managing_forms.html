@@ -159,34 +159,34 @@
 </nav>
 <div id="content" role="main">
 <section id="managing-forms">
-<h1>Managing Forms<a class="headerlink" href="#managing-forms" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>Managing Forms<a class="headerlink" href="#managing-forms" title="Link to this heading"><span>#</span></a></h1>
 <p>This vignette provides a concise guide to managing AMS forms using <strong>teamworksams</strong>,
-covering <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>. It outlines workflows for listing accessible forms and summarizing form schemas
+covering <a class="reference external" href="../reference/get_forms.html">get_forms()</a> and <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a>. It outlines workflows for listing accessible forms and summarizing form schemas
 to understand their structure (e.g., sections, fields, types). These functions support
 one-off tasks like auditing or preparing for data operations, with simple Python/pandas
-examples. See <span class="xref std std-ref">reference</span> for detailed documentation and
-<span class="xref std std-ref">vignettes/exporting_data</span> for related tasks.</p>
+examples. See <a class="reference internal" href="../reference/reference.html#reference"><span class="std std-ref">Functions and Classes</span></a> for detailed documentation and
+<a class="reference internal" href="exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a> for related tasks.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#overview'"><span>#</span></a></h2>
 <p><strong>teamworksams</strong> enables exploration of AMS forms with two key functions:</p>
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code>: Retrieves a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> listing all forms accessible
+<li><p><a class="reference external" href="../reference/get_forms.html">get_forms()</a>: Retrieves a <code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> listing all forms accessible
 to the user, including IDs, names, and types (e.g., event, profile, database).</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>: Summarizes a form’s schema as a formatted string or raw
+<li><p><a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a>: Summarizes a form’s schema as a formatted string or raw
 dictionary, detailing sections, fields, and types.</p></li>
 </ul>
 <p>These functions are typically used for administrative tasks, such as auditing forms or
 understanding field requirements before importing/exporting data. The
-<code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> customizes behavior, like enabling interactive feedback. Examples use
+<a class="reference external" href="../reference/form_option.html">FormOption()</a> customizes behavior, like enabling interactive feedback. Examples use
 the placeholder URL <code class="docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code> and credentials in a
 <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#prerequisites'"><span>#</span></a></h2>
 <p>Ensure <strong>teamworksams</strong> is installed and credentials are set, as in
-<span class="xref std std-ref">vignettes/getting_started</span>. Use a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id1" title="Link to this code"><span>#</span></a></div>
+<a class="reference internal" href="getting_started.html#getting-started"><span class="std std-ref">Getting Started with teamworksams</span></a>. Use a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id2" title="Link to this code"><span>#</span></a></div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">AMS_URL=https://example.smartabase.com/site
 </span><span id="line-2">AMS_USERNAME=username
 </span><span id="line-3">AMS_PASSWORD=password
@@ -203,7 +203,7 @@ the placeholder URL <code class="docutils literal notranslate"><span class="pre"
 </section>
 <section id="listing-accessible-forms">
 <h2>Listing Accessible Forms<a class="headerlink" href="#listing-accessible-forms" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#listing-accessible-forms'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> to retrieve a list of accessible forms:</p>
+<p>Use <a class="reference external" href="../reference/get_forms.html">get_forms()</a> to retrieve a list of accessible forms:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_forms</span><span class="p">,</span> <span class="n">FormOption</span>
 </span><span id="line-3"><span class="n">df</span> <span class="o">=</span> <span class="n">get_forms</span><span class="p">(</span>
@@ -228,11 +228,11 @@ the placeholder URL <code class="docutils literal notranslate"><span class="pre"
 </span><span id="line-3"><span class="p">[</span><span class="s1">'Training Log'</span><span class="p">]</span>
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> for details.</p>
+<p>See <a class="reference external" href="../reference/get_forms.html">get_forms()</a> and <a class="reference external" href="../reference/form_option.html">FormOption()</a> for details.</p>
 </section>
 <section id="inspecting-schemas">
 <h2>Inspecting Schemas<a class="headerlink" href="#inspecting-schemas" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#inspecting-schemas'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> to summarize a form’s schema:</p>
+<p>Use <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a> to summarize a form’s schema:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_form_schema</span><span class="p">,</span> <span class="n">FormOption</span>
 </span><span id="line-2"><span class="n">summary</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
 </span><span id="line-3">    <span class="n">form</span> <span class="o">=</span><span class="s2">"Training Log"</span><span class="p">,</span>
@@ -349,7 +349,7 @@ the placeholder URL <code class="docutils literal notranslate"><span class="pre"
 </span></code></pre></div>
 </div>
 <dl class="simple">
-<dt>Set <a class="reference internal" href="../reference/form_option.html#teamworksams.form_option.FormOption.field_details" title="teamworksams.form_option.FormOption.field_details"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">field_details</span></code></a> within <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> to  include detailed field</dt><dd><p>information, such as options, scores, date ranges, etc. in the schema summary,
+<dt>Set <code class="xref py py-obj docutils literal notranslate"><span class="pre">field_details</span></code> within <a class="reference external" href="../reference/form_option.html">FormOption()</a> to  include detailed field</dt><dd><p>information, such as options, scores, date ranges, etc. in the schema summary,
 increasing verbosity:</p>
 </dd>
 </dl>
@@ -364,9 +364,9 @@ increasing verbosity:</p>
 </span><span id="line-9"><span class="nb">print</span><span class="p">(</span><span class="n">detailed_schema</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> for output options.</p>
+<p>See <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a> and <a class="reference external" href="../reference/form_option.html">FormOption()</a> for output options.</p>
 <dl class="simple">
-<dt>Set <a class="reference internal" href="../reference/form_option.html#teamworksams.form_option.FormOption.include_instructions" title="teamworksams.form_option.FormOption.include_instructions"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">include_instructions</span></code></a> within <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> to include section</dt><dd><p>and field instructions in the schema summary, useful for documentation:</p>
+<dt>Set <code class="xref py py-obj docutils literal notranslate"><span class="pre">include_instructions</span></code> within <a class="reference external" href="../reference/form_option.html">FormOption()</a> to include section</dt><dd><p>and field instructions in the schema summary, useful for documentation:</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">instructions_schema</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
@@ -380,7 +380,7 @@ increasing verbosity:</p>
 </span><span id="line-9"><span class="nb">print</span><span class="p">(</span><span class="n">instructions_schema</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> for output options.</p>
+<p>See <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a> and <a class="reference external" href="../reference/form_option.html">FormOption()</a> for output options.</p>
 <p>Retrieve raw schema for custom processing:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">raw_schema</span> <span class="o">=</span> <span class="n">get_form_schema</span><span class="p">(</span>
 </span><span id="line-2">    <span class="n">form_name</span><span class="o">=</span><span class="s2">"Allergies"</span><span class="p">,</span>
@@ -391,7 +391,7 @@ increasing verbosity:</p>
 </span><span id="line-7"><span class="n">dict_keys</span><span class="p">([</span><span class="s1">'form_id'</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="s1">'type'</span><span class="p">,</span> <span class="s1">'sections'</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">FormOption</span></code> for output options.</p>
+<p>See <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a> and <a class="reference external" href="../reference/form_option.html">FormOption()</a> for output options.</p>
 </section>
 <section id="error-handling">
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#error-handling'"><span>#</span></a></h2>
@@ -407,14 +407,14 @@ increasing verbosity:</p>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#best-practices'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><strong>Verify Form Names</strong>: Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_forms()</span></code> to confirm <code class="xref any docutils literal notranslate"><span class="pre">form</span></code> name before
-calling <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>.</p></li>
+<li><p><strong>Verify Form Names</strong>: Use <a class="reference external" href="../reference/get_forms.html">get_forms()</a> to confirm <code class="xref py py-obj docutils literal notranslate"><span class="pre">form</span></code> name before
+calling <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a>.</p></li>
 <li><p><strong>Use Caching</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.cache=True</span></code> for efficiency in repeated
 form queries.</p></li>
-<li><p><strong>Raw Output</strong>: Set <code class="docutils literal notranslate"><span class="pre">option.raw_output=True</span></code> for <code class="xref py py-func docutils literal notranslate"><span class="pre">get_form_schema()</span></code>
+<li><p><strong>Raw Output</strong>: Set <code class="docutils literal notranslate"><span class="pre">option.raw_output=True</span></code> for <a class="reference external" href="../reference/get_form_schema.html">get_form_schema()</a>
 when integrating with custom tools.</p></li>
 <li><p><strong>Detailed Summaries</strong>: Use <code class="docutils literal notranslate"><span class="pre">option.field_details=True</span></code> to understand
-field options before data operations (e.g., <code class="xref py py-func docutils literal notranslate"><span class="pre">insert_event_data()</span></code>).</p></li>
+field options before data operations (e.g., <a class="reference external" href="../reference/insert_event_data.html">insert_event_data()</a>).</p></li>
 <li><p><strong>Interactive Mode</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.interactive_mode=True</span></code> for feedback
 during administrative tasks.</p></li>
 </ul>
@@ -422,8 +422,8 @@ during administrative tasks.</p></li>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">importing_data</span> for inserting and updating event data.</p></li>
-<li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
+<li><p>Explore <a class="reference internal" href="importing_data.html#importing-data"><span class="std std-ref">Importing Data</span></a> for inserting and updating event data.</p></li>
+<li><p>Consult <a class="reference internal" href="../reference/reference.html#reference"><span class="std std-ref">Functions and Classes</span></a> for detailed function and class documentation.</p></li>
 <li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>

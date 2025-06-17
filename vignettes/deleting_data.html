@@ -159,32 +159,32 @@
 </nav>
 <div id="content" role="main">
 <section id="deleting-data">
-<h1>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading"><span>#</span></a></h1>
+<span id="id1"></span><h1>Deleting Data<a class="headerlink" href="#deleting-data" title="Link to this heading"><span>#</span></a></h1>
 <p>This vignette provides a guide to deleting event data in Teamworks AMS using
-<strong>teamworksams</strong>, covering <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> and
-<code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>. It outlines
+<strong>teamworksams</strong>, covering <a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a> and
+<a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a>. It outlines
 safe workflows for removing single or multiple events from AMS Event Forms, with
 Python/pandas examples. emphasizing safety features like confirmation prompts and integration with
-<code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> for event ID retrieval. See <span class="xref std std-ref">reference</span> for detailed
-documentation and <span class="xref std std-ref">vignettes/getting_started</span> if you haven’t already.</p>
+<a class="reference external" href="../reference/get_event_data.html">get_event_data()</a> for event ID retrieval. See <a class="reference internal" href="../reference/reference.html#reference"><span class="std std-ref">Functions and Classes</span></a> for detailed
+documentation and <a class="reference internal" href="getting_started.html#getting-started"><span class="std std-ref">Getting Started with teamworksams</span></a> if you haven’t already.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#overview'"><span>#</span></a></h2>
 <p><strong>teamworksams</strong> supports event deletion with two key functions:</p>
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code>: Deletes a single event by ID.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code>: Deletes multiple events by a list of IDs.</p></li>
+<li><p><a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a>: Deletes a single event by ID.</p></li>
+<li><p><a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a>: Deletes multiple events by a list of IDs.</p></li>
 </ul>
 <p>These functions are used for data cleanup, removing outdated or erroneous events.
-Deletion is permanent, so the <code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> provides interactive
+Deletion is permanent, so the <a class="reference external" href="../reference/delete_event_option.html">delete_event_option()</a> provides interactive
 confirmation prompts for safety. Examples use the placeholder URL
 <code class="docutils literal notranslate"><span class="pre">https://example.smartabase.com/site</span></code> and credentials in a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#prerequisites'"><span>#</span></a></h2>
 <p>Ensure <strong>teamworksams</strong> is installed and credentials are configured, as in
-<span class="xref std std-ref">vignettes/getting_started</span>. Use a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id1" title="Link to this code"><span>#</span></a></div>
+<a class="reference internal" href="getting_started.html#getting-started"><span class="std std-ref">Getting Started with teamworksams</span></a>. Use a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">.env</span><a class="headerlink" href="#id2" title="Link to this code"><span>#</span></a></div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code><span id="line-1">AMS_URL=https://example.smartabase.com/site
 </span><span id="line-2">AMS_USERNAME=username
 </span><span id="line-3">AMS_PASSWORD=password
@@ -197,11 +197,11 @@ confirmation prompts for safety. Examples use the placeholder URL
 </span></code></pre></div>
 </div>
 <p>Dependencies (installed with <strong>teamworksams</strong>): <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">requests</span></code>,
-<code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>, <code class="docutils literal notranslate"><span class="pre">tqdm</span></code>. Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> to retrieve valid event IDs.</p>
+<code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code>, <code class="docutils literal notranslate"><span class="pre">tqdm</span></code>. Use <a class="reference external" href="../reference/get_event_data.html">get_event_data()</a> to retrieve valid event IDs.</p>
 </section>
 <section id="deleting-a-single-event">
 <h2>Deleting a Single Event<a class="headerlink" href="#deleting-a-single-event" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#deleting-a-single-event'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> to remove a single event by its ID:</p>
+<p>Use <a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a> to remove a single event by its ID:</p>
 <p><strong>Retrieving Event ID</strong></p>
 <p>Fetch event IDs from an Event Form:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -234,11 +234,11 @@ confirmation prompts for safety. Examples use the placeholder URL
 </span><span id="line-4">SUCCESS: Deleted 134273
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_event_data()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> for details.</p>
+<p>See <a class="reference external" href="../reference/delete_event_data.html">delete_event_data()</a> and <a class="reference external" href="../reference/delete_event_option.html">delete_event_option()</a> for details.</p>
 </section>
 <section id="deleting-multiple-events">
 <h2>Deleting Multiple Events<a class="headerlink" href="#deleting-multiple-events" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#deleting-multiple-events'"><span>#</span></a></h2>
-<p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code> to remove multiple events by their IDs:</p>
+<p>Use <a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a> to remove multiple events by their IDs:</p>
 <p><strong>Retrieving Event IDs</strong></p>
 <p>Filter events to delete (e.g., specific user or date):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="n">event_df</span> <span class="o">=</span> <span class="n">get_event_data</span><span class="p">(</span>
@@ -269,7 +269,7 @@ confirmation prompts for safety. Examples use the placeholder URL
 </span><span id="line-4">SUCCESS: Deleted 3 events
 </span></code></pre></div>
 </div>
-<p>See <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteEventOption</span></code> for details.</p>
+<p>See <a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a> and <a class="reference external" href="../reference/delete_event_option.html">delete_event_option()</a> for details.</p>
 </section>
 <section id="error-handling">
 <h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#error-handling'"><span>#</span></a></h2>
@@ -284,29 +284,29 @@ confirmation prompts for safety. Examples use the placeholder URL
 </span></code></pre></div>
 </div>
 <p>Common errors include:
-- Invalid or non-existent <code class="xref any docutils literal notranslate"><span class="pre">event_id</span></code>.
+- Invalid or non-existent <code class="xref py py-obj docutils literal notranslate"><span class="pre">event_id</span></code>.
 - User cancellation in interactive mode.
 - Authentication or API failures.</p>
 </section>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#best-practices'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p><strong>Validate Event IDs</strong>: Use <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> to ensure <code class="xref any docutils literal notranslate"><span class="pre">event_id</span></code> values
+<li><p><strong>Validate Event IDs</strong>: Use <a class="reference external" href="../reference/get_event_data.html">get_event_data()</a> to ensure <code class="xref py py-obj docutils literal notranslate"><span class="pre">event_id</span></code> values
 are valid before deletion.</p></li>
 <li><p><strong>Use Confirmation</strong>: Enable <code class="docutils literal notranslate"><span class="pre">option.interactive_mode=True</span></code> to prompt for
 confirmation, preventing accidental deletions.</p></li>
-<li><p><strong>Batch Deletion</strong>: Prefer <code class="xref py py-func docutils literal notranslate"><span class="pre">delete_multiple_events()</span></code> for efficiency when
+<li><p><strong>Batch Deletion</strong>: Prefer <a class="reference external" href="../reference/delete_multiple_events.html">delete_multiple_events()</a> for efficiency when
 removing multiple events.</p></li>
 <li><p><strong>Log Results</strong>: Capture returned messages for auditing deletion outcomes.</p></li>
-<li><p><strong>Test First</strong>: Filter events with <code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_data()</span></code> to review before
+<li><p><strong>Test First</strong>: Filter events with <a class="reference external" href="../reference/get_event_data.html">get_event_data()</a> to review before
 deleting.</p></li>
 </ul>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>
 <ul class="simple">
-<li><p>Explore <span class="xref std std-ref">exporting_data</span> for retrieving event data and IDs.</p></li>
-<li><p>Consult <span class="xref std std-ref">reference</span> for detailed function and class documentation.</p></li>
+<li><p>Explore <a class="reference internal" href="exporting_data.html#exporting-data"><span class="std std-ref">Exporting Data</span></a> for retrieving event data and IDs.</p></li>
+<li><p>Consult <a class="reference internal" href="../reference/reference.html#reference"><span class="std std-ref">Functions and Classes</span></a> for detailed function and class documentation.</p></li>
 <li><p>Visit <a class="reference external" href="https://github.com/brandonyach/teamworksams">GitHub</a> for support.</p></li>
 </ul>
 </section>
