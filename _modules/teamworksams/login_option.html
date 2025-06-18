@@ -214,33 +214,40 @@
 <span></span><code><span id="line-1"><span class="k">class</span><span class="w"> </span><span class="nc">LoginOption</span><span class="p">:</span>
 </span><span id="line-2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Options for configuring the :func:`teamworksams.login_main.login` function.</span>
 </span><span id="line-3">
-</span><span id="line-4"><span class="sd">    Customizes the behavior of :func:`login`, controlling whether interactive feedback</span>
-</span><span id="line-5"><span class="sd">    is displayed during authentication. Used to tailor the login experience for</span>
-</span><span id="line-6"><span class="sd">    interactive or automated workflows. See :ref:`credentials` for usage.</span>
-</span><span id="line-7">
-</span><span id="line-8"><span class="sd">    Args:</span>
-</span><span id="line-9"><span class="sd">        interactive_mode (bool): If True, prints status messages during login (e.g., &quot;Logging in...&quot;, &quot;Successfully logged in&quot;). Set to False for silent operation in scripts. Defaults to True.</span>
-</span><span id="line-10">
-</span><span id="line-11"><span class="sd">    Attributes:</span>
-</span><span id="line-12"><span class="sd">        interactive_mode (bool): Indicates whether interactive mode is enabled.</span>
-</span><span id="line-13">
-</span><span id="line-14"><span class="sd">    Examples:</span>
-</span><span id="line-15"><span class="sd">        &gt;&gt;&gt; from teamworksams import LoginOption, login</span>
-</span><span id="line-16"><span class="sd">        &gt;&gt;&gt; option = LoginOption(interactive_mode = True)</span>
-</span><span id="line-17"><span class="sd">        &gt;&gt;&gt; login_result = login(</span>
-</span><span id="line-18"><span class="sd">        ...     url=&quot;https://example.smartabase.com/site&quot;,</span>
-</span><span id="line-19"><span class="sd">        ...     username = &quot;username&quot;,</span>
-</span><span id="line-20"><span class="sd">        ...     password = &quot;password&quot;,</span>
-</span><span id="line-21"><span class="sd">        ...     option = option</span>
-</span><span id="line-22"><span class="sd">        ... )</span>
-</span><span id="line-23"><span class="sd">        ℹ Logging username into https://example.smartabase.com/site...</span>
-</span><span id="line-24"><span class="sd">        ✔ Successfully logged username into https://example.smartabase.com/site.</span>
-</span><span id="line-25">
-</span><span id="line-26"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-4"><span class="sd">    Customizes the behavior of :func:`teamworksams.login_main.login`, controlling</span>
+</span><span id="line-5"><span class="sd">    interactive feedback and client caching during authentication. Used to tailor</span>
+</span><span id="line-6"><span class="sd">    the login experience for interactive or automated workflows. See</span>
+</span><span id="line-7"><span class="sd">    :ref:`credentials` for usage.</span>
+</span><span id="line-8">
+</span><span id="line-9"><span class="sd">    Args:</span>
+</span><span id="line-10"><span class="sd">        interactive_mode (bool): If True, prints status messages during login</span>
+</span><span id="line-11"><span class="sd">            (e.g., &quot;Logging in...&quot;, &quot;Successfully logged in&quot;). Set to False for</span>
+</span><span id="line-12"><span class="sd">            silent operation in scripts. Defaults to True.</span>
+</span><span id="line-13"><span class="sd">        cache (bool): If True, stores the authenticated client for reuse by other</span>
+</span><span id="line-14"><span class="sd">            functions (e.g., :func:`teamworksams.user_main.get_user`). Set to False</span>
+</span><span id="line-15"><span class="sd">            for independent sessions. Defaults to True.</span>
+</span><span id="line-16">
+</span><span id="line-17"><span class="sd">    Attributes:</span>
+</span><span id="line-18"><span class="sd">        interactive_mode (bool): Indicates whether interactive mode is enabled.</span>
+</span><span id="line-19"><span class="sd">        cache (bool): Indicates whether client caching is enabled.</span>
+</span><span id="line-20">
+</span><span id="line-21"><span class="sd">    Examples:</span>
+</span><span id="line-22"><span class="sd">        &gt;&gt;&gt; from teamworksams import LoginOption, login</span>
+</span><span id="line-23"><span class="sd">        &gt;&gt;&gt; option = LoginOption(interactive_mode=True, cache=True)</span>
+</span><span id="line-24"><span class="sd">        &gt;&gt;&gt; login_result = login(</span>
+</span><span id="line-25"><span class="sd">        ...     url=&quot;https://example.smartabase.com/site&quot;,</span>
+</span><span id="line-26"><span class="sd">        ...     username=&quot;username&quot;,</span>
+</span><span id="line-27"><span class="sd">        ...     password=&quot;password&quot;,</span>
+</span><span id="line-28"><span class="sd">        ...     option=option</span>
+</span><span id="line-29"><span class="sd">        ... )</span>
+</span><span id="line-30"><span class="sd">        ℹ Logging username into https://example.smartabase.com/site...</span>
+</span><span id="line-31"><span class="sd">        ✔ Successfully logged username into https://example.smartabase.com/site.</span>
+</span><span id="line-32"><span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="LoginOption.__init__">
 <a class="viewcode-back" href="../../reference/login_option.html#teamworksams.login_option.LoginOption.__init__">[docs]</a>
-</span><span id="line-27">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-</span><span id="line-28">        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span></div>
+</span><span id="line-33">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+</span><span id="line-34">        <span class="bp">self</span><span class="o">.</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="n">interactive_mode</span>
+</span><span id="line-35">        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span></div>
 </div>
 
 </span></code></pre></div>

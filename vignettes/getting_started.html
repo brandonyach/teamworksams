@@ -263,7 +263,7 @@
 </span><span id="line-4"><span class="n">load_dotenv</span><span class="p">()</span>
 </span><span id="line-5"><span class="n">login_result</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span>
 </span><span id="line-6">    <span class="n">url</span><span class="o">=</span><span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
-</span><span id="line-7">    <span class="n">option</span><span class="o">=</span><span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="line-7">    <span class="n">option</span><span class="o">=</span><span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </span><span id="line-8"><span class="p">)</span>
 </span><span id="line-9"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Session cookie: </span><span class="si">{</span><span class="n">login_result</span><span class="p">[</span><span class="s1">'cookie'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span><span id="line-10"><span class="c1"># Output: ℹ Logging username into https://example.smartabase.com/site...</span>
@@ -314,16 +314,6 @@
 </span><span id="line-11">  <span class="n">option</span> <span class="o">=</span> <span class="n">EventOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">clean_names</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </span><span id="line-12">  <span class="p">)</span>
 </span><span id="line-13"><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</span><span id="line-14">
-</span><span id="line-15"><span class="kn">from</span><span class="w"> </span><span class="nn">teamworksams</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_client</span><span class="p">,</span> <span class="n">get_user</span>
-</span><span id="line-16">
-</span><span id="line-17"><span class="n">client</span> <span class="o">=</span> <span class="n">get_client</span><span class="p">(</span>
-</span><span id="line-18">    <span class="n">url</span><span class="o">=</span><span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
-</span><span id="line-19">    <span class="n">username</span><span class="o">=</span><span class="s2">"username"</span><span class="p">,</span>
-</span><span id="line-20">    <span class="n">password</span><span class="o">=</span><span class="s2">"password"</span><span class="p">,</span>
-</span><span id="line-21">    <span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span>
-</span><span id="line-22"><span class="p">)</span>
-</span><span id="line-23"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Authenticated: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">authenticated</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span></code></pre></div>
 </div>
 </li>
@@ -385,23 +375,27 @@
 </span><span id="line-8"><span class="c1"># Authenticate</span>
 </span><span id="line-9"><span class="n">login_result</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span>
 </span><span id="line-10">    <span class="n">url</span><span class="o">=</span><span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
-</span><span id="line-11">    <span class="n">option</span><span class="o">=</span><span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="line-11">    <span class="n">option</span><span class="o">=</span><span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cache</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </span><span id="line-12"><span class="p">)</span>
 </span><span id="line-13"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Session header: </span><span class="si">{</span><span class="n">login_result</span><span class="p">[</span><span class="s1">'session_header'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </span><span id="line-14">
 </span><span id="line-15"><span class="c1"># Fetch users</span>
 </span><span id="line-16"><span class="n">df</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span>
 </span><span id="line-17">    <span class="n">url</span><span class="o">=</span><span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
-</span><span id="line-18">    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="line-18">    <span class="n">option</span><span class="o">=</span><span class="n">UserOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </span><span id="line-19"><span class="p">)</span>
 </span></code></pre></div>
 </div>
 <p><strong>What’s Happening</strong></p>
 <ul class="simple">
-<li><p><a class="reference external" href="../reference/login.html">login()</a> authenticates with the AMS API, returning session details.</p></li>
-<li><p><a class="reference external" href="../reference/get_user.html">get_user()</a> fetches user data as a pandas DataFrame, with interactive feedback enabled.</p></li>
+<li><p><a class="reference external" href="../reference/login.html">login()</a> authenticates with the AMS API, returning session details and caching a client for reuse.</p></li>
+<li><p><a class="reference external" href="../reference/get_user.html">get_user()</a> fetches user data as a pandas DataFrame, using the cached client with interactive feedback enabled.</p></li>
 <li><p>The output includes user IDs, names, and group affiliations, ready for analysis.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">login</span></code> function caches an authenticated client, allowing subsequent calls (e.g., <code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user</span></code>) to reuse the session without re-entering credentials when <code class="xref py py-obj docutils literal notranslate"><span class="pre">cache</span></code> = ‘True’</p>
+</div>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#next-steps'"><span>#</span></a></h2>

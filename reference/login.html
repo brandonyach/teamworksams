@@ -166,8 +166,10 @@
 <span class="sig-prename descclassname"><span class="pre">teamworksams.login_main.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="login_option.html#teamworksams.login_option.LoginOption" title="teamworksams.login_option.LoginOption"><span class="pre">LoginOption</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/teamworksams/login_main.html#login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.login_main.login" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.login_main.login'"><span>#</span></a></dt>
 <dd><p>Authenticate with an AMS instance and return session details.</p>
 <p>Establishes a session with the AMS API using provided credentials, returning a
-dictionary with login data, session header, and cookie. Useful for verifying
-credentials or initializing a <code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> for custom API calls. See
+dictionary with login data, session header, and cookie. Initializes a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">AMSClient</span></code> that is cached for reuse by other functions (e.g.,
+<a class="reference internal" href="get_user.html#teamworksams.user_main.get_user" title="teamworksams.user_main.get_user"><code class="xref py py-func docutils literal notranslate"><span class="pre">teamworksams.user_main.get_user()</span></code></a>) when <code class="xref py py-obj docutils literal notranslate"><span class="pre">option.cache=True</span></code>. Useful for
+verifying credentials or accessing session details for custom API calls. See
 <a class="reference internal" href="../vignettes/credentials.html#credentials"><span class="std std-ref">Managing Credentials, Authentication, and Caching</span></a> for authentication workflows.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -175,7 +177,10 @@ credentials or initializing a <code class="xref py py-class docutils literal not
 <li><p><strong>url</strong> (<em>str</em>) – The AMS instance URL (e.g., ‘<a class="reference external" href="https://example.smartabase.com/site">https://example.smartabase.com/site</a>’). Must include a valid site name.</p></li>
 <li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Username for authentication. If None, uses <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_USERNAME</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
 <li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Password for authentication. If None, uses <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AMS_PASSWORD</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">keyring</span></code> credentials. Defaults to None.</p></li>
-<li><p><strong>option</strong> (<a class="reference internal" href="login_option.html#teamworksams.login_option.LoginOption" title="teamworksams.login_option.LoginOption"><em>LoginOption</em></a><em>, </em><em>optional</em>) – Configuration options, including <code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode</span></code> to enable status messages (e.g., “Successfully logged in”). Defaults to None (uses default <code class="xref py py-class docutils literal notranslate"><span class="pre">LoginOption</span></code>).</p></li>
+<li><p><strong>option</strong> (<a class="reference internal" href="login_option.html#teamworksams.login_option.LoginOption" title="teamworksams.login_option.LoginOption"><em>LoginOption</em></a><em>, </em><em>optional</em>) – Configuration options, including
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode</span></code> for status messages (e.g., “Successfully logged in”)
+and <code class="xref py py-obj docutils literal notranslate"><span class="pre">cache</span></code> for client reuse. Defaults to None (uses default
+<code class="xref py py-class docutils literal notranslate"><span class="pre">LoginOption</span></code> with <code class="xref py py-obj docutils literal notranslate"><span class="pre">interactive_mode=True</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">cache=True</span></code>).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -185,7 +190,7 @@ credentials or initializing a <code class="xref py py-class docutils literal not
 (e.g., user ID, application ID).</p></li>
 <li><p>’session_header’: The session header from the response headers, used for
 subsequent API calls.</p></li>
-<li><p>’cookie’: The formatted cookie string (e.g., ‘JSESSIONID = session_header’).</p></li>
+<li><p>’cookie’: The formatted cookie string (e.g., ‘JSESSIONID=session_header’).</p></li>
 </ul>
 </dd>
 </dl>
@@ -195,7 +200,7 @@ subsequent API calls.</p></li>
 <dd class="field-odd"><p>Dict[str, Any]</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If the URL is invalid, credentials are missing or invalid, the login
+<dd class="field-even"><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>teamworksams.utils.AMSError</strong></a> – If the URL is invalid, credentials are missing or invalid, the login
     request fails (e.g., HTTP 401), or the session header is not provided.</p>
 </dd>
 </dl>
@@ -205,7 +210,7 @@ subsequent API calls.</p></li>
 </span><span id="line-3"><span class="gp">... </span>    <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://example.smartabase.com/site"</span><span class="p">,</span>
 </span><span id="line-4"><span class="gp">... </span>    <span class="n">username</span> <span class="o">=</span> <span class="s2">"user"</span><span class="p">,</span>
 </span><span id="line-5"><span class="gp">... </span>    <span class="n">password</span> <span class="o">=</span> <span class="s2">"pass"</span><span class="p">,</span>
-</span><span id="line-6"><span class="gp">... </span>    <span class="n">option</span> <span class="o">=</span> <span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</span><span id="line-6"><span class="gp">... </span>    <span class="n">option</span> <span class="o">=</span> <span class="n">LoginOption</span><span class="p">(</span><span class="n">interactive_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="line-7"><span class="gp">... </span><span class="p">)</span>
 </span><span id="line-8"><span class="go">ℹ Logging user into https://example.smartabase.com/site...</span>
 </span><span id="line-9"><span class="go">✔ Successfully logged user into https://example.smartabase.com/site.</span>
