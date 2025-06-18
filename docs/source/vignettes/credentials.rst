@@ -57,7 +57,7 @@ Storing credentials in a ``.env`` file is the most secure and scalable approach,
 
       login_result = login(
           url = "https://example.smartabase.com/site",
-          option = LoginOption(interactive_mode = True)
+          option = LoginOption(interactive_mode = True, cache = True)
       )
 
       print(f"Session Cookie: {login_result['cookie']}")
@@ -82,6 +82,32 @@ Storing credentials in a ``.env`` file is the most secure and scalable approach,
 **Considerations**:
 
 - Ensure the ``.env`` file is stored in a secure location (e.g., not shared publicly).
+
+**Using Environment Variables Without Explicit Credentials**:
+
+The `login()` function automatically uses `AMS_USERNAME` and `AMS_PASSWORD` from the `.env` file if no `username` or `password` is provided:
+
+.. code-block:: python
+
+   from dotenv import load_dotenv
+   from teamworksams import login, LoginOption
+
+   load_dotenv()
+
+   login_result = login(
+       url = "https://example.smartabase.com/site",
+       option = LoginOption(interactive_mode = True, cache = True)
+   )
+
+   print(f"Session Cookie: {login_result['cookie']}")
+
+**Output**:
+
+.. code-block:: text
+
+   ℹ Logging username into https://example.smartabase.com/site...
+   ✔ Successfully logged username into https://example.smartabase.com/site.
+   Session Cookie: JSESSIONID=abc123
 
 See `login() <login_ref_>`_ for more details.
 
@@ -150,7 +176,7 @@ Passing credentials directly to functions is convenient for quick prototyping or
 
    df = get_user(
        client = client,
-       option = UserOption(interactive_mode=True)
+       option = UserOption(interactive_mode = True)
    )
 
    print(df[['user_id', 'first_name']].head())
@@ -224,7 +250,8 @@ The ``keyring`` library (included with **teamworksams**) stores credentials in y
 Authentication with `login() <login_ref_>`_
 -------------------------------------------
 
-The `login() <login_ref_>`_ function authenticates with the AMS API, returning a dictionary with session details (login data, session header, cookie). It’s useful for manual authentication, debugging, or initializing a client for custom API calls.
+The `login() <login_ref_>`_ function authenticates with the AMS API, returning a dictionary with session details (login data, session header, cookie). It’s useful for manual authentication, debugging, or initializing a client for custom API calls. The `LoginOption() <login_option_ref_>`_ class configures interactive feedback and client caching.
+
 
 **Basic Usage**:
 
@@ -236,7 +263,7 @@ The `login() <login_ref_>`_ function authenticates with the AMS API, returning a
        url = "https://example.smartabase.com/site",
        username = "username",
        password = "password",
-       option = LoginOption(interactive_mode = True)
+       option = LoginOption(interactive_mode = True, cache = True)
    )
 
    print(result)
@@ -248,6 +275,24 @@ The `login() <login_ref_>`_ function authenticates with the AMS API, returning a
    ℹ Logging username into https://example.smartabase.com/site...
    ✔ Successfully logged username into https://example.smartabase.com/site.
    {'login_data': {...}, 'session_header': 'abc123', 'cookie': 'JSESSIONID=abc123'}
+
+**Using Environment Variables**:
+
+Authenticate without explicit credentials by loading a `.env` file, and enable caching with `LoginOption(cache=True)` to reuse the authenticated client in subsequent calls:
+
+.. code-block:: python
+
+   from dotenv import load_dotenv
+   from teamworksams import login, LoginOption
+
+   load_dotenv()
+
+   result = login(
+       url = "https://example.smartabase.com/site",
+       option = LoginOption(interactive_mode = True, cache = True)
+   )
+
+   print(result['session_header'])  # abc123
 
 **Interactive Mode**:
 
@@ -277,7 +322,7 @@ Handle authentication failures gracefully:
            url = "https://example.smartabase.com/site",
            username = "wrong",
            password = "wrong",
-           option = LoginOption(interactive_mode=True)
+           option = LoginOption(interactive_mode = True, cache = True)
        )
    except AMSError as e:
        print(f"Authentication failed: {e}")
@@ -290,14 +335,15 @@ Handle authentication failures gracefully:
    ✖ Failed to log wrong into https://example.smartabase.com/site: Invalid URL or login credentials...
    Authentication failed: Invalid URL or login credentials...
 
-Caching with :func:`get_client`
--------------------------------
 
-The `get_client() <get_client_ref_>`_ function creates or reuses an authenticated `AMSClient() <ams_client_ref_>`_ instance, optimizing performance by caching sessions. Caching reduces authentication overhead for repeated API calls, making it ideal for workflows involving multiple operations.
+Caching with `get_client() <get_client_ref_>`_
+----------------------------------------------
+
+The `get_client() <get_client_ref_>`_ function creates or reuses an authenticated `AMSClient() <ams_client_ref_>`_ instance, optimizing performance by caching sessions. Caching reduces authentication overhead for repeated API calls, making it ideal for workflows involving multiple operations. The `login()` function also supports caching via `LoginOption(cache=True)`, internally using `get_client()`.
 
 **Enabling Caching**:
 
-Use ``cache=True`` (default) to reuse a client:
+Use `cache=True` (default) in `get_client()` or `LoginOption` to reuse a client:
 
 .. code-block:: python
 
@@ -316,12 +362,12 @@ Use ``cache=True`` (default) to reuse a client:
    # Reuse client for multiple calls
    user_df = get_user(
        client = client,
-       option = UserOption(interactive_mode=True)
+       option = UserOption(interactive_mode = True)
    )
 
    group_df = get_group(
        client = client,
-       option = GroupOption(interactive_mode=True)
+       option = GroupOption(interactive_mode = True)
    )
 
    print(user_df[['user_id', 'first_name']].head())
@@ -345,7 +391,7 @@ Use ``cache=True`` (default) to reuse a client:
 
 **Disabling Caching**:
 
-Use ``cache=False`` for independent sessions:
+Use `cache=False` for independent sessions:
 
 .. code-block:: python
 
@@ -378,18 +424,21 @@ Caching avoids repeated logins, reducing latency and API rate limit consumption.
 
 .. code-block:: python
 
+   from teamworksams import get_client, get_database
+   from teamworksams.database_option import GetDatabaseOption
+
    client = get_client(
-       url="https://example.smartabase.com/site",
-       username="username",
-       password="password",
-       cache=True
+       url = "https://example.smartabase.com/site",
+       username = "username",
+       password = "password",
+       cache = True
    )
 
    for form in ["Allergies", "Training Log"]:
        df = get_database(
            form_name = form,
            client = client,
-           option = GetDatabaseOption(interactive_mode=True)
+           option = GetDatabaseOption(interactive_mode = True)
        )
 
        print(f"{form} data: {len(df)} rows")
@@ -398,22 +447,22 @@ Best Practices
 --------------
 
 - **Security**:
-  - Use ``.env`` or ``keyring`` for credentials.
+  - Use `.env` or `keyring` for credentials.
   - Avoid logging credentials (e.g., disable interactive mode in production logs).
 - **Session Management**:
   - Enable caching for performance in multi-call workflows.
   - Disable caching for isolated or concurrent operations.
 - **Error Handling**:
-  - Wrap API calls in try-except blocks to handle ``AMSError``.
+  - Wrap API calls in try-except blocks to handle `:class:AMSError`.
   - Log errors with context (e.g., URL, function) for debugging.
 - **Environment Setup**:
   - Use virtual environments to isolate dependencies.
   - Test credentials before production deployment:
 
-.. code-block:: python
+   .. code-block:: python
 
-   from teamworksams import login
-   login(url = "https://example.smartabase.com/site", username = "username", password = "password")
+      from teamworksams import login
+      login(url = "https://example.smartabase.com/site", username = "username", password = "password")
 
 Troubleshooting
 ---------------

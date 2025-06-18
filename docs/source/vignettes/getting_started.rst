@@ -133,7 +133,7 @@ Setting Up Credentials
       load_dotenv()
       login_result = login(
           url="https://example.smartabase.com/site",
-          option=LoginOption(interactive_mode=True)
+          option=LoginOption(interactive_mode = True, cache = True)
       )
       print(f"Session cookie: {login_result['cookie']}")
       # Output: ℹ Logging username into https://example.smartabase.com/site...
@@ -192,16 +192,6 @@ Setting Up Credentials
         option = EventOption(interactive_mode = True, clean_names = True)
         )
       print(df)
-
-      from teamworksams import get_client, get_user
-
-      client = get_client(
-          url="https://example.smartabase.com/site",
-          username="username",
-          password="password",
-          interactive_mode=True
-      )
-      print(f"Authenticated: {client.authenticated}")
 
 
 3. **Using Keyring (Secure Storage)**
@@ -274,24 +264,28 @@ Let’s authenticate and fetch user data to get started. This example logs in, r
    # Authenticate
    login_result = login(
        url="https://example.smartabase.com/site",
-       option=LoginOption(interactive_mode=True)
+       option=LoginOption(interactive_mode = True, cache = True)
    )
    print(f"Session header: {login_result['session_header']}")
 
    # Fetch users
    df = get_user(
        url="https://example.smartabase.com/site",
-       option=UserOption(interactive_mode=True)
+       option=UserOption(interactive_mode = True)
    )
 
 
 **What’s Happening**
 
-- `login() <login_ref_>`_ authenticates with the AMS API, returning session details.
+- `login() <login_ref_>`_ authenticates with the AMS API, returning session details and caching a client for reuse.
 
-- `get_user() <get_user_ref_>`_ fetches user data as a pandas DataFrame, with interactive feedback enabled.
+- `get_user() <get_user_ref_>`_ fetches user data as a pandas DataFrame, using the cached client with interactive feedback enabled.
 
 - The output includes user IDs, names, and group affiliations, ready for analysis.
+
+.. note::
+
+   The `login` function caches an authenticated client, allowing subsequent calls (e.g., `get_user`) to reuse the session without re-entering credentials when `cache` = 'True'
 
 Next Steps
 ----------

@@ -42,7 +42,7 @@ df = pd.DataFrame({
         "start_date": ["01/01/2025", "01/01/2025"],
         "duration": [60, 45],
         "intensity": ["High", "Medium"]
-        })
+})
 
 insert_event_data(
         df = df,
@@ -51,7 +51,7 @@ insert_event_data(
         username = "user",
         password = "pass",
         option = InsertEventOption(id_col = "username", interactive_mode = True)
-        )
+)
 
 ℹ Inserting 2 events for 'Training Log'
 ✔ Processed 2 events for 'Training Log'
@@ -76,7 +76,7 @@ df = get_event_data(
         password = "pass",
         filter = EventFilter(user_key = "group", user_value = "Example Group"),
         option = EventOption(interactive_mode = True, clean_names = True)
-        )
+)
 
 ℹ Requesting event data for 'Training Log' between 01/01/2025 and 31/01/2025
 ℹ Processing 10 events...
@@ -96,12 +96,12 @@ AMS_URL=https://example.smartabase.com/site
 AMS_USERNAME=user
 AMS_PASSWORD=pass
 ```
-Read more in the [Geting Started Vignette](https://brandonyach.github.io/teamworksams/vignettes/getting_started.html).
+Read more in the [Getting Started Vignette](https://brandonyach.github.io/teamworksams/vignettes/getting_started.html).
 
 ## Further Reading
 Explore the documentation for detailed guides:
 - [Credentials](https://brandonyach.github.io/teamworksams/vignettes/credentials.html): Manage credentials and authentication.
-- [User Management](https://brandonyach.github.io/teamworksams/vignettes/exporting_data.html): Retreive user and group data, update user accounts, and create new users
+- [User Management](https://brandonyach.github.io/teamworksams/vignettes/user_management.html): Retreive user and group data, update user accounts, and create new users
 - [Exporting Data](https://brandonyach.github.io/teamworksams/vignettes/exporting_data.html): Retrieve event and profile data from Teamworks AMS.
 - [Importing Data](https://brandonyach.github.io/teamworksams/vignettes/importing_data.html): Insert, update, and upsert event data to Teamworks AMS.
 - [Uploading Files](https://brandonyach.github.io/teamworksams/vignettes/uploading_files.html): Upload and attach files to events and profile avatars.
