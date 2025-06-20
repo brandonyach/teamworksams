@@ -214,345 +214,345 @@
 </span><span id="line-3"><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 </span><span id="line-4"><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
 </span><span id="line-5"><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="line-6">
-</span><span id="line-7">
+</span><span id="line-6"><span class="k">try</span><span class="p">:</span>
+</span><span id="line-7">    <span class="kn">import</span><span class="w"> </span><span class="nn">keyring</span>
+</span><span id="line-8"><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+</span><span id="line-9">    <span class="n">keyring</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="line-10">
+</span><span id="line-11">
 <div class="viewcode-block" id="AMSError">
 <a class="viewcode-back" href="../../reference/ams_error.html#teamworksams.utils.AMSError">[docs]</a>
-</span><span id="line-8"><span class="k">class</span><span class="w"> </span><span class="nc">AMSError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-</span><span id="line-9"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Base exception for AMS operations and errors.</span>
-</span><span id="line-10">
-</span><span id="line-11"><span class="sd">    Raised for errors during AMS API interactions, such as authentication failures or</span>
-</span><span id="line-12"><span class="sd">    invalid responses. Provides detailed error information, including function, endpoint,</span>
-</span><span id="line-13"><span class="sd">    and HTTP status code, to aid debugging. Used by functions like</span>
-</span><span id="line-14"><span class="sd">    :func:`get_client` and :func:`login`.</span>
-</span><span id="line-15">
-</span><span id="line-16"><span class="sd">    Args:</span>
-</span><span id="line-17"><span class="sd">        message (str): The primary error message describing the issue.</span>
-</span><span id="line-18"><span class="sd">        function (Optional[str]): Name of the function where the error occurred (e.g., &#39;login&#39;). Defaults to None.</span>
-</span><span id="line-19"><span class="sd">        endpoint (Optional[str]): API endpoint involved (e.g., &#39;user/loginUser&#39;). Defaults to None.</span>
-</span><span id="line-20"><span class="sd">        status_code (Optional[int]): HTTP status code of the error (e.g., 401 for unauthorized). Defaults to None.</span>
-</span><span id="line-21">
-</span><span id="line-22"><span class="sd">    Attributes:</span>
-</span><span id="line-23"><span class="sd">        message (str): The primary error message.</span>
-</span><span id="line-24"><span class="sd">        function (Optional[str]): The function where the error occurred.</span>
-</span><span id="line-25"><span class="sd">        endpoint (Optional[str]): The API endpoint involved.</span>
-</span><span id="line-26"><span class="sd">        status_code (Optional[int]): The HTTP status code.</span>
-</span><span id="line-27">
-</span><span id="line-28"><span class="sd">    Examples:</span>
-</span><span id="line-29"><span class="sd">        &gt;&gt;&gt; try:</span>
-</span><span id="line-30"><span class="sd">        ...     raise AMSError(</span>
-</span><span id="line-31"><span class="sd">        ...         message=&quot;Invalid credentials&quot;,</span>
-</span><span id="line-32"><span class="sd">        ...         function=&quot;login&quot;,</span>
-</span><span id="line-33"><span class="sd">        ...         endpoint=&quot;user/loginUser&quot;,</span>
-</span><span id="line-34"><span class="sd">        ...         status_code=401</span>
-</span><span id="line-35"><span class="sd">        ...     )</span>
-</span><span id="line-36"><span class="sd">        ... except AMSError as e:</span>
-</span><span id="line-37"><span class="sd">        ...     print(str(e))</span>
-</span><span id="line-38"><span class="sd">        Invalid credentials - Function: login - Endpoint: user/loginUser - Status Code: 401. Please check inputs or contact your site administrator.</span>
-</span><span id="line-39"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-12"><span class="k">class</span><span class="w"> </span><span class="nc">AMSError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="line-13"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Base exception for AMS operations and errors.</span>
+</span><span id="line-14">
+</span><span id="line-15"><span class="sd">    Raised for errors during AMS API interactions, such as authentication failures or</span>
+</span><span id="line-16"><span class="sd">    invalid responses. Provides detailed error information, including function, endpoint,</span>
+</span><span id="line-17"><span class="sd">    and HTTP status code, to aid debugging. Used by functions like</span>
+</span><span id="line-18"><span class="sd">    :func:`get_client` and :func:`login`.</span>
+</span><span id="line-19">
+</span><span id="line-20"><span class="sd">    Args:</span>
+</span><span id="line-21"><span class="sd">        message (str): The primary error message describing the issue.</span>
+</span><span id="line-22"><span class="sd">        function (Optional[str]): Name of the function where the error occurred (e.g., &#39;login&#39;). Defaults to None.</span>
+</span><span id="line-23"><span class="sd">        endpoint (Optional[str]): API endpoint involved (e.g., &#39;user/loginUser&#39;). Defaults to None.</span>
+</span><span id="line-24"><span class="sd">        status_code (Optional[int]): HTTP status code of the error (e.g., 401 for unauthorized). Defaults to None.</span>
+</span><span id="line-25">
+</span><span id="line-26"><span class="sd">    Attributes:</span>
+</span><span id="line-27"><span class="sd">        message (str): The primary error message.</span>
+</span><span id="line-28"><span class="sd">        function (Optional[str]): The function where the error occurred.</span>
+</span><span id="line-29"><span class="sd">        endpoint (Optional[str]): The API endpoint involved.</span>
+</span><span id="line-30"><span class="sd">        status_code (Optional[int]): The HTTP status code.</span>
+</span><span id="line-31">
+</span><span id="line-32"><span class="sd">    Examples:</span>
+</span><span id="line-33"><span class="sd">        &gt;&gt;&gt; try:</span>
+</span><span id="line-34"><span class="sd">        ...     raise AMSError(</span>
+</span><span id="line-35"><span class="sd">        ...         message=&quot;Invalid credentials&quot;,</span>
+</span><span id="line-36"><span class="sd">        ...         function=&quot;login&quot;,</span>
+</span><span id="line-37"><span class="sd">        ...         endpoint=&quot;user/loginUser&quot;,</span>
+</span><span id="line-38"><span class="sd">        ...         status_code=401</span>
+</span><span id="line-39"><span class="sd">        ...     )</span>
+</span><span id="line-40"><span class="sd">        ... except AMSError as e:</span>
+</span><span id="line-41"><span class="sd">        ...     print(str(e))</span>
+</span><span id="line-42"><span class="sd">        Invalid credentials - Function: login - Endpoint: user/loginUser - Status Code: 401. Please check inputs or contact your site administrator.</span>
+</span><span id="line-43"><span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="AMSError.__init__">
 <a class="viewcode-back" href="../../reference/ams_error.html#teamworksams.utils.AMSError.__init__">[docs]</a>
-</span><span id="line-40">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-</span><span id="line-41">        <span class="bp">self</span><span class="p">,</span>
-</span><span id="line-42">        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="line-43">        <span class="n">function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-44">        <span class="n">endpoint</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="line-45">        <span class="n">status_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="line-46">    <span class="p">):</span>
-</span><span id="line-47">        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
-</span><span id="line-48">        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
-</span><span id="line-49">        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
-</span><span id="line-50">        <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="n">status_code</span>
-</span><span id="line-51">        <span class="c1"># Format the full message consistently</span>
-</span><span id="line-52">        <span class="n">error_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">message</span><span class="p">]</span>
-</span><span id="line-53">        <span class="k">if</span> <span class="n">function</span><span class="p">:</span>
-</span><span id="line-54">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Function: </span><span class="si">{</span><span class="n">function</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-55">        <span class="k">if</span> <span class="n">endpoint</span><span class="p">:</span>
-</span><span id="line-56">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Endpoint: </span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-57">        <span class="k">if</span> <span class="n">status_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="line-58">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status Code: </span><span class="si">{</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-59">        <span class="n">full_message</span> <span class="o">=</span> <span class="s2">&quot; - &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_parts</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. Please check inputs or contact your site administrator.&quot;</span>
-</span><span id="line-60">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">full_message</span><span class="p">)</span></div>
+</span><span id="line-44">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+</span><span id="line-45">        <span class="bp">self</span><span class="p">,</span>
+</span><span id="line-46">        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="line-47">        <span class="n">function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-48">        <span class="n">endpoint</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="line-49">        <span class="n">status_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="line-50">    <span class="p">):</span>
+</span><span id="line-51">        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="line-52">        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+</span><span id="line-53">        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span>
+</span><span id="line-54">        <span class="bp">self</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="n">status_code</span>
+</span><span id="line-55">        <span class="n">error_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">message</span><span class="p">]</span>
+</span><span id="line-56">        <span class="k">if</span> <span class="n">function</span><span class="p">:</span>
+</span><span id="line-57">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Function: </span><span class="si">{</span><span class="n">function</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-58">        <span class="k">if</span> <span class="n">endpoint</span><span class="p">:</span>
+</span><span id="line-59">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Endpoint: </span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-60">        <span class="k">if</span> <span class="n">status_code</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="line-61">            <span class="n">error_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status Code: </span><span class="si">{</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-62">        <span class="n">full_message</span> <span class="o">=</span> <span class="s2">&quot; - &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">error_parts</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. Please check inputs or contact your site administrator.&quot;</span>
+</span><span id="line-63">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">full_message</span><span class="p">)</span></div>
 </div>
 
-</span><span id="line-61">
-</span><span id="line-62">
-</span><span id="line-63">
+</span><span id="line-64">
+</span><span id="line-65">
+</span><span id="line-66">
 <div class="viewcode-block" id="AMSClient">
 <a class="viewcode-back" href="../../reference/ams_client.html#teamworksams.utils.AMSClient">[docs]</a>
-</span><span id="line-64"><span class="k">class</span><span class="w"> </span><span class="nc">AMSClient</span><span class="p">:</span>
-</span><span id="line-65"><span class="w">    </span><span class="sd">&quot;&quot;&quot;A client for interacting with the AMS API.</span>
-</span><span id="line-66">
-</span><span id="line-67"><span class="sd">    Handles authentication, API requests, and caching for AMS operations. Created by</span>
-</span><span id="line-68"><span class="sd">    :func:`get_client` and used internally by functions like</span>
-</span><span id="line-69"><span class="sd">    :func:`get_user`. Supports direct use for custom API calls</span>
-</span><span id="line-70"><span class="sd">    with methods like :meth:`_fetch`. See :ref:`credentials` for setup.</span>
-</span><span id="line-71">
-</span><span id="line-72"><span class="sd">    Args:</span>
-</span><span id="line-73"><span class="sd">        url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must include a valid site name.</span>
-</span><span id="line-74"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-75"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-76">
-</span><span id="line-77"><span class="sd">    Attributes:</span>
-</span><span id="line-78"><span class="sd">        url (str): The validated AMS instance URL.</span>
-</span><span id="line-79"><span class="sd">        app_name (str): The site name extracted from the URL.</span>
-</span><span id="line-80"><span class="sd">        headers (Dict[str, str]): HTTP headers for API requests.</span>
-</span><span id="line-81"><span class="sd">        username (str): The username used for authentication.</span>
-</span><span id="line-82"><span class="sd">        password (str): The password used for authentication.</span>
-</span><span id="line-83"><span class="sd">        authenticated (bool): Whether the client is authenticated.</span>
-</span><span id="line-84"><span class="sd">        session (requests.Session): The HTTP session for making API requests.</span>
-</span><span id="line-85"><span class="sd">        login_data (Dict): The response data from the login API call.</span>
-</span><span id="line-86"><span class="sd">        _cache (Dict[str, Dict]): Cache for API responses.</span>
-</span><span id="line-87"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-67"><span class="k">class</span><span class="w"> </span><span class="nc">AMSClient</span><span class="p">:</span>
+</span><span id="line-68"><span class="w">    </span><span class="sd">&quot;&quot;&quot;A client for interacting with the AMS API.</span>
+</span><span id="line-69">
+</span><span id="line-70"><span class="sd">    Handles authentication, API requests, and caching for AMS operations. Created by</span>
+</span><span id="line-71"><span class="sd">    :func:`get_client` and used internally by functions like</span>
+</span><span id="line-72"><span class="sd">    :func:`get_user`. Supports direct use for custom API calls</span>
+</span><span id="line-73"><span class="sd">    with methods like :meth:`_fetch`. Uses stateless connections for each request to</span>
+</span><span id="line-74"><span class="sd">    ensure reliability. See :ref:`credentials` for setup.</span>
+</span><span id="line-75">
+</span><span id="line-76"><span class="sd">    Args:</span>
+</span><span id="line-77"><span class="sd">        url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must include a valid site name.</span>
+</span><span id="line-78"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-79"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-80">
+</span><span id="line-81"><span class="sd">    Attributes:</span>
+</span><span id="line-82"><span class="sd">        url (str): The validated AMS instance URL.</span>
+</span><span id="line-83"><span class="sd">        app_name (str): The site name extracted from the URL.</span>
+</span><span id="line-84"><span class="sd">        headers (Dict[str, str]): HTTP headers for API requests.</span>
+</span><span id="line-85"><span class="sd">        username (str): The username used for authentication.</span>
+</span><span id="line-86"><span class="sd">        password (str): The password used for authentication.</span>
+</span><span id="line-87"><span class="sd">        authenticated (bool): Whether the client is authenticated.</span>
+</span><span id="line-88"><span class="sd">        session (requests.Session): Legacy session object (maintained for compatibility).</span>
+</span><span id="line-89"><span class="sd">        login_data (Dict): The response data from the login API call.</span>
+</span><span id="line-90"><span class="sd">        _cache (Dict[str, Dict]): Cache for API responses.</span>
+</span><span id="line-91"><span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="AMSClient.__init__">
 <a class="viewcode-back" href="../../reference/ams_client.html#teamworksams.utils.AMSClient.__init__">[docs]</a>
-</span><span id="line-88">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-</span><span id="line-89">            <span class="bp">self</span><span class="p">,</span> 
-</span><span id="line-90">            <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-</span><span id="line-91">            <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-</span><span id="line-92">            <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="line-93">        <span class="p">):</span>
-</span><span id="line-94">        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</span><span id="line-95">        <span class="bp">self</span><span class="o">.</span><span class="n">app_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span id="line-96">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="line-97">            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
-</span><span id="line-98">            <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;python-test&quot;</span><span class="p">,</span>
-</span><span id="line-99">            <span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
-</span><span id="line-100">            <span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip, deflate&quot;</span><span class="p">,</span>
-</span><span id="line-101">            <span class="s2">&quot;X-APP-ID&quot;</span><span class="p">:</span> <span class="s2">&quot;external.example.postman&quot;</span>
-</span><span id="line-102">        <span class="p">}</span>
-</span><span id="line-103">        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="line-104">        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_USERNAME&quot;</span><span class="p">)</span>
-</span><span id="line-105">        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_PASSWORD&quot;</span><span class="p">)</span>
-</span><span id="line-106">        <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="line-107">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
-</span><span id="line-108">        <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span> <span class="o">=</span> <span class="kc">None</span>  
-</span><span id="line-109">        <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="line-110">        <span class="bp">self</span><span class="o">.</span><span class="n">last_uploaded_files</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="line-111">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
-</span><span id="line-112">                 <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
-</span><span id="line-113">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
-</span><span id="line-114">        <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span></div>
+</span><span id="line-92">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+</span><span id="line-93">            <span class="bp">self</span><span class="p">,</span> 
+</span><span id="line-94">            <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+</span><span id="line-95">            <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+</span><span id="line-96">            <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="line-97">        <span class="p">):</span>
+</span><span id="line-98">        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span id="line-99">        <span class="bp">self</span><span class="o">.</span><span class="n">app_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="line-100">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="line-101">            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+</span><span id="line-102">            <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;python-teamworksams&quot;</span><span class="p">,</span>
+</span><span id="line-103">            <span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+</span><span id="line-104">            <span class="s2">&quot;Accept-Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;gzip, deflate&quot;</span><span class="p">,</span>
+</span><span id="line-105">            <span class="s2">&quot;X-APP-ID&quot;</span><span class="p">:</span> <span class="s2">&quot;external.example.postman&quot;</span>
+</span><span id="line-106">        <span class="p">}</span>
+</span><span id="line-107">        <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="line-108">        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_USERNAME&quot;</span><span class="p">)</span>
+</span><span id="line-109">        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_PASSWORD&quot;</span><span class="p">)</span>
+</span><span id="line-110">        <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="line-111">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+</span><span id="line-112">        <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span> <span class="o">=</span> <span class="kc">None</span>  
+</span><span id="line-113">        <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="line-114">        <span class="bp">self</span><span class="o">.</span><span class="n">last_uploaded_files</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="line-115">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
+</span><span id="line-116">                 <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
+</span><span id="line-117">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+</span><span id="line-118">        <span class="bp">self</span><span class="o">.</span><span class="n">_login</span><span class="p">()</span></div>
 
-</span><span id="line-115">
-</span><span id="line-116">
-<div class="viewcode-block" id="AMSClient.login">
-<a class="viewcode-back" href="../../reference/ams_client.html#teamworksams.utils.AMSClient.login">[docs]</a>
-</span><span id="line-117">    <span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="line-118"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Authenticate with AMS and store login data.</span>
 </span><span id="line-119">
-</span><span id="line-120"><span class="sd">        Sends a login request to the AMS API using the provided username and password.</span>
-</span><span id="line-121"><span class="sd">        Updates the session headers with the session token received from the server.</span>
-</span><span id="line-122">
-</span><span id="line-123"><span class="sd">        Raises:</span>
-</span><span id="line-124"><span class="sd">            AMSError: If login fails due to invalid credentials, URL, or missing session header.</span>
-</span><span id="line-125"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="line-126">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
-</span><span id="line-127">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided for login. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
-</span><span id="line-128">        <span class="n">login_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_AMS_url</span><span class="p">(</span><span class="s2">&quot;user/loginUser&quot;</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2&quot;</span><span class="p">)</span>
-</span><span id="line-129">        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="line-130">            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-</span><span id="line-131">            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
-</span><span id="line-132">            <span class="s2">&quot;loginProperties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;appName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_name</span><span class="p">,</span> <span class="s2">&quot;clientTime&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()[:</span><span class="mi">19</span><span class="p">]}</span>
-</span><span id="line-133">        <span class="p">}</span>
-</span><span id="line-134">        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
-</span><span id="line-135">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-</span><span id="line-136">            <span class="n">error_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-</span><span id="line-137">            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
-</span><span id="line-138">                <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Invalid URL or login credentials.&quot;</span><span class="p">)</span>
-</span><span id="line-139">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Login failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-</span><span id="line-140">        <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;session-header&quot;</span><span class="p">)</span>
-</span><span id="line-141">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span><span class="p">:</span>
-</span><span id="line-142">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No session header received from server.&quot;</span><span class="p">)</span>
-</span><span id="line-143">        
-</span><span id="line-144">        <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="line-145">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__is_rpc_exception__&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-</span><span id="line-146">            <span class="n">error_message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;detailMessage&#39;</span><span class="p">,</span> <span class="s1">&#39;Unknown login error&#39;</span><span class="p">)</span>
-</span><span id="line-147">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Login failed: </span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="line-148">        
-</span><span id="line-149">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;session-header&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span>
-</span><span id="line-150">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Cookie&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;JSESSIONID=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">session_header</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="line-151">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
-</span><span id="line-152">        <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="kc">True</span></div>
-
-</span><span id="line-153">
-</span><span id="line-154">    
-</span><span id="line-155">    
-</span><span id="line-156">    <span class="k">def</span><span class="w"> </span><span class="nf">_AMS_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="line-157"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an AMS API URL for the given endpoint and API version.</span>
-</span><span id="line-158">
-</span><span id="line-159"><span class="sd">        Args:</span>
-</span><span id="line-160"><span class="sd">            endpoint (str): The API endpoint (e.g., &#39;usersearch&#39;).</span>
-</span><span id="line-161"><span class="sd">            api_version (str): The API version to use (default: &#39;v1&#39;).</span>
+</span><span id="line-120">
+</span><span id="line-121">    <span class="k">def</span><span class="w"> </span><span class="nf">_login</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="line-122"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Authenticate with AMS and store login data.</span>
+</span><span id="line-123">
+</span><span id="line-124"><span class="sd">        Sends a login request to the AMS API using the provided username and password.</span>
+</span><span id="line-125"><span class="sd">        Updates the session headers with the session token received from the server.</span>
+</span><span id="line-126">
+</span><span id="line-127"><span class="sd">        Raises:</span>
+</span><span id="line-128"><span class="sd">            AMSError: If login fails due to invalid credentials, URL, or missing session header.</span>
+</span><span id="line-129"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="line-130">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
+</span><span id="line-131">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided for login. Supply &#39;username&#39; and &#39;password&#39; or set AMS_USERNAME/AMS_PASSWORD env vars.&quot;</span><span class="p">)</span>
+</span><span id="line-132">        <span class="n">login_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_AMS_url</span><span class="p">(</span><span class="s2">&quot;user/loginUser&quot;</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="s2">&quot;v2&quot;</span><span class="p">)</span>
+</span><span id="line-133">        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="line-134">            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+</span><span id="line-135">            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+</span><span id="line-136">            <span class="s2">&quot;loginProperties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;appName&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_name</span><span class="p">,</span> <span class="s2">&quot;clientTime&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()[:</span><span class="mi">19</span><span class="p">]}</span>
+</span><span id="line-137">        <span class="p">}</span>
+</span><span id="line-138">        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</span><span id="line-139">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+</span><span id="line-140">            <span class="n">error_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span><span id="line-141">            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
+</span><span id="line-142">                <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Invalid URL or login credentials.&quot;</span><span class="p">)</span>
+</span><span id="line-143">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Login failed with status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="line-144">        <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;session-header&quot;</span><span class="p">)</span>
+</span><span id="line-145">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span><span class="p">:</span>
+</span><span id="line-146">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No session header received from server.&quot;</span><span class="p">)</span>
+</span><span id="line-147">        
+</span><span id="line-148">        <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="line-149">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__is_rpc_exception__&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+</span><span id="line-150">            <span class="n">error_message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">login_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;detailMessage&#39;</span><span class="p">,</span> <span class="s1">&#39;Unknown login error&#39;</span><span class="p">)</span>
+</span><span id="line-151">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Login failed: </span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="line-152">        
+</span><span id="line-153">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;session-header&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_header</span>
+</span><span id="line-154">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Cookie&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;JSESSIONID=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">session_header</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="line-155">        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</span><span id="line-156">        <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="line-157">
+</span><span id="line-158">    
+</span><span id="line-159">    
+</span><span id="line-160">    <span class="k">def</span><span class="w"> </span><span class="nf">_AMS_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="line-161"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct an AMS API URL for the given endpoint and API version.</span>
 </span><span id="line-162">
-</span><span id="line-163"><span class="sd">        Returns:</span>
-</span><span id="line-164"><span class="sd">            str: The full API URL (e.g., &#39;https://example.smartabase.com/site/api/v1/usersearch?informat=json&amp;format=json&#39;).</span>
-</span><span id="line-165"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="line-166">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">/api/</span><span class="si">{</span><span class="n">api_version</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">endpoint</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">?informat=json&amp;format=json&quot;</span>
-</span><span id="line-167">
-</span><span id="line-168">    
-</span><span id="line-169">    
-</span><span id="line-170">    <span class="k">def</span><span class="w"> </span><span class="nf">_fetch</span><span class="p">(</span>
-</span><span id="line-171">            <span class="bp">self</span><span class="p">,</span> 
-</span><span id="line-172">            <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-</span><span id="line-173">            <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> 
-</span><span id="line-174">            <span class="n">payload</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-</span><span id="line-175">            <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-</span><span id="line-176">            <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span>
-</span><span id="line-177">        <span class="p">):</span>
-</span><span id="line-178"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch data from the AMS API with caching.</span>
-</span><span id="line-179">
-</span><span id="line-180"><span class="sd">        Sends an HTTP request to the specified endpoint and returns the JSON response. Uses caching to</span>
-</span><span id="line-181"><span class="sd">        avoid redundant API calls if enabled.</span>
-</span><span id="line-182">
-</span><span id="line-183"><span class="sd">        Args:</span>
-</span><span id="line-184"><span class="sd">            endpoint (str): The API endpoint to fetch (e.g., &#39;usersearch&#39;).</span>
-</span><span id="line-185"><span class="sd">            method (str): HTTP method to use (&#39;POST&#39; or &#39;GET&#39;, default: &#39;POST&#39;).</span>
-</span><span id="line-186"><span class="sd">            payload (Optional[dict]): The JSON payload to send with the request (default: None).</span>
-</span><span id="line-187"><span class="sd">            cache (bool): Whether to cache the response (default: True).</span>
-</span><span id="line-188"><span class="sd">            api_version (str): The API version to use for this request (default: &#39;v1&#39;).</span>
-</span><span id="line-189">
-</span><span id="line-190"><span class="sd">        Returns:</span>
-</span><span id="line-191"><span class="sd">            Any: The JSON response from the API, or None if the response is empty.</span>
-</span><span id="line-192">
-</span><span id="line-193"><span class="sd">        Raises:</span>
-</span><span id="line-194"><span class="sd">            AMSError: If the API request fails or returns a non-200 status code.</span>
-</span><span id="line-195"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="line-196">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
-</span><span id="line-197">            <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
-</span><span id="line-198">        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}{</span><span class="nb">str</span><span class="p">(</span><span class="n">payload</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-</span><span id="line-199">        <span class="k">if</span> <span class="n">cache</span> <span class="ow">and</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
-</span><span id="line-200">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
-</span><span id="line-201">        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_AMS_url</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="n">api_version</span><span class="p">)</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">/api/v3/</span><span class="si">{</span><span class="n">endpoint</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="line-202">        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">}</span>
-</span><span id="line-203">        <span class="k">if</span> <span class="n">payload</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
-</span><span id="line-204">            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">payload</span>
-</span><span id="line-205">        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</span><span id="line-206">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-</span><span id="line-207">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span>
-</span><span id="line-208">                <span class="sa">f</span><span class="s2">&quot;Failed to fetch data from </span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2"> (status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-</span><span id="line-209">                <span class="n">function</span><span class="o">=</span><span class="s2">&quot;_fetch&quot;</span><span class="p">,</span>
-</span><span id="line-210">                <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
-</span><span id="line-211">                <span class="n">status_code</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
-</span><span id="line-212">            <span class="p">)</span>
-</span><span id="line-213">        <span class="k">try</span><span class="p">:</span>
-</span><span id="line-214">            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="line-215">        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-</span><span id="line-216">            <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>  
-</span><span id="line-217">        <span class="k">if</span> <span class="n">cache</span><span class="p">:</span>
-</span><span id="line-218">            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-</span><span id="line-219">        <span class="k">else</span><span class="p">:</span>
-</span><span id="line-220">            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> 
-</span><span id="line-221">        <span class="k">return</span> <span class="n">data</span>
-</span><span id="line-222">    
-</span><span id="line-223">    
-</span><span id="line-224">
-</span><span id="line-225">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="line-226"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the AMS URL.</span>
-</span><span id="line-227">
-</span><span id="line-228"><span class="sd">        Args:</span>
-</span><span id="line-229"><span class="sd">            url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;).</span>
-</span><span id="line-230">
-</span><span id="line-231"><span class="sd">        Returns:</span>
-</span><span id="line-232"><span class="sd">            str: The validated URL with trailing slashes removed.</span>
-</span><span id="line-233">
-</span><span id="line-234"><span class="sd">        Raises:</span>
-</span><span id="line-235"><span class="sd">            AMSError: If the URL is invalid or missing a site name.</span>
-</span><span id="line-236"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="line-237">        <span class="n">app_name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span id="line-238">        <span class="k">if</span> <span class="ow">not</span> <span class="n">app_name</span><span class="p">:</span>
-</span><span id="line-239">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Invalid AMS URL. Ensure it includes a valid site name (e.g., &#39;https://example.smartabase.com/site_name&#39;).&quot;</span><span class="p">)</span>
-</span><span id="line-240">        <span class="k">return</span> <span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span><span id="line-163"><span class="sd">        Args:</span>
+</span><span id="line-164"><span class="sd">            endpoint (str): The API endpoint (e.g., &#39;usersearch&#39;).</span>
+</span><span id="line-165"><span class="sd">            api_version (str): The API version to use (default: &#39;v1&#39;).</span>
+</span><span id="line-166">
+</span><span id="line-167"><span class="sd">        Returns:</span>
+</span><span id="line-168"><span class="sd">            str: The full API URL (e.g., &#39;https://example.smartabase.com/site/api/v1/usersearch?informat=json&amp;format=json&#39;).</span>
+</span><span id="line-169"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="line-170">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">/api/</span><span class="si">{</span><span class="n">api_version</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">endpoint</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">?informat=json&amp;format=json&quot;</span>
+</span><span id="line-171">
+</span><span id="line-172">    
+</span><span id="line-173">    
+</span><span id="line-174">    <span class="k">def</span><span class="w"> </span><span class="nf">_fetch</span><span class="p">(</span>
+</span><span id="line-175">            <span class="bp">self</span><span class="p">,</span> 
+</span><span id="line-176">            <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+</span><span id="line-177">            <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> 
+</span><span id="line-178">            <span class="n">payload</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+</span><span id="line-179">            <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+</span><span id="line-180">            <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span>
+</span><span id="line-181">        <span class="p">):</span>
+</span><span id="line-182"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch data from the AMS API with caching.</span>
+</span><span id="line-183">
+</span><span id="line-184"><span class="sd">        Sends an HTTP request to the specified endpoint using a new connection for each request.</span>
+</span><span id="line-185"><span class="sd">        Returns the JSON response. Uses caching to avoid redundant API calls if enabled.</span>
+</span><span id="line-186">
+</span><span id="line-187"><span class="sd">        Args:</span>
+</span><span id="line-188"><span class="sd">            endpoint (str): The API endpoint to fetch (e.g., &#39;usersearch&#39;).</span>
+</span><span id="line-189"><span class="sd">            method (str): HTTP method to use (&#39;POST&#39; or &#39;GET&#39;, default: &#39;POST&#39;).</span>
+</span><span id="line-190"><span class="sd">            payload (Optional[dict]): The JSON payload to send with the request (default: None).</span>
+</span><span id="line-191"><span class="sd">            cache (bool): Whether to cache the response (default: True).</span>
+</span><span id="line-192"><span class="sd">            api_version (str): The API version to use for this request (default: &#39;v1&#39;).</span>
+</span><span id="line-193">
+</span><span id="line-194"><span class="sd">        Returns:</span>
+</span><span id="line-195"><span class="sd">            Any: The JSON response from the API, or None if the response is empty.</span>
+</span><span id="line-196">
+</span><span id="line-197"><span class="sd">        Raises:</span>
+</span><span id="line-198"><span class="sd">            AMSError: If the API request fails or returns a non-200 status code.</span>
+</span><span id="line-199"><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="line-200">        <span class="kn">import</span><span class="w"> </span><span class="nn">requests.exceptions</span>
+</span><span id="line-201">        
+</span><span id="line-202">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+</span><span id="line-203">            <span class="bp">self</span><span class="o">.</span><span class="n">_login</span><span class="p">()</span>
+</span><span id="line-204">        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}{</span><span class="nb">str</span><span class="p">(</span><span class="n">payload</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span><span id="line-205">        
+</span><span id="line-206">        <span class="k">if</span> <span class="n">cache</span> <span class="ow">and</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+</span><span id="line-207">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
+</span><span id="line-208">        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_AMS_url</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">api_version</span><span class="o">=</span><span class="n">api_version</span><span class="p">)</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">/api/v3/</span><span class="si">{</span><span class="n">endpoint</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="line-209">        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">}</span>
+</span><span id="line-210">        
+</span><span id="line-211">        <span class="k">if</span> <span class="n">payload</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+</span><span id="line-212">            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">payload</span>
+</span><span id="line-213">        <span class="c1"># response = self.session.request(method, url, **kwargs)</span>
+</span><span id="line-214">        <span class="k">try</span><span class="p">:</span>
+</span><span id="line-215">            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="line-216">        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="line-217">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span>
+</span><span id="line-218">                <span class="sa">f</span><span class="s2">&quot;Connection aborted, possibly due to network issues or session expiration: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">. Try re-running the function or re-authenticating with login().&quot;</span><span class="p">,</span>
+</span><span id="line-219">                <span class="n">function</span><span class="o">=</span><span class="s2">&quot;_fetch&quot;</span><span class="p">,</span>
+</span><span id="line-220">                <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span>
+</span><span id="line-221">            <span class="p">)</span>
+</span><span id="line-222">            
+</span><span id="line-223">        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+</span><span id="line-224">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span>
+</span><span id="line-225">                <span class="sa">f</span><span class="s2">&quot;Failed to fetch data from </span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2"> (status </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+</span><span id="line-226">                <span class="n">function</span><span class="o">=</span><span class="s2">&quot;_fetch&quot;</span><span class="p">,</span>
+</span><span id="line-227">                <span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
+</span><span id="line-228">                <span class="n">status_code</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</span><span id="line-229">            <span class="p">)</span>
+</span><span id="line-230">        <span class="k">try</span><span class="p">:</span>
+</span><span id="line-231">            <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="line-232">        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span><span id="line-233">            <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>  
+</span><span id="line-234">            
+</span><span id="line-235">        <span class="k">if</span> <span class="n">cache</span><span class="p">:</span>
+</span><span id="line-236">            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="line-237">        <span class="k">else</span><span class="p">:</span>
+</span><span id="line-238">            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> 
+</span><span id="line-239">            
+</span><span id="line-240">        <span class="k">return</span> <span class="n">data</span>
 </span><span id="line-241">    
 </span><span id="line-242">    
-</span><span id="line-243">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_credentials</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span> 
-</span><span id="line-244"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate username and password for AMSClient.</span>
-</span><span id="line-245">
-</span><span id="line-246"><span class="sd">        Args:</span>
-</span><span id="line-247"><span class="sd">            username (Optional[str]): The username to validate.</span>
-</span><span id="line-248"><span class="sd">            password (Optional[str]): The password to validate.</span>
+</span><span id="line-243">
+</span><span id="line-244">    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="line-245"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the AMS URL.</span>
+</span><span id="line-246">
+</span><span id="line-247"><span class="sd">        Args:</span>
+</span><span id="line-248"><span class="sd">            url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;).</span>
 </span><span id="line-249">
 </span><span id="line-250"><span class="sd">        Returns:</span>
-</span><span id="line-251"><span class="sd">            Tuple[str, str]: The validated username and password.</span>
+</span><span id="line-251"><span class="sd">            str: The validated URL with trailing slashes removed.</span>
 </span><span id="line-252">
 </span><span id="line-253"><span class="sd">        Raises:</span>
-</span><span id="line-254"><span class="sd">            AMSError: If no valid credentials are provided.</span>
+</span><span id="line-254"><span class="sd">            AMSError: If the URL is invalid or missing a site name.</span>
 </span><span id="line-255"><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="line-256">        <span class="k">if</span> <span class="n">username</span> <span class="ow">and</span> <span class="n">password</span><span class="p">:</span>
-</span><span id="line-257">            <span class="k">return</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span>
-</span><span id="line-258">        <span class="n">env_username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_USERNAME&quot;</span><span class="p">)</span>
-</span><span id="line-259">        <span class="n">env_password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_PASSWORD&quot;</span><span class="p">)</span>
-</span><span id="line-260">        <span class="k">if</span> <span class="n">env_username</span> <span class="ow">and</span> <span class="n">env_password</span><span class="p">:</span>
-</span><span id="line-261">            <span class="k">return</span> <span class="n">env_username</span><span class="p">,</span> <span class="n">env_password</span>
-</span><span id="line-262">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span>
-</span><span id="line-263">            <span class="s2">&quot;No credentials provided. Set via args or environment variables (AMS_USERNAME and AMS_PASSWORD).&quot;</span>
-</span><span id="line-264">        <span class="p">)</span></div>
+</span><span id="line-256">        <span class="n">app_name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="line-257">        <span class="k">if</span> <span class="ow">not</span> <span class="n">app_name</span><span class="p">:</span>
+</span><span id="line-258">            <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;Invalid AMS URL. Ensure it includes a valid site name (e.g., &#39;https://example.smartabase.com/site_name&#39;).&quot;</span><span class="p">)</span>
+</span><span id="line-259">        <span class="k">return</span> <span class="n">url</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span></div>
 
-</span><span id="line-265">
-</span><span id="line-266">
-</span><span id="line-267"><span class="n">persistent_client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;AMSClient&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="line-268">
-</span><span id="line-269">
+</span><span id="line-260">
+</span><span id="line-261">
+</span><span id="line-262"><span class="n">persistent_client</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;AMSClient&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="line-263">
+</span><span id="line-264">
 <div class="viewcode-block" id="get_client">
 <a class="viewcode-back" href="../../reference/get_client.html#teamworksams.utils.get_client">[docs]</a>
-</span><span id="line-270"><span class="k">def</span><span class="w"> </span><span class="nf">get_client</span><span class="p">(</span>
-</span><span id="line-271">        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-</span><span id="line-272">        <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-</span><span id="line-273">        <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
-</span><span id="line-274">        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
-</span><span id="line-275">        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="line-276">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AMSClient</span><span class="p">:</span>
-</span><span id="line-277"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create or retrieve an authenticated :class:`AMSClient` instance.</span>
-</span><span id="line-278">
-</span><span id="line-279"><span class="sd">    Creates a new :class:`AMSClient` instance with the provided credentials or reuses an existing</span>
-</span><span id="line-280"><span class="sd">    authenticated client if caching is enabled. The client is used for all AMS API</span>
-</span><span id="line-281"><span class="sd">    interactions, handling authentication and session management. Provides interactive</span>
-</span><span id="line-282"><span class="sd">    feedback on login success if enabled. This function is typically called internally by</span>
-</span><span id="line-283"><span class="sd">    other public-facing functions but can be used directly to initialize a client.</span>
-</span><span id="line-284">
-</span><span id="line-285"><span class="sd">    Args:</span>
-</span><span id="line-286"><span class="sd">        url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must include a valid site name (e.g., &#39;/site&#39;).</span>
-</span><span id="line-287"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-288"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
-</span><span id="line-289"><span class="sd">        cache (bool): Reuse an existing authenticated client if available. Set to False for independent sessions (e.g., parallel scripts). Defaults to True.</span>
-</span><span id="line-290"><span class="sd">        interactive_mode (bool): Print status messages (e.g., login success). Useful for interactive workflows. Defaults to False.</span>
-</span><span id="line-291">
-</span><span id="line-292"><span class="sd">    Returns:</span>
-</span><span id="line-293"><span class="sd">        :class:`AMSClient`: An authenticated client ready for API interactions.</span>
-</span><span id="line-294">
-</span><span id="line-295"><span class="sd">    Raises:</span>
-</span><span id="line-296"><span class="sd">        :class:`AMSError`: If the URL is invalid, credentials are missing, or authentication fails.</span>
-</span><span id="line-297">
-</span><span id="line-298"><span class="sd">    Examples:</span>
-</span><span id="line-299"><span class="sd">        &gt;&gt;&gt; from teamworksams import get_client</span>
-</span><span id="line-300"><span class="sd">        &gt;&gt;&gt; client = get_client(</span>
-</span><span id="line-301"><span class="sd">        ...     url=&quot;https://example.smartabase.com/site&quot;,</span>
-</span><span id="line-302"><span class="sd">        ...     username = &quot;user&quot;,</span>
-</span><span id="line-303"><span class="sd">        ...     password = &quot;pass&quot;,</span>
-</span><span id="line-304"><span class="sd">        ...     cache = True,</span>
-</span><span id="line-305"><span class="sd">        ...     interactive_mode = True</span>
-</span><span id="line-306"><span class="sd">        ... )</span>
-</span><span id="line-307"><span class="sd">        ✔ Successfully logged user into https://example.smartabase.com/site.</span>
-</span><span id="line-308"><span class="sd">        &gt;&gt;&gt; print(client.authenticated)</span>
-</span><span id="line-309"><span class="sd">        True</span>
-</span><span id="line-310"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="line-311">    <span class="k">global</span> <span class="n">persistent_client</span>
-</span><span id="line-312">    <span class="k">if</span> <span class="n">cache</span> <span class="ow">and</span> <span class="n">persistent_client</span> <span class="ow">and</span> <span class="n">persistent_client</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
-</span><span id="line-313">        <span class="k">return</span> <span class="n">persistent_client</span>
-</span><span id="line-314">    
-</span><span id="line-315">    <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
-</span><span id="line-316">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided and no cached client available. Supply &#39;username&#39; and &#39;password&#39;.&quot;</span><span class="p">)</span>
+</span><span id="line-265"><span class="k">def</span><span class="w"> </span><span class="nf">get_client</span><span class="p">(</span>
+</span><span id="line-266">        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+</span><span id="line-267">        <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+</span><span id="line-268">        <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+</span><span id="line-269">        <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+</span><span id="line-270">        <span class="n">interactive_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="line-271">    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AMSClient</span><span class="p">:</span>
+</span><span id="line-272"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create or retrieve an authenticated :class:`AMSClient` instance.</span>
+</span><span id="line-273">
+</span><span id="line-274"><span class="sd">    Creates a new :class:`AMSClient` instance with the provided credentials or reuses an existing</span>
+</span><span id="line-275"><span class="sd">    authenticated client if caching is enabled. The client is used for all AMS API</span>
+</span><span id="line-276"><span class="sd">    interactions, handling authentication and session management. Provides interactive</span>
+</span><span id="line-277"><span class="sd">    feedback on login success if enabled. This function is typically called internally by</span>
+</span><span id="line-278"><span class="sd">    other public-facing functions but can be used directly to initialize a client. Use this </span>
+</span><span id="line-279"><span class="sd">    function for custom API calls or batch operations requiring an authenticated client.</span>
+</span><span id="line-280">
+</span><span id="line-281"><span class="sd">    Args:</span>
+</span><span id="line-282"><span class="sd">        url (str): The AMS instance URL (e.g., &#39;https://example.smartabase.com/site&#39;). Must include a valid site name (e.g., &#39;/site&#39;).</span>
+</span><span id="line-283"><span class="sd">        username (Optional[str]): Username for authentication. If None, uses :envvar:`AMS_USERNAME` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-284"><span class="sd">        password (Optional[str]): Password for authentication. If None, uses :envvar:`AMS_PASSWORD` or :class:`keyring` credentials. Defaults to None.</span>
+</span><span id="line-285"><span class="sd">        cache (bool): Reuse an existing authenticated client if available. Set to False for independent sessions (e.g., parallel scripts). Defaults to True.</span>
+</span><span id="line-286"><span class="sd">        interactive_mode (bool): Print status messages (e.g., login success). Useful for interactive workflows. Defaults to False.</span>
+</span><span id="line-287">
+</span><span id="line-288"><span class="sd">    Returns:</span>
+</span><span id="line-289"><span class="sd">        :class:`AMSClient`: An authenticated client ready for API interactions.</span>
+</span><span id="line-290">
+</span><span id="line-291"><span class="sd">    Raises:</span>
+</span><span id="line-292"><span class="sd">        :class:`AMSError`: If the URL is invalid, credentials are missing, or authentication fails.</span>
+</span><span id="line-293">
+</span><span id="line-294"><span class="sd">    Examples:</span>
+</span><span id="line-295"><span class="sd">        &gt;&gt;&gt; from teamworksams import get_client</span>
+</span><span id="line-296"><span class="sd">        &gt;&gt;&gt; client = get_client(</span>
+</span><span id="line-297"><span class="sd">        ...     url=&quot;https://example.smartabase.com/site&quot;,</span>
+</span><span id="line-298"><span class="sd">        ...     username = &quot;user&quot;,</span>
+</span><span id="line-299"><span class="sd">        ...     password = &quot;pass&quot;,</span>
+</span><span id="line-300"><span class="sd">        ...     cache = True,</span>
+</span><span id="line-301"><span class="sd">        ...     interactive_mode = True</span>
+</span><span id="line-302"><span class="sd">        ... )</span>
+</span><span id="line-303"><span class="sd">        ✔ Successfully logged user into https://example.smartabase.com/site.</span>
+</span><span id="line-304"><span class="sd">        &gt;&gt;&gt; print(client.authenticated)</span>
+</span><span id="line-305"><span class="sd">        True</span>
+</span><span id="line-306"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="line-307">    <span class="k">global</span> <span class="n">persistent_client</span>
+</span><span id="line-308">    <span class="k">if</span> <span class="n">cache</span> <span class="ow">and</span> <span class="n">persistent_client</span> <span class="ow">and</span> <span class="n">persistent_client</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+</span><span id="line-309">        <span class="k">return</span> <span class="n">persistent_client</span>
+</span><span id="line-310">    
+</span><span id="line-311">    <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
+</span><span id="line-312">        <span class="n">username</span> <span class="o">=</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_USERNAME&quot;</span><span class="p">)</span>
+</span><span id="line-313">        <span class="n">password</span> <span class="o">=</span> <span class="n">password</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AMS_PASSWORD&quot;</span><span class="p">)</span>
+</span><span id="line-314">        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span> <span class="ow">and</span> <span class="n">keyring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="line-315">            <span class="n">username</span> <span class="o">=</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="s2">&quot;teamworksams&quot;</span><span class="p">,</span> <span class="s2">&quot;username&quot;</span><span class="p">)</span>
+</span><span id="line-316">            <span class="n">password</span> <span class="o">=</span> <span class="n">password</span> <span class="ow">or</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_password</span><span class="p">(</span><span class="s2">&quot;teamworksams&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">)</span>
 </span><span id="line-317">    
-</span><span id="line-318">    <span class="n">client</span> <span class="o">=</span> <span class="n">AMSClient</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-</span><span id="line-319">    <span class="k">if</span> <span class="n">interactive_mode</span><span class="p">:</span>
-</span><span id="line-320">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Successfully logged </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-</span><span id="line-321">    
-</span><span id="line-322">    <span class="k">if</span> <span class="n">cache</span><span class="p">:</span>
-</span><span id="line-323">        <span class="n">persistent_client</span> <span class="o">=</span> <span class="n">client</span>  
-</span><span id="line-324">    <span class="k">else</span><span class="p">:</span>
-</span><span id="line-325">        <span class="n">persistent_client</span> <span class="o">=</span> <span class="kc">None</span> 
-</span><span id="line-326">    
-</span><span id="line-327">    <span class="k">return</span> <span class="n">client</span></div>
+</span><span id="line-318">    <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
+</span><span id="line-319">        <span class="k">raise</span> <span class="n">AMSError</span><span class="p">(</span><span class="s2">&quot;No valid credentials provided and no cached client available. Supply &#39;username&#39; and &#39;password&#39;.&quot;</span><span class="p">)</span>
+</span><span id="line-320">    
+</span><span id="line-321">    <span class="n">client</span> <span class="o">=</span> <span class="n">AMSClient</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span><span id="line-322">    <span class="k">if</span> <span class="n">interactive_mode</span><span class="p">:</span>
+</span><span id="line-323">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✔ Successfully logged </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> into </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="line-324">    
+</span><span id="line-325">    <span class="k">if</span> <span class="n">cache</span><span class="p">:</span>
+</span><span id="line-326">        <span class="n">persistent_client</span> <span class="o">=</span> <span class="n">client</span>  
+</span><span id="line-327">    <span class="k">else</span><span class="p">:</span>
+</span><span id="line-328">        <span class="n">persistent_client</span> <span class="o">=</span> <span class="kc">None</span> 
+</span><span id="line-329">    
+</span><span id="line-330">    <span class="k">return</span> <span class="n">client</span></div>
 
 </span></code></pre></div>
     </div></div>

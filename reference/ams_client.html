@@ -169,7 +169,8 @@
 <p>Handles authentication, API requests, and caching for AMS operations. Created by
 <a class="reference internal" href="get_client.html#teamworksams.utils.get_client" title="teamworksams.utils.get_client"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_client()</span></code></a> and used internally by functions like
 <code class="xref py py-func docutils literal notranslate"><span class="pre">get_user()</span></code>. Supports direct use for custom API calls
-with methods like <code class="xref py py-meth docutils literal notranslate"><span class="pre">_fetch()</span></code>. See <a class="reference internal" href="../vignettes/credentials.html#credentials"><span class="std std-ref">Managing Credentials, Authentication, and Caching</span></a> for setup.</p>
+with methods like <code class="xref py py-meth docutils literal notranslate"><span class="pre">_fetch()</span></code>. Uses stateless connections for each request to
+ensure reliability. See <a class="reference internal" href="../vignettes/credentials.html#credentials"><span class="std std-ref">Managing Credentials, Authentication, and Caching</span></a> for setup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -242,7 +243,7 @@ with methods like <code class="xref py py-meth docutils literal notranslate"><sp
 <dl class="py attribute">
 <dt class="sig sig-object py" id="teamworksams.utils.AMSClient.session">
 <span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#teamworksams.utils.AMSClient.session" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.utils.AMSClient.session'"><span>#</span></a></dt>
-<dd><p>The HTTP session for making API requests.</p>
+<dd><p>Legacy session object (maintained for compatibility).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>requests.Session</p>
@@ -273,18 +274,6 @@ with methods like <code class="xref py py-meth docutils literal notranslate"><sp
 <dt class="sig sig-object py" id="teamworksams.utils.AMSClient.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/teamworksams/utils.html#AMSClient.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.utils.AMSClient.__init__" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.utils.AMSClient.__init__'"><span>#</span></a></dt>
 <dd></dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="teamworksams.utils.AMSClient.login">
-<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/teamworksams/utils.html#AMSClient.login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#teamworksams.utils.AMSClient.login" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#teamworksams.utils.AMSClient.login'"><span>#</span></a></dt>
-<dd><p>Authenticate with AMS and store login data.</p>
-<p>Sends a login request to the AMS API using the provided username and password.
-Updates the session headers with the session token received from the server.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="ams_error.html#teamworksams.utils.AMSError" title="teamworksams.utils.AMSError"><strong>AMSError</strong></a> – If login fails due to invalid credentials, URL, or missing session header.</p>
-</dd>
-</dl>
-</dd></dl>
 </dd></dl>
 <section id="additional-notes">
 <h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#additional-notes'"><span>#</span></a></h2>
@@ -317,7 +306,6 @@ Updates the session headers with the session token received from the server.</p>
 <li><a :data-current="activeSection === '#teamworksams.utils.AMSClient.login_data'" class="reference internal" href="#teamworksams.utils.AMSClient.login_data"><code class="docutils literal notranslate"><span class="pre">AMSClient.login_data</span></code></a></li>
 <li><a :data-current="activeSection === '#teamworksams.utils.AMSClient._cache'" class="reference internal" href="#teamworksams.utils.AMSClient._cache"><code class="docutils literal notranslate"><span class="pre">AMSClient._cache</span></code></a></li>
 <li><a :data-current="activeSection === '#teamworksams.utils.AMSClient.__init__'" class="reference internal" href="#teamworksams.utils.AMSClient.__init__"><code class="docutils literal notranslate"><span class="pre">AMSClient.__init__()</span></code></a></li>
-<li><a :data-current="activeSection === '#teamworksams.utils.AMSClient.login'" class="reference internal" href="#teamworksams.utils.AMSClient.login"><code class="docutils literal notranslate"><span class="pre">AMSClient.login()</span></code></a></li>
 </ul>
 </li>
 <li><a :data-current="activeSection === '#additional-notes'" class="reference internal" href="#additional-notes">Additional Notes</a></li>
