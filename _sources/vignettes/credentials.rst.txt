@@ -339,7 +339,7 @@ Handle authentication failures gracefully:
 Caching with `get_client() <get_client_ref_>`_
 ----------------------------------------------
 
-The `get_client() <get_client_ref_>`_ function creates or reuses an authenticated `AMSClient() <ams_client_ref_>`_ instance, optimizing performance by caching sessions. Caching reduces authentication overhead for repeated API calls, making it ideal for workflows involving multiple operations. The `login()` function also supports caching via `LoginOption(cache=True)`, internally using `get_client()`.
+The `get_client() <get_client_ref_>`_ function creates or reuses an authenticated `AMSClient() <ams_client_ref_>`_ instance, optimizing performance by caching sessions. Caching reduces authentication overhead for repeated API calls, making it ideal for workflows involving multiple operations, custom calls, or batch operations. The `login()` function also supports caching via `LoginOption(cache=True)`, internally using `get_client()`.
 
 **Enabling Caching**:
 
