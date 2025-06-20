@@ -3,6 +3,10 @@ import os
 from datetime import datetime
 import hashlib
 from typing import Optional, Dict, Tuple
+try:
+    import keyring
+except ImportError:
+    keyring = None
 
 
 class AMSError(Exception):
@@ -48,7 +52,6 @@ class AMSError(Exception):
         self.function = function
         self.endpoint = endpoint
         self.status_code = status_code
-        # Format the full message consistently
         error_parts = [message]
         if function:
             error_parts.append(f"Function: {function}")
@@ -67,7 +70,8 @@ class AMSClient:
     Handles authentication, API requests, and caching for AMS operations. Created by
     :func:`get_client` and used internally by functions like
     :func:`get_user`. Supports direct use for custom API calls
-    with methods like :meth:`_fetch`. See :ref:`credentials` for setup.
+    with methods like :meth:`_fetch`. Uses stateless connections for each request to
+    ensure reliability. See :ref:`credentials` for setup.
 
     Args:
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name.
@@ -81,7 +85,7 @@ class AMSClient:
         username (str): The username used for authentication.
         password (str): The password used for authentication.
         authenticated (bool): Whether the client is authenticated.
-        session (requests.Session): The HTTP session for making API requests.
+        session (requests.Session): Legacy session object (maintained for compatibility).
         login_data (Dict): The response data from the login API call.
         _cache (Dict[str, Dict]): Cache for API responses.
     """
@@ -95,7 +99,7 @@ class AMSClient:
         self.app_name = self.url.split('/')[-1].strip()
         self.headers = {
             "Content-Type": "application/json",
-            "User-Agent": "python-test",
+            "User-Agent": "python-teamworksams",
             "Accept": "application/json",
             "Accept-Encoding": "gzip, deflate",
             "X-APP-ID": "external.example.postman"
@@ -111,10 +115,10 @@ class AMSClient:
         if not self.username or not self.password:
                  raise AMSError("No valid credentials provided. Supply 'username' and 'password' or set AMS_USERNAME/AMS_PASSWORD env vars.")
         self.session.auth = (self.username, self.password)
-        self.login()
+        self._login()
 
 
-    def login(self) -> None:
+    def _login(self) -> None:
         """Authenticate with AMS and store login data.
 
         Sends a login request to the AMS API using the provided username and password.
@@ -177,8 +181,8 @@ class AMSClient:
         ):
         """Fetch data from the AMS API with caching.
 
-        Sends an HTTP request to the specified endpoint and returns the JSON response. Uses caching to
-        avoid redundant API calls if enabled.
+        Sends an HTTP request to the specified endpoint using a new connection for each request.
+        Returns the JSON response. Uses caching to avoid redundant API calls if enabled.
 
         Args:
             endpoint (str): The API endpoint to fetch (e.g., 'usersearch').
@@ -193,16 +197,29 @@ class AMSClient:
         Raises:
             AMSError: If the API request fails or returns a non-200 status code.
         """
+        import requests.exceptions
+        
         if not self.authenticated:
-            self.login()
+            self._login()
         cache_key = hashlib.sha256(f"{self.url}{endpoint}{str(payload or '')}".encode()).hexdigest()
+        
         if cache and cache_key in self._cache:
             return self._cache[cache_key]
         url = self._AMS_url(endpoint, api_version=api_version) if method == "POST" else f"{self.url}/api/v3/{endpoint.lstrip('/')}"
-        kwargs = {"headers": self.headers}
+        kwargs = {"headers": self.headers, "timeout": 60}
+        
         if payload and method != "GET":
             kwargs["json"] = payload
-        response = self.session.request(method, url, **kwargs)
+        # response = self.session.request(method, url, **kwargs)
+        try:
+            response = requests.request(method, url, **kwargs)
+        except requests.exceptions.ConnectionError as e:
+            raise AMSError(
+                f"Connection aborted, possibly due to network issues or session expiration: {str(e)}. Try re-running the function or re-authenticating with login().",
+                function="_fetch",
+                endpoint=endpoint
+            )
+            
         if response.status_code != 200:
             raise AMSError(
                 f"Failed to fetch data from {endpoint} (status {response.status_code}): {response.text}",
@@ -214,10 +231,12 @@ class AMSClient:
             data = response.json()
         except ValueError:
             data = None  
+            
         if cache:
             self._cache[cache_key] = data
         else:
             self._cache.clear() 
+            
         return data
     
     
@@ -238,30 +257,6 @@ class AMSClient:
         if not app_name:
             raise AMSError("Invalid AMS URL. Ensure it includes a valid site name (e.g., 'https://example.smartabase.com/site_name').")
         return url.rstrip('/')
-    
-    
-    def _validate_credentials(username: Optional[str], password: Optional[str]) -> Tuple[str, str]: 
-        """Validate username and password for AMSClient.
-
-        Args:
-            username (Optional[str]): The username to validate.
-            password (Optional[str]): The password to validate.
-
-        Returns:
-            Tuple[str, str]: The validated username and password.
-
-        Raises:
-            AMSError: If no valid credentials are provided.
-        """
-        if username and password:
-            return username, password
-        env_username = os.getenv("AMS_USERNAME")
-        env_password = os.getenv("AMS_PASSWORD")
-        if env_username and env_password:
-            return env_username, env_password
-        raise AMSError(
-            "No credentials provided. Set via args or environment variables (AMS_USERNAME and AMS_PASSWORD)."
-        )
 
 
 persistent_client: Optional['AMSClient'] = None
@@ -280,7 +275,8 @@ def get_client(
     authenticated client if caching is enabled. The client is used for all AMS API
     interactions, handling authentication and session management. Provides interactive
     feedback on login success if enabled. This function is typically called internally by
-    other public-facing functions but can be used directly to initialize a client.
+    other public-facing functions but can be used directly to initialize a client. Use this 
+    function for custom API calls or batch operations requiring an authenticated client.
 
     Args:
         url (str): The AMS instance URL (e.g., 'https://example.smartabase.com/site'). Must include a valid site name (e.g., '/site').
@@ -311,6 +307,13 @@ def get_client(
     global persistent_client
     if cache and persistent_client and persistent_client.authenticated:
         return persistent_client
+    
+    if not username or not password:
+        username = username or os.getenv("AMS_USERNAME")
+        password = password or os.getenv("AMS_PASSWORD")
+        if not username or not password and keyring is not None:
+            username = username or keyring.get_password("teamworksams", "username")
+            password = password or keyring.get_password("teamworksams", "password")
     
     if not username or not password:
         raise AMSError("No valid credentials provided and no cached client available. Supply 'username' and 'password'.")

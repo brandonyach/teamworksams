@@ -499,12 +499,23 @@ Troubleshooting
 .. code-block:: text
 
    keyring.errors.NoKeyringError...
+   AMSError: No valid credentials provided...
 
-**Solution**: Ensure a keyring backend is installed (e.g., ``keyrings.alt`` for CI):
+**Solution**:
+- Ensure `keyring` is installed and a backend is available. Install `keyrings.alt` for CI or alternative systems:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   pip install keyrings.alt
+      pip install keyrings.alt
+
+- Verify credentials are set correctly:
+
+   .. code-block:: python
+
+      import keyring
+      print(keyring.get_password("teamworksams", "username"))  # Should print: username
+
+- If issues persist, use environment variables or direct arguments as a fallback.
 
 **Caching Conflicts**:
 
@@ -522,6 +533,42 @@ Troubleshooting
        password="password",
        cache=False
    )
+
+**Session Timeouts**:
+
+.. code-block:: text
+
+   AMSError: Connection aborted, possibly due to network issues or session expiration...
+
+**Solution**:
+- Session timeouts or network issues may occur in long-running interactive environments like Jupyter Notebook if the AMS API session expires or connectivity is interrupted. Try re-running the function, as a second attempt often succeeds by establishing a new connection. Alternatively, re-authenticate to refresh the session:
+
+   .. code-block:: python
+
+      from teamworksams import login, LoginOption
+      from dotenv import load_dotenv
+
+      load_dotenv()
+      login(
+          url = os.getenv("AMS_URL"),
+          option = LoginOption(interactive_mode = True, cache = True)
+      )
+
+- To avoid session reuse issues, disable caching to create a new client per request:
+
+   .. code-block:: python
+
+      from teamworksams import get_event_data, EventOption
+
+      df = get_event_data(
+          url = os.getenv("AMS_URL"),
+          form = "Training Log",
+          start_date = "01/01/2025",
+          end_date = "31/01/2025",
+          option = EventOption(interactive_mode = True, cache = False)
+      )
+
+- Restarting the Jupyter kernel can clear any stale state. If issues persist, contact your AMS administrator to check server session settings or network stability.
 
 Next Steps
 ----------

@@ -6,7 +6,7 @@ from .utils import AMSClient, AMSError, get_client
 from .user_build import _build_group_payload, _build_user_save_payload, _build_user_edit_payload
 from .user_fetch import _fetch_user_data, _fetch_user_save, _fetch_all_user_data
 from .user_clean import _clean_user_data, _transform_group_data, _clean_user_data_for_save, _get_update_columns
-from .user_process import _filter_by_about, _flatten_user_response, _match_user_ids, _map_user_updates, _process_users
+from .user_process import _filter_by_about, _flatten_user_response, _match_user_ids, _process_users
 from .user_print import _print_user_status, _print_group_status, _report_user_results
 from .user_filter import UserFilter
 from .user_option import UserOption, GroupOption
@@ -136,7 +136,11 @@ def get_group(
     option = option or GroupOption()
     client = client or get_client(url, username, password, cache=option.cache, interactive_mode=option.interactive_mode)
     
-    payload = _build_group_payload(username)
+    resolved_username = username or client.username
+    if not resolved_username:
+        raise AMSError("No valid username provided for group payload. Supply 'username', set AMS_USERNAME env var, or use keyring credentials.")
+    
+    payload = _build_group_payload(resolved_username)
     
     if option.interactive_mode:
         print("ℹ Fetching group data...")

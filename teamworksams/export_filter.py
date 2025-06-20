@@ -23,7 +23,7 @@ class EventFilter:
         data_value (Optional[str]): Value to match for `data_key` (e.g., 'High'). If
             None, no data filtering is applied. Defaults to None.
         data_condition (Optional[str]): Condition for `data_key` filtering, one of
-            'equals', 'not_equals', 'contains'. If None, defaults to 'equals'. Defaults
+            ">", ">=", "<", "<=", "=", "!=", "contains". Defaults
             to None.
         events_per_user (Optional[int]): Maximum number of events per user. If None,
             retrieves all events. Defaults to None.
