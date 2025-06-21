@@ -219,10 +219,26 @@ class AMSClient:
                 function="_fetch",
                 endpoint=endpoint
             )
-            
         if response.status_code != 200:
+            if response.status_code == 403:
+                error_message = (
+                    f"Access denied, possibly due to invalid URL, credentials, or insufficient permissions for endpoint '{endpoint}'. "
+                    f"Verify AMS_URL (e.g., 'https://example.smartabase.com/site'), AMS_USERNAME, AMS_PASSWORD, or contact your site administrator."
+                )
+                if "access denied" in response.text.lower():
+                    error_message = (
+                        f"Access denied to endpoint '{endpoint}', possibly due to invalid URL, credentials, or insufficient permissions. "
+                        f"Verify AMS_URL (e.g., 'https://example.smartabase.com/site'), AMS_USERNAME, AMS_PASSWORD, or check group permissions."
+                    )
+            elif response.status_code == 401:
+                error_message = (
+                    f"Authentication failed for endpoint '{endpoint}'. Ensure AMS_URL, AMS_USERNAME, and AMS_PASSWORD are correct, "
+                    f"or re-authenticate with :py:func:`teamworksams.login_main.login`."
+                )
+            else:
+                error_message = f"Failed to fetch data from {endpoint} (status {response.status_code}): {response.text[:200]}..."
             raise AMSError(
-                f"Failed to fetch data from {endpoint} (status {response.status_code}): {response.text}",
+                error_message,
                 function="_fetch",
                 endpoint=endpoint,
                 status_code=response.status_code
@@ -230,14 +246,13 @@ class AMSClient:
         try:
             data = response.json()
         except ValueError:
-            data = None  
-            
+            data = None
         if cache:
             self._cache[cache_key] = data
         else:
-            self._cache.clear() 
-            
+            self._cache.clear()
         return data
+        
     
     
 
