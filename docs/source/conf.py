@@ -46,6 +46,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'sphinxawesome_theme'
 html_static_path = ['_static']
 html_logo = '_static/ams_logo.png'
+html_favicon = '_static/ams_logo.png'
 html_css_files = ['custom.css']
 html_theme_options = {}
 
