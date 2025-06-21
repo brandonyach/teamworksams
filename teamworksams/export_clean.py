@@ -44,7 +44,6 @@ def _clean_column_names(df: DataFrame) -> DataFrame:
     return df
 
 
-
 def _reorder_columns(
         front_cols: List[str], 
         df: DataFrame, 
@@ -64,7 +63,6 @@ def _reorder_columns(
     back_cols = [col for col in back_cols if col in df.columns]
     other_cols = [col for col in df.columns if col not in front_cols and col not in back_cols]
     return df[front_cols + other_cols + back_cols]
-
 
 
 def _guess_column_types(
@@ -108,7 +106,6 @@ def _guess_column_types(
     return df
 
 
-
 def _convert_date_columns(
         df: DataFrame, 
         date_cols: List[str] = ["start_date", "end_date"], 
@@ -133,7 +130,6 @@ def _convert_date_columns(
     return df
 
 
-
 def _convert_time_columns(
         df: DataFrame, 
         time_cols: List[str] = ["start_time", "end_time"], 
@@ -156,7 +152,6 @@ def _convert_time_columns(
             except (ValueError, TypeError):
                 pass
     return df
-
 
 
 def _transform_event_data(
@@ -187,7 +182,6 @@ def _transform_event_data(
     return df
 
 
-
 def _transform_profile_data(
         df: DataFrame, 
         clean_names: bool = False, 
@@ -212,7 +206,6 @@ def _transform_profile_data(
     return df
 
 
-
 def _sort_event_data(df: DataFrame) -> DataFrame:
     """Sort an event DataFrame by start_date, user_id, and event_id.
 
@@ -227,7 +220,6 @@ def _sort_event_data(df: DataFrame) -> DataFrame:
         ascending=[True, True, True],
         na_position="last"
     ).reset_index(drop=True)
-
 
 
 def _sort_profile_data(df: DataFrame) -> DataFrame:

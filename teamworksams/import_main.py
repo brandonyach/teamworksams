@@ -6,7 +6,7 @@ from .import_build import _build_import_payload, _build_profile_payload
 from .import_clean import _clean_import_df, _clean_profile_df
 from .import_fetch import _fetch_import_payloads
 from .import_print import _print_import_status
-from .import_process import _map_id_col_to_user_id
+from .import_process import _map_id_col_to_user_id, _count_unique_events
 from .import_validate import _validate_import_df
 
 
@@ -103,9 +103,7 @@ def insert_event_data(
         overwrite_existing=False
     )
     
-    # event_count = len(payloads[0]["events"])
-    # event_count = sum(len(p["events"]) for p in payloads)
-    event_count = len(payloads) 
+    event_count = sum(_count_unique_events(payload["events"], option.table_fields) for payload in payloads)
     
     if option.interactive_mode:
         print(f"ℹ Inserting {event_count} events for '{form}'")
@@ -218,8 +216,7 @@ def update_event_data(
         overwrite_existing=True
     )
     
-    # event_count = sum(len(p["events"]) for p in payloads)
-    event_count = len(payloads) 
+    event_count = sum(_count_unique_events(payload["events"], option.table_fields) for payload in payloads)
     
     if option.interactive_mode:
         print(f"ℹ Updating {event_count} events for '{form}'")
@@ -349,9 +346,7 @@ def upsert_event_data(
             overwrite_existing=True
         )
         
-        # update_count = len(update_payloads[0]["events"])
-        # update_count = sum(len(p["events"]) for p in update_payloads)
-        update_count = len(update_payloads) 
+        update_count = sum(_count_unique_events(payload["events"], option.table_fields) for payload in update_payloads)
         
         if option.interactive_mode:
             print(f"ℹ Updating {update_count} existing events for '{form}'")
@@ -374,9 +369,7 @@ def upsert_event_data(
             overwrite_existing=False
         )
         
-        # insert_count = len(insert_payloads[0]["events"])
-        # insert_count = sum(len(p["events"]) for p in insert_payloads)
-        insert_count = len(insert_payloads) 
+        insert_count = sum(_count_unique_events(payload["events"], option.table_fields) for payload in insert_payloads) 
         
         if option.interactive_mode:
             print(f"ℹ Inserting {insert_count} new events for '{form}'")
@@ -487,10 +480,9 @@ def upsert_profile_data(
     
     if option.interactive_mode:
         print(f"ℹ Upserting {profile_count} profile records for '{form}'")
-        if option.require_confirmation:
-            confirm = input(f"Are you sure you want to upsert {profile_count} profile records in '{form}'? (y/n): ").strip().lower()
-            if confirm not in ['y', 'yes']:
-                raise AMSError("Upsert operation cancelled by user.")
+        confirm = input(f"Are you sure you want to upsert {profile_count} profile records in '{form}'? (y/n): ").strip().lower()
+        if confirm not in ['y', 'yes']:
+            raise AMSError("Upsert operation cancelled by user.")
     
     results = _fetch_import_payloads(client, payload, "upsert", option.interactive_mode, option.cache, is_profile=True)
     

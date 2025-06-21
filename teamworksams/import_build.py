@@ -40,7 +40,7 @@ def _build_import_payload(
     payloads = [{"events": [event]} for event in events]
     
     if not table_fields and _detect_duplicate_date_user_id(df, table_fields):
-        print("⚠️ Warning: Multiple rows with the same user_id and start_date detected. Each row imported as a separate event.")
+        print("⚠️ Warning: Multiple rows with the same user_id and start_date detected. Each row imported as a separate event. Specify table_fields in the option class if this event form has table fields to group rows correctly.")
     
     return payloads
 

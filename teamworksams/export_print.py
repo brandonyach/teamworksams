@@ -10,11 +10,12 @@ def _print_event_status(df: DataFrame, form: str, option: EventOption) -> None:
         option (EventOption): The EventOption object specifying interactive mode and attachment options.
     """
     if option.interactive_mode:
+        event_count = len(df['event_id'].unique()) if not df.empty else 0
         if option.download_attachment:
             attachment_count = getattr(option, "attachment_count", 0)
-            print(f"✔ Retrieved {len(df)} event records for form '{form}' with {attachment_count} attachments downloaded.")
+            print(f"✔ Retrieved {event_count} events for form '{form}' with {attachment_count} attachments downloaded.")
         else:
-            print(f"✔ Retrieved {len(df)} event records for form '{form}'.")
+            print(f"✔ Retrieved {event_count} events for form '{form}'.")
 
 
 

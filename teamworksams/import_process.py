@@ -73,7 +73,14 @@ def _handle_import_response(response: Dict) -> Dict:
     result = response.get("result", response.get("data", response))
     state = result.get("state", result.get("status", "UNKNOWN")).upper()
     ids = result.get("ids", result.get("data", {}).get("ids", []))
-    message = result.get("message", result.get("error", result.get("description", "")))
+    message = (
+        result.get("message", "") or
+        result.get("error", "") or
+        result.get("description", "") or
+        str(result) if state not in ["SUCCESSFULLY_IMPORTED", "SUCCESS"] else ""
+    )
+    if not message and state not in ["SUCCESSFULLY_IMPORTED", "SUCCESS"]:
+        message = "Unknown error occurred during import"
     
     processed_result = {
         "state": state,
