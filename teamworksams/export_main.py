@@ -117,9 +117,15 @@ def get_event_data(
     
     data = client._fetch(endpoint, method="POST", payload=payload, cache=option.cache, api_version="v1")
     
-    if not data or "events" not in data or not data["events"]:
-        AMSError(f"No events found for form '{form}' in the date range {start_date} to {end_date}", 
-                           function="get_event_data", endpoint=endpoint)
+    # Validate API response
+    if not isinstance(data, dict):
+        raise AMSError(f"Invalid API response: expected a dictionary, got {type(data)}", function="get_event_data", endpoint=endpoint)
+    if "error" in data:
+        raise AMSError(f"API error: {data['error']}", function="get_event_data", endpoint=endpoint)
+    if "events" not in data or not data["events"]:
+        if option.interactive_mode:
+            print(f"ℹ No events found for form '{form}' in the date range {start_date} to {end_date}")
+        return DataFrame(columns=["user_id", "event_id", "form", "start_date"])
     
     if option.interactive_mode:
         print(f"ℹ Processing {len(data['events'])} events...")

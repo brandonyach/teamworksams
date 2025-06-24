@@ -10,18 +10,21 @@ from .utils import AMSError
 def _validate_file_df(df: DataFrame, user_key: str, mapping_col: str = "attachment_id", require_mapping_col: bool = True) -> DataFrame:
     """Validate the file DataFrame for required columns, duplicates, and data types.
 
-    Args:
-        df (DataFrame): The DataFrame to validate.
-        user_key (str): The user identifier column name (e.g., 'username').
-        mapping_col (str): The column name for matching events (default: 'attachment_id').
-        require_mapping_col (bool): Whether to require the mapping_col column (default: True).
+#     Args:
+#         df (DataFrame): The DataFrame to validate.
+#         user_key (str): The user identifier column name (e.g., 'username').
+#         mapping_col (str): The column name for matching events (default: 'attachment_id').
+#         require_mapping_col (bool): Whether to require the mapping_col column (default: True).
 
-    Returns:
-        DataFrame: Validated DataFrame with string-converted columns.
+#     Returns:
+#         DataFrame: Validated DataFrame with string-converted columns.
 
-    Raises:
-        AMSError: If required columns are missing, duplicates are found, or data types are invalid.
-    """
+#     Raises:
+#         AMSError: If required columns are missing, duplicates are found, or data types are invalid.
+#     """
+    if df.empty:
+        return DataFrame(columns=[user_key, "file_name", mapping_col] if require_mapping_col else [user_key, "file_name"])
+    
     required_columns = [user_key, "file_name"]
     if require_mapping_col:
         required_columns.append(mapping_col)
@@ -29,10 +32,7 @@ def _validate_file_df(df: DataFrame, user_key: str, mapping_col: str = "attachme
     if missing_columns:
         raise AMSError(f"Missing required columns in file_df: {missing_columns}", function="validate_file_df")
 
-    # Create a copy to avoid modifying the input
     df = df.copy()
-
-    # Check data types for string columns
     dtype_changes = {}
     for col in required_columns:
         if pd.api.types.is_numeric_dtype(df[col]):

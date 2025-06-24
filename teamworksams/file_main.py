@@ -220,11 +220,11 @@ def upload_and_attach_to_events(
 
     if option.interactive_mode and len(mapping_df) > initial_rows:
         print(f"⚠️ Warning: mapping_df increased from {initial_rows} to {len(mapping_df)} rows due to duplicate {user_key} matches in user data.")
-
+    
     if mapping_df.empty:
-        results_df = pd.concat(failed_results, ignore_index=True)
+        results_df = pd.DataFrame(columns=[user_key, "file_name", "event_id", "user_id", "file_id", "server_file_name", "status", "reason"])
         if option.interactive_mode:
-            print(f"⚠️ Failed to attach {len(results_df)} files.")
+            print(f"⚠️ Failed to attach 0 files.")
         if option.save_to_file:
             results_df.to_csv(option.save_to_file, index=False)
             print(f"ℹ Saved results to '{option.save_to_file}'")
