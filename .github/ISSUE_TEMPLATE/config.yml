@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: teamworksams Documentation
+    url: https://brandonyach.github.io/teamworksams
+    about: Check the documentation for setup and usage details.
+  - name: General Feedback
+    url: https://github.com/brandonyach/teamworksams/issues/1
+    about: Submit general feedback to the pinned v0.1.0-beta Feedback issue.
