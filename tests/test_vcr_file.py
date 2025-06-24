@@ -204,18 +204,18 @@ def test_upload_avatars_success(avatar_mapping_df, file_dir):
                 mapping_df=avatar_mapping_df,
                 file_dir=str(file_dir),
                 user_key="username",
-                url=os.getenv("AMS_URL"),
-                username=os.getenv("AMS_USERNAME"),
-                password=os.getenv("AMS_PASSWORD"),
+                url="https://learn.smartabase.com/ankle",
+                username="test_user",
+                password="test_pass",
                 option=FileUploadOption(interactive_mode=False)
             )
             assert isinstance(results, DataFrame)
             assert set(results.columns) == {"username", "file_name", "user_id", "file_id", "server_file_name", "status", "reason"}
             assert len(results) == 3
             assert any(results["file_name"] == "Dean Jones.svg")
-            assert any("Invalid file type '.svg'." in str(reason) for reason in results[results["file_name"] == "Dean Jones.svg"]["reason"])                    
+            assert any("Invalid file type '.svg'." in str(reason) for reason in results[results["file_name"] == "Dean Jones.svg"]["reason"])     
 
-
+                        
 
 def test_format_file_reference():
     """Test _format_file_reference formats file_id|server_file_name."""
