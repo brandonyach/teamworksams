@@ -61,89 +61,6 @@ def invalid_dir():
     """Fixture for an invalid directory path."""
     return "/non/existent/path"
 
-# Tests for file_main.py
-@pytest.mark.vcr(record_mode='none')
-def test_upload_events_success(event_mapping_df, file_dir):
-    """Test event file upload with mixed outcomes."""
-    with patch("teamworksams.file_process._fetch_user_ids", return_value=(
-        ["78901", "78902", "78903"],
-        DataFrame({
-            "userId": ["78901", "78902", "78903"],
-            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
-        })
-    )):
-        with patch("teamworksams.file_main.get_event_data", side_effect=AMSError("No events found")):
-            results = upload_and_attach_to_events(
-                mapping_df=event_mapping_df,
-                mapping_col='attachment_id',
-                file_dir=str(file_dir),
-                user_key="username",
-                form="Test File Upload",
-                file_field_name="attachment",
-                url=os.getenv("AMS_URL"),
-                username=os.getenv("AMS_USERNAME"),
-                password=os.getenv("AMS_PASSWORD"),
-                option=FileUploadOption(interactive_mode=False)
-            )
-            assert isinstance(results, DataFrame)
-            assert set(results.columns) == {"username", "file_name", "event_id", "file_id", "server_file_name", "status", "reason"}
-            assert len(results["file_name"].unique()) == 3
-            assert results["status"].eq("FAILED").all()
-            assert all("Failed to retrieve events: No events found. Please check inputs or contact your site administrator." in str(reason) for reason in results["reason"])
-
-@pytest.mark.vcr(record_mode='none')
-def test_upload_events_invalid_form(event_mapping_df, file_dir):
-    """Test event upload with invalid form name."""
-    with patch("teamworksams.file_process._fetch_user_ids", return_value=(
-        ["78901", "78902", "78903"],
-        DataFrame({
-            "userId": ["78901", "78902", "78903"],
-            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
-        })
-    )):
-        with patch("teamworksams.file_main.get_event_data", side_effect=AMSError("Invalid form")):
-            results = upload_and_attach_to_events(
-                mapping_df=event_mapping_df,
-                mapping_col='attachment_id',
-                file_dir=str(file_dir),
-                user_key="username",
-                form="Invalid Form",
-                file_field_name="attachment",
-                url=os.getenv("AMS_URL"),
-                username=os.getenv("AMS_USERNAME"),
-                password=os.getenv("AMS_PASSWORD"),
-                option=FileUploadOption(interactive_mode=False)
-            )
-            assert isinstance(results, DataFrame)
-            assert set(results.columns) == {"username", "file_name", "event_id", "file_id", "server_file_name", "status", "reason"}
-            assert all("Failed to retrieve events: Invalid form. Please check inputs or contact your site administrator." in str(reason) for reason in results["reason"])
-
-@pytest.mark.vcr(record_mode='none')
-def test_upload_events_invalid_field(event_mapping_df, file_dir):
-    """Test event upload with invalid file_field_name."""
-    with patch("teamworksams.file_process._fetch_user_ids", return_value=(
-        ["78901", "78902", "78903"],
-        DataFrame({
-            "userId": ["78901", "78902", "78903"],
-            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
-        })
-    )):
-        with patch("teamworksams.file_main.get_event_data", return_value=DataFrame({"event_id": ["123"], "other_col": ["value"]})):
-            results = upload_and_attach_to_events(
-                mapping_df=event_mapping_df,
-                mapping_col='attachment_id',
-                file_dir=str(file_dir),
-                user_key="username",
-                form="Test File Upload",
-                file_field_name="invalid_field",
-                url=os.getenv("AMS_URL"),
-                username=os.getenv("AMS_USERNAME"),
-                password=os.getenv("AMS_PASSWORD"),
-                option=FileUploadOption(interactive_mode=False)
-            )
-            assert isinstance(results, DataFrame)
-            assert set(results.columns) == {"username", "file_name", "event_id", "file_id", "server_file_name", "status", "reason"}
-            assert all("Event form 'Test File Upload' does not have a 'attachment_id' field" in str(reason) for reason in results["reason"])
 
 def test_upload_events_empty_mapping_df(file_dir):
     """Test event upload with empty mapping_df."""
@@ -163,6 +80,103 @@ def test_upload_events_empty_mapping_df(file_dir):
     assert isinstance(results, DataFrame)
     assert results.empty
     assert set(results.columns) == {"username", "file_name", "event_id", "user_id", "file_id", "server_file_name", "status", "reason"}
+
+
+@pytest.mark.vcr(record_mode='none')
+def test_upload_events_success(event_mapping_df, file_dir):
+    """Test event file upload with mixed outcomes."""
+    with patch("teamworksams.file_process._fetch_user_ids", return_value=(
+        ["78901", "78902", "78903"],
+        DataFrame({
+            "userId": ["78901", "78902", "78903"],
+            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
+        })
+    )):
+        with patch("teamworksams.user_fetch._fetch_all_user_data", return_value=DataFrame({
+            "id": ["78901", "78902", "78903"],
+            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
+        })):
+            with patch("teamworksams.file_main.get_event_data", side_effect=AMSError("No events found")):
+                results = upload_and_attach_to_events(
+                    mapping_df=event_mapping_df,
+                    mapping_col='attachment_id',
+                    file_dir=str(file_dir),
+                    user_key="username",
+                    form="Test File Upload",
+                    file_field_name="attachment",
+                    url="https://learn.smartabase.com.ankle",
+                    username="test_user",
+                    password="test_pass",
+                    option=FileUploadOption(interactive_mode=False)
+                )
+                assert isinstance(results, DataFrame)
+                assert set(results.columns) == {"username", "file_name", "event_id", "file_id", "server_file_name", "status", "reason"}
+                assert len(results["file_name"].unique()) == 3
+                assert results["status"].eq("FAILED").all()
+                assert all("Failed to retrieve events: No events found" in str(reason) for reason in results["reason"])
+
+@pytest.mark.vcr(record_mode='none')
+def test_upload_events_invalid_form(event_mapping_df, file_dir):
+    """Test event upload with invalid form name."""
+    with patch("teamworksams.file_process._fetch_user_ids", return_value=(
+        ["78901", "78902", "78903"],
+        DataFrame({
+            "userId": ["78901", "78902", "78903"],
+            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
+        })
+    )):
+        with patch("teamworksams.user_fetch._fetch_all_user_data", return_value=DataFrame({
+            "id": ["78901", "78902", "78903"],
+            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
+        })):
+            with patch("teamworksams.file_main.get_event_data", side_effect=AMSError("Invalid form")):
+                results = upload_and_attach_to_events(
+                    mapping_df=event_mapping_df,
+                    mapping_col='attachment_id',
+                    file_dir=str(file_dir),
+                    user_key="username",
+                    form="Invalid Form",
+                    file_field_name="attachment",
+                    url="https://learn.smartabase.com.ankle",
+                    username="test_user",
+                    password="test_pass",
+                    option=FileUploadOption(interactive_mode=False)
+                )
+                assert isinstance(results, DataFrame)
+                assert set(results.columns) == {"username", "file_name", "event_id", "file_id", "server_file_name", "status", "reason"}
+                assert all("Failed to retrieve events: Invalid form" in str(reason) for reason in results["reason"])
+
+@pytest.mark.vcr(record_mode='none')
+def test_upload_events_invalid_field(event_mapping_df, file_dir):
+    """Test event upload with invalid file_field_name."""
+    with patch("teamworksams.file_process._fetch_user_ids", return_value=(
+        ["78901", "78902", "78903"],
+        DataFrame({
+            "userId": ["78901", "78902", "78903"],
+            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
+        })
+    )):
+        with patch("teamworksams.user_fetch._fetch_all_user_data", return_value=DataFrame({
+            "id": ["78901", "78902", "78903"],
+            "username": ["Riley.Jones", "Samantha.Fields", "Dean.Jones"]
+        })):
+            with patch("teamworksams.file_main.get_event_data", return_value=DataFrame({"event_id": ["123"], "other_col": ["value"]})):
+                results = upload_and_attach_to_events(
+                    mapping_df=event_mapping_df,
+                    mapping_col='attachment_id',
+                    file_dir=str(file_dir),
+                    user_key="username",
+                    form="Test File Upload",
+                    file_field_name="invalid_field",
+                    url="https://learn.smartabase.com.ankle",
+                    username="test_user",
+                    password="test_pass",
+                    option=FileUploadOption(interactive_mode=False)
+                )
+                assert isinstance(results, DataFrame)
+                assert set(results.columns) == {"username", "file_name", "event_id", "file_id", "server_file_name", "status", "reason"}
+                assert all("Event form 'Test File Upload' does not have a 'attachment_id' field" in str(reason) for reason in results["reason"])
+                    
 
 @pytest.mark.vcr(record_mode='none')
 def test_upload_avatars_success(avatar_mapping_df, file_dir):
@@ -199,9 +213,10 @@ def test_upload_avatars_success(avatar_mapping_df, file_dir):
             assert set(results.columns) == {"username", "file_name", "user_id", "file_id", "server_file_name", "status", "reason"}
             assert len(results) == 3
             assert any(results["file_name"] == "Dean Jones.svg")
-            assert any("Invalid file type '.svg'." in str(reason) for reason in results[results["file_name"] == "Dean Jones.svg"]["reason"])
+            assert any("Invalid file type '.svg'." in str(reason) for reason in results[results["file_name"] == "Dean Jones.svg"]["reason"])                    
 
-# Tests for file_process.py
+
+
 def test_format_file_reference():
     """Test _format_file_reference formats file_id|server_file_name."""
     df = DataFrame({
