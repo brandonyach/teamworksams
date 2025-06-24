@@ -111,5 +111,5 @@ Explore the documentation for detailed guides:
 ## License
 MIT License (see [LICENSE](LICENSE))
 
-## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+## Support
+This is an experimental beta release with no official support. Please submit feedback, bugs, or feature requests via GitHub Issues: https://github.com/brandonyach/teamworksams/issues. Use the pinned "teamworksams 0.1.0 beta Feedback" issue for general comments.
