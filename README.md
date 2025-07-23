@@ -101,7 +101,7 @@ Read more in the [Getting Started Vignette](https://brandonyach.github.io/teamwo
 ## Further Reading
 Explore the documentation for detailed guides:
 - [Credentials](https://brandonyach.github.io/teamworksams/vignettes/credentials.html): Manage credentials and authentication.
-- [User Management](https://brandonyach.github.io/teamworksams/vignettes/user_management.html): Retreive user and group data, update user accounts, and create new users
+- [User Management](https://brandonyach.github.io/teamworksams/vignettes/user_management.html): Retrieve user and group data, update user accounts, and create new users
 - [Exporting Data](https://brandonyach.github.io/teamworksams/vignettes/exporting_data.html): Retrieve event and profile data from Teamworks AMS.
 - [Importing Data](https://brandonyach.github.io/teamworksams/vignettes/importing_data.html): Insert, update, and upsert event data to Teamworks AMS.
 - [Uploading Files](https://brandonyach.github.io/teamworksams/vignettes/uploading_files.html): Upload and attach files to events and profile avatars.
