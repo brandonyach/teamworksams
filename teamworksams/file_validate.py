@@ -106,7 +106,7 @@ def _validate_file_path(file_dir: str, file_names: List[str], function: str, is_
     if not file_dir.is_dir():
         raise AMSError(f"Directory '{file_dir}' does not exist", function=function)
 
-    valid_extensions = {'.png', '.jpg', '.jpeg'} if is_avatar else {'.pdf', '.doc', '.docx', '.txt', '.csv', '.png', '.jpg', '.jpeg', '.gif', '.heic', '.HEIC', '.xls', '.xlsx', '.xlsm', '.tiff', '.tif', '.odt', '.mp4', '.MP4', '.zip', '.ZIP', '.ppt', '.pptx', '.eml'}
+    valid_extensions = {'.png', '.jpg', '.jpeg'} if is_avatar else {'.pdf', '.doc', '.docx', '.txt', '.csv', '.png', '.jpg', '.jpeg', '.gif', '.heic', '.HEIC', '.xls', '.xlsx', '.xlsm', '.tiff', '.tif', '.odt', '.mp4', '.MP4', '.zip', '.ZIP', '.ppt', '.pptx', '.eml', '.bmp'}
     valid_files = []
     invalid_files = []
 
