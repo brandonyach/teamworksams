@@ -158,7 +158,7 @@ def upload_and_attach_to_events(
         raise AMSError(f"'{file_dir}' is not a valid directory", function="upload_and_attach_to_events")
 
     # Pre-validate file extensions
-    valid_extensions = {'.pdf', '.doc', '.docx', '.txt', '.csv', '.png', '.jpg', '.jpeg', '.gif', '.heic', '.HEIC', '.xls', '.xlsx', '.xlsm', '.tiff', '.tif', '.odt', '.mp4', '.MP4', '.zip', '.ZIP', '.ppt', '.pptx', '.eml', '.bmp'}
+    valid_extensions = {'.pdf', '.doc', '.docx', '.txt', '.csv', '.png', '.jpg', '.jpeg', '.gif', '.heic', '.HEIC', '.xls', '.xlsx', '.xlsm', '.tiff', '.tif', '.odt', '.zip', '.ZIP', '.ppt', '.pptx', '.eml', '.bmp'}
     
     invalid_files = []
     for file_name in mapping_df["file_name"]:

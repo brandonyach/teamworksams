@@ -177,7 +177,8 @@ class AMSClient:
             method: str = "POST", 
             payload: Optional[dict] = None, 
             cache: bool = True, 
-            api_version: str = "v1"
+            api_version: str = "v1",
+            timeout: Tuple[float, float] = (300, 300)
         ):
         """Fetch data from the AMS API with caching.
 
@@ -206,16 +207,22 @@ class AMSClient:
         if cache and cache_key in self._cache:
             return self._cache[cache_key]
         url = self._AMS_url(endpoint, api_version=api_version) if method == "POST" else f"{self.url}/api/v3/{endpoint.lstrip('/')}"
-        kwargs = {"headers": self.headers, "timeout": 60}
+        kwargs = {"headers": self.headers}
         
         if payload and method != "GET":
             kwargs["json"] = payload
         # response = self.session.request(method, url, **kwargs)
         try:
-            response = requests.request(method, url, **kwargs)
+            response = requests.request(method, url, timeout = timeout, **kwargs)
         except requests.exceptions.ConnectionError as e:
             raise AMSError(
                 f"Connection aborted, possibly due to network issues or session expiration: {str(e)}. Try re-running the function or re-authenticating with login().",
+                function="_fetch",
+                endpoint=endpoint
+            )
+        except requests.exceptions.Timeout as e:
+            raise AMSError(
+                f"Timeout occurred during request to endpoint '{endpoint}': {str(e)}.",
                 function="_fetch",
                 endpoint=endpoint
             )
